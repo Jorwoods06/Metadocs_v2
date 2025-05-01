@@ -18,9 +18,7 @@ figure {
     padding: 0;
 }
 
-p{
-    font-weight: bold;
-}
+
 
 #img_login{
     display: none;
@@ -178,7 +176,10 @@ p{
 
     #cuerpo #form input{
         flex-basis: auto; 
+        
     }
+
+     
 
     #cuerpo #form p{
         font-size: 1em;

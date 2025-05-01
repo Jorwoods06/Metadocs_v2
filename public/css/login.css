@@ -1,0 +1,217 @@
+*{
+    box-sizing: border-box;
+    transition: all 0.7s;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 17px;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+figure {
+    margin: 0;
+    padding: 0;
+}
+
+p{
+    font-weight: bold;
+}
+
+#img_login{
+    display: none;
+}
+
+#cuerpo {
+    height: 100vh;
+    width: 100%;
+}
+
+#cuerpo #form{
+    display: flex;
+    gap: 18px;
+    flex-direction: column;
+    justify-content: center;
+   
+    justify-self: center;
+    height: 100vh;
+    padding: 0 20px; 
+}
+
+#cuerpo #form input{
+    padding: 18px;
+    border-radius: 8px;
+    outline: none;
+    border: 1px solid #ccc;
+}
+
+#cuerpo #form input#gmail{
+    margin-bottom: 25px;
+}
+
+#cuerpo #form figure{
+    text-align: center;
+}
+
+#cuerpo #form img{
+    width: 80%;
+}
+
+#cuerpo #form p{
+    color: #ccc;
+    align-self: center;
+    position: relative;
+    bottom: 28px;
+}
+
+#cuerpo #form #recuperacion{
+    font-size: 0.8em;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px; /* Added margin for better spacing */
+}
+
+#cuerpo #form a{
+    color: #3D688A;
+}
+
+#cuerpo #form #checkbox{
+    display: flex;
+    align-items: center; /* Vertically align checkbox and label */
+}
+
+#btn_login{
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    height: 15vh;
+    align-items: center;
+}
+
+#cuerpo #btn_iniciar{
+    padding: 15px;
+    width: 50%;
+    font-weight: bold;
+    border: none;
+    background-color: #3D688A;
+    color: white;
+    border-radius: 20px;
+}
+
+/* Media query tablet*/
+
+@media screen and (min-width: 700px) {
+    
+    #cuerpo #form {
+        width: 90%;
+    }
+    #cuerpo #form figure{
+        width: 70%;
+        align-self: center;
+    }
+
+    #cuerpo #form input{
+        flex-basis: 8%; 
+    }
+
+    #cuerpo #form p{
+        font-size: 2em;
+        margin-bottom: 30px;
+    }
+
+    #cuerpo #form label{
+        font-size: 1.8em;
+    }
+
+    #cuerpo #form ::placeholder{
+        font-size: 2em;
+    }
+
+    #cuerpo #form #recuperacion {
+        font-size: 1.5em;
+    }
+
+    #cuerpo #checkbox input{
+        transform: scale(2.5);
+        margin-right: 28px;
+        margin-left: 17px;
+    }
+
+    #cuerpo #form #btn_iniciar{
+        padding: 30px;
+        font-size: 2em;
+        border-radius: 35px;
+    }
+}
+
+/*Media query pc */
+
+@media screen and (min-width: 1024px) {
+    #cuerpo{
+        display: flex;
+    }
+
+    #img_login{
+        display: block;
+        flex-basis: 57%; 
+    }
+
+    #img_login img{
+        width: 100%;
+        height: 100vh;
+        object-fit: cover; 
+    }
+
+    #cuerpo #form{
+        flex-basis: 43%;
+        padding: 50px; 
+    }
+
+    #cuerpo #form figure{
+        width: 40%;
+        align-self: center;
+    }
+
+    #cuerpo #form input{
+        flex-basis: auto; 
+    }
+
+    #cuerpo #form p{
+        font-size: 1em;
+        margin-bottom: 15px; 
+    }
+
+    #cuerpo #form label{
+        font-size: 0.9em;
+    }
+
+    #cuerpo #form ::placeholder{
+        font-size: 1em;
+    }
+
+    #cuerpo #form #recuperacion {
+        font-size: 0.8em;
+        margin-top: 15px; 
+    }
+
+    #cuerpo #checkbox input{
+        transform: scale(1.5);
+        margin-right: 15px; 
+        margin-left: 10px; 
+    }
+
+    #cuerpo #form #btn_iniciar{
+        padding: 15px 70px;
+        font-size: 1em;
+        width: auto; 
+        cursor: pointer;
+    }
+
+    #cuerpo #form #btn_iniciar:hover{
+        background-color: #2a4860;
+    }
+}

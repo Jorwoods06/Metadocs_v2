@@ -3,6 +3,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const boton_opciones = document.getElementById("menu_opciones");
     const menu_lateral = document.getElementById("menu-lateral");
     const boton_volver = document.getElementById("solo_mobil");
+    const mostrar_menu = document.getElementById("gestion-usuarios");
+    const sub_menu = document.getElementById("sub_menu");
+
     let posicion_inicial = 0;
 
     // Abrir menú
@@ -27,5 +30,12 @@ document.addEventListener("DOMContentLoaded", function () {
             menu_lateral.style.transform = "translateX(-100%)";
         }
     });
+
+    mostrar_menu.addEventListener("click", function () {
+       // Evita que el <a href="#"> salte arriba
+        sub_menu.classList.toggle("mostrar");
+    });
+    
+    
 
 });

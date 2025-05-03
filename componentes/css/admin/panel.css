@@ -87,10 +87,20 @@ body{
     font-weight: 500;
 }
 
-#menu-lateral ul.sub_menu{
-    display: none;
+.sub_menu {
+    max-height: 0;
+    overflow: hidden;
+    margin: 0 0 0 15px;
+    transition: all 0.9s;
+
+}
+
+
+.sub_menu.mostrar {
+    max-height: 200px; 
     margin: 25px 0 0 15px;
 }
+
 
 #contenido-principal{
     padding: 20px;

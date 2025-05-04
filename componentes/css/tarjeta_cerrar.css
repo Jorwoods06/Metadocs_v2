@@ -1,0 +1,103 @@
+*{
+    transition: all 0.8s;
+    box-sizing: border-box;
+}
+
+h2, p{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    padding: 0;
+    margin: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    width: 100%;
+
+  
+    
+}
+
+.carta {
+   
+    position: fixed;
+    display: none;
+    flex-direction: column;
+    max-width: 300px;
+    right: 25px;
+    top: 50px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    gap: 10px; 
+    align-items: flex-end;
+    z-index: 1000;
+    width: 16%;
+    animation: fadeIn 0.5s ease-out;
+
+}
+
+.informacion{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0 10px 0;
+}
+.informacion h2{
+    font-size: 1.5em;
+}
+
+.informacion p{
+    color: #ccc;
+    font-size: 0.8em;
+}
+
+.botones{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 5px;
+    padding: 0 10px 10px 10px;
+}
+
+.carta button{
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 8px 0;
+    width: 100%;
+}
+
+.carta button:hover{
+    background-color: #e5e5e5;
+    border-radius: 10px;
+}
+
+.carta .bi{
+    background-color: #e5e5e5;
+    padding: 5px;
+    border-radius: 50%;
+    color: black;
+    margin-left: 10px;
+    font-size: 1em;
+}
+
+.carta .cerrar{
+    color: #e53e3e;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -31,8 +31,9 @@ body{
     z-index: 100;
 }
 
-.bi{
-    font-size: 2.5em;
+#cabezote .bi{
+    font-size: 2em;
+    cursor: pointer;
 }
 
 #cuerpo{
@@ -102,7 +103,7 @@ body{
 }
 
 
-#contenido-principal{
+#admin-contenido{
     padding: 20px;
     margin-left: 0;
     width: 100%; 
@@ -129,7 +130,7 @@ body{
         transform: translateX(-100%);
     }
 
-    #contenido-principal{
+    #admin-contenido{
         margin-left: 0; 
         width: 100%; 
     }
@@ -152,7 +153,7 @@ body{
         left: 0;
     }
 
-    #contenido-principal{
+    #admin-contenido{
         margin-left: 18%; 
         padding: 30px;
         width: auto; 

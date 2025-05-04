@@ -68,7 +68,7 @@ figure {
 }
 
 .input-error {
-    border: 2px solid #e53e3e !important; /* Made it more specific with !important */
+    border: 1.5px solid #e53e3e !important; /* Made it more specific with !important */
     background-color: #fff5f5;
 }
 

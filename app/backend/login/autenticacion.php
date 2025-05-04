@@ -51,9 +51,9 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST'){
 
                 $rol = $autenticacion->rol;
                 $area = $autenticacion ->id_area;
+                $id_log = $autenticacion -> id_usuario;
                 
-                
-                $_SESSION['id_log'] =$id_usuario = $datos->id_usuario;
+                $_SESSION['id_log'] =$id_log;
                 $_SESSION['rol'] =$rol;
                 $_SESSION['area'] =$area;
             
@@ -61,7 +61,9 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST'){
 
 
                 switch ($rol) {
+                    
                     case 'administrador':
+                       
                         header("Location: ../../vistas/admin/panel_control.php");
                         break;
                     case 'visualizador':
@@ -91,6 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST'){
 
 
 
+$conexion_metadocs->close();
 
 
 ?>

@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const boton_volver = document.getElementById("solo_mobil");
     const mostrar_menu = document.getElementById("gestion-usuarios");
     const sub_menu = document.getElementById("sub_menu");
+    const btn_cerrar = document.getElementById("btn_cerrar");
+    const cerrar_modal = document.querySelector(".carta");
 
     let posicion_inicial = 0;
 
@@ -35,6 +37,25 @@ document.addEventListener("DOMContentLoaded", function () {
        // Evita que el <a href="#"> salte arriba
         sub_menu.classList.toggle("mostrar");
     });
+
+
+
+
+    btn_cerrar.addEventListener("click", function () {
+        cerrar_modal.style.display = (cerrar_modal.style.display === "block") ? "none" : "block";
+      });
+      
+     
+      document.addEventListener("click", function (event) {
+       
+        if (cerrar_modal.style.display === "block") {
+          
+          if (!cerrar_modal.contains(event.target) && event.target !== btn_cerrar) {
+            cerrar_modal.style.display = "none";
+          }
+        }
+      });
+
     
     
 

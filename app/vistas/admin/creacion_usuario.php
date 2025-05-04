@@ -1,3 +1,10 @@
+
+<?php 
+
+require_once '../../helpers/verificacion_roles.php';
+
+AutorizacionRol('administrador');
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -5,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin | Metadocs</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="icon" href="../../../public/img/logopng.png" type="image/x-icon">
+    <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
     <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
     <script src="../../../componentes/js/admin/panel.js"></script>
@@ -13,7 +20,7 @@
 <body>
     <header id="cabezote">
         <i class="bi bi-list" id="menu_opciones"></i>
-        <i class="bi bi-person-fill"></i>
+        <i   class="bi bi-person-circle" id="btn_cerrar"></i>
     </header>
 
     <main id="cuerpo">
@@ -81,3 +88,12 @@
             </ul>
         </nav>
        
+        <section id="admin-contenido" class="admin">
+            <h1>seccion creacion de usuarios</h1>
+        </section>
+
+        <?php include '../log/tarjeta_cerrar.php'; ?>
+
+</main>
+</body>
+</html>

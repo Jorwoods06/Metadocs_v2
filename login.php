@@ -49,7 +49,7 @@ unset($_SESSION['denegado']);
                 <div id="checkbox">
                     <input type="checkbox" name="recordar" id="recordar">Recordar
                 </div>
-                <a href="archivo.html">¿Olvidaste tu contraseña?</a>
+                <a href="app/vistas/log/recuperacion.php">¿Olvidaste tu contraseña?</a>
             </div>
 
             <div id="btn_login"> 

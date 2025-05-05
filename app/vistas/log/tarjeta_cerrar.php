@@ -26,7 +26,7 @@ require_once '../../helpers/info_usuario.php';
         </div>
           <div class="botones">
               <button>informacion<i class="bi bi-info-circle"></i></button>
-              <button> Cambiar contraseña<i class="bi bi-person-fill-lock"></i></button>
+              <a href="../log/recuperacion.php"><button> Cambiar contraseña<i class="bi bi-person-fill-lock"></i></button></a>
           
               <form action="../../backend/login/cerrar_sesion.php" method="post">
               

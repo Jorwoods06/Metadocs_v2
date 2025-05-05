@@ -1,0 +1,139 @@
+*{
+    box-sizing: border-box;
+    transition: all 0.8s;
+}
+
+
+
+html, body{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    width: 100%;
+    height: 100vh;
+}
+
+h1{
+    padding: 0;
+    margin: 0;
+}
+
+#cuerpo{
+    padding: 20px;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#cuerpo form{
+    display: flex;
+    flex-direction: column;
+
+   
+}
+
+#cuerpo form p{
+    margin: 0;
+    margin-bottom: 20px;
+    padding: 12px 0;
+}
+
+#cuerpo form p, label{
+    color: #cccccc;
+}
+
+
+#cuerpo form  label{
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+#cuerpo form input{
+    padding: 13px 17px;
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 40px;
+}
+
+#cuerpo form button{
+    padding: 13px 17px;
+    margin-bottom: 25px ;
+    cursor: pointer;
+    border: none;
+    color: white;
+    font-weight: bold;
+    background-color: #3D688A;
+    border-radius: 5px;
+}
+
+#cuerpo form a{
+ 
+    color: #3D688A;
+}
+
+/*Media query tablet*/
+@media screen and (min-width: 700px) and (max-width: 1023px) {
+
+    #cuerpo  h1{
+        font-size: 2.5em;
+    }
+
+    #cuerpo form p{
+        font-size: 1.6em;
+        margin-bottom: 100px;
+    }
+
+    #cuerpo form  label{
+        font-size: 2em;
+      
+    }
+    
+    #cuerpo form input{
+        padding: 33px 17px;
+        border-radius: 12px;
+        font-size: 1.5em;
+    }
+    
+    #cuerpo form button{
+        padding: 33px 17px;
+        border-radius: 12px;
+        font-size: 1.5em;
+        
+    }
+
+    #cuerpo form .footer-texto{
+        align-self:center;
+        font-size: 2em;
+    }
+    
+}   
+
+
+@media screen and (min-width: 1024px) {
+
+
+
+  
+
+  #cuerpo{
+    width: 40%;
+    justify-self: center;
+   
+  }
+
+  #cuerpo form{
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+
+  
+
+
+
+}

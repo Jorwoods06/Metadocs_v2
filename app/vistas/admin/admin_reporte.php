@@ -19,7 +19,7 @@ AutorizacionRol('administrador');
 <body>
     <header id="cabezote">
         <i class="bi bi-list" id="menu_opciones"></i>
-        <i class="bi bi-person-circle" id="btn_cerrar"></i>
+      
     </header>
 
     <main id="cuerpo">

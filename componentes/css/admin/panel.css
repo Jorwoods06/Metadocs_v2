@@ -63,6 +63,7 @@ body {
 #img_menu img {
     width: 150px;
     margin-bottom: 30px;
+    padding: 0px 10px;
 }
 
 #menu-lateral ul {
@@ -160,6 +161,12 @@ body {
 
 /* DESKTOP */
 @media screen and (min-width: 1024px) {
+   
+    #cabezote{
+        display: none;
+    }
+   
+   
     #img_menu img {
         width: 160px;
     }

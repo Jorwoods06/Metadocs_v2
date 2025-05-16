@@ -19,7 +19,7 @@ AutorizacionRol('administrador');
 <body>
     <header id="cabezote">
         <i class="bi bi-list" id="menu_opciones"></i>
-        <i class="bi bi-person-circle" id="btn_cerrar"></i>
+        
     </header>
 
     <main id="cuerpo">
@@ -50,6 +50,20 @@ AutorizacionRol('administrador');
                         Reportes
                     </a>
                 </li>
+
+                <li class="gestion-usuarios">
+                    <a href="#" id="cerrado-usuarios">
+                        <i class="bi bi-person"></i>
+                        Usuario
+                    </a>
+                    <ul class="sub_menu usuario-submenu" id="sub_menu">
+                        <li><form action="../../backend/login/cerrar_sesion.php" method="post"><button type="submit"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</button></form></li>
+                        <li><a href=""><i class="bi bi-info-circle"></i> Info usuario</a></li>
+                        <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
+
+                       
+                    </ul>
+                </li>
                 <li class="solo_mobil">
                     <a href="#" id="solo_mobil">
                         <i class="bi bi-arrow-left-circle"></i>
@@ -63,7 +77,7 @@ AutorizacionRol('administrador');
             <h1>Sección Creación de Usuarios</h1>
         </section>
 
-        <?php include '../log/tarjeta_cerrar.php'; ?>
+       
 
     </main>
 </body>

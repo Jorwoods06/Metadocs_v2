@@ -19,7 +19,7 @@ AutorizacionRol('administrador');
 <body>
     <header id="cabezote">
         <i class="bi bi-list" id="menu_opciones"></i>
-      
+
     </header>
 
     <main id="cuerpo">
@@ -35,11 +35,11 @@ AutorizacionRol('administrador');
                     </a>
                 </li>
                 <li class="gestion_usuario">
-                    <a href="#" id="gestion-usuarios">
+                    <a href="#" id="gestion-usuarios" >
                         <i class="bi bi-people"></i>
                         Gestión Usuarios
                     </a>
-                    <ul class="sub_menu" id="sub_menu">
+                    <ul class="sub_menu gestion-submenu" id="sub_menu">
                         <li><a href="../../app/views/admin_user.php"><i class="bi bi-person-plus"></i> Crear usuario</a></li>
                         <li><a href="../admin/ver_usuarios.php"><i class="bi bi-eye"></i> Ver usuario</a></li>
                     </ul>
@@ -50,6 +50,22 @@ AutorizacionRol('administrador');
                         Reportes
                     </a>
                 </li>
+                
+                    <!-- cerrado sesion -->  
+                <li class="gestion-usuarios">
+                    <a href="#" id="cerrado-usuarios">
+                        <i class="bi bi-person"></i>
+                        Usuario
+                    </a>
+                    <ul class="sub_menu usuario-submenu" id="sub_menu">
+                        <li><form action="../../backend/login/cerrar_sesion.php" method="post"><button type="submit"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</button></form></li>
+                        <li><a href=""><i class="bi bi-info-circle"></i> Info usuario</a></li>
+                        <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
+
+                       
+                    </ul>
+                </li>
+
                 <li class="solo_mobil">
                     <a href="#" id="solo_mobil">
                         <i class="bi bi-arrow-left-circle"></i>
@@ -63,7 +79,6 @@ AutorizacionRol('administrador');
             <h1>seccion reportes</h1>
         </section>
 
-        <?php include '../log/tarjeta_cerrar.php'; ?>
 
 </main>
 </body>

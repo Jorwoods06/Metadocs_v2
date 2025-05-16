@@ -11,17 +11,19 @@
 <body>
     <main id="cuerpo">
         <section id="correo_enviado">
-            <i class="bi bi-envelope-check"></i>
-            <h2>Correo enviado</h2>
-            <p>Hemos enviado un correo a ejemplo@gamil.com, por favor, revisa tu bandeja de entrada para encontrar las instrucciones necesarias para restablecer tu contraseña.</p>
+            <form>
+                <i class="bi bi-envelope-check"></i>
+                <h2>Correo enviado</h2>
+                <p>Hemos enviado un correo a ejemplo@gamil.com, por favor, revisa tu bandeja de entrada para encontrar las instrucciones necesarias para restablecer tu contraseña.</p>
 
-            <button onclick="window.open('https://mail.google.com/', '_blank')">
-                Abrir Gmail
-            </button>
+                <button onclick="window.open('https://mail.google.com/', '_blank')">
+                    Abrir Gmail
+                </button>
 
-            <p>¿No recibiste un correo?<a href="../../app/controller/reenviar_correo.php"> Reenviar</a></p>
+                <p>¿No recibiste un correo?<a href="../../app/controller/reenviar_correo.php"> Reenviar</a></p>
 
-            <p>¿Correo incorrecto?<a href="../../vistas/log/recuperacion.php"> Cambiar correo</a></p>
+                <p>¿Correo incorrecto?<a href="../../vistas/log/recuperacion.php"> Cambiar correo</a></p>
+            </form>
         </section>
     </main>
 </body>

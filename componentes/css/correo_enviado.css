@@ -12,15 +12,22 @@ body{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     width: 100%;
     height: 100vh;
+    background-color: #F5F5F5;
 }
 
 #cuerpo #correo_enviado{
     display: flex;
-    flex-direction: column;
     align-items: center;
     height: 100vh;
-    justify-content: center;
-    padding: 0px 10px;
+   
+}
+
+#cuerpo #correo_enviado form{
+     display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding: 15px;
+        border-radius: 5px;
 }
 
 #correo_enviado .bi{
@@ -30,6 +37,7 @@ body{
 
 #correo_enviado p{
     text-align: center;
+    color: #666;
 }
 
 #correo_enviado button{
@@ -89,8 +97,14 @@ body{
        
     }
 
-    #cuerpo #correo_enviado{
-        padding: 20px;
+    #cuerpo #correo_enviado form{
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding: 15px;
+        border-radius: 5px;
+        background-color: #FFF;
        
     }
 }

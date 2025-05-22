@@ -33,8 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $token = bin2hex(random_bytes(32));
         $expires = date("Y-m-d H:i:s", strtotime("+1 hour"));
 
-        // Guardar en la sesión el correo
+        // Guardar en la sesión el correo y valdiar que el acceso fue correcto
         $_SESSION['email'] = $email;
+        $_SESSION['recuperacion_iniciada'] = true;
+
 
         $stmt = $conexion_metadocs->prepare("INSERT INTO contraseña_resets (id_usuario, token, expira_en) VALUES (?, ?, ?)");
         $stmt->bind_param("iss", $userId, $token, $expires);

@@ -1,3 +1,27 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['email']) || !isset($_SESSION['recuperacion_iniciada'])) {
+    echo "Error: acceso no autorizado o sesión inválida.";
+    exit;
+}else{
+
+    $correo = $_SESSION['email'];
+
+
+    // Limpiar sesión
+    unset($_SESSION['email']);
+    unset($_SESSION['recuperacion_iniciada']);
+
+}
+
+
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,7 +38,7 @@
             <form>
                 <i class="bi bi-envelope-check"></i>
                 <h2>Correo enviado</h2>
-                <p>Hemos enviado un correo a ejemplo@gamil.com, por favor, revisa tu bandeja de entrada para encontrar las instrucciones necesarias para restablecer tu contraseña.</p>
+                <p>Hemos enviado un correo a <?php echo $correo; ?>, por favor, revisa tu bandeja de entrada para encontrar las instrucciones necesarias para restablecer tu contraseña.</p>
 
                 <button onclick="window.open('https://mail.google.com/', '_blank')">
                     Abrir Gmail

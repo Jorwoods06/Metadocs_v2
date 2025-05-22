@@ -217,12 +217,12 @@
     }
 
     #menu-lateral {
-      width: 18%;
+      width: 15%;
       transform: translateX(0) !important;
     }
 
     #admin-contenido {
-      margin-left: 18%;
+      margin-left: 15%;
       padding: 30px;
       width: auto;
     }

@@ -1,6 +1,19 @@
 <?php 
+
+session_start();
+
 require_once '../../helpers/verificacion_roles.php';
 AutorizacionRol('administrador');
+
+
+$exito = $_SESSION['exito'] ?? null;
+unset($_SESSION['exito']);
+
+$corre_exitente = $_SESSION['correo_existente'] ?? null;
+unset($_SESSION['correo_existente']);
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -34,8 +47,8 @@ AutorizacionRol('administrador');
                     <a href="#" id="gestion-usuarios">
                         <i class="bi bi-people"></i> Gestión Usuarios
                     </a>
-                    <ul class="sub_menu" id="sub_menu">
-                        <li><a href="../../app/views/admin_user.php"><i class="bi bi-person-plus"></i> Crear usuario</a></li>
+                    <ul class="sub_menu gestion-submenu" id="sub_menu">
+                        <li><a href="../../vistas/admin/creacion_usuario.php"><i class="bi bi-person-plus"></i> Crear usuario</a></li>
                         <li><a href="../admin/ver_usuarios.php"><i class="bi bi-eye"></i> Ver usuario</a></li>
                     </ul>
                 </li>
@@ -67,12 +80,30 @@ AutorizacionRol('administrador');
             </ul>
         </nav>
     
+
+         <?php if ($exito): ?>
+        <div class="mensaje_exito" id="mensaje-exito">
+            <p><?= htmlspecialchars($exito) ?></p>
+        </div>
+    
+
+        <?php endif; ?>
+
+        <?php if ($corre_exitente): ?>
+            <div class="correo_existente" id="correo_existente">
+            <p><?= htmlspecialchars($corre_exitente) ?></p>
+        </div>
+        <?php endif; ?>
+
+
         <section id="admin-contenido" class="admin">
             <div class="form-container">
                 <h2>Crear Usuario</h2>
                 <p class="subtitle">Ingrese los datos del nuevo usuario</p>
                 
-                <form>
+              <form action="../../backend/administrador/subir_usuario.php" method="post">
+
+
                     <div class="form-row">
                         <div class="form-group">
                             <label for="nombre">Nombre</label>
@@ -99,7 +130,7 @@ AutorizacionRol('administrador');
                                 type="email" id="email" name="email" maxlength="64" minlength="7" 
                                 pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" 
                                 title="Ingresa una dirección de email válida." placeholder="Ingresa tu correo"
-                                required>
+                                required class="<?= $corre_exitente ? 'input-error' : '' ?>">
                         </div>
                         <div class="form-group">
                             <label for="telefono">Teléfono</label>
@@ -135,18 +166,19 @@ AutorizacionRol('administrador');
                             <label for="rol">Rol</label>
                             <select id="rol" name="rol" required>
                                 <option value="" disabled selected>Seleccione rol</option>
-                                <option value="admin">Administrador</option>
-                                <option value="user">Usuario</option>
+                                <option value="administrador">Administrador</option>
+                                <option value="visualizador">Visualizador</option>
                                 <option value="auditor">Auditor</option>
+                                <option value="documentador">Documentador</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="area">Área</label>
                             <select id="area" name="area" required>
                                 <option value="" disabled selected>Seleccione área</option>
-                                <option value="rrhh">Logística</option>
-                                <option value="ventas">Contabilidad</option>
-                                <option value="marketing">Administración</option>
+                                <option value="logistica">Logística</option>
+                                <option value="contabilidad">Contabilidad</option>
+                                <option value="administracion">Administración</option>
                                 <option value="otro">Otro</option>
                             </select>
                         </div>

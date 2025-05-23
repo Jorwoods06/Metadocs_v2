@@ -51,15 +51,10 @@ input, select {
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 14px;
-    transition: border-color 0.3s;
-    outline-offset: 2px;
-}
-
-
-input:focus, select:focus {
-    border-color: #3498db;
     outline: none;
 }
+
+
 
 
 input::placeholder {
@@ -98,6 +93,40 @@ select {
 .btn-crear:hover {
     background-color: #1a68d1;
 }
+
+
+
+.mensaje_exito, .correo_existente  {
+    position: fixed;
+    top: 36px;
+    background-color: #d4edda;
+    color: #155724;
+    padding: 22.5px 18px;
+    border: 1px solid #c3e6cb;
+    border-radius: 4.5px;
+    box-shadow: 0 3.6px 5.4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    justify-self: anchor-center;
+    animation: fadeIn 0.5s ease-out, fadeOut 0.5s ease-in 4.5s forwards;
+}
+
+.mensaje_exito p, .correo_existente p{
+    margin: 0 auto;
+}
+
+.correo_existente{
+    background-color: #FFCDD2;
+    color: #B71C1C;
+    border: 1px solid #E57373;
+}
+
+
+
+input#email.input-error{
+    border: 1.62px solid red;
+}
+
 @media screen and (min-width: 600px) {
     #admin-contenido {
         padding: 30px;
@@ -105,3 +134,22 @@ select {
     }
 }
 
+/*animacion*/
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform:  translateY(-9px);
+    }
+    to {
+        opacity: 1;
+        transform:  translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform:  translateY(-9px);
+    }
+}

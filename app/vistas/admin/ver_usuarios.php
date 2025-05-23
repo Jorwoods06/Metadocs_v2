@@ -39,9 +39,9 @@ AutorizacionRol('administrador');
                         <i class="bi bi-people"></i>
                         Gestión Usuarios
                     </a>
-                    <ul class="sub_menu" id="sub_menu">
+                    <ul class="sub_menu gestion-submenu" id="sub_menu">
                         <li>
-                            <a href="../../app/views/admin_user.php">
+                            <a href="../../vistas/admin/creacion_usuario.php">
                                 <i class="bi bi-person-plus"></i>
                                 Crear usuario
                             </a>

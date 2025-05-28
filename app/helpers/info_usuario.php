@@ -22,4 +22,6 @@ $resultado = $sentencia->get_result();
 $usuario = $resultado->fetch_assoc();
 
 
+
+
 ?>

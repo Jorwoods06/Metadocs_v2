@@ -1,3 +1,15 @@
+<?php
+
+require '../../backend/login/validar_token.php';
+
+echo $correo;
+
+if ($mostrar_form) {
+  
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,7 +21,7 @@
 </head>
 <body>
   <main id="cuerpo">
-    <form id="formulario" action="#" method="POST" novalidate>
+    <form id="formulario" action="../../backend/login/cambio_contraseña.php" method="POST" novalidate>
       <h1>Recuperar contraseña</h1>
       <p>Ingrese una contraseña nueva</p>
 
@@ -24,6 +36,9 @@
         title="Debe coincidir con la contraseña anterior.">
 
         <span id="mensaje_err">Las contraseñas no coinciden</span>
+       
+        <input type="hidden" name="token" value="<?php echo htmlspecialchars($token); ?>">
+        <input type="hidden" name="correo" value="<?php echo htmlspecialchars($correo); ?>">
       <button type="submit" id="btn_cambiar">Cambiar</button>
     </form>
   </main>
@@ -31,3 +46,10 @@
   <script src="../../../componentes/js/log/coincidir_contraseña.js"></script>
 </body>
 </html>
+
+    <?php
+    } else {
+        echo "El enlace es inválido o ha expirado.";
+    }
+
+?>

@@ -76,7 +76,7 @@ AutorizacionRol('administrador');
         </nav>
        
         <section id="admin-contenido" class="admin">
-            <h1>seccion reportes</h1>
+            <h1>seccion reportes xd</h1>
         </section>
 
 

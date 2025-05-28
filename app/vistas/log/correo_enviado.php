@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once '../../helpers/conexion_bd.php';
 
 if (!isset($_SESSION['email']) || !isset($_SESSION['recuperacion_iniciada'])) {
     echo "Error: acceso no autorizado o sesión inválida.";

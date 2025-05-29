@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST'){
                         header("Location: visualizador.php");
                         break;
                     case 'documentador':
-                        header("Location: documentador.php");
+                        header("Location: ../../vistas/documentador/documentador_inicio.php");
                         break;
                     case 'auditor':
                         header("Location: auditor.php");

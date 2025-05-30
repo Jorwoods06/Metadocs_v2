@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+  
 }
 
 body {
@@ -17,6 +17,7 @@ h2 {
     font-size: 24px;
     font-weight: 600;
 }
+
 
 .subtitle {
     color: #7f8c8d;
@@ -132,6 +133,9 @@ input#email.input-error{
         padding: 30px;
         width: 100%;
     }
+}
+.mensaje_err { 
+    display: none;
 }
 
 /*animacion*/

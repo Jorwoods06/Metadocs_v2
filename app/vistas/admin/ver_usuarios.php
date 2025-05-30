@@ -1,7 +1,5 @@
 <?php 
-
 require_once '../../helpers/verificacion_roles.php';
-
 AutorizacionRol('administrador');
 ?>
 <!DOCTYPE html>
@@ -10,16 +8,25 @@ AutorizacionRol('administrador');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin | Metadocs</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
     <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
-    <script src="../../../componentes/js/admin/panel.js"></script>
+    <link rel="stylesheet" href="../../../componentes/css/admin/edicion_u.css">
+    <link rel="stylesheet" href="../../../componentes/css/admin/eliminar_u.css">
+    <link rel="stylesheet" href="../../../componentes/css/admin/lista_usuario.css">
+
+    
+    <script src="../../../componentes/js/admin/panel.js" defer></script>
+    <script src="../../../componentes/js/admin/modal_editar.js" defer></script>
+    <script src="../../../componentes/js/admin/modal_eliminar.js" defer></script>
 </head>
 <body>
     <header id="cabezote">
         <i class="bi bi-list" id="menu_opciones"></i>
-        
     </header>
 
     <main id="cuerpo">
@@ -28,68 +35,126 @@ AutorizacionRol('administrador');
                 <img src="../../../componentes/img/Imagen de WhatsApp 2025-05-01 a las 11.52.47_deffc20c.jpg" alt="imagen del menu lateral">
             </figure>
             <ul>
+<<<<<<< HEAD
                 <li>
                     <a href="../admin/panel_control.php">
                         <i class="bi bi-bar-chart-line"></i>
                         Panel Control
                     </a>
                 </li>
+=======
+                <li><a href="../admin/panel_control.php"><i class="bi bi-bar-chart-line"></i> Panel Control</a></li>
+>>>>>>> 8ae5c584ba60e07e00a77d594c7c49ad6413967a
                 <li class="gestion_usuario">
-                    <a href="#" id="gestion-usuarios">
-                        <i class="bi bi-people"></i>
-                        Gestión Usuarios
-                    </a>
+                    <a href="#" id="gestion-usuarios"><i class="bi bi-people"></i> Gestión Usuarios</a>
                     <ul class="sub_menu gestion-submenu" id="sub_menu">
-                        <li>
-                            <a href="../../vistas/admin/creacion_usuario.php">
-                                <i class="bi bi-person-plus"></i>
-                                Crear usuario
-                            </a>
-                        </li>
-                        <li>
-                            <a href="../admin/ver_usuarios.php">
-                                <i class="bi bi-eye"></i>
-                                Ver usuario
-                            </a>
-                        </li>
+                        <li><a href="../../vistas/admin/creacion_usuario.php"><i class="bi bi-person-plus"></i> Crear usuario</a></li>
+                        <li><a href="../admin/ver_usuarios.php"><i class="bi bi-eye"></i> Ver usuario</a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="../admin/admin_reporte.php">
-                        <i class="bi bi-file-earmark-text"></i>
-                        Reportes
-                    </a>
-                </li>
-
+                <li><a href="../admin/admin_reporte.php"><i class="bi bi-file-earmark-text"></i> Reportes</a></li>
                 <li class="gestion-usuarios">
-                    <a href="#" id="cerrado-usuarios">
-                        <i class="bi bi-person"></i>
-                        Usuario
-                    </a>
+                    <a href="#" id="cerrado-usuarios"><i class="bi bi-person"></i> Usuario</a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
-                        <li><form action="../../backend/login/cerrar_sesion.php" method="post"><button type="submit"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</button></form></li>
+                        <li>
+                            <form action="../../backend/login/cerrar_sesion.php" method="post">
+                                <button type="submit"><i class="bi bi-box-arrow-left"></i> Cerrar sesión</button>
+                            </form>
+                        </li>
                         <li><a href=""><i class="bi bi-info-circle"></i> Info usuario</a></li>
                         <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
-
-                       
                     </ul>
                 </li>
-                
                 <li class="solo_mobil">
-                    <a href="#" id="solo_mobil">
-                        <i class="bi bi-arrow-left"></i>
-                        Volver
-                    </a>
+                    <a href="#" id="solo_mobil"><i class="bi bi-arrow-left"></i> Volver</a>
                 </li>
             </ul>
         </nav>
 
-        <section id="admin-contenido" class="admin">
-            <h1>seccion vista de usuario</h1>
+       <section id="admin-contenido" class="admin">
+
+            <h1>Lista de usuarios</h1>
+
+            <div class="cont_nombre">
+
+                <input type="text" name="buscar_usuario" id="buscar_usuario" placeholder="Buscar usuario...">
+                <select id="areas">
+                    <option value="">Todas las áreas</option>
+                    <option value="administracion">Administración</option>
+                    <option value="logistica">Logística</option>
+                    <option value="contabilidad">Contabilidad</option>
+                </select>
+            </div>
+
+            <div class="tabla-contenedor">
+                <table class="tabla-usuarios">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Rol</th>
+                            <th>Área</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Nombre">Jorge Admin</td>
+                            <td data-label="Correo">dg240049@gmail.com</td>
+                            <td data-label="Rol">Administrador</td>
+                            <td data-label="Área">Administración</td>
+                            <td data-label="Acciones">
+
+                                <i class="bi bi-pencil"></i>
+                                <i class="bi bi-trash"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
-
-      
-
     </main>
+
+   
+    <div id="modal-editar" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Editar usuario</h2>
+            <form id="form_editar">
+                <label>Nombre(s):</label>
+                <input type="text" id="nombre_editar" required>
+
+                <label>Correo electrónico:</label>
+                <input type="email" id="correo_editar" required>
+
+                <label>Rol:</label>
+                <select id="rol_editar">
+                    <option value="Administrador">Administrador</option>
+                    <option value="Usuario">Usuario</option>
+                </select>
+
+                <label>Área:</label>
+                <select id="area_editar">
+                    <option value="Administracion">Administración</option>
+                    <option value="Logistica">Logística</option>
+                </select>
+
+                <button type="submit">Guardar cambios</button>
+            </form>
+        </div>
+    </div>
+
+    
+    <div id="modal-eliminar" class="modal">
+        <div class="modal-contenedor">
+            <span class="close">&times;</span>
+            <h2>Confirmar eliminación</h2>
+            <p>¿Estás seguro de que deseas eliminar este usuario?</p>
+            <div class="modal-acciones">
+                <button class="btn-cancelar">Cancelar</button>
+                <button class="btn-eliminar">Eliminar</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

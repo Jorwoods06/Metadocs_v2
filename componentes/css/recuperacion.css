@@ -58,13 +58,13 @@ h1{
     outline: none;
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin-bottom: 40px;
+   
 }
 
 
 #cuerpo form button{
     padding: 13px 17px;
-    margin-bottom: 25px ;
+    margin:  40px 0 25px ;
     cursor: pointer;
     border: none;
     color: white;
@@ -81,6 +81,20 @@ h1{
 
 #cuerpo form a:hover{
      text-decoration: underline;
+}
+
+
+.input-error {
+    border: 1.5px solid #e53e3e !important; 
+    background-color: #fff5f5;
+}
+
+
+ #cuerpo form .error_mensaje {
+    color: #e53e3e;
+    font-size: 0.9em;
+    margin: 0 5px;
+
 }
 
 /*Media query tablet*/

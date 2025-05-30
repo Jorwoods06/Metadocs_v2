@@ -156,7 +156,7 @@ unset($_SESSION['correo_existente']);
                                 type="password" id="conf_contrasena" name="conf_contrasena" placeholder="Confirma tu contraseña" 
                                 minlength="6" title="Mínimo 6 caracteres" required>
                                 
-                            <span id="mensaje_err">Las contraseñas no coinciden</span>
+                            <span id="mensaje_err">Las contraseñas no coinciden</span> 
                         </div>
                         <div class="form-group">
                             <label for="cedula">Cédula</label>

@@ -2,14 +2,14 @@
 
 require_once '../../helpers/verificacion_roles.php';
 
-AutorizacionRol('administrador');
+AutorizacionRol('auditor');
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin | Metadocs</title>
+    <title>Documentador | Metadocs</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
@@ -31,23 +31,26 @@ AutorizacionRol('administrador');
                 <li>
                     <a href="../admin/panel_control.php">
                         <i class="bi bi-bar-chart-line"></i>
-                        Panel Control
+                        Inicio
                     </a>
                 </li>
                 <li class="gestion_usuario">
                     <a href="#" id="gestion-usuarios" >
                         <i class="bi bi-people"></i>
-                        Gestión Usuarios
+                        Gestión Documentos
                     </a>
                     <ul class="sub_menu gestion-submenu" id="sub_menu">
-                        <li><a href="../../vistas/admin/creacion_usuario.php"><i class="bi bi-person-plus"></i> Crear usuario</a></li>
-                        <li><a href="../admin/ver_usuarios.php"><i class="bi bi-eye"></i> Ver usuario</a></li>
+                        <li><a href="../../vistas/admin/creacion_usuario.php"><i class="bi bi-person-plus"></i> Solicitudes</a></li>
+                        <li><a href=""><i class="bi bi-eye"></i> Ver documentos</a></li>
+                        <li><a href=""><i class="bi bi-eye"></i> Solicitar documentos</a></li>
+                         <li><a href=""><i class="bi bi-eye"></i> Archivo historico</a></li>
                     </ul>
                 </li>
+               
                 <li>
                     <a href="../admin/admin_reporte.php">
                         <i class="bi bi-file-earmark-text"></i>
-                        Reportes 
+                        Pista auditoria
                     </a>
                 </li>
                 
@@ -76,7 +79,7 @@ AutorizacionRol('administrador');
         </nav>
        
         <section id="admin-contenido" class="admin">
-            <h1>seccion reportes xd</h1>
+            <h1>Inicio Auditor</h1>
         </section>
 
 

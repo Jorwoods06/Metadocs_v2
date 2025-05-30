@@ -1,4 +1,4 @@
- * {
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -42,52 +42,62 @@
     overflow: hidden;
   }
 
+  /* ===== NAVEGACIÓN LATERAL  ===== */
   #menu-lateral {
-    background-color: white;
-    border-right: 2px solid #e2e8f0;
+    background: #f8fafc;
+    border-right: 1px solid #e2e8f0;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
     display: flex;
     flex-direction: column;
-    gap: 10px;
     height: 100vh;
-    width: 80%;
+    width: 65%;
     transform: translateX(-100%);
     overflow-y: auto;
     flex-shrink: 0;
+   
+  }
 
+  #img_menu {
+    text-align: center;
+    padding: 20px 15px 30px;
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 25px;
   }
 
   #img_menu img {
-    width: 150px;
-    margin-bottom: 30px;
-    padding: 0px 10px;
+    width: 140px;
+    border-radius: 8px;
   }
 
   #menu-lateral ul {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 8px;
+    padding: 0;
   }
 
+  
   .gestion_usuario a, .gestion-usuarios a {
     position: relative;
     display: flex;
     align-items: center;
     color: #4A5568;
     text-decoration: none;
-    font-size: 1.2rem;
-    padding: 0.972rem;
-    font-weight: 500;
+    font-size: 1.1rem;
+    padding: 14px 20px;
     width: 100%;
+    margin-bottom: 4px;
+    letter-spacing: 0.025em;
+    transition: all 0.3s ease;
   }
 
   .gestion_usuario > a .bi, .gestion-usuarios > a .bi {
-    font-size: 1.4rem;
-    margin-right: 10px;
+    font-size: 1.3rem;
+    margin-right: 12px;
   }
 
   #menu-lateral li a {
@@ -95,18 +105,21 @@
     align-items: center;
     color: #4A5568;
     text-decoration: none;
-    font-size: 1.2rem;
-    padding: 0.972rem;
-    font-weight: 500;
+    font-size: 1.1rem;
+    padding: 14px 20px;
     width: 100%;
+    margin-bottom: 4px;
+    letter-spacing: 0.025em;
+    transition: all 0.3s ease;
   }
 
   #menu-lateral li a .bi {
-    font-size: 1.4rem;
-    margin-right: 10px;
+    font-size: 1.3rem;
+    margin-right: 12px;
   }
 
-  #menu-lateral a:hover {
+ 
+  #menu-lateral li:hover {
     background-color: #f1f5f9;
   }
 
@@ -116,11 +129,13 @@
     transition: max-height 0.7s ease;
     display: flex;
     flex-direction: column;
-    margin-left: 15px;
+    margin-top: 6px;
+    background-color: #f7fafc;
   }
 
   .sub_menu.mostrar {
     max-height: 200px;
+    padding: 8px 0;
   }
 
   .sub_menu a {
@@ -128,45 +143,67 @@
     align-items: center;
     color: #718096;
     text-decoration: none;
-    font-size: 1rem;
-    padding: 0.75rem 1rem;
-    font-weight: 400;
+    font-size: 0.95rem;
+    padding: 10px 35px;
     width: 100%;
+    transition: all 0.2s ease;
+    margin-left: 15px;
   }
 
-  .sub_menu form button{
+  .sub_menu form button {
     display: flex;
     align-items: center;
     cursor: pointer;
     text-decoration: none;
-    font-size: 1rem;
-    padding: 0.75rem 1rem;
-    font-weight: 400;
+    font-size: 1.1em;
+    padding: 14px 20px;
     width: 100%;
     background: transparent;
     outline: none;
     border: none;
-      color: #4A5568;
+    color: #4A5568;
+    transition: all 0.2s ease;
+    margin-left: 15px;
+  }
+
+  .sub_menu form button i.bi{
+    font-size: 1.3rem;
   }
 
   .sub_menu form button .bi {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-right: 10px;
-
   }
 
-  .sub_menu form button:hover {
-    background-color: #edf2f7;
-  }
+  
 
   .sub_menu a .bi {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-right: 10px;
   }
 
-  .sub_menu a:hover {
+  .sub_menu li:hover {
     background-color: #edf2f7;
   }
+
+  /* Elemento especial para móvil */
+  .solo_mobil a {
+    border-top: 1px solid #e2e8f0;
+    margin-top: 20px;
+    padding-top: 20px;
+    color: #718096 !important;
+  }
+
+  .solo_mobil a .bi {
+    color: #718096 !important;
+  }
+
+  .solo_mobil a:hover {
+    background-color: #f1f5f9;
+    color: #4a5568 !important;
+  }
+
+  /* ===== FIN NAVEGACIÓN LATERAL ===== */
 
   #admin-contenido {
     padding: 20px;
@@ -176,7 +213,7 @@
 
   @media screen and (min-width: 700px) and (max-width: 1023px) {
     #img_menu img {
-      width: 200px;
+      width: 160px;
     }
 
     #menu-lateral {
@@ -188,20 +225,24 @@
     }
 
     #menu-lateral li a {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
+      padding: 16px 18px;
     }
 
-    .sub_menu {
-      margin-left: 20px;
-    }
+    
 
     .sub_menu a {
-      font-size: 1.05rem;
-      padding: 0.8rem 1.2rem;
+      font-size: 1rem;
+      padding: 12px 35px;
     }
 
-    .sub_menu a .bi {
-      font-size: 1.3rem;
+    .sub_menu form button {
+      font-size: 1rem;
+      
+    }
+
+    .sub_menu a .bi, .sub_menu form button .bi {
+      font-size: 1.2rem;
     }
   }
 
@@ -211,24 +252,26 @@
       display: none;
     }
 
-
     #img_menu img {
-      width: 160px;
+      width: 140px;
     }
 
     #menu-lateral {
-      width: 15%;
+      width: 16%;
       transform: translateX(0) !important;
-    }
-
-    #admin-contenido {
-      margin-left: 15%;
-      padding: 30px;
-      width: 100%;
+      
     }
 
     #menu-lateral ul {
-      gap: 20px;
+      padding: 0;
+      gap: 6px;
+    }
+
+    #admin-contenido {
+      margin-left: 16%;
+      padding: 30px;
+     
+    
     }
 
     #menu-lateral li #solo_mobil {
@@ -236,19 +279,30 @@
     }
 
     #menu-lateral li a {
-      font-size: 1rem;
+      font-size: 0.95rem;
+      padding: 12px 20px;
+    }
+
+    .gestion_usuario a, .gestion-usuarios a {
+      font-size: 0.95rem;
+      padding: 12px 20px;
     }
 
     .sub_menu {
-      margin-left: 10px;
+      margin-left: 0;
     }
 
     .sub_menu a {
-      font-size: 0.9rem;
-      padding: 0.6rem 1rem;
+      font-size: 0.85rem;
+      padding: 8px 35px;
     }
 
-    .sub_menu a .bi {
+    .sub_menu form button {
+      font-size: 0.85rem;
+      width: 100%;
+    }
+
+    .sub_menu a .bi, .sub_menu form button .bi {
       font-size: 1rem;
     }
   }

@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST'){
 
         if (!$autenticacion) {
            
-            $_SESSION['denegado'] = 'Acceso denegado';
+            $_SESSION['denegado'] = 'Acceso denegado, tu correo no esta registrado';
            
             header('Location: ../../../login.php'); 
            
@@ -70,13 +70,13 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST'){
                         header("Location: visualizador.php");
                         break;
                     case 'documentador':
-                        header("Location: ../../app/views/documentador.php");
+                        header("Location: ../../vistas/documentador/documentador_inicio.php");
                         break;
                     case 'auditor':
-                        header("Location: ../../app/views/auditor.php");
+                        header("Location: auditor.php");
                         break;
                     default:
-                        header("Location: index.html");
+                        header("Location:../../../login.php");
                 }
                 exit;
 

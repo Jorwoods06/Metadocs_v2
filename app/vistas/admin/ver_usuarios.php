@@ -30,7 +30,7 @@ AutorizacionRol('administrador');
             <ul>
                 <li>
                     <a href="../admin/panel_control.php">
-                         <i class="bi bi-bar-chart-line"></i>
+                        <i class="bi bi-bar-chart-line"></i>
                         Panel Control
                     </a>
                 </li>

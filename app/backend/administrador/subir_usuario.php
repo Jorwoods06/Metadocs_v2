@@ -8,13 +8,13 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     echo "tu peticion ha sido rechazada";
 
 }else{
-    echo "si lelgo";
+    echo "si llego";
      // Capturar datos del formulario
     $nombre = isset($_POST['nombre']) ? trim($_POST['nombre']) : '';
     $apellido = isset($_POST['apellido']) ? trim($_POST['apellido']) : '';
     $email = isset($_POST['email']) ? trim($_POST['email']) : '';
     $telefono = isset($_POST['telefono']) ? trim($_POST['telefono']) : '';
-    $contraseña = isset($_POST['password']) ? md5(trim($_POST['password'])) : '';
+    $contraseña = isset($_POST['contrasena']) ? md5(trim($_POST['contrasena'])) : '';
     $cedula = isset($_POST['cedula']) ? trim($_POST['cedula']) : '';
     $rol = isset($_POST['rol']) ? trim($_POST['rol']) : '';
     $area = isset($_POST['area']) ? trim($_POST['area']) : '';

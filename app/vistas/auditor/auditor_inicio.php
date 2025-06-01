@@ -29,27 +29,28 @@ AutorizacionRol('auditor');
             </figure>
             <ul>
                 <li>
-                    <a href="../admin/panel_control.php">
-                        <i class="bi bi-bar-chart-line"></i>
+                    <a href="">
+                        <i class="bi bi-house-door"></i>
                         Inicio
                     </a>
                 </li>
                 <li class="gestion_usuario">
                     <a href="#" id="gestion-usuarios" >
-                        <i class="bi bi-people"></i>
+                        <i class="bi bi-file-earmark-text"></i>
                         Gestión Documentos
                     </a>
                     <ul class="sub_menu gestion-submenu" id="sub_menu">
-                        <li><a href="../../vistas/admin/creacion_usuario.php"><i class="bi bi-person-plus"></i> Solicitudes</a></li>
+                        <li><a href=""><i class="bi bi-envelope-paper"></i>Solicitudes</a></li>
                         <li><a href=""><i class="bi bi-eye"></i> Ver documentos</a></li>
-                        <li><a href=""><i class="bi bi-eye"></i> Solicitar documentos</a></li>
-                         <li><a href=""><i class="bi bi-eye"></i> Archivo historico</a></li>
+                        <li><a href=""><i class="bi bi-file-earmark-plus"></i> Solicitar documentos</a></li>
+                         <li><a href=""> <i class="bi bi-clock-history"></i> Archivo historico</a></li>
                     </ul>
                 </li>
                
                 <li>
                     <a href="../admin/admin_reporte.php">
-                        <i class="bi bi-file-earmark-text"></i>
+                        <i class="bi bi-list-check"></i>
+
                         Pista auditoria
                     </a>
                 </li>

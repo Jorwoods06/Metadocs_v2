@@ -2,7 +2,7 @@
 
 require '../../backend/login/validar_token.php';
 
-echo $correo;
+
 
 if ($mostrar_form) {
   
@@ -39,7 +39,7 @@ if ($mostrar_form) {
        
         <input type="hidden" name="token" value="<?php echo htmlspecialchars($token); ?>">
         <input type="hidden" name="correo" value="<?php echo htmlspecialchars($correo); ?>">
-      <button type="submit" id="btn_cambiar">Cambiar</button>
+      <button type="submit" id="btn_backend">Cambiar</button>
     </form>
   </main>
 

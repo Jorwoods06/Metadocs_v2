@@ -101,23 +101,23 @@ unset($_SESSION['correo_existente']);
                 <h2>Crear Usuario</h2>
                 <p class="subtitle">Ingrese los datos del nuevo usuario</p>
                 
-              <form action="../../backend/administrador/subir_usuario.php" method="post">
+                <form action="../../backend/administrador/subir_usuario.php" method="post">
 
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="nombre">Nombre</label>
+                            <label for="nombre">Nombre(s)</label>
                             <input 
                                 type="text" id="nombre" name="nombre" maxlength="32" minlength="2" 
-                                pattern="^[A-Za-z]{2,32}$" 
+                                pattern="^[A-Za-z]+( [A-Za-z]+)?$" 
                                 title="Tu nombre no puede llevar números o caracteres especiales, solo letras y espacios." 
                                 required placeholder="Ingresa tu nombre">
                         </div>
                         <div class="form-group">
-                            <label for="apellido">Apellido</label>
+                            <label for="apellido">Apellido(s)</label>
                             <input 
                                 type="text" id="apellido" name="apellido" maxlength="32" minlength="2" 
-                                pattern="^[A-Za-z]{2,32}$" 
+                                pattern="^[A-Za-z]+( [A-Za-z]+)?$"
                                 title="Tu apellido no puede llevar números o caracteres especiales, solo letras y espacios." 
                                 required placeholder="Ingresa tu apellido">
                         </div>
@@ -135,7 +135,7 @@ unset($_SESSION['correo_existente']);
                         <div class="form-group">
                             <label for="telefono">Teléfono</label>
                             <input 
-                                type="tel" id="telefono" name="telefono" placeholder="Ingresa tu número telefónico"
+                                type="number" id="telefono" name="telefono" placeholder="Ingresa tu número telefónico"
                                 pattern="^\+?[0-9]{6,15}$" 
                                 title="Número telefónico válido, puede incluir prefijo internacional (+)." 
                             >
@@ -144,16 +144,24 @@ unset($_SESSION['correo_existente']);
                     
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="password">Contraseña</label>
+                            <label for="contrasena">Contraseña</label>
                             <input 
-                                type="password" id="password" name="password" placeholder="Ingresa tu contraseña" 
+                                type="password" id="contrasena" name="contrasena" placeholder="Ingresa tu contraseña" 
                                 minlength="6" title="Mínimo 6 caracteres" required
                             >
                         </div>
                         <div class="form-group">
+                            <label for="password">Confirmar Contraseña</label>
+                            <input 
+                                type="password" id="conf_contrasena" name="conf_contrasena" placeholder="Confirma tu contraseña" 
+                                minlength="6" title="Mínimo 6 caracteres" required>
+                                
+                            <span id="mensaje_err">Las contraseñas no coinciden</span> 
+                        </div>
+                        <div class="form-group">
                             <label for="cedula">Cédula</label>
                             <input 
-                                type="text" id="cedula" name="cedula" placeholder="Ingresa tu cédula" 
+                                type="number" id="cedula" name="cedula" placeholder="Ingresa tu cédula" 
                                 pattern="^[0-9]{6,15}$" 
                                 title="Solo números, entre 6 y 15 dígitos" 
                                 required
@@ -184,12 +192,13 @@ unset($_SESSION['correo_existente']);
                         </div>
                     </div>
                     
-                    <div class="form-actions">
-                        <button type="submit" class="btn-crear">Crear Usuario</button>
+                    <div class="form-actions" >
+                        <button type="submit" class="btn-crear" id="btn_backend">Cambiar</button>
                     </div>
                 </form>
             </div>
         </section>
+            <script src="../../../componentes/js/log/coincidir_contraseña.js"></script>
     </main>
 </body>
 </html>

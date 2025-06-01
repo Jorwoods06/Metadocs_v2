@@ -34,16 +34,16 @@ AutorizacionRol('administrador');
                 <img src="../../../componentes/img/Imagen de WhatsApp 2025-05-01 a las 11.52.47_deffc20c.jpg" alt="imagen del menu lateral">
             </figure>
             <ul>
-<<<<<<< HEAD
+
                 <li>
                     <a href="../admin/panel_control.php">
                         <i class="bi bi-bar-chart-line"></i>
                         Panel Control
                     </a>
                 </li>
-=======
+
                 <li><a href="../admin/panel_control.php"><i class="bi bi-bar-chart-line"></i> Panel Control</a></li>
->>>>>>> 8ae5c584ba60e07e00a77d594c7c49ad6413967a
+
                 <li class="gestion_usuario">
                     <a href="#" id="gestion-usuarios"><i class="bi bi-people"></i> Gestión Usuarios</a>
                     <ul class="sub_menu gestion-submenu" id="sub_menu">

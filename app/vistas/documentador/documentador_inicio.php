@@ -40,23 +40,17 @@ AutorizacionRol('documentador');
                         Gestión Documentos
                     </a>
                     <ul class="sub_menu gestion-submenu" id="sub_menu">
-                        <li><a href="../../vistas/admin/creacion_usuario.php"><i class="bi bi-person-plus"></i> Solicitudes</a></li>
+                        <li><a href=""><i class="bi bi-person-plus"></i> Subir documentos</a></li>
                         <li><a href=""><i class="bi bi-eye"></i> Ver documentos</a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="../admin/admin_reporte.php">
-                        <i class="bi bi-file-earmark-text"></i>
-                        Retencion 
-                    </a>
-                </li>
-                <li>
-                    <a href="../admin/admin_reporte.php">
-                        <i class="bi bi-file-earmark-text"></i>
-                        Solicitar documento
-                    </a>
-                </li>
                 
+                <li>
+                    <a href="../admin/panel_control.php">
+                        <i class="bi bi-bar-chart-line"></i>
+                            Solicitudes
+                    </a>
+                </li>
                     <!-- cerrado sesion -->  
                 <li class="gestion-usuarios">
                     <a href="#" id="cerrado-usuarios">

@@ -193,7 +193,7 @@ unset($_SESSION['correo_existente']);
                     </div>
                     
                     <div class="form-actions" >
-                        <button type="submit" class="btn-crear" id="btn_backend">Cambiar</button>
+                        <button type="submit" class="btn-crear" id="btn_backend">Crear</button>
                     </div>
                 </form>
             </div>

@@ -92,7 +92,7 @@
     width: 100%;
     margin-bottom: 4px;
     letter-spacing: 0.025em;
-    transition: all 0.3s ease;
+ 
   }
 
   .gestion_usuario > a .bi, .gestion-usuarios > a .bi {
@@ -110,7 +110,7 @@
     width: 100%;
     margin-bottom: 4px;
     letter-spacing: 0.025em;
-    transition: all 0.3s ease;
+   
   }
 
   #menu-lateral li a .bi {
@@ -126,7 +126,7 @@
   .sub_menu {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.7s ease;
+      transition: all 1s;
     display: flex;
     flex-direction: column;
     margin-top: 6px;
@@ -134,7 +134,7 @@
   }
 
   .sub_menu.mostrar {
-    max-height: 200px;
+    max-height: 500px;
     padding: 8px 0;
   }
 
@@ -146,7 +146,7 @@
     font-size: 0.95rem;
     padding: 10px 35px;
     width: 100%;
-    transition: all 0.2s ease;
+   
     margin-left: 15px;
   }
 
@@ -162,7 +162,7 @@
     outline: none;
     border: none;
     color: #4A5568;
-    transition: all 0.2s ease;
+
     margin-left: 15px;
   }
 
@@ -186,7 +186,7 @@
     background-color: #edf2f7;
   }
 
-  /* Elemento especial para móvil */
+  /* opcion devolver */
   .solo_mobil a {
     border-top: 1px solid #e2e8f0;
     margin-top: 20px;
@@ -207,7 +207,7 @@
 
   #admin-contenido {
     padding: 20px;
-    margin-left: 0;
+    margin-top: 20px;
     width: 100%;
   }
 

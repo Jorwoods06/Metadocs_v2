@@ -37,6 +37,7 @@
     width:50%;
     max-width: 250px;
     margin-top: 1rem;
+    outline: none;
 }
 
 .tabla-contenedor {

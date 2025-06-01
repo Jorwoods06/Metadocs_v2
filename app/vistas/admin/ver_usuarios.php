@@ -14,15 +14,14 @@ AutorizacionRol('administrador');
     
     
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
+    <script src="../../../componentes/js/admin/panel.js"></script>
     <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
-    <link rel="stylesheet" href="../../../componentes/css/admin/edicion_u.css">
+    <link rel="stylesheet" href="../../../componentes/css/admin/ediciones_u.css">
+    <script src="../../../componentes/js/admin/modal_editar.js" ></script>
     <link rel="stylesheet" href="../../../componentes/css/admin/eliminar_u.css">
-    <link rel="stylesheet" href="../../../componentes/css/admin/lista_usuario.css">
+    <script src="../../../componentes/js/admin/modal_eliminar.js" ></script>
+    <link rel="stylesheet" href="../../../componentes/css/admin/lista_u.css">
 
-    
-    <script src="../../../componentes/js/admin/panel.js" defer></script>
-    <script src="../../../componentes/js/admin/modal_editar.js" defer></script>
-    <script src="../../../componentes/js/admin/modal_eliminar.js" defer></script>
 </head>
 <body>
     <header id="cabezote">

@@ -1,8 +1,9 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 .modal {
     display: none;
     position: fixed;
@@ -15,20 +16,28 @@
     justify-content: center;
     align-items: center;
 }
+
 .modal-contenedor {
     background: #fff;
-    margin: auto;
     border-radius: 10px;
-    max-width: 600px;
-    text-align: left;
+    width: 100%;
+    max-width: 500px;
     padding: 2rem;
     position: relative;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    margin-top: 10rem;
+    text-align: left;
 }
+
+.modal-contenedor h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
 .modal-contenedor p {
+    font-size: 1rem;
     margin-top: 1rem;
 }
+
 .modal-contenedor .close {
     position: absolute;
     top: 0.8rem;
@@ -36,7 +45,7 @@
     font-size: 1.5rem;
     font-weight: bold;
     color: #888;
-    cursor: pointer;      
+    cursor: pointer;
 }
 
 .modal-acciones {
@@ -46,43 +55,42 @@
     margin-top: 1.5rem;
 }
 
+.btn-eliminar,
+.btn-cancelar {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 .btn-eliminar {
     background-color: red;
     color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
 }
 
-.btn-eliminar:hover{
+.btn-eliminar:hover {
     background-color: #c82333;
 }
 
-.btn-cancelar{
+.btn-cancelar {
     background-color: #6c767d;
     color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    align-self: flex-start;
 }
 
 .btn-cancelar:hover {
     background-color: #5a6268;
 }
 
+/* Responsive para tablet y móvil */
 @media (max-width: 768px) {
     .modal-contenedor {
         width: 90%;
-        margin-top: 5rem;
         padding: 1.5rem;
-        margin-top: 15rem;
     }
 
     .modal-contenedor h2 {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
 
     .modal-contenedor p {
@@ -91,8 +99,8 @@
 
     .btn-eliminar,
     .btn-cancelar {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.9rem;
+        font-size: 0.95rem;
+        padding: 0.45rem 0.8rem;
     }
 
     .modal-acciones {
@@ -109,13 +117,6 @@
     .modal-contenedor .close {
         top: 0.5rem;
         right: 0.8rem;
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
 }
-
-#menu-lateral,
-#cabezote {
-  position: relative;
-  z-index: 1 !important;
-}
-

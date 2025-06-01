@@ -17,6 +17,8 @@
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 1rem;
+
+
 }
 
 .modal-content {
@@ -28,9 +30,10 @@
   width: 100%;
   position: relative;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  margin-top: 5rem;
 }
 
-/* Botón de cierre (X) */
+
 .modal-content .close {
   position: absolute;
   top: 0.8rem;
@@ -82,7 +85,7 @@
   background-color: #2a4860;
 }
 
-/* Responsive */
+
 @media (max-width: 600px) {
   .modal-content {
     padding: 1.2rem;
@@ -126,8 +129,3 @@
   }
 }
 
-#menu-lateral,
-#cabezote {
-  position: relative;
-  z-index: 1 !important;
-}

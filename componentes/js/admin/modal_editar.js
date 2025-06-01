@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const modal = document.getElementById('modal-editar');
-  const form = document.getElementById('form_editar');
+  const close = document.querySelector('.close');
 
   document.querySelectorAll('.bi-pencil').forEach(button => {
     button.addEventListener('click', () => {
@@ -14,9 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    alert('Cambios guardados (simulado)');
+   close.addEventListener('click', e => {
     modal.style.display = 'none';
-  });
+   });
+
 });

@@ -30,6 +30,7 @@
   width: 100%;
   position: relative;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  animation: slideDown 0.4s ease;
  
 }
 

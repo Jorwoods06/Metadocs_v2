@@ -106,7 +106,7 @@ unset($_SESSION['correo_existente']);
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="nombre">Nombre</label>
+                            <label for="nombre">Nombre(s)</label>
                             <input 
                                 type="text" id="nombre" name="nombre" maxlength="32" minlength="2" 
                                 pattern="^[A-Za-z]+( [A-Za-z]+)?$" 
@@ -114,7 +114,7 @@ unset($_SESSION['correo_existente']);
                                 required placeholder="Ingresa tu nombre">
                         </div>
                         <div class="form-group">
-                            <label for="apellido">Apellido</label>
+                            <label for="apellido">Apellido(s)</label>
                             <input 
                                 type="text" id="apellido" name="apellido" maxlength="32" minlength="2" 
                                 pattern="^[A-Za-z]+( [A-Za-z]+)?$"
@@ -193,12 +193,12 @@ unset($_SESSION['correo_existente']);
                     </div>
                     
                     <div class="form-actions" >
-                        <button type="submit" class="btn-crear">Crear Usuario</button>
+                        <button type="submit" class="btn-crear" id="btn_backend">Cambiar</button>
                     </div>
                 </form>
             </div>
         </section>
-            <script src="../../../componentes/js/log/conincidir_contraseña.js"></script>
+            <script src="../../../componentes/js/log/coincidir_contraseña.js"></script>
     </main>
 </body>
 </html>

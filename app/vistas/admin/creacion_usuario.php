@@ -147,17 +147,18 @@ unset($_SESSION['correo_existente']);
                                     <span id="mensaje_err">Las contraseñas no coinciden</span> 
                         </div>
                         <div class="form-group cedula-grupo">
-                            <label for="cedula">Cédula</label>
+                            <label for="cedula_pc">Cédula</label>
                             <input 
-                                type="number" id="cedula" name="cedula" placeholder="Ingresa tu cédula"pattern="^[0-9]{6,15}$" title="Solo números, entre 6 y 15 dígitos" required>
+                                type="number" id="cedula_pc" name="cedula" placeholder="Ingresa tu cédula"pattern="^[0-9]{6,15}$" title="Solo números, entre 6 y 15 dígitos" required>
                         </div>
                         
                         
                     </div>
-                    <div class="form-group cedula-grupo2">
-                            <label for="cedula">Cédula</label>
+                    <!-- esto solamente es para resolucion de celular-->
+                        <div class="form-group cedula-grupo2">
+                            <label for="cedula_movil">Cédula</label>
                             <input 
-                                type="number" id="cedula" name="cedula" placeholder="Ingresa tu cédula"pattern="^[0-9]{6,15}$" title="Solo números, entre 6 y 15 dígitos" required>
+                                type="number" id="cedula_movil" name="cedula" placeholder="Ingresa tu cédula"pattern="^[0-9]{6,15}$" title="Solo números, entre 6 y 15 dígitos" required>
                         </div>
                     
                     <div class="form-row">

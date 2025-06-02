@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST'){
         $contraseña_ingresado = md5($_POST["contrasena"]);
 
 
-        $sentencia = $conexion_metadocs->prepare("SELECT * FROM `usuarios` WHERE correo=?");
+        $sentencia = $conexion_metadocs->prepare("SELECT * FROM `usuarios` WHERE correo=? AND estado = 'activo'");
         $sentencia->bind_param("s", $correo_ingresado);
         $sentencia->execute();
         $resultado = $sentencia->get_result();
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST'){
 
         if (!$autenticacion) {
            
-            $_SESSION['denegado'] = 'Acceso denegado, tu correo no esta registrado';
+            $_SESSION['denegado'] = 'Acceso denegado, no existes en el sistema';
            
             header('Location: ../../../login.php'); 
            

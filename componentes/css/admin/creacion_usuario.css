@@ -13,7 +13,7 @@ h2 {
     color: #2c3e50;
     margin-bottom: 5px;
     font-size: 2rem;
-  
+    
 }
 
 .subtitle {
@@ -86,6 +86,8 @@ select {
 }
 
 
+
+
 #mensaje_err {
     color: #dc3545;
     font-size: 12px;
@@ -97,7 +99,6 @@ select {
 .form-actions {
     display: flex;
     justify-content: flex-end;
-    margin-top: 40px;
     padding-top: 20px;
     border-top: 1px solid #eee;
 }
@@ -177,5 +178,31 @@ input#email.input-error {
     to {
         opacity: 0;
         transform: translateX(-50%) translateY(-9px);
+    }
+}
+@media (min-width: 1024px) {
+    .cedula-grupo2 {
+    display: none;
+    }
+}
+@media (max-width: 767px) {
+    .cedula-grupo {
+    display: none;
+    }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+    .cedula-grupo2 {
+    display: none;
+    }
+    input, select {
+    font-size: 20px;
+    padding: 20px 28px;
+    height: 64px;
+    }
+    input::placeholder {
+    font-size: 20px;
+    }
+    label {
+    font-size: 20px;
     }
 }

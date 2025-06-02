@@ -81,7 +81,7 @@ unset($_SESSION['correo_existente']);
         </nav>
     
 
-         <?php if ($exito): ?>
+        <?php if ($exito): ?>
         <div class="mensaje_exito" id="mensaje-exito">
             <p><?= htmlspecialchars($exito) ?></p>
         </div>
@@ -108,37 +108,29 @@ unset($_SESSION['correo_existente']);
                         <div class="form-group">
                             <label for="nombre">Nombre(s)</label>
                             <input 
-                                type="text" id="nombre" name="nombre" maxlength="32" minlength="2" 
-                                pattern="^[A-Za-z]+( [A-Za-z]+)?$" 
-                                title="Tu nombre no puede llevar números o caracteres especiales, solo letras y espacios." 
-                                required placeholder="Ingresa tu nombre">
+                                type="text" id="nombre" name="nombre" maxlength="32" minlength="2"pattern="^[A-Za-z]+( [A-Za-z]+)?$"title="Tu nombre no puede llevar números o caracteres especiales, solo letras y espacios." required placeholder="Ingresa tu nombre">
                         </div>
                         <div class="form-group">
                             <label for="apellido">Apellido(s)</label>
                             <input 
-                                type="text" id="apellido" name="apellido" maxlength="32" minlength="2" 
-                                pattern="^[A-Za-z]+( [A-Za-z]+)?$"
-                                title="Tu apellido no puede llevar números o caracteres especiales, solo letras y espacios." 
-                                required placeholder="Ingresa tu apellido">
+                                type="text" id="apellido" name="apellido" maxlength="32" minlength="2" pattern="^[A-Za-z]+( [A-Za-z]+)?$"title="Tu apellido no puede llevar números o caracteres especiales, solo letras y espacios."required placeholder="Ingresa tu apellido">
                         </div>
+                        
                     </div>
+
+                        
+
                     
                     <div class="form-row">
                         <div class="form-group">
                             <label for="email">Correo electrónico</label>
                             <input 
-                                type="email" id="email" name="email" maxlength="64" minlength="7" 
-                                pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" 
-                                title="Ingresa una dirección de email válida." placeholder="Ingresa tu correo"
-                                required class="<?= $corre_exitente ? 'input-error' : '' ?>">
+                                type="email" id="email" name="email" maxlength="64" minlength="7"pattern="^[a-z0-9._%title="Ingresa una dirección de email válida." placeholder="Ingresa tu correo" required class="<?= $corre_exitente ? 'input-error' : '' ?>">
                         </div>
                         <div class="form-group">
                             <label for="telefono">Teléfono</label>
                             <input 
-                                type="number" id="telefono" name="telefono" placeholder="Ingresa tu número telefónico"
-                                pattern="^\+?[0-9]{6,15}$" 
-                                title="Número telefónico válido, puede incluir prefijo internacional (+)." 
-                            >
+                                type="number" id="telefono" name="telefono" placeholder="Ingresa tu número telefónico" pattern="^[0-9]{6,15}$" title="Numero telefonico no valido solo 10 caracteres" minlength="10" maxlength="10" required>
                         </div>
                     </div>
                     
@@ -146,28 +138,27 @@ unset($_SESSION['correo_existente']);
                         <div class="form-group">
                             <label for="contrasena">Contraseña</label>
                             <input 
-                                type="password" id="contrasena" name="contrasena" placeholder="Ingresa tu contraseña" 
-                                minlength="6" title="Mínimo 6 caracteres" required
-                            >
+                                type="password" id="contrasena" name="contrasena" placeholder="Ingresa tu contraseña"minlength="6" title="Mínimo 6 caracteres" required >
                         </div>
                         <div class="form-group">
-                            <label for="password">Confirmar Contraseña</label>
+                            <label for="password">Confirmar contraseña</label>
                             <input 
-                                type="password" id="conf_contrasena" name="conf_contrasena" placeholder="Confirma tu contraseña" 
-                                minlength="6" title="Mínimo 6 caracteres" required>
-                                
-                            <span id="mensaje_err">Las contraseñas no coinciden</span> 
+                                type="password" id="conf_contrasena" name="conf_contrasena" placeholder="Confirma tu contraseña" minlength="6" title="Mínimo 6 caracteres" required>
+                                    <span id="mensaje_err">Las contraseñas no coinciden</span> 
                         </div>
-                        <div class="form-group">
+                        <div class="form-group cedula-grupo">
                             <label for="cedula">Cédula</label>
                             <input 
-                                type="number" id="cedula" name="cedula" placeholder="Ingresa tu cédula" 
-                                pattern="^[0-9]{6,15}$" 
-                                title="Solo números, entre 6 y 15 dígitos" 
-                                required
-                            >
+                                type="number" id="cedula" name="cedula" placeholder="Ingresa tu cédula"pattern="^[0-9]{6,15}$" title="Solo números, entre 6 y 15 dígitos" required>
                         </div>
+                        
+                        
                     </div>
+                    <div class="form-group cedula-grupo2">
+                            <label for="cedula">Cédula</label>
+                            <input 
+                                type="number" id="cedula" name="cedula" placeholder="Ingresa tu cédula"pattern="^[0-9]{6,15}$" title="Solo números, entre 6 y 15 dígitos" required>
+                        </div>
                     
                     <div class="form-row">
                         <div class="form-group">

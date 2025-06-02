@@ -29,10 +29,10 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     try {
         // Verificar si el correo ya está registrado
         $sql_verificar_email = "SELECT correo FROM usuarios WHERE correo = ?";
-        $stmt = $conexion_metadocs->prepare($sql_verificar_email);
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $resultado = $stmt->get_result();
+        $sentencia = $conexion_metadocs->prepare($sql_verificar_email);
+        $sentencia->bind_param("s", $email);
+        $sentencia->execute();
+        $resultado = $sentencia->get_result();
 
         if ($resultado->num_rows > 0) {
            
@@ -44,10 +44,10 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 
         // Buscar el ID del área
         $sql_buscar_area = "SELECT id_area FROM area_acceso WHERE nombre = ?";
-        $stmt_area = $conexion_metadocs->prepare($sql_buscar_area);
-        $stmt_area->bind_param("s", $area);
-        $stmt_area->execute();
-        $resultado_area = $stmt_area->get_result();
+        $sentencia_area = $conexion_metadocs->prepare($sql_buscar_area);
+        $sentencia_area->bind_param("s", $area);
+        $sentencia_area->execute();
+        $resultado_area = $sentencia_area->get_result();
 
 
         echo $area;
@@ -66,9 +66,9 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
      
         $sql_usuario = "INSERT INTO usuarios (nombres, apellidos, correo, contraseña, cedula, telefono, rol, id_area) 
                         VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
-        $stmt_usuario = $conexion_metadocs->prepare($sql_usuario);
-        $stmt_usuario->bind_param("sssssssi", $nombre, $apellido, $email, $contraseña, $cedula, $telefono, $rol, $id_area);
-        $stmt_usuario->execute();
+        $sentencia_usuario = $conexion_metadocs->prepare($sql_usuario);
+        $sentencia_usuario->bind_param("sssssssi", $nombre, $apellido, $email, $contraseña, $cedula, $telefono, $rol, $id_area);
+        $sentencia_usuario->execute();
 
        
         $conexion_metadocs->commit();

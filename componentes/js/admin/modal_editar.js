@@ -8,12 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  window.addEventListener('click', e => {
-    if (e.target === modal) {
-      modal.style.display = 'none';
-    }
-  });
-
+ 
    close.addEventListener('click', e => {
     modal.style.display = 'none';
    });

@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST'){
         }
     }
 function editar_usuario($conexion, $correo_original) {
-    // Validar que todos los campos estén presentes
+ 
     if (!isset($_POST['nombre']) || !isset($_POST['correo_nuevo']) || 
         !isset($_POST['rol']) || !isset($_POST['area'])) {
         return ['success' => false, 'error' => 'Faltan datos requeridos'];
@@ -48,9 +48,24 @@ function editar_usuario($conexion, $correo_original) {
     $rol = $_POST['rol'];
     $area = $_POST['area'];
 
-    // Validar que los campos no estén vacíos
+    
     if (empty($nombre) || empty($correo_nuevo) || empty($rol) || empty($area)) {
         return ['success' => false, 'error' => 'Todos los campos son requeridos'];
+    }
+
+    // Verificar si el nuevo correo ya existe (solo si es diferente al correo original)
+    if ($correo_nuevo != $correo_original) {
+        $consulta_correo = "SELECT correo FROM usuarios WHERE correo = ?";
+        $sentencia_correo = $conexion->prepare($consulta_correo);
+        $sentencia_correo->bind_param("s", $correo_nuevo);
+        $sentencia_correo->execute();
+        $result_correo = $sentencia_correo->get_result();
+        
+        if ($result_correo->num_rows > 0) {
+            $sentencia_correo->close();
+            return ['success' => false, 'error' => 'El correo electrónico ya está en uso por otro usuario'];
+        }
+        $sentencia_correo->close();
     }
 
     // Consulta para obtener el id del área
@@ -64,7 +79,7 @@ function editar_usuario($conexion, $correo_original) {
         $id_area = $row_area['id_area'];
         $sentencia_area->close();
 
-        // Actualizar el usuario
+       
         $consulta_editar = "UPDATE usuarios SET nombres = ?, correo = ?, rol = ?, id_area = ? WHERE correo = ?";
         $sentencia = $conexion->prepare($consulta_editar);
         $sentencia->bind_param("sssis", $nombre, $correo_nuevo, $rol, $id_area, $correo_original);

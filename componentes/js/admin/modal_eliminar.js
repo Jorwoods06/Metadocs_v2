@@ -45,20 +45,46 @@ document.addEventListener('DOMContentLoaded', () => {
     //enviar a php 
 
 
-    document.querySelector('.btn-eliminar').addEventListener('click', function() {
-        console.log(correoAEliminar);
+   document.querySelector('.btn-eliminar').addEventListener('click', function() {
+    console.log('Correo a eliminar:', correoAEliminar);
 
-         const formData = new FormData();
-         formData.append('action', 'eliminar_usuario');
-         formData.append('correo',  correoAEliminar);
+    const formData = new FormData();
+    formData.append('accion', 'eliminar_usuario');
+    formData.append('correo', correoAEliminar);
 
-         fetch('../../../app/backend/administrador/editar_eliminar.php', {
-            method: 'POST',
-            body: formData
-         })
-
+    fetch('../../../app/backend/administrador/editar_eliminar.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        console.log('Status:', response.status);
+        if (!response.ok) {
+            throw new Error('Error HTTP: ' + response.status);
+        }
+        return response.text(); // Primero obtener como texto para debugging
+    })
+    .then(text => {
+        console.log('Respuesta cruda del servidor:', text); // Para debugging
+        try {
+            const data = JSON.parse(text);
+            console.log('Respuesta parseada:', data);
+            
+            if (data.success) {
+               
+            } else {
+                alert('Error al eliminar usuario: ' + (data.error || 'Error desconocido'));
+            }
+        } catch (parseError) {
+            console.error('Error al parsear JSON:', parseError);
+            console.error('Respuesta que causó el error:', text);
+            alert('Error: La respuesta del servidor no es válida');
+        }
+    })
+    .catch(error => {
+        console.error('Error de red:', error);
+        alert('Error de conexión: ' + error.message);
     });
-
+});
 
 
 });

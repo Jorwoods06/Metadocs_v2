@@ -56,36 +56,20 @@ document.addEventListener('DOMContentLoaded', () => {
         method: 'POST',
         body: formData
     })
-    .then(response => {
-        console.log('Status:', response.status);
+        .then(response => {
         if (!response.ok) {
-            throw new Error('Error HTTP: ' + response.status);
+            throw new Error('Error en la respuesta del servidor');
         }
-        return response.text(); // Primero obtener como texto para debugging
+        return response.text();
     })
-    .then(text => {
-        console.log('Respuesta cruda del servidor:', text); // Para debugging
-        try {
-            const data = JSON.parse(text);
-            console.log('Respuesta parseada:', data);
-            
-            if (data.success) {
-               
-            } else {
-                alert('Error al eliminar usuario: ' + (data.error || 'Error desconocido'));
-            }
-        } catch (parseError) {
-            console.error('Error al parsear JSON:', parseError);
-            console.error('Respuesta que causó el error:', text);
-            alert('Error: La respuesta del servidor no es válida');
-        }
+    .then(() => {
+         alert('Usuario eliminado correctamente.');
+
     })
-    .catch(error => {
-        console.error('Error de red:', error);
-        alert('Error de conexión: ' + error.message);
+    .catch(() => {
+        alert('Error al intentar eliminar el usuario.');
     });
 });
-
 
 });
 

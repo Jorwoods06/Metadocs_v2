@@ -137,21 +137,21 @@ AutorizacionRol('administrador');
 
                 <label>Rol:</label>
                 <select id="rol_editar">
-                    <option value="Administrador">Administrador</option>
-                    <option value="Usuario">Usuario</option>
-                    <option value="Documentador">Documentador</option>
-                    <option value="Auditor">Auditor</option>
+                    <option value="administrador">Administrador</option>
+                    <option value="usuario">Usuario</option>
+                    <option value="documentador">Documentador</option>
+                    <option value="auditor">Auditor</option>
                 </select>
 
                 <label>Área:</label>
                 <select id="area_editar">
-                    <option value="Administracion">Administración</option>
-                    <option value="Logistica">Logística</option>
-                    <option value="Contabilidad">Contabilidad</option>
-                    <option value="Otro">Otro</option>
+                    <option value="administracion">Administración</option>
+                    <option value="logistica">Logística</option>
+                    <option value="contabilidad">Contabilidad</option>
+                    <option value="otro">Otro</option>
                 </select>
 
-                <button type="submit">Guardar cambios</button>
+                <button type="submit" class="btn_editar">Guardar cambios</button>
             </form>
         </div>
     </div>

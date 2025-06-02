@@ -36,12 +36,72 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST'){
             return ['success' => false, 'error' => 'Error en la base de datos: ' . $error];
         }
     }
+function editar_usuario($conexion, $correo_original) {
+    // Validar que todos los campos estén presentes
+    if (!isset($_POST['nombre']) || !isset($_POST['correo_nuevo']) || 
+        !isset($_POST['rol']) || !isset($_POST['area'])) {
+        return ['success' => false, 'error' => 'Faltan datos requeridos'];
+    }
+
+    $nombre = $_POST['nombre'];
+    $correo_nuevo = $_POST['correo_nuevo'];
+    $rol = $_POST['rol'];
+    $area = $_POST['area'];
+
+    // Validar que los campos no estén vacíos
+    if (empty($nombre) || empty($correo_nuevo) || empty($rol) || empty($area)) {
+        return ['success' => false, 'error' => 'Todos los campos son requeridos'];
+    }
+
+    // Consulta para obtener el id del área
+    $consulta_area = "SELECT id_area FROM area_acceso WHERE nombre = ?";
+    $sentencia_area = $conexion->prepare($consulta_area);
+    $sentencia_area->bind_param("s", $area);
+    $sentencia_area->execute();
+    $result_area = $sentencia_area->get_result();
+    
+    if ($row_area = $result_area->fetch_assoc()) {
+        $id_area = $row_area['id_area'];
+        $sentencia_area->close();
+
+        // Actualizar el usuario
+        $consulta_editar = "UPDATE usuarios SET nombres = ?, correo = ?, rol = ?, id_area = ? WHERE correo = ?";
+        $sentencia = $conexion->prepare($consulta_editar);
+        $sentencia->bind_param("sssis", $nombre, $correo_nuevo, $rol, $id_area, $correo_original);
+
+        if ($sentencia->execute()) {
+            if ($sentencia->affected_rows > 0) {
+                $sentencia->close();
+                return ['success' => true, 'message' => 'Usuario editado correctamente'];
+            } else {
+                $sentencia->close();
+                return ['success' => false, 'error' => 'No se encontró el usuario o no se realizaron cambios'];
+            }
+        } else {
+            $error = $sentencia->error;
+            $sentencia->close();
+            return ['success' => false, 'error' => 'Error en la base de datos: ' . $error];
+        }
+    } else {
+        $sentencia_area->close();
+        return ['success' => false, 'error' => 'Área no encontrada'];
+    }
+}
+        
+    
 
     switch ($_POST['accion']) {
         case 'eliminar_usuario':
             $resultado = eliminar_usuario($conexion_metadocs, $correo);
             echo json_encode($resultado);
             break;
+
+
+        case 'editar_usuario':
+            $resultado = editar_usuario($conexion_metadocs, $correo) ;
+             echo json_encode($resultado);
+            break;
+
         default:
             echo json_encode(['success' => false, 'error' => 'Acción no válida']);
             break;

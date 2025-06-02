@@ -1,4 +1,5 @@
 <?php 
+require_once '../../backend/administrador/consulta_usuarios.php';
 require_once '../../helpers/verificacion_roles.php';
 AutorizacionRol('administrador');
 ?>
@@ -95,17 +96,24 @@ AutorizacionRol('administrador');
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td data-label="Nombre">Jorge Admin</td>
-                            <td data-label="Correo">dg240049@gmail.com</td>
-                            <td data-label="Rol">Administrador</td>
-                            <td data-label="Área">Administración</td>
-                            <td data-label="Acciones">
-
-                                <i class="bi bi-pencil"></i>
-                                <i class="bi bi-trash"></i>
-                            </td>
-                        </tr>
+                        <?php
+                        if ($resultado->num_rows <= 0) {
+                            echo '<tr><td colspan="5">No hay usuarios en el sistema</td></tr>';
+                        } else {
+                            while ($fila = $resultado->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<td>" . htmlspecialchars($fila['nombres']) . "</td>";
+                                echo "<td>" . htmlspecialchars($fila['correo']) . "</td>";
+                                echo "<td>" . htmlspecialchars($fila['rol']) . "</td>";
+                                echo "<td>" . htmlspecialchars($fila['area']) . "</td>";
+                                echo "<td class='acciones'>
+                                        <i class='bi bi-pencil'></i>
+                                        <i class='bi bi-trash'></i>
+                                    </td>";
+                                echo "</tr>";
+                            }
+                        }
+                        ?>
                     </tbody>
                 </table>
             </div>
@@ -113,6 +121,9 @@ AutorizacionRol('administrador');
     </main>
 
    
+    <!-- Modal editar -->
+
+
     <div id="modal-editar" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -128,12 +139,16 @@ AutorizacionRol('administrador');
                 <select id="rol_editar">
                     <option value="Administrador">Administrador</option>
                     <option value="Usuario">Usuario</option>
+                    <option value="Documentador">Documentador</option>
+                    <option value="Auditor">Auditor</option>
                 </select>
 
                 <label>Área:</label>
                 <select id="area_editar">
                     <option value="Administracion">Administración</option>
                     <option value="Logistica">Logística</option>
+                    <option value="Contabilidad">Contabilidad</option>
+                    <option value="Otro">Otro</option>
                 </select>
 
                 <button type="submit">Guardar cambios</button>
@@ -141,17 +156,20 @@ AutorizacionRol('administrador');
         </div>
     </div>
 
-    
+    <!-- Modal eliminar -->
+
     <div id="modal-eliminar" class="modal">
-        <div class="modal-contenedor">
+        <form class="modal-contenedor" >
             <span class="close">&times;</span>
             <h2>Confirmar eliminación</h2>
             <p>¿Estás seguro de que deseas eliminar este usuario?</p>
             <div class="modal-acciones">
                 <button class="btn-cancelar">Cancelar</button>
                 <button class="btn-eliminar">Eliminar</button>
+                
             </div>
-        </div>
+            
+        </form>
     </div>
 </body>
 </html>

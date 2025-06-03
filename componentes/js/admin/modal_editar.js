@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
    
   //==== capturar datos y enviarlo a php, con el fin de editar el usuario ====//
 
-   // Variable global para guardar el correo original
+  
 let correoOriginal = '';
 
 document.querySelectorAll('.bi-pencil').forEach(icono => {
@@ -30,17 +30,17 @@ document.querySelectorAll('.bi-pencil').forEach(icono => {
         document.getElementById('rol_editar').value = celdas[2].textContent.toLowerCase();
         document.getElementById('area_editar').value = celdas[3].textContent.toLowerCase();
         
-        // Guardar el correo original para la actualización
+    
         correoOriginal = celdas[1].textContent;
         
-        // Mostrar el modal
+       
         document.getElementById('modal-editar').style.display = 'block';
     });
 });
 
 // Enviar al PHP
 document.querySelector('.btn_editar').addEventListener('click', function(e) {
-    e.preventDefault(); // Prevenir el comportamiento por defecto del botón
+    e.preventDefault(); 
     
     const formData = new FormData();
     
@@ -59,9 +59,9 @@ document.querySelector('.btn_editar').addEventListener('click', function(e) {
     .then(data => {
         if (data.success) {
             alert('Usuario editado correctamente');
-            // Cerrar modal
+            
             document.getElementById('modal-editar').style.display = 'none';
-            // Recargar la página para mostrar los cambios
+           
             location.reload();
         } else {
             alert('Error: ' + data.error);

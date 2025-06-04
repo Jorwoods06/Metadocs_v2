@@ -45,6 +45,7 @@ figure {
     border-radius: 8px;
     outline: none;
     border: 1px solid #ccc; 
+    max-width: 400px;
 }
 
 #cuerpo #form #label_contraseña{

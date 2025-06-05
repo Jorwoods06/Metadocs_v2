@@ -95,7 +95,7 @@
  
   }
 
-  .gestion_usuario > a .bi, .gestion-usuarios > a .bi {
+  .gestion_usuario  a .bi, .gestion-usuarios  a .bi {
     font-size: 1.3rem;
     margin-right: 12px;
   }

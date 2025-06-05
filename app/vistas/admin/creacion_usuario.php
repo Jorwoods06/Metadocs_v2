@@ -44,7 +44,7 @@ unset($_SESSION['correo_existente']);
                     </a>
                 </li>
                 <li class="gestion_usuario">
-                    <a href="#" id="gestion-usuarios">
+                    <a href="#" id="gestion-usuarios" class="activo">
                         <i class="bi bi-people"></i> Gestión Usuarios
                     </a>
                     <ul class="sub_menu gestion-submenu" id="sub_menu">

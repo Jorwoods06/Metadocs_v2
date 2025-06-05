@@ -31,8 +31,6 @@ unset($_SESSION['denegado']);
             </figure>
 
 
-            <p id="subtitulo">Iniciar Sesion</p>
-
             <p id="subtitulo">Inicia sesión</p>
 
             <label for="gmail">Correo</label>

@@ -18,7 +18,7 @@ body {
     font-size: 17px;
     width: 100%;
     overflow-x: hidden;
-    overflow-y: auto; /* Solo scroll vertical si es necesario */
+    overflow-y: auto; 
 }
 
 figure {
@@ -32,7 +32,7 @@ figure {
 
 #cuerpo {
     width: 100%;
-    height: 100vh; /* Alto total del viewport */
+    height: 100vh; 
     display: flex;
     flex-direction: column;
 }
@@ -47,7 +47,7 @@ figure {
     width: 100%;
     margin: 0 auto;
     gap: 10px;
-    overflow-y: auto; /* Para scroll interno si es necesario */
+    overflow-y: auto; 
 }
 
 #form input {
@@ -197,7 +197,7 @@ figure {
         margin: auto;
         max-width: 500px; 
         height: 100%;
-        overflow-y: auto; /* Scroll interno si necesario */
+        overflow-y: auto; 
     }
 
     #form figure {

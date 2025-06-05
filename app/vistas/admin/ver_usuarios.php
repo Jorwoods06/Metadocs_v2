@@ -43,8 +43,8 @@ AutorizacionRol('administrador');
                     </a>
                 </li>
 
-                <li class="gestion_usuario">
-                    <a href="#" id="gestion-usuarios"><i class="bi bi-people"></i> Gestión Usuarios</a>
+                <li class="gestion_usuario" >
+                    <a href="#" id="gestion-usuarios" class="activo"><i class="bi bi-people"></i> Gestión Usuarios</a>
                     <ul class="sub_menu gestion-submenu" id="sub_menu">
                         <li><a href="../../vistas/admin/creacion_usuario.php"><i class="bi bi-person-plus"></i> Crear usuario</a></li>
                         <li><a href="../admin/ver_usuarios.php"><i class="bi bi-eye"></i> Ver usuario</a></li>

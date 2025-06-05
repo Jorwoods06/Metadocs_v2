@@ -68,17 +68,6 @@ input::placeholder {
     color: #aaa;
 }
 
-/* Selects personalizados */
-select {
-    background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' fill='%23666' viewBox='0 0 16 16'><path d='M8 10L4 6h8l-4 4z'/></svg>");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    background-size: 12px;
-    padding-right: 35px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
 
 
 .form-row:nth-child(5) {

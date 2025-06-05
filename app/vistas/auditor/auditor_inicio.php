@@ -29,7 +29,7 @@ AutorizacionRol('auditor');
             </figure>
             <ul>
                 <li>
-                    <a href="">
+                    <a href="#" class="activo">
                         <i class="bi bi-house-door"></i>
                         Inicio
                     </a>

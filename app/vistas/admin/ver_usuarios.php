@@ -21,6 +21,7 @@ AutorizacionRol('administrador');
     <script src="../../../componentes/js/admin/modal_editar.js" ></script>
     <link rel="stylesheet" href="../../../componentes/css/admin/eliminar_u.css">
     <script src="../../../componentes/js/admin/modal_eliminar.js" ></script>
+     <script src="../../../componentes/js/admin/filtro_busqueda_usuarios.js" ></script>
     <link rel="stylesheet" href="../../../componentes/css/admin/lista_u.css">
 
 </head>
@@ -76,11 +77,12 @@ AutorizacionRol('administrador');
             <div class="cont_nombre">
 
                 <input type="text" name="buscar_usuario" id="buscar_usuario" placeholder="Buscar usuario...">
-                <select id="areas">
-                    <option value="">Todas las áreas</option>
-                    <option value="administracion">Administración</option>
-                    <option value="logistica">Logística</option>
-                    <option value="contabilidad">Contabilidad</option>
+                <select id="roles">
+                    <option value="">Todos los roles</option>
+                    <option value="administrador">Administrador</option>
+                    <option value="auditor">Auditor</option>
+                    <option value="documentador">Documentador</option>
+                    <option value="visualizador">Visualizador</option>
                 </select>
             </div>
 
@@ -138,7 +140,7 @@ AutorizacionRol('administrador');
                 <label>Rol:</label>
                 <select id="rol_editar">
                     <option value="administrador">Administrador</option>
-                    <option value="usuario">Usuario</option>
+                    <option value="visualizador">Visualizador</option>
                     <option value="documentador">Documentador</option>
                     <option value="auditor">Auditor</option>
                 </select>

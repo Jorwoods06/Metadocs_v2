@@ -76,7 +76,9 @@ figure {
 #subtitulo {
     color: #ccc;
     text-align: center;
-    margin: 0 0 20px 0; /* quitado margin negativo */
+    margin: 0 0 20px 0;
+    position: relative;
+    bottom: 4%;
 }
 
 .input-error {
@@ -131,6 +133,7 @@ figure {
 @media screen and (min-width: 700px) {
     #form {
         padding: 40px;
+        max-width: 700px; 
     }
 
     #form figure {
@@ -140,10 +143,15 @@ figure {
     #subtitulo {
         font-size: 1.8em;
         margin-bottom: 30px;
+        bottom: 2%;
     }
 
     #form label {
         font-size: 1.3em;
+    }
+
+    #form input{
+        padding: 35px 17px;
     }
 
     #form ::placeholder {
@@ -187,6 +195,7 @@ figure {
         flex-basis: 43%;
         padding: 50px;
         margin: auto;
+        max-width: 500px; 
         height: 100%;
         overflow-y: auto; /* Scroll interno si necesario */
     }
@@ -203,6 +212,10 @@ figure {
 
     #form label {
         font-size: 0.9em;
+    }
+
+      #form input{
+        padding: 18px;
     }
 
     #form ::placeholder {

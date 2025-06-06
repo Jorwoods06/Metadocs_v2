@@ -95,7 +95,7 @@
  
   }
 
-  .gestion_usuario > a .bi, .gestion-usuarios > a .bi {
+  .gestion_usuario  a .bi, .gestion-usuarios  a .bi {
     font-size: 1.3rem;
     margin-right: 12px;
   }
@@ -122,6 +122,20 @@
   #menu-lateral li:hover {
     background-color: #f1f5f9;
   }
+
+  #menu-lateral a.activo {
+    background-color: #3D688A;
+    white-space: nowrap;
+    color: #ffffff;
+    font-weight: 600;
+    padding-left: calc(1.62rem - 4.32px); /* Ajustado para coincidir con el nuevo padding */
+}
+
+#menu-lateral a.activo svg {
+    color: #ffffff;
+}
+
+
 
   .sub_menu {
     max-height: 0;

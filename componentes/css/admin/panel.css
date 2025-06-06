@@ -126,7 +126,7 @@
   .sub_menu {
     max-height: 0;
     overflow: hidden;
-      transition: all 1s;
+    transition: all 1s;
     display: flex;
     flex-direction: column;
     margin-top: 6px;

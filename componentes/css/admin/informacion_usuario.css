@@ -1,0 +1,144 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+html, body {
+    height: 100%;
+    overflow: auto;
+    
+}
+
+.titulo-usuario{
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #333;
+    text-align: left;
+}
+.avatar-usuario {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%; 
+  display: block;
+   
+}
+.info-usuarios {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+    align-items: flex-start;
+    margin-top: 15px;
+    
+    
+
+}
+
+.contenido-usuario {
+  padding: 40px ;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  width: 100%;
+  margin-top: 1rem;
+  overflow: auto;
+
+}
+
+
+.nombre-usuario {
+  font-size: 20px;
+  font-weight: 700;
+  color: #555;
+  margin-bottom: 30px;
+  padding: 10px;
+  text-align: left;
+}
+
+.avatar-usuario {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+
+
+.contenedor-datos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  text-align: left;
+  justify-content: center;
+}
+
+.datos label {
+  font-weight: 600;
+  color: #666;
+  font-size: 16px;
+}
+
+.valor {
+  max-width: 500px;
+  background-color: #f1f3f5;
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin-top: 5px;
+  color: #333;
+  font-size: 15px;
+}
+
+
+@media (min-width: 992px) {
+  .contenido-usuario {
+    margin-left: 180px;
+    overflow: scroll;
+  }
+}
+
+
+@media (max-width: 991px) {
+  .contenido-usuario {
+    margin-left: 0;
+    padding: 20px;
+  }
+
+  .contenedor-datos {
+    grid-template-columns: 1fr; 
+  }
+
+  .valor {
+    max-width: 100%;
+  }
+
+  .nombre-usuario {
+    text-align: center;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .contenido-usuario h1 {
+    font-size: 22px;
+    
+  }
+
+  .nombre-usuario {
+    font-size: 20px;
+  }
+
+  .valor {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .datos label {
+    font-size: 13px;
+  }
+
+  .avatar-usuario {
+    width: 100px;
+    height: 100px;
+  }
+}

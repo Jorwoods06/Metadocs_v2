@@ -45,7 +45,7 @@ AutorizacionRol('administrador');
                     </ul>
                 </li>
                 <li>
-                    <a href="../admin/admin_reporte.php">
+                    <a href="#" class="activo">
                         <i class="bi bi-file-earmark-text"></i>
                         Reportes 
                     </a>

@@ -8,12 +8,17 @@ body {
     display: flex;
     min-height: 100vh;
 }
+.contenedor-formulario {
+    max-width: 900px;
+    width: 100%;
+    padding: 0 20px;
+}
 
 h2 {
     color: #2c3e50;
     margin-bottom: 5px;
-    font-size: 24px;
-    font-weight: 600;
+    font-size: 2rem;
+    
 }
 
 .subtitle {
@@ -63,17 +68,6 @@ input::placeholder {
     color: #aaa;
 }
 
-/* Selects personalizados */
-select {
-    background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' fill='%23666' viewBox='0 0 16 16'><path d='M8 10L4 6h8l-4 4z'/></svg>");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    background-size: 12px;
-    padding-right: 35px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
 
 
 .form-row:nth-child(5) {
@@ -84,6 +78,8 @@ select {
 .form-row:nth-child(5) .form-group {
     flex: 1;
 }
+
+
 
 
 #mensaje_err {
@@ -97,7 +93,6 @@ select {
 .form-actions {
     display: flex;
     justify-content: flex-end;
-    margin-top: 40px;
     padding-top: 20px;
     border-top: 1px solid #eee;
 }
@@ -179,3 +174,53 @@ input#email.input-error {
         transform: translateX(-50%) translateY(-9px);
     }
 }
+@media (min-width: 1024px) {
+    .cedula-grupo2 {
+    display: none;
+    }
+}
+@media (max-width: 767px) {
+    .cedula-grupo {
+    display: none;
+    }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+    .cedula-grupo2 {
+    display: none;
+    }
+    input, select {
+    font-size: 20px;
+    padding: 20px 28px;
+    height: 64px;
+    }
+    input::placeholder {
+    font-size: 20px;
+    }
+    label {
+    font-size: 20px;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1366px) {
+    input, select {
+        font-size: 20px;
+        padding: 20px 28px;
+        height: 64px;
+    }
+    input::placeholder {
+        font-size: 20px;
+    }
+    label {
+        font-size: 20px;
+    }
+    h2 {
+        font-size: 2.5rem;
+    }
+    .subtitle {
+        font-size: 16px;
+    }
+    .form-row {
+        gap: 25px;
+    }
+}
+

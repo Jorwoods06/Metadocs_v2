@@ -15,7 +15,6 @@
 
 #admin-contenido {
     display: flex;
-    width: 100%;
     flex-direction: column;
     margin-top: 1rem;
 }
@@ -42,9 +41,9 @@
 
 .tabla-contenedor {
     width: 100%;
-    overflow-x: auto;
     border-radius: 8px;
     margin: 0 auto;
+    overflow-x: auto;
     
 }
 

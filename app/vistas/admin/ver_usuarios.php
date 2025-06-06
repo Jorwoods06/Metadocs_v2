@@ -62,7 +62,7 @@ AutorizacionRol('administrador');
                                 <button type="submit"><i class="bi bi-box-arrow-left"></i> Cerrar sesión</button>
                             </form>
                         </li>
-                        <li><a href=""><i class="bi bi-info-circle"></i> Info usuario</a></li>
+                        <li><a href="../../vistas/admin/informacion_usuario.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
                         <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
                     </ul>
                 </li>

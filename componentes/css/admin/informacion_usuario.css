@@ -4,55 +4,42 @@
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
 }
+
 html, body {
     height: 100%;
-    overflow: auto;
     
 }
 
-.titulo-usuario{
+.contenido-usuario {
+  padding: 40px;
+  height: 100vh;
+  width: 100%;
+  margin-top: 1rem;
+  
+}
+
+.titulo-usuario {
     font-size: 28px;
     margin-bottom: 30px;
     color: #333;
     text-align: left;
 }
-.avatar-usuario {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 50%; 
-  display: block;
-   
+
+.info-usuario {
+    max-width: 1200px;
+    margin: 0 auto;
 }
+
 .info-usuarios {
     display: flex;
-    flex-direction: column;
-    margin-bottom: 30px;
-    align-items: flex-start;
-    margin-top: 15px;
+    margin-top: 35px;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 40px;
+    padding: 25px;
+    background-color: white;
+    border-radius: 12px;
     
-    
-
-}
-
-.contenido-usuario {
-  padding: 40px ;
-  background-color: #f8f9fa;
-  min-height: 100vh;
-  width: 100%;
-  margin-top: 1rem;
-  overflow: auto;
-
-}
-
-
-.nombre-usuario {
-  font-size: 20px;
-  font-weight: 700;
-  color: #555;
-  margin-bottom: 30px;
-  padding: 10px;
-  text-align: left;
 }
 
 .avatar-usuario {
@@ -60,43 +47,64 @@ html, body {
   height: 120px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 15px;
-  margin-top: 10px;
+  border: 3px solid #e9ecef;
+  flex-shrink: 0;
 }
 
+.nombre-usuario {
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+  margin: 0;
+}
 
 .contenedor-datos {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
   text-align: left;
-  justify-content: center;
+}
+
+.datos {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+   
+    
+}
+
+
+
+.datos:first-child {
+    grid-column: 1 / -1;
 }
 
 .datos label {
   font-weight: 600;
-  color: #666;
-  font-size: 16px;
+  color: #495057;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+  display: block;
 }
 
 .valor {
-  max-width: 500px;
-  background-color: #f1f3f5;
-  padding: 10px 15px;
+  background-color: #f8f9fa;
+  padding: 12px 16px;
   border-radius: 8px;
-  margin-top: 5px;
   color: #333;
   font-size: 15px;
+  line-height: 1.5;
+  border-left: 3px solid #007bff;
 }
-
 
 @media (min-width: 992px) {
   .contenido-usuario {
     margin-left: 180px;
-    overflow: scroll;
+    
   }
 }
-
 
 @media (max-width: 991px) {
   .contenido-usuario {
@@ -105,23 +113,41 @@ html, body {
   }
 
   .contenedor-datos {
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr;
   }
 
-  .valor {
-    max-width: 100%;
+  .info-usuarios {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
   }
 
   .nombre-usuario {
-    text-align: center;
+    font-size: 22px;
   }
 }
 
+@media (max-width: 768px) {
+  .info-usuarios {
+    padding: 20px;
+  }
+
+  .contenedor-datos {
+    gap: 20px;
+  }
+
+  .datos {
+    padding: 16px;
+  }
+}
 
 @media (max-width: 480px) {
-  .contenido-usuario h1 {
+  .contenido-usuario {
+    padding: 15px;
+  }
+
+  .titulo-usuario {
     font-size: 22px;
-    
   }
 
   .nombre-usuario {
@@ -130,15 +156,19 @@ html, body {
 
   .valor {
     font-size: 14px;
-    padding: 8px 12px;
+    padding: 10px 12px;
   }
 
   .datos label {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .avatar-usuario {
     width: 100px;
     height: 100px;
+  }
+
+  .info-usuarios {
+    padding: 15px;
   }
 }

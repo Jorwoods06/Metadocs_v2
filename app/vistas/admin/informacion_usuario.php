@@ -54,7 +54,7 @@ AutorizacionRol('administrador');
                 
                     <!-- cerrado sesion -->  
                 <li class="gestion-usuarios">
-                    <a href="#" id="cerrado-usuarios">
+                    <a href="#" id="cerrado-usuarios" class="activo">
                         <i class="bi bi-person"></i>
                         Usuario
                     </a>
@@ -89,6 +89,10 @@ AutorizacionRol('administrador');
 
                 <div class="contenedor-datos">
                     <div class="datos">
+                        <label>Descripcion laboral</label>
+                        <div class="valor">Jorge se desempeña como administrador en gestión documental, encargado de organizar, clasificar y custodiar los documentos tanto físicos como digitales de la empresa. </div>
+                    </div>
+                    <div class="datos">
                         <label>Nombre</label>
                         <div class="valor">jorge</div>  
                     </div>
@@ -108,10 +112,11 @@ AutorizacionRol('administrador');
                         <label>Correo Elctronico</label>
                         <div class="valor">dg24004@gmail.com</div>
                     </div>
-                    <div class="datos">
-                        <label>Descripcion laboral</label>
-                        <div class="valor">Jorge se desempeña como administrador en gestión documental, encargado de organizar, clasificar y custodiar los documentos tanto físicos como digitales de la empresa. </div>
+                     <div class="datos">
+                        <label>Numero telefonico</label>
+                        <div class="valor">1234567891</div>
                     </div>
+                    
                 </div>
             </div>
         </section>

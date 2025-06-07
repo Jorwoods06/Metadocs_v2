@@ -1,8 +1,6 @@
 <?php 
 
-require_once '../../helpers/verificacion_roles.php';
 
-AutorizacionRol('administrador');
 ?>
 <!DOCTYPE html>
 <html lang="es">

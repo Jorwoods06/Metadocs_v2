@@ -221,7 +221,7 @@
     }
     
     .tabla-documentos table th {
-        padding: 20px 24px;
+        padding: 20px 20px;
         font-size: 0.9rem;
        
     }
@@ -232,7 +232,7 @@
     }
     
     .documentos td {
-        padding: 20px 24px;
+        padding: 10px 20px;
     }
     
     .documento-nombre {

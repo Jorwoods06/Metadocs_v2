@@ -44,7 +44,7 @@ unset($_SESSION['correo_existente']);
                     </a>
                 </li>
                 <li class="gestion_usuario">
-                    <a href="#" id="gestion-usuarios">
+                    <a href="#" id="gestion-usuarios" class="activo">
                         <i class="bi bi-people"></i> Gestión Usuarios
                     </a>
                     <ul class="sub_menu gestion-submenu" id="sub_menu">
@@ -68,7 +68,7 @@ unset($_SESSION['correo_existente']);
                             <button type="submit"><i class="bi bi-box-arrow-left"></i> Cerrar sesión</button>
                             </form>
                         </li>
-                        <li><a href="#"><i class="bi bi-info-circle"></i> Info usuario</a></li>
+                        <li><a href="../log/informacion_usuario.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
                         <li><a href="#"><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
                     </ul>
                 </li>

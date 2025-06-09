@@ -1,8 +1,6 @@
 <?php 
 
-require_once '../../helpers/verificacion_roles.php';
 
-AutorizacionRol('administrador');
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -15,6 +13,7 @@ AutorizacionRol('administrador');
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
     <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
     <script src="../../../componentes/js/admin/panel.js"></script>
+    <link rel="stylesheet" href="../../../componentes/css/admin/informacion_usuario.css">
 </head>
 <body>
     <header id="cabezote">
@@ -45,7 +44,7 @@ AutorizacionRol('administrador');
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="activo">
+                    <a href="../admin/admin_reporte.php">
                         <i class="bi bi-file-earmark-text"></i>
                         Reportes 
                     </a>
@@ -53,13 +52,13 @@ AutorizacionRol('administrador');
                 
                     <!-- cerrado sesion -->  
                 <li class="gestion-usuarios">
-                    <a href="#" id="cerrado-usuarios">
+                    <a href="#" id="cerrado-usuarios" class="activo">
                         <i class="bi bi-person"></i>
                         Usuario
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
                         <li><form action="../../backend/login/cerrar_sesion.php" method="post"><button type="submit"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</button></form></li>
-                        <li><a href="../log/informacion_usuario.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
+                        <li><a href="../../vistas/admin/informacion_usuario.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
                         <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
 
                        
@@ -75,11 +74,55 @@ AutorizacionRol('administrador');
             </ul>
         </nav>
        
-        <section id="admin-contenido" class="admin">
-            <h1>seccion reportes xd</h1>
+        <section class="contenido-usuario">
+            <h1 class="titulo-usaurio">Informacion del Usuario</h1>
+            <div class="info-usuario">
+                <div class="info-usuarios">
+                    <img src="../../../componentes/img/usuario.png" alt="logo de usuario" class="avatar-usuario">
+                    <div class="nombre-usuario">Jorge Admin</div>
+                </div>
+            
+                
+                
+
+                <div class="contenedor-datos">
+                    <div class="datos">
+                        <label>Descripcion laboral</label>
+                        <div class="valor">Jorge se desempeña como administrador en gestión documental, encargado de organizar, clasificar y custodiar los documentos tanto físicos como digitales de la empresa. </div>
+                    </div>
+                    <div class="datos">
+                        <label>Nombre</label>
+                        <div class="valor">jorge</div>  
+                    </div>
+                    <div class="datos">
+                        <label>area</label>
+                        <div class="valor">Administración</div>
+                    </div>
+                    <div class="datos">
+                        <label>Apellido</label>
+                        <div class="valor">admin</div>
+                    </div>
+                    <div class="datos">
+                        <label>Rol</label>
+                        <div class="valor">Administrador</div>
+                    </div>
+                    <div class="datos">
+                        <label>Correo Elctronico</label>
+                        <div class="valor">dg24004@gmail.com</div>
+                    </div>
+                     <div class="datos">
+                        <label>Numero telefonico</label>
+                        <div class="valor">1234567891</div>
+                    </div>
+                    
+                </div>
+            </div>
         </section>
 
 
-</main>
+
+
+
+    </main>
 </body>
 </html>

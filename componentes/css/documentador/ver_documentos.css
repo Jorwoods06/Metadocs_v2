@@ -1,0 +1,258 @@
+/* Estilos base - Mobile First */
+#admin-contenido h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #1d1d1f;
+}
+
+.buscar-documentos {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.buscar-documentos input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #d2d2d7;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: white;
+    color: #1d1d1f;
+    outline: none;
+
+}
+
+
+.buscar-documentos button {
+    background-color: #3D688A;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.buscar-documentos button:hover {
+    background-color: #2c5068;
+}
+
+.buscar-documentos button::before {
+    content: '+';
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.tabla-documentos table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Mobile: Hide table headers and stack content */
+.tabla-documentos table thead {
+    display: none;
+}
+
+.documentos {
+    position: relative;
+    padding: 20px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.2s ease;
+    display: block;
+}
+
+.documentos:hover {
+    background-color: #f8f9fa;
+}
+
+.documentos:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.documentos td {
+    padding: 0;
+    border: none;
+    display: block;
+}
+
+.documento-nombre {
+    font-size: 1rem;
+    color: #1d1d1f;
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+    padding-right: 40px;
+}
+
+.documento-tipo,
+.documento-fecha {
+    display: inline;
+    font-size: 0.875rem;
+    color: #6e6e73;
+    margin-right: 16px;
+}
+
+.documento-accion {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.btn_accion {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 8px;
+    color: #6e6e73;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    float: inline-end;
+
+}
+
+.btn_accion:hover {
+    background-color: #f0f0f0;
+}
+
+/* media query tablet */
+@media (min-width: 768px) {
+    #admin-contenido h1 {
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+    }
+    
+    .buscar-documentos {
+        flex-direction: row;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 40px;
+    }
+    
+    .buscar-documentos input {
+        min-width: 300px;
+    }
+    
+    .buscar-documentos button {
+        min-width: 140px;
+        white-space: nowrap;
+    }
+    
+    /* Mostrar headers de tabla en tablet */
+    .tabla-documentos table thead {
+        display: table-header-group;
+    }
+
+   
+    .tabla-documentos table th {
+        padding: 16px 20px;
+        background-color: #EDF2F7;
+        border-bottom: 2px solid #e9ecef;
+        font-weight: 600;
+        font-size: 0.875rem;
+        color: #495057;
+        text-align: left;
+    }
+    
+    .documentos {
+        display: table-row;
+        padding: 0;
+        margin-bottom: 0;
+        border-bottom: 1px solid #e9ecef;
+    }
+    
+    .documentos td {
+        display: table-cell;
+        padding: 16px 20px;
+        vertical-align: middle;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .documento-nombre {
+        font-size: 1rem;
+        margin-bottom: 0;
+        padding-right: 0;
+    }
+    
+    .documento-tipo,
+    .documento-fecha {
+        font-size: 0.875rem;
+        margin-right: 0;
+    }
+    
+    .documento-accion {
+        position: static;
+        right: auto;
+        top: auto;
+    }
+}
+
+
+/*media query pc*/
+@media (min-width: 1024px) {
+   
+    
+   
+    
+    .buscar-documentos input {
+        padding: 14px 18px;
+        font-size: 1.1rem;
+    }
+    
+    .buscar-documentos button {
+        padding: 14px 24px;
+        font-size: 1.1rem;
+    }
+    
+    .tabla-documentos {
+       
+        border-radius: 12px;
+        overflow: hidden;
+        background-color: white;
+    }
+    
+    .tabla-documentos table th {
+        padding: 20px 20px;
+        font-size: 0.9rem;
+       
+    }
+    
+    .documentos:hover {
+        background-color: #f8f9fa;
+       cursor: pointer;
+    }
+    
+    .documentos td {
+        padding: 10px 20px;
+    }
+    
+    .documento-nombre {
+        font-size: 1.1rem;
+    
+    }
+    
+    .documento-tipo,
+    .documento-fecha {
+        font-size: 0.9rem;
+    }
+    
+    .btn_accion {
+        padding: 8px 12px;
+        font-size: 1.3rem;
+        border-radius: 6px;
+    }
+    
+    .btn_accion:hover {
+        background-color: #e9ecef;
+        transform: scale(1.1);
+    }
+}

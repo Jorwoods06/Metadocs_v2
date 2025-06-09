@@ -13,7 +13,7 @@ AutorizacionRol('documentador');
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
-    <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
+    <link rel="stylesheet" href="../../../componentes/css/documentador/ver_documentos.css">
     <script src="../../../componentes/js/admin/panel.js"></script>
 </head>
 <body>
@@ -29,13 +29,13 @@ AutorizacionRol('documentador');
             </figure>
             <ul>
                 <li>
-                    <a href="" class="activo">
+                    <a href="documentador_inicio.php">
                         <i class="bi bi-house-door"></i>
                         Inicio
                     </a>
                 </li>
                  <li>
-                    <a href="ver_documentos.php">
+                    <a href="#" class="activo">
                         <i class="bi bi-file-earmark-text"></i>
                        Documentos
                     </a>
@@ -72,7 +72,54 @@ AutorizacionRol('documentador');
         </nav>
        
         <section id="admin-contenido" class="admin">
-            <h1>Inicio documentador</h1>
+            <h1>Documentos</h1>
+
+            <div class="buscar-documentos">
+                <input type="text" class="input-buscar" placeholder="Buscar carpeta o archivo...">
+                <button class="btn-crear">Crear expediente</button>
+            </div>
+
+            <article class="tabla-documentos">
+                <table>
+                <thead>
+                    <tr class="table-cabeza">
+                        <th>NOMBRE</th>
+                        <th>TIPO</th>
+                        <th>FECHA SUBIDA</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="documentos">
+                        <td class="documento-nombre"><i class="bi bi-folder2"></i>  expediente 1</td>
+                        <td class="documento-tipo">expediente</td>
+                        <td class="documento-fecha">2025-03-09</td>
+                        <td class="documento-accion">
+                            <button class="btn_accion">⋮</button>
+                        </td>
+                    </tr>
+                      <tr class="documentos">
+                        <td class="documento-nombre"><i class="bi bi-folder2"></i> expediente 2</td>
+                        <td class="documento-tipo">expediente</td>
+                        <td class="documento-fecha">2025-03-09</td>
+                        <td class="documento-accion">
+                            <button class="btn_accion">⋮</button>
+                        </td>
+                    </tr>
+                      <tr class="documentos">
+                        <td class="documento-nombre"><i class="bi bi-folder2"></i> expediente 3</td>
+                        <td class="documento-tipo">expediente</td>
+                        <td class="documento-fecha">2025-03-09</td>
+                        <td class="documento-accion">
+                            <button class="btn_accion">⋮</button>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+
+
+            </article>
         </section>
 
 

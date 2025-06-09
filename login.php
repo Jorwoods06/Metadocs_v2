@@ -31,7 +31,11 @@ unset($_SESSION['denegado']);
             </figure>
 
 
+<<<<<<< HEAD
             <p id="subtitulo">Iniciar Sesion</p>
+=======
+            <p id="subtitulo">Inicia sesión</p>
+>>>>>>> 59ae4f53f6b88472ad1160869cc736b7fb1ecd1a
 
             <label for="gmail">Correo</label>
             <input type="email" name="gmail" id="gmail" inputmode="email" maxlength="64" minlength="7" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"

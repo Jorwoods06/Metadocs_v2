@@ -33,8 +33,6 @@ unset($_SESSION['denegado']);
 
             <p id="subtitulo">Iniciar Sesion</p>
 
-            <p id="subtitulo">Inicia sesión</p>
-
             <label for="gmail">Correo</label>
             <input type="email" name="gmail" id="gmail" inputmode="email" maxlength="64" minlength="7" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
             title="Parece que no digitaste una dirección de email" placeholder="Ingrese su correo" required

@@ -30,12 +30,8 @@ unset($_SESSION['denegado']);
                 <img src="componentes/img/Imagen de WhatsApp 2025-05-01 a las 11.52.47_deffc20c.jpg" alt="logo">
             </figure>
 
-
-<<<<<<< HEAD
-            <p id="subtitulo">Iniciar Sesion</p>
-=======
             <p id="subtitulo">Inicia sesión</p>
->>>>>>> 59ae4f53f6b88472ad1160869cc736b7fb1ecd1a
+
 
             <label for="gmail">Correo</label>
             <input type="email" name="gmail" id="gmail" inputmode="email" maxlength="64" minlength="7" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"

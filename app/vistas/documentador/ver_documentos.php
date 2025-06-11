@@ -14,6 +14,8 @@ AutorizacionRol('documentador');
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
     <link rel="stylesheet" href="../../../componentes/css/documentador/ver_documentos.css">
+    <link rel="stylesheet" href="../../../componentes/css/documentador/modal_expediente.css">
+    <script src="../../../componentes/js/documentador/ver_documentos.js"></script>
     <script src="../../../componentes/js/admin/panel.js"></script>
 </head>
 <body>
@@ -76,7 +78,7 @@ AutorizacionRol('documentador');
 
             <div class="buscar-documentos">
                 <input type="text" class="input-buscar" placeholder="Buscar carpeta o archivo...">
-                <button class="btn-crear">Crear expediente</button>
+                <button class="btn-crear" id="btn_crear">Crear expediente</button>
             </div>
 
             <article class="tabla-documentos">
@@ -124,5 +126,33 @@ AutorizacionRol('documentador');
 
 
 </main>
+
+<!--- Modal crear expediente-->
+
+<div id="modal_expediente">
+        <div id="form_carpeta">
+                <form action="../../backend/documentador/gestor_archivos.php" method="post">
+                    <div id="titulo_carpeta_header">
+                        
+                        <h2>Crear expediente</h2>
+                        <span class="close" id="close">&times;</span>
+                    </div>
+                    <div id="input_carpeta">
+                        <label for="titulo_carpeta_input">Ingrese el título</label>
+                        <input type="hidden" name="expediente_padre" value="<?= $expediente_seleccionado ?>">
+                        <input type="text" id="titulo_carpeta_input" name="titulo_carpeta" placeholder="Ingrese el título de la expediente" required>
+                        
+                        <label for="desc_carpeta_input">Descripción</label>
+                        <textarea id="desc_carpeta_input" name="desc_carpeta" placeholder="Ingrese la descripción de la expediente" required></textarea>
+                    </div>
+                    <div id="btn_carpeta">
+                        <button type="submit" name="accion" value="subir_expediente">Crear</button>
+                    </div>  
+                   
+                </form>
+            </div>
+    
+</div>
+
 </body>
 </html>

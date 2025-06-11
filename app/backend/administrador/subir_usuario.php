@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 
 }else{
     echo "si llego";
-     // Capturar datos del formulario
+     
     $nombre = isset($_POST['nombre']) ? trim($_POST['nombre']) : '';
     $apellido = isset($_POST['apellido']) ? trim($_POST['apellido']) : '';
     $email = isset($_POST['email']) ? trim($_POST['email']) : '';
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     $rol = isset($_POST['rol']) ? trim($_POST['rol']) : '';
     $area = isset($_POST['area']) ? trim($_POST['area']) : '';
 
-    // Validar campos vacíos
+   
     if (empty($nombre) || empty($apellido) || empty($email) || empty($telefono) || empty($contraseña) || empty($cedula) || empty($rol) || empty($area)) {
         die("Por favor complete todos los campos.");
     }
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             exit();
         }
 
-        // Buscar el ID del área
+        
         $sql_buscar_area = "SELECT id_area FROM area_acceso WHERE nombre = ?";
         $sentencia_area = $conexion_metadocs->prepare($sql_buscar_area);
         $sentencia_area->bind_param("s", $area);
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
        
 
         if ($resultado_area->num_rows === 0) {
-            // Área no encontrada
+            
             $_SESSION['error'] = "El área especificada no existe.";
            header('Location: ../../vistas/admin/creacion_usuario.php');
          

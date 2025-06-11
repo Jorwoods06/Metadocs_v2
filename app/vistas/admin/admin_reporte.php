@@ -59,11 +59,7 @@ AutorizacionRol('administrador');
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
                         <li><form action="../../backend/login/cerrar_sesion.php" method="post"><button type="submit"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</button></form></li>
-<<<<<<< HEAD
-                        <li><a href="../../vistas/admin/jum.html"><i class="bi bi-info-circle"></i> Info usuario</a></li>
-=======
-                        <li><a href="../../vistas/admin/informacion_usuario.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
->>>>>>> 4afd15497bef9f18d7e0f4eaa39635f6990f94f0
+                        <li><a href="../log/informacion_usuario.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
                         <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
 
                        

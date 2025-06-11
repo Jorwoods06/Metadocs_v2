@@ -29,25 +29,21 @@ AutorizacionRol('documentador');
             </figure>
             <ul>
                 <li>
-                    <a href="../admin/panel_control.php" class="activo">
-                        <i class="bi bi-bar-chart-line"></i>
+                    <a href="" class="activo">
+                        <i class="bi bi-house-door"></i>
                         Inicio
                     </a>
                 </li>
-                <li class="gestion_usuario">
-                    <a href="#" id="gestion-usuarios" >
-                        <i class="bi bi-people"></i>
-                        Gestión Documentos
+                 <li>
+                    <a href="ver_documentos.php">
+                        <i class="bi bi-file-earmark-text"></i>
+                       Documentos
                     </a>
-                    <ul class="sub_menu gestion-submenu" id="sub_menu">
-                        <li><a href=""><i class="bi bi-person-plus"></i> Subir documentos</a></li>
-                        <li><a href=""><i class="bi bi-eye"></i> Ver documentos</a></li>
-                    </ul>
                 </li>
                 
                 <li>
-                    <a href="../admin/panel_control.php">
-                        <i class="bi bi-bar-chart-line"></i>
+                    <a href="">
+                        <i class="bi bi-envelope-paper"></i>
                             Solicitudes
                     </a>
                 </li>
@@ -59,7 +55,7 @@ AutorizacionRol('documentador');
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
                         <li><form action="../../backend/login/cerrar_sesion.php" method="post"><button type="submit"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</button></form></li>
-                        <li><a href=""><i class="bi bi-info-circle"></i> Info usuario</a></li>
+                        <li><a href="../log/informacion_usuario.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
                         <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
 
                        

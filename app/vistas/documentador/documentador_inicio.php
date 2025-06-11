@@ -42,7 +42,7 @@ AutorizacionRol('documentador');
                 </li>
                 
                 <li>
-                    <a href="">
+                    <a href="solicitudes_doc.php">
                         <i class="bi bi-envelope-paper"></i>
                             Solicitudes
                     </a>

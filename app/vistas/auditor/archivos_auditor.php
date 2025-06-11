@@ -2,7 +2,7 @@
 
 require_once '../../helpers/verificacion_roles.php';
 
-AutorizacionRol('documentador');
+AutorizacionRol('auditor');
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -13,9 +13,10 @@ AutorizacionRol('documentador');
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
-    <link rel="stylesheet" href="../../../componentes/css/documentador/ver_documentos.css">
-    <link rel="stylesheet" href="../../../componentes/css/documentador/modal_expediente.css">
-    <script src="../../../componentes/js/documentador/ver_documentos.js"></script>
+     <link rel="stylesheet" href="../../../componentes/css/documentador/modal_expediente.css">
+     <link rel="stylesheet" href="../../../componentes/css/auditor/archivos_auditor.css">
+     <script src="../../../componentes/js/auditor/auditor_ver_docs.js"></script>
+ 
     <script src="../../../componentes/js/admin/panel.js"></script>
 </head>
 <body>
@@ -31,24 +32,32 @@ AutorizacionRol('documentador');
             </figure>
             <ul>
                 <li>
-                    <a href="documentador_inicio.php">
+                    <a href="auditor_inicio.php" >
                         <i class="bi bi-house-door"></i>
                         Inicio
                     </a>
                 </li>
-                 <li>
-                    <a href="#" class="activo">
-                        <i class="bi bi-file-earmark-text"></i>
-                       Documentos
+                <li class="gestion_usuario">
+                    <a href="#" id="gestion-usuarios" class="activo">
+                        <i class="bi bi-file-earmark-text" ></i>
+                        Gestión Documentos
+                    </a>
+                    <ul class="sub_menu gestion-submenu" id="sub_menu">
+                        <li><a href="solicitudes_archivos.php"><i class="bi bi-envelope-paper"></i>Solicitudes</a></li>
+                        <li><a href="#"><i class="bi bi-eye"></i> Ver documentos</a></li>
+                        <li><a href=""><i class="bi bi-file-earmark-plus"></i> Solicitar documentos</a></li>
+                         <li><a href=""> <i class="bi bi-clock-history"></i> Archivo historico</a></li>
+                    </ul>
+                </li>
+               
+                <li>
+                    <a href="">
+                        <i class="bi bi-list-check"></i>
+
+                        Pista auditoria
                     </a>
                 </li>
                 
-                <li>
-                    <a href="solicitudes_doc.php">
-                        <i class="bi bi-envelope-paper"></i>
-                            Solicitudes
-                    </a>
-                </li>
                     <!-- cerrado sesion -->  
                 <li class="gestion-usuarios">
                     <a href="#" id="cerrado-usuarios">
@@ -74,7 +83,7 @@ AutorizacionRol('documentador');
         </nav>
        
         <section id="admin-contenido" class="admin">
-            <h1>Documentos</h1>
+             <h1>Documentos</h1>
 
             <div class="buscar-documentos">
                 <input type="text" class="input-buscar" placeholder="Buscar carpeta o archivo...">
@@ -121,19 +130,14 @@ AutorizacionRol('documentador');
                     
                 </tbody>
             </table>
-
-
-            
         </section>
 
 
 </main>
 
-<!--- Modal crear expediente-->
-
 <div id="modal_expediente">
         <div id="form_carpeta">
-                <form action="../../backend/documentador/gestor_archivos.php" method="post">
+                <form action="../../backend/auditor/gestor_archivos_auditor.php" method="post">
                     <div id="titulo_carpeta_header">
                         
                         <h2>Crear expediente</h2>
@@ -155,6 +159,5 @@ AutorizacionRol('documentador');
             </div>
     
 </div>
-
 </body>
 </html>

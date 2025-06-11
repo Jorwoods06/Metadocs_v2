@@ -14,7 +14,6 @@ AutorizacionRol('auditor');
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
     <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
-    <script src="../../../componentes/js/documentador/ver_documentos.js"></script>
     <script src="../../../componentes/js/admin/panel.js"></script>
 </head>
 <body>
@@ -30,20 +29,20 @@ AutorizacionRol('auditor');
             </figure>
             <ul>
                 <li>
-                    <a href="#" class="activo">
+                    <a href="auditor_inicio.php" >
                         <i class="bi bi-house-door"></i>
                         Inicio
                     </a>
                 </li>
                 <li class="gestion_usuario">
-                    <a href="#" id="gestion-usuarios" >
-                        <i class="bi bi-file-earmark-text"></i>
+                    <a href="#" id="gestion-usuarios"  class="activo" >
+                        <i class="bi bi-file-earmark-text" ></i>
                         Gestión Documentos
                     </a>
                     <ul class="sub_menu gestion-submenu" id="sub_menu">
-                        <li><a href="solicitudes_archivos.php"><i class="bi bi-envelope-paper"></i>Solicitudes</a></li>
+                        <li><a href="#"><i class="bi bi-envelope-paper"></i>Solicitudes</a></li>
                         <li><a href="archivos_auditor.php"><i class="bi bi-eye"></i> Ver documentos</a></li>
-                        <li><a href="solicitudes_archivos.php"><i class="bi bi-file-earmark-plus"></i> Solicitar documentos</a></li>
+                        <li><a href=""><i class="bi bi-file-earmark-plus"></i> Solicitar documentos</a></li>
                          <li><a href=""> <i class="bi bi-clock-history"></i> Archivo historico</a></li>
                     </ul>
                 </li>
@@ -81,7 +80,7 @@ AutorizacionRol('auditor');
         </nav>
        
         <section id="admin-contenido" class="admin">
-            <h1>Inicio Auditor</h1>
+            <h1>solicitudes de archivos</h1>
         </section>
 
 

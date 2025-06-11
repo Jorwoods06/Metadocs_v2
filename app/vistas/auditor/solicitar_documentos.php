@@ -81,7 +81,7 @@ AutorizacionRol('auditor');
         </nav>
        
         <section id="admin-contenido" class="admin">
-            <h1>Inicio Auditor</h1>
+            <h1>Esta interfaz es la encargada para solicitar documentos</h1>
         </section>
 
 

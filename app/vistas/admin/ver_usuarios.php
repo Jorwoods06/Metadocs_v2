@@ -16,7 +16,7 @@ AutorizacionRol('administrador');
     
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
     <script src="../../../componentes/js/admin/panel.js"></script>
-    <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
+    <link rel="stylesheet" href="../../../componentes/css/admin/controles.css">
     <link rel="stylesheet" href="../../../componentes/css/admin/ediciones_u.css">
     <script src="../../../componentes/js/admin/modal_editar.js" ></script>
     <link rel="stylesheet" href="../../../componentes/css/admin/eliminar_u.css">
@@ -45,8 +45,6 @@ AutorizacionRol('administrador');
                 </li>
 
                 <li class="gestion_usuario">
-                    <a href="#" id="gestion-usuarios"><i class="bi bi-people"></i> Gestión Usuarios</a>
-                <li class="gestion_usuario" >
                     <a href="#" id="gestion-usuarios" class="activo"><i class="bi bi-people"></i> Gestión Usuarios</a>
                     <ul class="sub_menu gestion-submenu" id="sub_menu">
                         <li><a href="../../vistas/admin/creacion_usuario.php"><i class="bi bi-person-plus"></i> Crear usuario</a></li>

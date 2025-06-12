@@ -13,7 +13,7 @@ AutorizacionRol('administrador');
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
-    <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
+    <link rel="stylesheet" href="../../../componentes/css/admin/controles.css">
     <script src="../../../componentes/js/admin/panel.js"></script>
 </head>
 <body>
@@ -86,6 +86,64 @@ AutorizacionRol('administrador');
        
         <section id="admin-contenido" class="admin">
             <h1>Panel control</h1>
+
+            <div class="dashboard">
+                <div class="card-mediana">
+                    <div class="iconos">
+                        <i class="bi bi-collection"></i>
+                    </div>
+                    <h3> Total de Documentos</h3>
+                    <p>+100 el mes pasado</p>
+                    <h2>320</h2>
+                </div>
+
+                <div class="card-mediana">
+                    <div class="iconos">
+                        <i class="bi bi-calendar3"></i>
+                    </div>
+                    <h3> Documentos del Mes</h3>
+                    <p>+50 en el mes</p>
+                    <h2>85</h2>
+                </div>
+
+                <div class="card-mediana">
+                    <div class="iconos">
+                       <i class="bi bi-archive"></i>
+                    </div>
+                    <h3> Archivos historicos</h3>
+                    <p>+2,3 archivos historicos</p>
+                    <h2>1134</h2>
+                </div>
+
+                <div class="card-mediana">
+                    <div class="iconos">
+                        <i class="bi bi-search"></i>
+                    </div>
+                    <h3> En revisión</h3>
+                    <p>+200 revisiones</p>
+                    <h2>387</h2>
+                </div>
+
+                <div class="card-mediana">
+                    <div class="iconos">
+                        <i class="bi bi-people-fill"></i>
+                    </div>
+                    <h3> Usuarios Activos</h3>
+                    <p>+200 el mes pasado</p>
+                    <h2>50</h2>
+                </div>
+
+                <div class="card-mediana">
+                    <div class="iconos">
+                        <i class="bi bi-hdd"></i>
+                    </div>
+                    <h3>Almacenamiento Usado</h3>
+                    <P>+1tb en el mes</P>
+                    <h2>1.2TB</h2>
+                    </div>
+                </div>
+
+            </div>
         </section>
 
       

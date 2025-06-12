@@ -1,0 +1,209 @@
+/* Estilos generales */
+.contenedor-principal {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  max-width: 95%;
+  margin: 40px auto;
+}
+
+.contenedor-mensajes h1 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.filtros {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filtros input,
+.filtros select {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  flex: 1;
+}
+
+.filtros button {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.lista-mensajes {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.mensaje {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 4px solid #ccc;
+  position: relative;
+}
+
+.mensaje.no-visto {
+  background-color: #fff6f6;
+  border-left-color: red;
+}
+
+.mensaje.visto {
+  background-color: #f0fef6;
+  border-left-color: green;
+}
+
+.mensaje h2 {
+  margin: 0 0 5px;
+  font-size: 1.2rem;
+}
+
+.mensaje h2 span {
+  font-weight: normal;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.mensaje p {
+  margin: 5px 0;
+  color: #333;
+}
+
+.mensaje .fecha {
+  font-size: 0.85rem;
+  color: #888;
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+}
+
+.estado {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.9rem;
+  margin-top: 8px;
+}
+
+.estado i {
+  margin-right: 5px;
+}
+
+.estado.visto {
+  color: green;
+}
+
+.estado.no-visto {
+  color: red;
+}
+
+/* Responsive para celulares*/
+@media (max-width: 767px) {
+.contenedor-mensajes {
+    max-width: 100%;
+    padding: 15px;
+}
+
+.contenedor-mensajes h1 {
+    font-size: 1.5rem;
+}
+
+.filtros {
+    flex-direction: column;
+    gap: 10px;
+}
+
+.filtros input,
+.filtros select,
+.filtros button {
+    width: 100%;
+    font-size: 1rem;
+}
+
+.mensaje h2 {
+    font-size: 1rem;
+}
+
+.mensaje p {
+    font-size: 0.9rem;
+}
+
+.mensaje .fecha,
+.estado {
+    font-size: 0.8rem;
+}
+}
+
+/* Responsive para tablets*/
+@media (min-width: 768px) and (max-width: 991px) {
+.contenedor-mensajes {
+    max-width: 90%;
+    padding: 30px;
+}
+
+.contenedor-mensajes h1 {
+    font-size: 2rem;
+}
+
+.filtros input,
+.filtros select,
+.filtros button {
+    font-size: 1.1rem;
+}
+
+.mensaje h2 {
+    font-size: 1.2rem;
+}
+
+.mensaje p {
+    font-size: 1.05rem;
+}
+
+.mensaje .fecha,
+.estado {
+    font-size: 1rem;
+}
+}
+
+/* Responsive para pantallas grandes de ipad por que quedan muy pequeños */
+@media (min-width: 992px) and (max-width: 1199px) {
+.contenedor-mensajes {
+    max-width: 95%;
+    padding: 30px 40px;
+}
+
+.mensaje {
+    padding: 20px;
+}
+
+.contenedor-mensajes h1 {
+    font-size: 2.2rem;
+}
+
+.filtros input,
+.filtros select,
+.filtros button {
+    font-size: 1.2rem;
+}
+
+.mensaje h2 {
+    font-size: 1.3rem;
+}
+
+.mensaje p {
+    font-size: 1.1rem;
+}
+
+.mensaje .fecha,
+.estado {
+    font-size: 1rem;
+}
+}
+

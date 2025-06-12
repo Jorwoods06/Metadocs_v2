@@ -1,0 +1,75 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+#admin-contenido {
+    margin-left: 240px; /* espacio para el menú lateral */
+    padding: 30px 40px;
+}
+
+h1 {
+    font-size: 28px;
+    margin-bottom: 25px;
+    color: #1a2a42;
+    font-weight: 600;
+    border-left: 6px solid #1a2a42;
+    padding-left: 12px;
+    margin-top: 0; /* quitar espacio arriba para subirlo más */
+}
+
+.formulario-solicitud {
+    background-color: #fff;
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    max-width: 850px; /* más ancha */
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* opcional, para más presencia */
+}
+
+.formulario-solicitud .campo {
+    margin-bottom: 20px;
+}
+
+.formulario-solicitud label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+.formulario-solicitud input,
+.formulario-solicitud select,
+.formulario-solicitud textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    font-size: 15px;
+}
+
+.formulario-solicitud textarea {
+    min-height: 100px; /* más alto por defecto */
+}
+
+.btn-solicitar {
+    background-color: #375a7f;
+    color: #fff;
+    border: none;
+    padding: 14px 24px;
+    font-size: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-solicitar:hover {
+    background-color: #2c3e50;
+}

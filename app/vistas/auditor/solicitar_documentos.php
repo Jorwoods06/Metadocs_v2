@@ -81,7 +81,42 @@ AutorizacionRol('auditor');
         </nav>
        
         <section id="admin-contenido" class="admin">
-            <h1>Esta interfaz es la encargada para solicitar documentos</h1>
+            <h1>Solicitar documentos</h1>
+
+<form id="form-solicitud" class="formulario-solicitud" method="POST" action="../../backend/documentos/solicitar_documento.php">
+    <div class="campo">
+        <label for="tipo_documento">Tipo de documento:</label>
+        <select name="tipo_documento" id="tipo_documento" required>
+            <option value="">Seleccione...</option>
+            <option value="informe">Informe</option>
+            <option value="reporte">Reporte</option>
+            <option value="manual">Manual</option>
+            <option value="otro">Otro</option>
+        </select>
+    </div>
+
+    <div class="campo">
+        <label for="descripcion">Descripción:</label>
+        <textarea name="descripcion" id="descripcion" rows="4" required placeholder="Describe qué documento necesitas y para qué."></textarea>
+    </div>
+
+    <div class="campo">
+        <label for="fecha_limite">Fecha límite:</label>
+        <input type="date" name="fecha_limite" id="fecha_limite" required>
+    </div>
+
+    <div class="campo">
+        <label for="responsable">Responsable:</label>
+        <input type="text" name="responsable" id="responsable" placeholder="Nombre del responsable del documento" required>
+    </div>
+
+    <div class="campo">
+        <button type="submit" class="btn-solicitar">Solicitar documento</button>
+    </div>
+</form>
+
+<div id="respuesta-solicitud"></div>
+
         </section>
 
 

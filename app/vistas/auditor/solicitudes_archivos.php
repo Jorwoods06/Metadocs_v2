@@ -13,7 +13,7 @@ AutorizacionRol('auditor');
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
-    <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
+    <link rel="stylesheet" href="../../../componentes/css/auditor/solicitar.css">
     <script src="../../../componentes/js/admin/panel.js"></script>
 </head>
 <body>
@@ -80,8 +80,34 @@ AutorizacionRol('auditor');
         </nav>
        
         <section id="admin-contenido" class="admin">
-            <h1>solicitudes de archivos</h1>
-        </section>
+    <h1>Solicitar documentos</h1>
+    <div class="formulario-solicitud">
+        <form action="ruta_a_guardar.php" method="post">
+            <div class="campo">
+                <label for="tipo">Tipo de documento:</label>
+                <select id="tipo" name="tipo">
+                    <option value="">Seleccione...</option>
+                    <option value="">jorge es gay xd</option>
+                    <!-- aqui debemos poner opciones solo que no se me ocurren xd -->
+                </select>
+            </div>
+            <div class="campo">
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" name="descripcion" placeholder="Describe qué documento necesitas y para qué."></textarea>
+            </div>
+            <div class="campo">
+                <label for="fecha">Fecha límite:</label>
+                <input type="date" id="fecha" name="fecha">
+            </div>
+            <div class="campo">
+                <label for="responsable">Responsable:</label>
+                <input type="text" id="responsable" name="responsable" placeholder="Nombre del responsable del documento">
+            </div>
+            <button type="submit" class="btn-solicitar">Solicitar documento</button>
+        </form>
+    </div>
+</section>
+
 
 
 </main>

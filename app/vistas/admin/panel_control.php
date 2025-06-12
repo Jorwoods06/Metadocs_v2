@@ -13,8 +13,9 @@ AutorizacionRol('administrador');
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
-    <link rel="stylesheet" href="../../../componentes/css/admin/controles.css">
+    <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
     <script src="../../../componentes/js/admin/panel.js"></script>
+    <script src="../../../componentes/js/admin/grafica_documentos.js"></script>
 </head>
 <body>
     <header id="cabezote">
@@ -92,61 +93,55 @@ AutorizacionRol('administrador');
                     <div class="iconos">
                         <i class="bi bi-collection"></i>
                     </div>
-                    <h3> Total de Documentos</h3>
-                    <p>+100 el mes pasado</p>
-                    <h2>320</h2>
+                    <div class="contenido-texto">
+                        <h3>Total de documentos</h3>
+                        <h2>100</h2>
+                    </div>
                 </div>
 
                 <div class="card-mediana">
                     <div class="iconos">
-                        <i class="bi bi-calendar3"></i>
+                        <i class="bi bi-archive"></i>
                     </div>
-                    <h3> Documentos del Mes</h3>
-                    <p>+50 en el mes</p>
-                    <h2>85</h2>
-                </div>
-
-                <div class="card-mediana">
-                    <div class="iconos">
-                       <i class="bi bi-archive"></i>
+                    <div class="contenido-texto">
+                        <h3>Archivo historico</h3>
+                        <h2>100</h2>
                     </div>
-                    <h3> Archivos historicos</h3>
-                    <p>+2,3 archivos historicos</p>
-                    <h2>1134</h2>
                 </div>
 
                 <div class="card-mediana">
                     <div class="iconos">
                         <i class="bi bi-search"></i>
                     </div>
-                    <h3> En revisión</h3>
-                    <p>+200 revisiones</p>
-                    <h2>387</h2>
+                    <div class="contenido-texto">
+                        <h3>En revisión</h3>
+                        <h2>100</h2>
+                    </div>
                 </div>
 
-                <div class="card-mediana">
+                 <div class="card-mediana">
                     <div class="iconos">
                         <i class="bi bi-people-fill"></i>
                     </div>
-                    <h3> Usuarios Activos</h3>
-                    <p>+200 el mes pasado</p>
-                    <h2>50</h2>
+                    <div class="contenido-texto">
+                        <h3>usuarios Activos</h3>
+                        <h2>100</h2>
+                    </div>
                 </div>
 
-                <div class="card-mediana">
-                    <div class="iconos">
-                        <i class="bi bi-hdd"></i>
-                    </div>
-                    <h3>Almacenamiento Usado</h3>
-                    <P>+1tb en el mes</P>
-                    <h2>1.2TB</h2>
+                <div class="card-ancha">
+                    <div style="width: 100%;">
+                        <h3>Documentos subidos por mes</h3>
+                        <canvas id="graficaDocumentos"></canvas>
                     </div>
                 </div>
 
             </div>
         </section>
 
-      
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </main>
+    
 </body>
+
 </html>

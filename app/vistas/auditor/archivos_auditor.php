@@ -13,10 +13,10 @@ AutorizacionRol('auditor');
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
-     <link rel="stylesheet" href="../../../componentes/css/documentador/modal_expediente.css">
-     <link rel="stylesheet" href="../../../componentes/css/auditor/archivos_auditor.css">
-     <script src="../../../componentes/js/auditor/auditor_ver_docs.js"></script>
- 
+    <link rel="stylesheet" href="../../../componentes/css/documentador/modal_expediente.css">
+    <link rel="stylesheet" href="../../../componentes/css/auditor/archivos_auditor.css">
+    <script src="../../../componentes/js/auditor/auditor_ver_docs.js"></script>
+
     <script src="../../../componentes/js/admin/panel.js"></script>
 </head>
 <body>

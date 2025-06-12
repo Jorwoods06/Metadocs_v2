@@ -80,30 +80,46 @@ AutorizacionRol('auditor');
         </nav>
        
         <section id="admin-contenido" class="admin">
+
     <h1>Solicitar documentos</h1>
+
     <div class="formulario-solicitud">
+
         <form action="ruta_a_guardar.php" method="post">
+
             <div class="campo">
+
                 <label for="tipo">Tipo de documento:</label>
+
                 <select id="tipo" name="tipo">
+
                     <option value="">Seleccione...</option>
                     <option value=""></option>
                     <!-- aqui debemos poner opciones solo que no se me ocurren xd -->
+                    
                 </select>
             </div>
+
             <div class="campo">
+
                 <label for="descripcion">Descripción:</label>
                 <textarea id="descripcion" name="descripcion" placeholder="Describe qué documento necesitas y para qué."></textarea>
+
             </div>
             <div class="campo">
+
                 <label for="fecha">Fecha límite:</label>
                 <input type="date" id="fecha" name="fecha">
+
             </div>
             <div class="campo">
+
                 <label for="responsable">Responsable:</label>
                 <select class="form-control" id="responsable" name="responsable"></select>
             </div>
+
             <button type="submit" class="btn-solicitar">Solicitar documento</button>
+
         </form>
     </div>
 </section>

@@ -13,7 +13,8 @@ AutorizacionRol('auditor');
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
-    <link rel="stylesheet" href="../../../componentes/css/auditor/solicitar.css">
+    <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
+    <script src="../../../componentes/js/documentador/ver_documentos.js"></script>
     <script src="../../../componentes/js/admin/panel.js"></script>
 </head>
 <body>
@@ -29,20 +30,20 @@ AutorizacionRol('auditor');
             </figure>
             <ul>
                 <li>
-                    <a href="auditor_inicio.php" >
+                    <a href="#" >
                         <i class="bi bi-house-door"></i>
                         Inicio
                     </a>
                 </li>
                 <li class="gestion_usuario">
-                    <a href="#" id="gestion-usuarios"  class="activo" >
-                        <i class="bi bi-file-earmark-text" ></i>
+                    <a href="#" id="gestion-usuarios"  class="activo">
+                        <i class="bi bi-file-earmark-text"></i>
                         Gestión Documentos
                     </a>
                     <ul class="sub_menu gestion-submenu" id="sub_menu">
                         <li><a href="#"><i class="bi bi-envelope-paper"></i>Solicitudes</a></li>
                         <li><a href="archivos_auditor.php"><i class="bi bi-eye"></i> Ver documentos</a></li>
-                        <li><a href=""><i class="bi bi-file-earmark-plus"></i> Solicitar documentos</a></li>
+                        <li><a href="solicitar_documento.php"><i class="bi bi-file-earmark-plus"></i> Solicitar documentos</a></li>
                          <li><a href=""> <i class="bi bi-clock-history"></i> Archivo historico</a></li>
                     </ul>
                 </li>
@@ -80,34 +81,12 @@ AutorizacionRol('auditor');
         </nav>
        
         <section id="admin-contenido" class="admin">
-    <h1>Solicitar documentos</h1>
-    <div class="formulario-solicitud">
-        <form action="ruta_a_guardar.php" method="post">
-            <div class="campo">
-                <label for="tipo">Tipo de documento:</label>
-                <select id="tipo" name="tipo">
-                    <option value="">Seleccione...</option>
-                    <option value="">jorge es gay xd</option>
-                    <!-- aqui debemos poner opciones solo que no se me ocurren xd -->
-                </select>
-            </div>
-            <div class="campo">
-                <label for="descripcion">Descripción:</label>
-                <textarea id="descripcion" name="descripcion" placeholder="Describe qué documento necesitas y para qué."></textarea>
-            </div>
-            <div class="campo">
-                <label for="fecha">Fecha límite:</label>
-                <input type="date" id="fecha" name="fecha">
-            </div>
-            <div class="campo">
-                <label for="responsable">Responsable:</label>
-                <input type="text" id="responsable" name="responsable" placeholder="Nombre del responsable del documento">
-            </div>
-            <button type="submit" class="btn-solicitar">Solicitar documento</button>
-        </form>
-    </div>
-</section>
+            <h1>En esta vista el auditor documentos</h1>
 
+
+
+
+        </section>
 
 
 </main>

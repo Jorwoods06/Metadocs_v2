@@ -13,8 +13,7 @@ AutorizacionRol('auditor');
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
-    <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
-    <script src="../../../componentes/js/documentador/ver_documentos.js"></script>
+    <link rel="stylesheet" href="../../../componentes/css/auditor/solicitar.css">
     <script src="../../../componentes/js/admin/panel.js"></script>
 </head>
 <body>
@@ -30,20 +29,20 @@ AutorizacionRol('auditor');
             </figure>
             <ul>
                 <li>
-                    <a href="#" class="activo">
+                    <a href="auditor_inicio.php" >
                         <i class="bi bi-house-door"></i>
                         Inicio
                     </a>
                 </li>
                 <li class="gestion_usuario">
-                    <a href="#" id="gestion-usuarios" >
-                        <i class="bi bi-file-earmark-text"></i>
+                    <a href="#" id="gestion-usuarios"  class="activo" >
+                        <i class="bi bi-file-earmark-text" ></i>
                         Gestión Documentos
                     </a>
                     <ul class="sub_menu gestion-submenu" id="sub_menu">
-                        <li><a href="solicitudes_archivos.php"><i class="bi bi-envelope-paper"></i>Solicitudes</a></li>
+                        <li><a href="recibir_documentos.php"><i class="bi bi-envelope-paper"></i>Solicitudes</a></li>
                         <li><a href="archivos_auditor.php"><i class="bi bi-eye"></i> Ver documentos</a></li>
-                        <li><a href="solicitudes_archivos.php"><i class="bi bi-file-earmark-plus"></i> Solicitar documentos</a></li>
+                        <li><a href="#"><i class="bi bi-file-earmark-plus"></i> Solicitar documentos</a></li>
                          <li><a href=""> <i class="bi bi-clock-history"></i> Archivo historico</a></li>
                     </ul>
                 </li>
@@ -81,43 +80,34 @@ AutorizacionRol('auditor');
         </nav>
        
         <section id="admin-contenido" class="admin">
-            <h1>Solicitar documentos</h1>
-
-<form id="form-solicitud" class="formulario-solicitud" method="POST" action="../../backend/documentos/solicitar_documento.php">
-    <div class="campo">
-        <label for="tipo_documento">Tipo de documento:</label>
-        <select name="tipo_documento" id="tipo_documento" required>
-            <option value="">Seleccione...</option>
-            <option value="informe">Informe</option>
-            <option value="reporte">Reporte</option>
-            <option value="manual">Manual</option>
-            <option value="otro">Otro</option>
-        </select>
+    <h1>Solicitar documentos</h1>
+    <div class="formulario-solicitud">
+        <form action="ruta_a_guardar.php" method="post">
+            <div class="campo">
+                <label for="tipo">Tipo de documento:</label>
+                <select id="tipo" name="tipo">
+                    <option value="">Seleccione...</option>
+                    <option value=""></option>
+                    <!-- aqui debemos poner opciones solo que no se me ocurren xd -->
+                </select>
+            </div>
+            <div class="campo">
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" name="descripcion" placeholder="Describe qué documento necesitas y para qué."></textarea>
+            </div>
+            <div class="campo">
+                <label for="fecha">Fecha límite:</label>
+                <input type="date" id="fecha" name="fecha">
+            </div>
+            <div class="campo">
+                <label for="responsable">Responsable:</label>
+                <select class="form-control" id="responsable" name="responsable"></select>
+            </div>
+            <button type="submit" class="btn-solicitar">Solicitar documento</button>
+        </form>
     </div>
+</section>
 
-    <div class="campo">
-        <label for="descripcion">Descripción:</label>
-        <textarea name="descripcion" id="descripcion" rows="4" required placeholder="Describe qué documento necesitas y para qué."></textarea>
-    </div>
-
-    <div class="campo">
-        <label for="fecha_limite">Fecha límite:</label>
-        <input type="date" name="fecha_limite" id="fecha_limite" required>
-    </div>
-
-    <div class="campo">
-        <label for="responsable">Responsable:</label>
-        <input type="text" name="responsable" id="responsable" placeholder="Nombre del responsable del documento" required>
-    </div>
-
-    <div class="campo">
-        <button type="submit" class="btn-solicitar">Solicitar documento</button>
-    </div>
-</form>
-
-<div id="respuesta-solicitud"></div>
-
-        </section>
 
 
 </main>

@@ -14,6 +14,7 @@ AutorizacionRol('auditor');
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
     <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
+    <script src="../../../componentes/js/documentador/ver_documentos.js"></script>
     <script src="../../../componentes/js/admin/panel.js"></script>
 </head>
 <body>
@@ -40,15 +41,15 @@ AutorizacionRol('auditor');
                         Gestión Documentos
                     </a>
                     <ul class="sub_menu gestion-submenu" id="sub_menu">
-                        <li><a href=""><i class="bi bi-envelope-paper"></i>Solicitudes</a></li>
-                        <li><a href=""><i class="bi bi-eye"></i> Ver documentos</a></li>
-                        <li><a href=""><i class="bi bi-file-earmark-plus"></i> Solicitar documentos</a></li>
+                        <li><a href="recibir_documentos.php"><i class="bi bi-envelope-paper"></i>Solicitudes</a></li>
+                        <li><a href="archivos_auditor.php"><i class="bi bi-eye"></i> Ver documentos</a></li>
+                        <li><a href="solicitar_documento.php"><i class="bi bi-file-earmark-plus"></i> Solicitar documentos</a></li>
                          <li><a href=""> <i class="bi bi-clock-history"></i> Archivo historico</a></li>
                     </ul>
                 </li>
                
                 <li>
-                    <a href="../admin/admin_reporte.php">
+                    <a href="">
                         <i class="bi bi-list-check"></i>
 
                         Pista auditoria
@@ -63,7 +64,7 @@ AutorizacionRol('auditor');
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
                         <li><form action="../../backend/login/cerrar_sesion.php" method="post"><button type="submit"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</button></form></li>
-                        <li><a href=""><i class="bi bi-info-circle"></i> Info usuario</a></li>
+                        <li><a href="../log/informacion_usuario.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
                         <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
 
                        

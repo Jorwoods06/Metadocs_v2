@@ -1,0 +1,139 @@
+
+
+h1 {
+    font-size: 28px;
+    margin-bottom: 25px;
+    padding-left: 12px;
+
+}
+
+
+.formulario-solicitud {
+    background-color: #fff;
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    max-width: 850px;
+    width: 100%;
+ 
+}
+
+/* Campos */
+.formulario-solicitud .campo {
+    margin-bottom: 20px;
+}
+
+.formulario-solicitud label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+.formulario-solicitud input,
+.formulario-solicitud select,
+.formulario-solicitud textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    font-size: 15px;
+}
+
+.formulario-solicitud textarea {
+    min-height: 100px;
+}
+
+
+.btn-solicitar {
+    background-color: #375a7f;
+    color: #fff;
+    border: none;
+    padding: 14px 24px;
+    font-size: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-solicitar:hover {
+    background-color: #2c3e50;
+}
+
+
+
+/* resolucion para tablets */
+@media screen and (max-width: 1024px) {
+    #admin-contenido {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .formulario-solicitud {
+        max-width: 90%;
+        margin: 0 auto;
+    }
+
+    h1 {
+        font-size: 24px;
+        text-align: center;
+        padding-left: 0;
+        border-left: none;
+    }
+}
+
+/* resolucion para celulares */
+@media screen and (max-width: 768px) {
+    #admin-contenido {
+        padding: 15px;
+    }
+
+    .formulario-solicitud {
+        padding: 20px;
+        max-width: 100%;
+    }
+
+    h1 {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .btn-solicitar {
+        width: 100%;
+        padding: 16px;
+        font-size: 16px;
+    }
+}
+/* Solución para pantallas 1024x600 por que se desborda el contenedor */
+@media screen and (max-width: 1024px) and (max-height: 600px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    #menu-lateral {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 220px; 
+        z-index: 100;
+    }
+
+    #admin-contenido {
+        margin-left: 220px; 
+        padding: 20px;
+        width: calc(100% - 220px);
+        box-sizing: border-box;
+    }
+
+    .formulario-solicitud {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+        padding-left: 0;
+        margin-bottom: 20px;
+    }
+}

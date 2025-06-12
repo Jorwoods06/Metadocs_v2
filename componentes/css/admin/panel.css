@@ -55,7 +55,6 @@
     height: 100vh;
     width: 65%;
     transform: translateX(-100%);
-    overflow-y: auto;
     flex-shrink: 0;
    
   }
@@ -140,7 +139,7 @@
   .sub_menu {
     max-height: 0;
     overflow: hidden;
-      transition: all 1s;
+    transition: all 1s;
     display: flex;
     flex-direction: column;
     margin-top: 6px;

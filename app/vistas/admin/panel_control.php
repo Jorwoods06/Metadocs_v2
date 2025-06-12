@@ -15,6 +15,7 @@ AutorizacionRol('administrador');
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
     <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
     <script src="../../../componentes/js/admin/panel.js"></script>
+    <script src="../../../componentes/js/admin/grafica_documentos.js"></script>
 </head>
 <body>
     <header id="cabezote">
@@ -68,7 +69,7 @@ AutorizacionRol('administrador');
                     </a>
                        <ul class="sub_menu usuario-submenu" id="sub_menu">
                         <li><form action="../../backend/login/cerrar_sesion.php" method="post"><button type="submit"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</button></form></li>
-                        <li><a href=""><i class="bi bi-info-circle"></i> Info usuario</a></li>
+                        <li><a href="../log/informacion_usuario.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
                         <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
 
                        
@@ -86,9 +87,61 @@ AutorizacionRol('administrador');
        
         <section id="admin-contenido" class="admin">
             <h1>Panel control</h1>
+
+            <div class="dashboard">
+                <div class="card-mediana">
+                    <div class="iconos">
+                        <i class="bi bi-collection"></i>
+                    </div>
+                    <div class="contenido-texto">
+                        <h3>Total de documentos</h3>
+                        <h2>100</h2>
+                    </div>
+                </div>
+
+                <div class="card-mediana">
+                    <div class="iconos">
+                        <i class="bi bi-archive"></i>
+                    </div>
+                    <div class="contenido-texto">
+                        <h3>Archivo historico</h3>
+                        <h2>100</h2>
+                    </div>
+                </div>
+
+                <div class="card-mediana">
+                    <div class="iconos">
+                        <i class="bi bi-search"></i>
+                    </div>
+                    <div class="contenido-texto">
+                        <h3>En revisión</h3>
+                        <h2>100</h2>
+                    </div>
+                </div>
+
+                 <div class="card-mediana">
+                    <div class="iconos">
+                        <i class="bi bi-people-fill"></i>
+                    </div>
+                    <div class="contenido-texto">
+                        <h3>usuarios Activos</h3>
+                        <h2>100</h2>
+                    </div>
+                </div>
+
+                <div class="card-ancha">
+                    <div style="width: 100%;">
+                        <h3>Documentos subidos por mes</h3>
+                        <canvas id="graficaDocumentos"></canvas>
+                    </div>
+                </div>
+
+            </div>
         </section>
 
-      
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </main>
+    
 </body>
+
 </html>

@@ -2,14 +2,14 @@
 
 require_once '../../helpers/verificacion_roles.php';
 
-AutorizacionRol('administrador');
+AutorizacionRol('documentador');
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin | Metadocs</title>
+    <title>Documentador | Metadocs</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
@@ -29,28 +29,24 @@ AutorizacionRol('administrador');
             </figure>
             <ul>
                 <li>
-                    <a href="../admin/panel_control.php">
-                        <i class="bi bi-bar-chart-line"></i>
-                        Panel Control
+                    <a href="" >
+                        <i class="bi bi-house-door"></i>
+                        Inicio
                     </a>
                 </li>
-                <li class="gestion_usuario">
-                    <a href="#" id="gestion-usuarios" >
-                        <i class="bi bi-people"></i>
-                        Gestión Usuarios
-                    </a>
-                    <ul class="sub_menu gestion-submenu" id="sub_menu">
-                        <li><a href="../../vistas/admin/creacion_usuario.php"><i class="bi bi-person-plus"></i> Crear usuario</a></li>
-                        <li><a href="../admin/ver_usuarios.php"><i class="bi bi-eye"></i> Ver usuario</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#" class="activo">
+                 <li>
+                    <a href="ver_documentos.php">
                         <i class="bi bi-file-earmark-text"></i>
-                        Reportes 
+                       Documentos
                     </a>
                 </li>
                 
+                <li>
+                    <a href="" class="activo">
+                        <i class="bi bi-envelope-paper"></i>
+                            Solicitudes
+                    </a>
+                </li>
                     <!-- cerrado sesion -->  
                 <li class="gestion-usuarios">
                     <a href="#" id="cerrado-usuarios">
@@ -59,7 +55,7 @@ AutorizacionRol('administrador');
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
                         <li><form action="../../backend/login/cerrar_sesion.php" method="post"><button type="submit"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</button></form></li>
-                        <li><a href="../../vistas/admin/informacion_usuario.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
+                        <li><a href="../log/informacion_usuario.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
                         <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
 
                        
@@ -76,7 +72,7 @@ AutorizacionRol('administrador');
         </nav>
        
         <section id="admin-contenido" class="admin">
-            <h1>seccion reportes xd</h1>
+            <h1>En esta vista recibes los mensajes que te envia el auditor</h1>
         </section>
 
 

@@ -85,7 +85,7 @@ require_once "..\..\backend/administrador/interfaz_usuario.php"
             <div class="datos">
                 <label>Descripción laboral</label>
                 <div class="valor">
-                    Jorge se desempeña como administrador en gestión documental, encargado de organizar, clasificar y custodiar los documentos tanto físicos como digitales de la empresa.
+                   <?=htmlspecialchars($mensaje)?>
                 </div>
             </div>
 

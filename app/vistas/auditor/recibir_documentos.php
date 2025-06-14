@@ -124,17 +124,17 @@ AutorizacionRol('auditor');
                          <button type="button" class="aprobado btn-aprobar" data-id="<?php echo $expediente['id_expediente']; ?>">Aprobar</button>
                         <button type="button"  class="rechazado" id="expe_rechazado">Rechazar</button>
                     </div>
-               
+                      <?php
+                            }
+                        } else {
+                        
+                            echo "<p>No hay expedientes en revisión.</p>";
+                        }
+                        ?>
+
             </article>
             
-        <?php
-    }
-} else {
-   
-    echo "<p>No hay expedientes en revisión.</p>";
-}
-?>
-
+ 
 
             <article class="carta" id="carta_documento" data-tipo="documento">
                 <div class="info">

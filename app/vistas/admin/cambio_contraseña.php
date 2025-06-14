@@ -1,7 +1,4 @@
-<?php 
-require_once "..\..\backend/administrador/interfaz_usuario.php"
-?>
-<!DOCTYPE html>
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -11,12 +8,13 @@ require_once "..\..\backend/administrador/interfaz_usuario.php"
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
     <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
+    <link rel="stylesheet" href="../../../componentes/css/admin/cambio_conntre}aseña.css">
     <script src="../../../componentes/js/admin/panel.js"></script>
-    <link rel="stylesheet" href="../../../componentes/css/admin/informacion_usuario.css">
 </head>
 <body>
     <header id="cabezote">
         <i class="bi bi-list" id="menu_opciones"></i>
+
     </header>
 
     <main id="cuerpo">
@@ -50,13 +48,13 @@ require_once "..\..\backend/administrador/interfaz_usuario.php"
                 
                     <!-- cerrado sesion -->  
                 <li class="gestion-usuarios">
-                    <a href="#" id="cerrado-usuarios" class="activo">
+                    <a href="#" id="cerrado-usuarios">
                         <i class="bi bi-person"></i>
                         Usuario
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
                         <li><form action="../../backend/login/cerrar_sesion.php" method="post"><button type="submit"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</button></form></li>
-                        <li><a href="../../vistas/admin/informacion_usuario.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
+                        <li><a href=""><i class="bi bi-info-circle"></i> Info usuario</a></li>
                         <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
 
                        
@@ -72,61 +70,33 @@ require_once "..\..\backend/administrador/interfaz_usuario.php"
             </ul>
         </nav>
        
-        <section class="contenido-usuario">
-            <h1 class="titulo-usaurio">Informacion del Usuario</h1>
-            <div class="info-usuario">
-                <div class="info-usuarios">
-                    <img src="../../../componentes/img/usuario.png" alt="logo de usuario" class="avatar-usuario">
-                    <div class="nombre-usuario"><?=htmlspecialchars($fila["nombres"])?></div>
-                </div>
-            
-              <div class="contenedor-datos">
+        <section id="admin-contenido" class="admin">
+            <div class="formulario-cambio">
+                <h2>Cambiar contraseña</h2>
+                <p>Ingrese su contraseña actual y una nueva</p>
 
-            <div class="datos">
-                <label>Descripción laboral</label>
-                <div class="valor">
-                    Jorge se desempeña como administrador en gestión documental, encargado de organizar, clasificar y custodiar los documentos tanto físicos como digitales de la empresa.
-                </div>
-            </div>
+                <form action="......" method="POST">
+                    <label for="actual">Contraseña actual</label>
+                    <input type="password" id="actual" name="actual" placeholder="Ingrese su contraseña actual"
+                    minlength="8" maxlength="16" pattern="[a-zA-Z0-9]{8,16}" 
+                    title="Solo numeros y letras, pueden ser mayusculas o minusculas; minimo 8 hasta maxumo 16 caracteres" required>
 
-            <div class="datos">
-                <label>Nombre</label>
-                <div class="valor"><?= htmlspecialchars($fila["nombres"]) ?></div>  
-            </div>
+                    <label for="nueva">Nueva contraseña</label>
+                    <input type="password" id="nueva" name="nueva" placeholder="Ingrese la nueva contraseña" 
+                     minlength="8" maxlength="16" pattern="[a-zA-Z0-9]{8,16}" 
+                     title="Solo numeros y letras, pueden ser mayusculas o minusculas; minimo 8 hasta maxumo 16 caracteres" required>
 
-            <div class="datos">
-                <label>Apellido</label>
-                <div class="valor"><?= htmlspecialchars($fila["apellidos"]) ?></div>
-            </div>
+                    <label for="confirmar">Confirmar nueva contraseña</label>
+                    <input type="password" id="confirmar" name="confirmar" placeholder="Confirme la nueva contraseña"
+                     minlength="8" maxlength="16" pattern="[a-zA-Z0-9]{8,16}"
+                     title="Solo numeros y letras, pueden ser mayusculas o minusculas; minimo 8 hasta maxumo 16 caracteres" required>
 
-             <div class="datos">
-                <label>Correo Electronico</label>
-                <div class="valor"><?= htmlspecialchars($fila["correo"]) ?></div>
-            </div>
-
-             <div class="datos">
-                <label>Numero telefónico</label>
-                <div class="valor"><?= htmlspecialchars($fila["telefono"]) ?></div>
-            </div>
-            
-            <div class="datos">
-                <label>Cedula</label>
-                <div class="valor"><?= htmlspecialchars($fila["cedula"]) ?></div>
-            </div>
-
-            <div class="datos">
-                <label>Area</label>
-                <div class="valor"><?= htmlspecialchars($fila["area"]) ?></div>
-            </div>
-
-            <div class="datos">
-                <label>Rol</label>
-                <div class="valor"><?= htmlspecialchars($fila["rol"]) ?></div>
-            </div>
-
-        </div>
+                    <button type="submit">Actualizar contraseña</button>
+                </form>
             </div>
         </section>
-    </main>
+
+
+</main>
 </body>
 </html>

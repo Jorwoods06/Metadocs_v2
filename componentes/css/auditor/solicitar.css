@@ -1,139 +1,163 @@
 
 
-h1 {
-    font-size: 28px;
-    margin-bottom: 25px;
-    padding-left: 12px;
+        h1 {
+            font-size: 22px;
+            color: #333;
+          
+        }
 
-}
+        .formulario-solicitud {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            width: 100%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
 
+        /* Campos del formulario */
+        .campo {
+            margin-bottom: 20px;
+        }
 
-.formulario-solicitud {
-    background-color: #fff;
-    padding: 30px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    max-width: 850px;
-    width: 100%;
- 
-}
+        .campo label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+            color: #333;
+        }
 
-/* Campos */
-.formulario-solicitud .campo {
-    margin-bottom: 20px;
-}
+        .campo input,
+        .campo select,
+        .campo textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            font-size: 16px; /* 16px en móvil para evitar zoom */
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
 
-.formulario-solicitud label {
-    display: block;
-    margin-bottom: 6px;
-    font-weight: bold;
-}
+        .campo input:focus,
+        .campo select:focus,
+        .campo textarea:focus {
+            border-color: #375a7f;
+        }
 
-.formulario-solicitud input,
-.formulario-solicitud select,
-.formulario-solicitud textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #aaa;
-    border-radius: 4px;
-    font-size: 15px;
-}
+        .campo textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
 
-.formulario-solicitud textarea {
-    min-height: 100px;
-}
+        /* Selector de usuario con búsqueda */
+        .usuario-selector {
+            position: relative;
+        }
 
+        .usuario-input {
+            cursor: text;
+        }
 
-.btn-solicitar {
-    background-color: #375a7f;
-    color: #fff;
-    border: none;
-    padding: 14px 24px;
-    font-size: 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+        .usuario-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #aaa;
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+        }
 
-.btn-solicitar:hover {
-    background-color: #2c3e50;
-}
+        .usuario-dropdown.show {
+            display: block;
+        }
 
+        .usuario-option {
+            padding: 12px;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.2s ease;
+        }
 
+        .usuario-option:hover,
+        .usuario-option.highlighted {
+            background-color: #f0f0f0;
+        }
 
-/* resolucion para tablets */
-@media screen and (max-width: 1024px) {
-    #admin-contenido {
-        margin-left: 0;
-        padding: 20px;
-    }
+        .usuario-option:last-child {
+            border-bottom: none;
+        }
 
-    .formulario-solicitud {
-        max-width: 90%;
-        margin: 0 auto;
-    }
+        .no-results {
+            padding: 12px;
+            color: #666;
+            font-style: italic;
+            text-align: center;
+        }
 
-    h1 {
-        font-size: 24px;
-        text-align: center;
-        padding-left: 0;
-        border-left: none;
-    }
-}
+        /* Botón de solicitar */
+        .btn-solicitar {
+            background-color: #375a7f;
+            color: #fff;
+            border: none;
+            padding: 16px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
 
-/* resolucion para celulares */
-@media screen and (max-width: 768px) {
-    #admin-contenido {
-        padding: 15px;
-    }
+        .btn-solicitar:hover {
+            background-color: #2c3e50;
+        }
 
-    .formulario-solicitud {
-        padding: 20px;
-        max-width: 100%;
-    }
+        .btn-solicitar:active {
+            transform: translateY(1px);
+        }
 
-    h1 {
-        font-size: 22px;
-        margin-bottom: 20px;
-    }
+        /* Tablet - 768px en adelante */
+        @media screen and (min-width: 768px) {
+            
+            h1 {
+                font-size: 24px;
+                text-align: left;
+                padding-left: 12px;
+            }
 
-    .btn-solicitar {
-        width: 100%;
-        padding: 16px;
-        font-size: 16px;
-    }
-}
-/* Solución para pantallas 1024x600 por que se desborda el contenedor */
-@media screen and (max-width: 1024px) and (max-height: 600px) {
-    body {
-        overflow-x: hidden;
-    }
+            .formulario-solicitud {
+                padding: 30px;
+            }
 
-    #menu-lateral {
-        position: fixed;
-        left: 0;
-        top: 0;
-        height: 100%;
-        width: 220px; 
-        z-index: 100;
-    }
+            .campo input,
+            .campo select,
+            .campo textarea {
+                font-size: 15px;
+            }
 
-    #admin-contenido {
-        margin-left: 220px; 
-        padding: 20px;
-        width: calc(100% - 220px);
-        box-sizing: border-box;
-    }
+            .btn-solicitar {
+                width: auto;
+                padding: 14px 24px;
+                font-size: 15px;
+            }
+        }
 
-    .formulario-solicitud {
-        max-width: 100%;
-        margin: 0 auto;
-        padding: 20px;
-    }
+        /* Desktop - 1024px en adelante */
+        @media screen and (min-width: 1024px) {
+           
+            h1 {
+                font-size: 28px;
+                margin-bottom: 25px;
+            }
 
-    h1 {
-        font-size: 24px;
-        padding-left: 0;
-        margin-bottom: 20px;
-    }
-}
+            
+        }
+
+        
+        

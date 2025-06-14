@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 03-06-2025 a las 16:53:27
+-- Tiempo de generación: 14-06-2025 a las 05:20:08
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -88,7 +88,9 @@ INSERT INTO `contraseña_resets` (`reset_id`, `id_usuario`, `token`, `expira_en`
 (54, 26, 'a943fc12258e1dbfcb99c5dba386c8d06609f16abf4f0b9307e30d26b45fbf16', '2025-05-28 05:38:02', '2025-05-27 21:38:02'),
 (55, 26, '82a322b3a0d17c6aacca7001e047784e9a1d5b368efbd74d5789c13956fdf93f', '2025-05-28 05:38:06', '2025-05-27 21:38:06'),
 (59, 26, '2640ca95770e6a2fbda458c8b397705856e1836855354bc330b4de1c97844636', '2025-06-03 01:11:56', '2025-06-02 17:11:56'),
-(61, 26, 'dd6b809983fa711534ef38e6561e080290434fe80ec957664d4f366ce62447ed', '2025-06-03 01:27:13', '2025-06-02 17:27:13');
+(61, 26, 'dd6b809983fa711534ef38e6561e080290434fe80ec957664d4f366ce62447ed', '2025-06-03 01:27:13', '2025-06-02 17:27:13'),
+(62, 51, '5621162622945354cae37c87e3c9bba36880d26f5eb34c7de78a30b2f2296784', '2025-06-05 04:02:21', '2025-06-04 20:02:21'),
+(63, 26, 'd9065108967cf0bf08ffe4a86dd3fc00a8bcfa6e9951c126a58afd400e885e8a', '2025-06-10 20:59:55', '2025-06-10 12:59:55');
 
 -- --------------------------------------------------------
 
@@ -111,16 +113,6 @@ CREATE TABLE `documentos` (
   `fin_retencion` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `documentos`
---
-
-INSERT INTO `documentos` (`id_documento`, `fecha_creacion`, `id_expediente`, `id_area`, `titulo`, `path`, `tipo`, `estado`, `autor`, `estado_retencion`, `id_retencion`, `fin_retencion`) VALUES
-(54, '2025-03-16', 28, 1, 'costos_alfrescos', '../uploads/67d791755469f_costos_alfrescos.docx', 'docx', 'aprobado', 26, 'activo', 1, '2026-03-16'),
-(55, '2025-04-03', 28, 1, '1114240641_Jorge_Galeano_2825817', '../uploads/67ee8b3f578ce_1114240641_Jorge_Galeano_2825817.pdf', 'pdf', 'aprobado', 26, 'activo', 1, '2026-09-03'),
-(56, '2025-05-01', 28, 1, 'formato_preentrevista', '../uploads/68138a9699549_formato_preentrevista.pdf', 'pdf', 'aprobado', 26, 'activo', 1, '2026-10-01'),
-(57, '2025-06-01', 25, 2, 'Riesgos_Laborales_Desarrollo__Software (1)', '../uploads/683c6807389f5_Riesgos_Laborales_Desarrollo__Software (1).docx', 'docx', 'aprobado', 40, 'activo', 2, '2035-06-01');
-
 -- --------------------------------------------------------
 
 --
@@ -133,20 +125,21 @@ CREATE TABLE `expedientes` (
   `descripcion` text NOT NULL,
   `fecha_creacion` date DEFAULT current_timestamp(),
   `expediente_padre` int(11) DEFAULT NULL,
-  `id_area` int(11) DEFAULT NULL
+  `id_area` int(11) DEFAULT NULL,
+  `estado` enum('aprobado','revision') DEFAULT NULL,
+  `autor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `expedientes`
 --
 
-INSERT INTO `expedientes` (`id_expediente`, `nombre`, `descripcion`, `fecha_creacion`, `expediente_padre`, `id_area`) VALUES
-(25, 'expediente_contabilidad_1', 'expediente_contabilidad_1', '2025-03-09', 0, 2),
-(26, 'expediente_contabilidad_2', 'expediente_contabilidad_2', '2025-03-09', 0, 2),
-(27, 'expediente_contabilidad_3', 'expediente_contabilidad_3', '2025-03-09', 0, 2),
-(28, 'expediente_logistica_1', 'expediente_logistica_1', '2025-03-09', 0, 1),
-(29, 'expediente_logistica_2', 'expediente_logistica_1', '2025-03-09', 0, 1),
-(30, 'expediente_logistica_3', 'expediente_logistica_3', '2025-03-09', 0, 1);
+INSERT INTO `expedientes` (`id_expediente`, `nombre`, `descripcion`, `fecha_creacion`, `expediente_padre`, `id_area`, `estado`, `autor`) VALUES
+(67, 'prueba', 'documento documentador', '2025-06-13', 0, 4, 'aprobado', 40),
+(68, 'expediente auditor', 'este expediente fue subido por un auditor', '2025-06-13', 0, 4, 'aprobado', 26),
+(69, 'Expedienté subido en movil', 'Este expediente fue subido en móvil y por un documentador de modo que se espera que sea aprobado ', '2025-06-13', 0, 4, 'aprobado', 40),
+(70, 'segundo expediente subido por el auditor ', 'deberia aparecer de una', '2025-06-13', 0, 4, 'aprobado', 26),
+(71, 'Tercera prueba móvil documentador ', 'Debería aparecer solo en solicitudes ', '2025-06-13', 0, 4, 'aprobado', 40);
 
 -- --------------------------------------------------------
 
@@ -229,10 +222,10 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `rol`, `nombres`, `apellidos`, `correo`, `contraseña`, `fecha_creacion`, `fecha_actualizacion`, `id_area`, `cedula`, `telefono`, `estado`) VALUES
-(26, 'administrador', 'jorge xd', 'Galeano', 'jorgemulato206@gmail.com', 'e0a0bbdf18ef381b4c5924026a79bb06', '2025-01-03 20:34:03', '2025-06-03 09:51:03', 3, '1114240641', '3145062530', 'inactivo'),
-(40, 'documentador', 'metadocs pruebas', 'Bv', 'metadocs7@gmail.com', 'e13453ceb91a91816509a2b74ff97785', '2025-01-11 17:14:45', '2025-06-02 19:20:28', 4, '159', '3145062530', 'activo'),
+(26, 'auditor', 'jorge xd', 'Galeano', 'jorgemulato206@gmail.com', 'e0a0bbdf18ef381b4c5924026a79bb06', '2025-01-03 20:34:03', '2025-06-13 22:11:26', 4, '1114240641', '3145062530', 'activo'),
+(40, 'documentador', 'metadocs pruebas', 'Bv', 'metadocs7@gmail.com', 'e13453ceb91a91816509a2b74ff97785', '2025-01-11 17:14:45', '2025-06-05 17:53:19', 4, '159', '3145062530', 'activo'),
 (51, 'administrador', 'Jorge Admin', 'Admin', 'dg244049@gmail.com', '5a0f035db329cea241ae3509ad2b824f', '2025-06-02 17:15:57', '2025-06-03 07:29:58', 3, '14445454', '314506253', 'activo'),
-(52, 'administrador', 'root', 'admin', 'pruebaroot@hotmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2025-06-03 07:21:45', '2025-06-03 07:21:45', 3, '1444464664', '3201542078', 'activo');
+(52, 'visualizador', 'root', 'admin', 'pruebaroot@hotmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2025-06-03 07:21:45', '2025-06-05 17:49:48', 3, '1444464664', '3201542078', 'activo');
 
 --
 -- Índices para tablas volcadas
@@ -273,7 +266,8 @@ ALTER TABLE `documentos`
 --
 ALTER TABLE `expedientes`
   ADD PRIMARY KEY (`id_expediente`),
-  ADD KEY `fk_expediente_area` (`id_area`);
+  ADD KEY `fk_expediente_area` (`id_area`),
+  ADD KEY `fk_autor_usuario` (`autor`);
 
 --
 -- Indices de la tabla `pista_auditoria`
@@ -323,7 +317,7 @@ ALTER TABLE `area_acceso`
 -- AUTO_INCREMENT de la tabla `contraseña_resets`
 --
 ALTER TABLE `contraseña_resets`
-  MODIFY `reset_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `reset_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT de la tabla `documentos`
@@ -335,7 +329,7 @@ ALTER TABLE `documentos`
 -- AUTO_INCREMENT de la tabla `expedientes`
 --
 ALTER TABLE `expedientes`
-  MODIFY `id_expediente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_expediente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT de la tabla `pista_auditoria`
@@ -390,6 +384,7 @@ ALTER TABLE `documentos`
 -- Filtros para la tabla `expedientes`
 --
 ALTER TABLE `expedientes`
+  ADD CONSTRAINT `fk_autor_usuario` FOREIGN KEY (`autor`) REFERENCES `usuarios` (`id_usuario`),
   ADD CONSTRAINT `fk_expediente_area` FOREIGN KEY (`id_area`) REFERENCES `area_acceso` (`id_area`);
 
 --

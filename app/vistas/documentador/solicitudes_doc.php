@@ -27,7 +27,7 @@ AutorizacionRol('documentador');
                 <img src="../../../componentes/img/Imagen de WhatsApp 2025-05-01 a las 11.52.47_deffc20c.jpg" alt="imagen del menu lateral">
             </figure>
             <ul>
-                <li><a href=""><i class="bi bi-house-door"></i>Inicio</a></li>
+                <li><a href="documentador_inicio.php"><i class="bi bi-house-door"></i>Inicio</a></li>
                 <li><a href="ver_documentos.php"><i class="bi bi-file-earmark-text"></i>Documentos</a></li>
                 <li><a href="" class="activo"><i class="bi bi-envelope-paper"></i>Solicitudes</a></li>
                 <li class="gestion-usuarios">

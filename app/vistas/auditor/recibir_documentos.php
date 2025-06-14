@@ -1,6 +1,8 @@
 <?php 
 
+require_once '../../backend/auditor/archivos_solicitados.php';
 require_once '../../helpers/verificacion_roles.php';
+
 
 AutorizacionRol('auditor');
 ?>
@@ -13,8 +15,9 @@ AutorizacionRol('auditor');
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
-    <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
-    <script src="../../../componentes/js/documentador/ver_documentos.js"></script>
+    <link rel="stylesheet" href="../../../componentes/css/auditor/recibir_documentos.css">
+    <link rel="stylesheet" href="../../../componentes/css/auditor/modal_aprobar_expediente.css">
+    <script src="../../../componentes/js/auditor/recibir_documentos.js"></script>
     <script src="../../../componentes/js/admin/panel.js"></script>
 </head>
 <body>
@@ -30,7 +33,7 @@ AutorizacionRol('auditor');
             </figure>
             <ul>
                 <li>
-                    <a href="#" >
+                    <a href="auditor_inicio.php" >
                         <i class="bi bi-house-door"></i>
                         Inicio
                     </a>
@@ -81,7 +84,80 @@ AutorizacionRol('auditor');
         </nav>
        
         <section id="admin-contenido" class="admin">
-            <h1>Esta interfaz es la encargada para recibir documentos de documentadores</h1>
+            
+            <div id="titulo">
+
+                <h1>Solicitudes de documentos</h1>
+                <p>Revisa y aprueba documentos pendientes de validación</p>
+
+            </div>
+
+
+            <div class="navegacion-doc-expe">
+                <div class="botones-navegacion">
+                    <button type="button"  id="btn-documentos" data-tipo="documento"><i class="bi bi-file-earmark"></i>Documentos</button>
+                    <button type="button" id="btn-expedientes" data-tipo="expediente"><i class="bi bi-folder"></i>Expedientes</button>
+                </div>
+            </div>
+
+            <?php
+            if ( $resultado_expediente->num_rows > 0) {
+            while ($expediente = $resultado_expediente->fetch_assoc()) {
+            ?>
+            <article class="carta" id="carta_expediente" data-tipo="expediente">
+                <div class="info">
+                    <div id="icono"><i class="bi bi-folder"></i></div>
+                    <div id="info">
+                        
+                        <h3><?php echo htmlspecialchars($expediente['nombre']); ?></h3>
+                        <p>Expediente</p>
+                    </div>
+                </div>
+                  <p id="descripcion_expediente"><?php echo htmlspecialchars($expediente['descripcion']); ?></p>
+                    <div id="autor_fecha">
+                        <p><i class="bi bi-person-fill"></i><?php echo htmlspecialchars($expediente['nombre_autor']); ?></p>
+                        <p><i class="bi bi-calendar-fill"></i> <?php echo htmlspecialchars($expediente['fecha_creacion']); ?></p>
+                    </div>
+                       
+                    <div id="botones">  
+                        
+                         <button type="button" class="aprobado btn-aprobar" data-id="<?php echo $expediente['id_expediente']; ?>">Aprobar</button>
+                        <button type="button"  class="rechazado" id="expe_rechazado">Rechazar</button>
+                    </div>
+               
+            </article>
+            
+        <?php
+    }
+} else {
+   
+    echo "<p>No hay expedientes en revisión.</p>";
+}
+?>
+
+
+            <article class="carta" id="carta_documento" data-tipo="documento">
+                <div class="info">
+                    <div id="icono"><i class="bi bi-file-earmark"></i></div>
+                    <div id="info">
+                        <h3>Nombre del documento</h3>
+                        <p>tipo "contrato"</p>
+                    </div>
+                </div>
+                    <div id="autor_fecha">
+                        <p><i class="bi bi-person-fill"></i>Jorge </p>
+                        <p><i class="bi bi-calendar-fill"></i> 12/06/25</p>
+                    </div>
+                    <div id="botones">  
+                        <button type="button" class="ver">Ver</button>
+                        <button type="button" class="aprobado">Aprobar</button>
+                        <button type="button" class="rechazado">Rechazar</button>
+                    </div>
+                
+            </article>
+            
+            
+            
             
 
 
@@ -91,5 +167,25 @@ AutorizacionRol('auditor');
 
 
 </main>
+
+<div id="modal_confirmar">
+    <form id="modal_contenedor" action="../../backend/auditor/aprobar_expediente_documento.php" method="POST">
+        <span class="close">&times;</span>
+        <h3>¿Confirmas la aprobación de este expediente?</h3>
+        <p>¿Estás seguro de que deseas aprobar este expediente? Esta acción no se puede deshacer y el expediente pasará al siguiente estado del flujo de trabajo.</p>
+        <div id="botones">
+            <button type="submit" id="aprobar">Aprobar</button>
+            <button type="button" id="cancelar">Cancelar</button>
+        </div>
+
+        <!-- input que guarda el id del expediente a aprobar (en js)-->
+        <input type="hidden" name="datos_expediente" id="datos_expediente" value="">
+
+
+        <!-- inptu que guarda un valor para el switch del backend -->
+         <input type="hidden" name="accion" value="aprobar_expediente">
+    </form>
+</div>
+
 </body>
 </html>

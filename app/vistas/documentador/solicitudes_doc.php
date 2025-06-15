@@ -13,8 +13,7 @@ AutorizacionRol('documentador');
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
     <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
     <link rel="stylesheet" href="../../../componentes/css/documentador/solicitudes_doc.css">
-
-    <script src="../../../componentes/js/admin/panel.js"></script>
+    <script src="../../../componentes/js/admin/panel.js" defer></script>
 </head>
 <body>
     <header id="cabezote">
@@ -50,42 +49,68 @@ AutorizacionRol('documentador');
             </ul>
         </nav>
 
-        
         <section class="contenedor-principal">
             <div class="contenedor-mensajes">
                 <h1>Mensajes Recibidos</h1>
 
-                <div class="filtros">
+                <div class="filtros" id = "filtros">
                     <input type="text" placeholder="Buscar por nombre...">
-                    <select>
-                        <option value="">Todos los roles</option>
-                        <option value="auditor">Auditor</option>
-                        <option value="administrador">Administrador</option>
-                    </select>
-                    <button><i class="bi bi-search"></i></button>
+                    <button><i class="bi bi-search"></i></button> <!-- Esto es una lupa -->
+
                 </div>
 
-                <div class="lista-mensajes">
-  <div class="mensaje no-visto">
-    <h2>Juan Pérez <span>(Auditor)</span></h2>
-    <p>Hola, por favor envíame el documento X...</p>
-    <div class="info-mensaje">
-      <span class="fecha">12/06/2025</span>
-      <span class="estado"><i class="bi bi-eye-slash-fill"></i> No visto</span>
-    </div>
-  </div>
+                <div class="lista-mensajes" id = "lista-mensajes">
 
-  <div class="mensaje visto">
-    <h2>Laura Gómez <span>(Auditor)</span></h2>
-    <p>Recuerda cargar el informe mensual...</p>
-    <div class="info-mensaje">
-      <span class="fecha">11/06/2025</span>
-      <span class="estado"><i class="bi bi-eye-fill"></i> Visto</span>
-    </div>
-  </div>
-</div>
+                    <div class="mensaje no-visto">
+
+                        <h2>Juan Pérez <span>(Auditor)</span></h2>
+
+                        <p>Hola, por favor envíame el documento X...</p>
+
+                        <div class="info-mensaje" id = "info-mensaje">
+
+                            <span class="fecha">12/06/2025</span>
+
+                            <label class="estado" id = "estado">
+
+                                <input type="checkbox" class="check-visto" />
+
+                                <span class="texto-visto">visto</span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                    <div class="mensaje visto">
+
+                        <h2>jorge Gómez <span>(Auditor)</span></h2>
+
+                        <p>Recuerda cargar el informe mensual...</p>
+
+                        <div class="info-mensaje" id = "info-mensaje">
+
+                            <span class="fecha">11/06/2025</span>
+
+                                <label class="estado">
+
+                                <input type="checkbox" class="check-visto" checked />
+
+                                <span class="texto-visto">visto</span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
 
         </section>
+
     </main>
 </body>
 </html>

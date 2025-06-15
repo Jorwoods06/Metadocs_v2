@@ -200,7 +200,9 @@
 /*media query pc*/
 @media (min-width: 1024px) {
    
-    
+    #admin-contenido{
+        overflow: auto;
+    }
    
     
     .buscar-documentos input {

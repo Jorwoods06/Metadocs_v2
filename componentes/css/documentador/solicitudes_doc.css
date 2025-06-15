@@ -96,11 +96,11 @@
 
 
 .mensaje.no-visto {
-    background-color: #fffff8;
+    background-color: #fff;
 }
 
 .mensaje.visto {
-    background-color: #fffff8;
+    background-color: #fff;
 }
 
 /* Responsive celular */

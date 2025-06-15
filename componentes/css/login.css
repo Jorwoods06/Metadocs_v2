@@ -10,6 +10,7 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 
 body {
@@ -30,6 +31,10 @@ figure {
     height: 100vh; 
     display: flex;
     flex-direction: column;
+}
+
+#img_login {
+    display: none;
 }
 
 #form {

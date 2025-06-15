@@ -11,7 +11,7 @@
 
   body {
     font-family: Arial, sans-serif;
-    background-color: #F7FAFC;
+    background-color: #FFFFFF;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -22,7 +22,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-    background-color: white;
+    background-color: #FFFFFF;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
@@ -44,7 +44,7 @@
 
   /* ===== NAVEGACIÓN LATERAL  ===== */
   #menu-lateral {
-    background: #f8fafc;
+    background: #FFFFFF;
     border-right: 1px solid #e2e8f0;
     position: fixed;
     top: 0;
@@ -125,7 +125,7 @@
   #menu-lateral a.activo {
     background-color: #3D688A;
     white-space: nowrap;
-    color: #ffffff;
+    color: #FFFFFF;
     font-weight: 600;
     padding-left: calc(1.62rem - 4.32px); /* Ajustado para coincidir con el nuevo padding */
 }

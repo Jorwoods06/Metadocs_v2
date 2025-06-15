@@ -1,5 +1,6 @@
 <?php 
 
+require_once "..\..\backend/administrador/interfaz_usuario.php";
 require_once '../../helpers/verificacion_roles.php';
 
 AutorizacionRol('documentador');
@@ -9,14 +10,16 @@ AutorizacionRol('documentador');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentador | Metadocs</title>
+    <title>Admin | Metadocs</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
     <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
     <script src="../../../componentes/js/admin/panel.js"></script>
+    <link rel="stylesheet" href="../../../componentes/css/admin/informacion_usuario.css">
 </head>
 <body>
+   
     <header id="cabezote">
         <i class="bi bi-list" id="menu_opciones"></i>
 
@@ -29,7 +32,7 @@ AutorizacionRol('documentador');
             </figure>
             <ul>
                 <li>
-                    <a href="" class="activo">
+                    <a href="documentador_inicio.php" >
                         <i class="bi bi-house-door"></i>
                         Inicio
                     </a>
@@ -49,7 +52,7 @@ AutorizacionRol('documentador');
                 </li>
                     <!-- cerrado sesion -->  
                 <li class="gestion-usuarios">
-                    <a href="#" id="cerrado-usuarios">
+                    <a href="#" id="cerrado-usuarios" class="activo">
                         <i class="bi bi-person"></i>
                         Usuario
                     </a>
@@ -71,11 +74,61 @@ AutorizacionRol('documentador');
             </ul>
         </nav>
        
-        <section id="admin-contenido" class="admin">
-            <h1>Inicio documentador</h1>
+        <section class="contenido-usuario">
+            <h1 class="titulo-usaurio">Informacion del Usuario</h1>
+            <div class="info-usuario">
+                <div class="info-usuarios">
+                    <img src="../../../componentes/img/usuario.png" alt="logo de usuario" class="avatar-usuario">
+                    <div class="nombre-usuario"><?=htmlspecialchars($fila["nombres"])?></div>
+                </div>
+            
+              <div class="contenedor-datos">
+
+            <div class="datos">
+                <label>Descripción laboral</label>
+                <div class="valor">
+                   <?=htmlspecialchars($mensaje)?>
+                </div>
+            </div>
+
+            <div class="datos">
+                <label>Nombre</label>
+                <div class="valor"><?= htmlspecialchars($fila["nombres"]) ?></div>  
+            </div>
+
+            <div class="datos">
+                <label>Apellido</label>
+                <div class="valor"><?= htmlspecialchars($fila["apellidos"]) ?></div>
+            </div>
+
+             <div class="datos">
+                <label>Correo Electronico</label>
+                <div class="valor"><?= htmlspecialchars($fila["correo"]) ?></div>
+            </div>
+
+             <div class="datos">
+                <label>Numero telefónico</label>
+                <div class="valor"><?= htmlspecialchars($fila["telefono"]) ?></div>
+            </div>
+            
+            <div class="datos">
+                <label>Cedula</label>
+                <div class="valor"><?= htmlspecialchars($fila["cedula"]) ?></div>
+            </div>
+
+            <div class="datos">
+                <label>Area</label>
+                <div class="valor"><?= htmlspecialchars($fila["area"]) ?></div>
+            </div>
+
+            <div class="datos">
+                <label>Rol</label>
+                <div class="valor"><?= htmlspecialchars($fila["rol"]) ?></div>
+            </div>
+
+        </div>
+            </div>
         </section>
-
-
-</main>
+    </main>
 </body>
 </html>

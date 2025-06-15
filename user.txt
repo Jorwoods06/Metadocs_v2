@@ -1,0 +1,13 @@
+user : juanes@gmail.com
+pass: Monte2002
+
+
+
+user-admin : dg244049@gmail.com
+pass : jorge123
+
+user-auditor: jorgemulato206@gmail.com
+pass : jorge123456
+
+user-documentador: metadocs7@gmail.com
+pass: metadocs123

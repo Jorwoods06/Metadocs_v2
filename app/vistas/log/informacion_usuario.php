@@ -1,6 +1,5 @@
 <?php 
-
-
+require_once "..\..\backend/administrador/interfaz_usuario.php"
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -18,7 +17,6 @@
 <body>
     <header id="cabezote">
         <i class="bi bi-list" id="menu_opciones"></i>
-
     </header>
 
     <main id="cuerpo">
@@ -79,50 +77,56 @@
             <div class="info-usuario">
                 <div class="info-usuarios">
                     <img src="../../../componentes/img/usuario.png" alt="logo de usuario" class="avatar-usuario">
-                    <div class="nombre-usuario">Jorge Admin</div>
+                    <div class="nombre-usuario"><?=htmlspecialchars($fila["nombres"])?></div>
                 </div>
             
-                
-                
+              <div class="contenedor-datos">
 
-                <div class="contenedor-datos">
-                    <div class="datos">
-                        <label>Descripcion laboral</label>
-                        <div class="valor">Jorge se desempeña como administrador en gestión documental, encargado de organizar, clasificar y custodiar los documentos tanto físicos como digitales de la empresa. </div>
-                    </div>
-                    <div class="datos">
-                        <label>Nombre</label>
-                        <div class="valor">jorge</div>  
-                    </div>
-                    <div class="datos">
-                        <label>area</label>
-                        <div class="valor">Administración</div>
-                    </div>
-                    <div class="datos">
-                        <label>Apellido</label>
-                        <div class="valor">admin</div>
-                    </div>
-                    <div class="datos">
-                        <label>Rol</label>
-                        <div class="valor">Administrador</div>
-                    </div>
-                    <div class="datos">
-                        <label>Correo Elctronico</label>
-                        <div class="valor">dg24004@gmail.com</div>
-                    </div>
-                     <div class="datos">
-                        <label>Numero telefonico</label>
-                        <div class="valor">1234567891</div>
-                    </div>
-                    
+            <div class="datos">
+                <label>Descripción laboral</label>
+                <div class="valor">
+                   <?=htmlspecialchars($mensaje)?>
                 </div>
             </div>
+
+            <div class="datos">
+                <label>Nombre</label>
+                <div class="valor"><?= htmlspecialchars($fila["nombres"]) ?></div>  
+            </div>
+
+            <div class="datos">
+                <label>Apellido</label>
+                <div class="valor"><?= htmlspecialchars($fila["apellidos"]) ?></div>
+            </div>
+
+             <div class="datos">
+                <label>Correo Electronico</label>
+                <div class="valor"><?= htmlspecialchars($fila["correo"]) ?></div>
+            </div>
+
+             <div class="datos">
+                <label>Numero telefónico</label>
+                <div class="valor"><?= htmlspecialchars($fila["telefono"]) ?></div>
+            </div>
+            
+            <div class="datos">
+                <label>Cedula</label>
+                <div class="valor"><?= htmlspecialchars($fila["cedula"]) ?></div>
+            </div>
+
+            <div class="datos">
+                <label>Area</label>
+                <div class="valor"><?= htmlspecialchars($fila["area"]) ?></div>
+            </div>
+
+            <div class="datos">
+                <label>Rol</label>
+                <div class="valor"><?= htmlspecialchars($fila["rol"]) ?></div>
+            </div>
+
+        </div>
+            </div>
         </section>
-
-
-
-
-
     </main>
 </body>
 </html>

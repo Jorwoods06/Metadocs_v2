@@ -26,7 +26,7 @@ AutorizacionRol('documentador');
                 <img src="../../../componentes/img/Imagen de WhatsApp 2025-05-01 a las 11.52.47_deffc20c.jpg" alt="imagen del menu lateral">
             </figure>
             <ul>
-                <li><a href=""><i class="bi bi-house-door"></i>Inicio</a></li>
+                <li><a href="documentador_inicio.php"><i class="bi bi-house-door"></i>Inicio</a></li>
                 <li><a href="ver_documentos.php"><i class="bi bi-file-earmark-text"></i>Documentos</a></li>
                 <li><a href="" class="activo"><i class="bi bi-envelope-paper"></i>Solicitudes</a></li>
                 <li class="gestion-usuarios">
@@ -39,7 +39,7 @@ AutorizacionRol('documentador');
                                 <button type="submit"><i class="bi bi-box-arrow-left"></i>Cerrar sesión</button>
                             </form>
                         </li>
-                        <li><a href="../log/informacion_usuario.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
+                        <li><a href="info_documentador.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
                         <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
                     </ul>
                 </li>

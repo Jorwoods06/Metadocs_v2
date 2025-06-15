@@ -35,7 +35,6 @@
     border: 1px solid #ccc;
     font-size: 1em;
     outline: none;
-    transition: all 0.3s ease;
 }
 
 .filtros button {
@@ -62,11 +61,6 @@
     border-radius: 12px;
     padding: 20px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease;
-}
-
-.mensaje:hover {
-    transform: scale(1.01);
 }
 
 .mensaje h2 {

@@ -1,4 +1,4 @@
-
+/* Reset básico y box-sizing */
 * {
     box-sizing: border-box;
     transition: all 0.7s;
@@ -8,15 +8,16 @@
 
 html, body {
     height: 100%;
+    overflow-x: hidden;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
 }
 
 body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 17px;
     width: 100%;
+    overflow-x: hidden;
     overflow-y: auto; 
 }
 
@@ -25,16 +26,15 @@ figure {
     padding: 0;
 }
 
+#img_login {
+    display: none;
+}
 
 #cuerpo {
     width: 100%;
     height: 100vh; 
     display: flex;
     flex-direction: column;
-}
-
-#img_login {
-    display: none;
 }
 
 #form {

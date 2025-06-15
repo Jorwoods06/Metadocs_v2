@@ -100,42 +100,37 @@ AutorizacionRol('auditor');
                 </div>
             </div>
 
+            <!-- Generar cartas de expedientes dinámicamente -->
             <?php
-            if ( $resultado_expediente->num_rows > 0) {
-            while ($expediente = $resultado_expediente->fetch_assoc()) {
+            if ($resultado_expediente->num_rows > 0) {
+                while ($expediente = $resultado_expediente->fetch_assoc()) {
             ?>
-            <article class="carta" id="carta_expediente" data-tipo="expediente">
-                <div class="info">
-                    <div id="icono"><i class="bi bi-folder"></i></div>
-                    <div id="info">
-                        
-                        <h3><?php echo htmlspecialchars($expediente['nombre']); ?></h3>
-                        <p>Expediente</p>
-                    </div>
-                </div>
-                  <p id="descripcion_expediente"><?php echo htmlspecialchars($expediente['descripcion']); ?></p>
-                    <div id="autor_fecha">
-                        <p><i class="bi bi-person-fill"></i><?php echo htmlspecialchars($expediente['nombre_autor']); ?></p>
-                        <p><i class="bi bi-calendar-fill"></i> <?php echo htmlspecialchars($expediente['fecha_creacion']); ?></p>
-                    </div>
-                       
-                    <div id="botones">  
-                        
-                         <button type="button" class="aprobado btn-aprobar" data-id="<?php echo $expediente['id_expediente']; ?>">Aprobar</button>
-                        <button type="button"  class="rechazado" id="expe_rechazado">Rechazar</button>
-                    </div>
-                      <?php
-                            }
-                        } else {
-                        
-                            echo "<p>No hay expedientes en revisión.</p>";
-                        }
-                        ?>
+                    <article class="carta" id="carta_expediente" data-tipo="expediente">
+                        <div class="info">
+                            <div id="icono"><i class="bi bi-folder"></i></div>
+                            <div id="info">
+                                <h3><?php echo htmlspecialchars($expediente['nombre']); ?></h3>
+                                <p>Expediente</p>
+                            </div>
+                        </div>
+                        <p id="descripcion_expediente"><?php echo htmlspecialchars($expediente['descripcion']); ?></p>
+                        <div id="autor_fecha">
+                            <p><i class="bi bi-person-fill"></i><?php echo htmlspecialchars($expediente['nombre_autor']); ?></p>
+                            <p><i class="bi bi-calendar-fill"></i> <?php echo htmlspecialchars($expediente['fecha_creacion']); ?></p>
+                        </div>
+                        <div id="botones">  
+                            <button type="button" class="aprobado btn-aprobar" data-id="<?php echo $expediente['id_expediente']; ?>">Aprobar</button>
+                            <button type="button" class="rechazado" id="expe_rechazado">Rechazar</button>
+                        </div>
+                    </article>
+            <?php
+                }
+            } else {
+                echo "<p>No hay expedientes en revisión.</p>";
+            }
+            ?>
 
-            </article>
-            
- 
-
+            <!-- Carta de documento (ejemplo estático) -->
             <article class="carta" id="carta_documento" data-tipo="documento">
                 <div class="info">
                     <div id="icono"><i class="bi bi-file-earmark"></i></div>
@@ -144,48 +139,38 @@ AutorizacionRol('auditor');
                         <p>tipo "contrato"</p>
                     </div>
                 </div>
-                    <div id="autor_fecha">
-                        <p><i class="bi bi-person-fill"></i>Jorge </p>
-                        <p><i class="bi bi-calendar-fill"></i> 12/06/25</p>
-                    </div>
-                    <div id="botones">  
-                        <button type="button" class="ver">Ver</button>
-                        <button type="button" class="aprobado">Aprobar</button>
-                        <button type="button" class="rechazado">Rechazar</button>
-                    </div>
-                
+                <div id="autor_fecha">
+                    <p><i class="bi bi-person-fill"></i>Jorge </p>
+                    <p><i class="bi bi-calendar-fill"></i> 12/06/25</p>
+                </div>
+                <div id="botones">  
+                    <button type="button" class="ver">Ver</button>
+                    <button type="button" class="aprobado">Aprobar</button>
+                    <button type="button" class="rechazado">Rechazar</button>
+                </div>
             </article>
-            
-            
-            
-            
-
-
-
 
         </section>
 
+    </main>
 
-</main>
+    <div id="modal_confirmar">
+        <form id="modal_contenedor" action="../../backend/auditor/aprobar_expediente_documento.php" method="POST">
+            <span class="close">&times;</span>
+            <h3>¿Confirmas la aprobación de este expediente?</h3>
+            <p>¿Estás seguro de que deseas aprobar este expediente? Esta acción no se puede deshacer y el expediente pasará al siguiente estado del flujo de trabajo.</p>
+            <div id="botones">
+                <button type="submit" id="aprobar">Aprobar</button>
+                <button type="button" id="cancelar">Cancelar</button>
+            </div>
 
-<div id="modal_confirmar">
-    <form id="modal_contenedor" action="../../backend/auditor/aprobar_expediente_documento.php" method="POST">
-        <span class="close">&times;</span>
-        <h3>¿Confirmas la aprobación de este expediente?</h3>
-        <p>¿Estás seguro de que deseas aprobar este expediente? Esta acción no se puede deshacer y el expediente pasará al siguiente estado del flujo de trabajo.</p>
-        <div id="botones">
-            <button type="submit" id="aprobar">Aprobar</button>
-            <button type="button" id="cancelar">Cancelar</button>
-        </div>
+            <!-- input que guarda el id del expediente a aprobar (en js)-->
+            <input type="hidden" name="datos_expediente" id="datos_expediente" value="">
 
-        <!-- input que guarda el id del expediente a aprobar (en js)-->
-        <input type="hidden" name="datos_expediente" id="datos_expediente" value="">
-
-
-        <!-- inptu que guarda un valor para el switch del backend -->
-         <input type="hidden" name="accion" value="aprobar_expediente">
-    </form>
-</div>
+            <!-- input que guarda un valor para el switch del backend -->
+             <input type="hidden" name="accion" value="aprobar_expediente">
+        </form>
+    </div>
 
 </body>
 </html>

@@ -44,6 +44,7 @@
     border-radius: 8px;
     margin: 0 auto;
     overflow-x: auto;
+  
     
 }
 
@@ -51,8 +52,9 @@
     width: 100%;
     border-collapse: collapse;
     background-color: white;
-    border-radius: 10px;
+    border-radius: 15px;
     margin-top: 2rem;
+    
 }
 
 .tabla-usuarios th,

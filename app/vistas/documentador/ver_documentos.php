@@ -21,6 +21,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
     <link rel="stylesheet" href="../../../componentes/css/documentador/ver_documentos.css">
     <link rel="stylesheet" href="../../../componentes/css/documentador/modal_expediente.css">
+    <link rel="stylesheet" href="../../../componentes/css/auditor/modal_scanear_subir_doc.css">
     <script src="../../../componentes/js/documentador/ver_documentos.js"></script>
     <script src="../../../componentes/js/admin/panel.js"></script>
 </head>
@@ -79,37 +80,40 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
         <section id="admin-contenido" class="admin">
             <!-- Título y botones cuando hay expediente seleccionado -->
             <?php if ($expediente_seleccionado): ?>
-            <div class="title-button-container">
-                <h1>Documentos</h1>
-                <div class="header-buttons">
-                    <button type="button" id="btn_documento">
-                        <i class="bi bi-cloud-upload"></i> Subir documento
-                    </button>
-                    <button type="button" id="btn_crear">
-                        <i class="bi bi-plus-circle"></i> Crear expediente
-                    </button>
-                </div>
+<div class="title-button-container">
+    <!-- Contenedor para título y botones en la misma fila en tablet+ -->
+    <div class="title-header-row">
+        <h1>Documentos</h1>
+        <div class="header-buttons">
+            <button type="button" id="btn_documento">
+                <i class="bi bi-upload"></i> Subir documento
+            </button>
+            <button type="button" id="btn_crear">
+                <i class="bi bi-plus-circle"></i> Crear expediente
+            </button>
+        </div>
+    </div>
+    
+    <!-- Breadcrumb de navegación -->
+    <div class="breadcrumb">
+        <a href="?">Inicio</a> / 
+        <a href="javascript:history.back()" class="back-button">Atrás</a> /
+        <?php 
+        $carpeta_actual = obtenerInfoExpediente($conexion_metadocs, $expediente_seleccionado);
+        if ($carpeta_actual) {
+            echo htmlspecialchars($carpeta_actual['nombre']);
+        } else {
+            echo "Expediente no encontrado";
+        }
+        ?>
+    </div>
+</div>
+<?php else: ?>
+<div class="title-button-container">
+    <h1>Documentos</h1>
+</div>
+<?php endif; ?>
             </div>
-            <?php else: ?>
-            <h1>Documentos</h1>
-            <?php endif; ?>
-
-            <!-- Breadcrumb de navegación -->
-            <?php if ($expediente_seleccionado): ?>
-            <div class="breadcrumb">
-                <a href="?">Inicio</a> / 
-                <a href="javascript:history.back()" class="back-button">Atrás</a> /
-                <?php 
-                $carpeta_actual = obtenerInfoExpediente($conexion_metadocs, $expediente_seleccionado);
-                if ($carpeta_actual) {
-                    echo htmlspecialchars($carpeta_actual['nombre']);
-                } else {
-                    echo "Expediente no encontrado";
-                }
-                ?>
-            </div>
-            <?php endif; ?>
-
             <div class="buscar-documentos">
                 <input type="text" class="input-buscar" placeholder="Buscar carpeta o archivo...">
                 <?php if (!$expediente_seleccionado): ?>
@@ -171,22 +175,8 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
                             <td class="documento-tipo"><?= htmlspecialchars($documento['tipo']); ?></td>
                             <td class="documento-fecha"><?= htmlspecialchars($documento['fecha_creacion']); ?></td>
                             <td class="documento-accion">
-                                <button class="btn_accion" data-id="doc-<?= $documento['id_documento'] ?>">⋮</button>
-                                <div class="action-dropdown-menu">
-                                    <button class="action-dropdown-item view-document">
-                                        <i class="bi bi-eye"></i> Ver
-                                    </button>
-                                    <button class="action-dropdown-item delete-document">
-                                        <i class="bi bi-trash3"></i> Eliminar
-                                    </button>
-                                    <form method="post" action="../../backend/documentador/gestor_archivos.php" style="display:inline;">
-                                        <input type="hidden" name="accion" value="descargar_documento">
-                                        <input type="hidden" name="documento_id" value="<?= $documento['id_documento'] ?>">
-                                        <button type="submit" class="action-dropdown-item">
-                                            <i class="bi bi-download"></i> Descargar
-                                        </button>
-                                    </form>
-                                </div>
+                                <button class="btn_accion" data-id="doc-<?= $documento['id_documento'] ?>"><i class="bi bi-eye"></i></button>
+                               
                             </td>
                         </tr>
                     <?php 
@@ -229,43 +219,29 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
         </div>
     </div>
 
-    <!-- Modal para subir documento 
-    <div id="modal_documento" class="modal">
-        <form action="../../backend/documentador/gestor_archivos.php" method="post" enctype="multipart/form-data" id="upload-form">
-            <div class="file-uploader">
-                <span class="close">&times;</span>
-                <h2>Subir archivo</h2>
+  <div id="modal_escanear_subir">
+        <div id="modal_contenido">
+            <span class="cerrar_modal_esc_sub ">&times;</span>
             
-                <div id="upload-area" class="upload-area">
-                    <input type="file" id="file-input" name="file-input">
-                    <label for="file-input" class="upload-label">
-                        <i class="bi bi-cloud-upload"></i>
-                        <p>Arrastre y suelte archivos o haga clic para cargar</p>
-                    </label>
-                </div>
+            <div id="contenido">
+                <h3>Elige una opción</h3>
                 
-                <input type="hidden" name="expediente_id" value="<?= $expediente_seleccionado ?>">
-                
-                <div class="form-group">
-                    <label class="form-label" for="documentCategory">Categoría del documento:</label>
-                    <select class="form-select" id="documentCategory" name="categoria" required>
-                        <option value="" disabled selected>Seleccione una categoría</option>
-                        <option value="estrategicos">Estratégicos</option>
-                        <option value="operativos">Operativos</option>
-                        <option value="soporte">Soporte</option>
-                        <option value="legales_contractuales">Legales</option>
-                        <option value="financieros_contables">Financieros</option>
-                        <option value="correspondencia">Correspondencia</option>
-                    </select>
-                </div>
-                
-                <div id="action-buttons-container" style="display: none; margin-top: 1rem;">
-                    <button id="cancel-upload" type="button" style="margin-right: 1rem;">Cancelar</button>
-                    <button id="upload-file" type="submit" name="accion" value="subir_documento">Subir</button>
+                <div id="cont_escanear_subir">
+                    <a href="" id="scanear" class="esc_sub">
+                        <i class="bi bi-printer"></i>
+                        <p>Escanear</p>
+                        <p>Escanea un documento y súbelo al sistema</p>
+                    </a>
+                    
+                    <a href="subir_documento.php" id="subir" class="esc_sub">
+                        <i class="bi bi-file-earmark-arrow-up"></i>
+                        <p>Subir documento</p>
+                        <p>Selecciona un archivo desde tu dispositivo</p>
+                    </a>
                 </div>
             </div>
-        </form>
-    </div> -->
+        </div>
+    </div>
 
     <!-- Modal para editar expediente 
     <div id="editModal" class="modal">
@@ -291,6 +267,6 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
         </div>
     </div>-->
 
-    <script src="../../../componentes/js/documentador/modal_documento.js"></script>
+    <script src="../../../componentes/js/documentador/tabla_click.js"></script>
 </body>
 </html>

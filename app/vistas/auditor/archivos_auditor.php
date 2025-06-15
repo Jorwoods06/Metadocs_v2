@@ -85,36 +85,32 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
         <section id="admin-contenido" class="admin">
             <!-- Título y botones cuando hay expediente seleccionado -->
             <?php if ($expediente_seleccionado): ?>
-            <div class="title-button-container">
-                <h1>Documentos</h1>
-                <div class="header-buttons">
-                    <button type="button" id="btn_documento">
-                        <i class="bi bi-cloud-upload"></i> Subir documento
-                    </button>
-                    <button type="button" id="btn_crear">
-                        <i class="bi bi-plus-circle"></i> Crear expediente
-                    </button>
-                </div>
-            </div>
-            <?php else: ?>
-            <h1>Documentos</h1>
-            <?php endif; ?>
-
-            <!-- Breadcrumb de navegación -->
-            <?php if ($expediente_seleccionado): ?>
-            <div class="breadcrumb">
-                <a href="?">Inicio</a> / 
-                <a href="javascript:history.back()" class="back-button">Atrás</a> /
-                <?php 
-                $carpeta_actual = obtenerInfoExpediente($conexion_metadocs, $expediente_seleccionado);
-                if ($carpeta_actual) {
-                    echo htmlspecialchars($carpeta_actual['nombre']);
-                } else {
-                    echo "Expediente no encontrado";
-                }
-                ?>
-            </div>
-            <?php endif; ?>
+<div class="title-button-container">
+    <!-- Contenedor para título y botones en la misma fila en tablet+ -->
+    <div class="title-header-row">
+        <h1>Documentos</h1>
+       
+    </div>
+    
+    <!-- Breadcrumb de navegación -->
+    <div class="breadcrumb">
+        <a href="?">Inicio</a> / 
+        <a href="javascript:history.back()" class="back-button">Atrás</a> /
+        <?php 
+        $carpeta_actual = obtenerInfoExpediente($conexion_metadocs, $expediente_seleccionado);
+        if ($carpeta_actual) {
+            echo htmlspecialchars($carpeta_actual['nombre']);
+        } else {
+            echo "Expediente no encontrado";
+        }
+        ?>
+    </div>
+</div>
+<?php else: ?>
+<div class="title-button-container">
+    <h1>Documentos</h1>
+</div>
+<?php endif; ?>
 
             <div class="buscar-documentos">
                 <input type="text" class="input-buscar" placeholder="Buscar carpeta o archivo...">
@@ -152,12 +148,11 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
                             <td class="documento-tipo">expediente</td>
                             <td class="documento-fecha"><?= htmlspecialchars($carpeta['fecha_creacion']); ?></td>
                             <td class="documento-accion">
-                                <button class="btn_accion" data-id="<?= $carpeta['id_expediente']; ?>">⋮</button>
+                                <button class="btn_accion" data-id="<?= $carpeta['id_expediente']; ?>"><i class="bi bi-three-dots-vertical"></i></button>
                                 <div class="action-dropdown-menu">
                                     <button class="action-dropdown-item edit-expediente">
                                         <i class="bi bi-pencil-square"></i> Editar
                                     </button>
-                                   
                                 </div>
                             </td>
                         </tr>
@@ -178,7 +173,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
                             <td class="documento-tipo"><?= htmlspecialchars($documento['tipo']); ?></td>
                             <td class="documento-fecha"><?= htmlspecialchars($documento['fecha_creacion']); ?></td>
                             <td class="documento-accion">
-                                <button class="btn_accion" data-id="doc-<?= $documento['id_documento'] ?>">⋮</button>
+                                <button class="btn_accion" data-id="doc-<?= $documento['id_documento'] ?>"><i class="bi bi-eye"></i></button>
                                 <div class="action-dropdown-menu">
                                     <button class="action-dropdown-item view-document">
                                         <i class="bi bi-eye"></i> Ver
@@ -272,8 +267,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
                 </div>
             </div>
         </form>
-    </div> -->
-
+    </div>-->
 
     <!-- Modal para editar expediente 
     <div id="editModal" class="modal">
@@ -297,8 +291,8 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
                 </div>
             </form>
         </div>
-    </div> -->
+    </div>-->
 
-    <script src="../../../componentes/js/auditor/modal_documento.js"></script>
+        <script src="../../../componentes/js/documentador/tabla_click.js"></script>
 </body>
 </html>

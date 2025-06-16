@@ -181,7 +181,7 @@
 @media screen and (min-width: 1024px) {
     .contenedor-principal {
         margin-left: 220px;
-        padding: 60px 40px;
+        
     }
 
     .filtros {
@@ -194,12 +194,10 @@
 }
 /* iPad Pro */
 @media screen and (min-width: 1024px) and (max-width: 1366px) {
-    .contenedor-principal {
-        padding: 60px 50px;
-    }
+    
 
     .contenedor-mensajes h1 {
-        font-size: 2.4em;
+        font-size: 2em;
     }
 
     .filtros input,

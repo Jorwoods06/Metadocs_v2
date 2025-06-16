@@ -17,17 +17,17 @@
 
       btn_documento.addEventListener("click", ()=>{
 
-          if(modal_esc_sub.style.display == 'block'){
+          if(modal_esc_sub.style.display == 'flex'){
             modal_esc_sub.style.display = 'none';
           }else{
-            modal_esc_sub.style.display = 'block';
+            modal_esc_sub.style.display = 'flex';
           }
       });
       cerrar.addEventListener("click", ()=>{
         
-          if(modal_esc_sub.style.display == 'block'){
+          if(modal_esc_sub.style.display == 'flex'){
               modal_esc_sub.style.display='none';
           } else{
-              modal_esc_sub.style.display='block';
+              modal_esc_sub.style.display='flex';
           }
       });

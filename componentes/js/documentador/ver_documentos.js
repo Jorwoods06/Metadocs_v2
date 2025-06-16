@@ -9,18 +9,18 @@ document.addEventListener('DOMContentLoaded', () => {
     
     
     btn_modal_expediente.addEventListener("click", ()=>{
-        if(modal_expediente.style.display == 'block'){
+        if(modal_expediente.style.display == 'flex'){
             modal_expediente.style.display='none';
         } else{
-            modal_expediente.style.display='block';
+            modal_expediente.style.display='flex';
         }
     })
 
     btn_cerrar.addEventListener("click", ()=>{
-        if(modal_expediente.style.display == 'block'){
+        if(modal_expediente.style.display == 'flex'){
             modal_expediente.style.display='none';
         } else{
-            modal_expediente.style.display='block';
+            modal_expediente.style.display='flex';
         }
     });
 

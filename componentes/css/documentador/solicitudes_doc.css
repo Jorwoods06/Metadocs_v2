@@ -233,4 +233,11 @@
         font-size: 1em;
     }
 }
+@media screen and (min-width: 2560px){
+    .contenedor-principal {
+        margin-left: 400px;
+        padding: 60px 40px;
+    }
+}
+
 

@@ -56,6 +56,7 @@ figure {
     outline: none;
     border: 1px solid #ccc;
     width: 100%;
+    font-size: 16px;
 }
 
 #label_contraseña {
@@ -109,6 +110,9 @@ figure {
     align-items: center;
     gap: 5px;
 }
+
+
+
 
 #btn_login {
     display: flex;

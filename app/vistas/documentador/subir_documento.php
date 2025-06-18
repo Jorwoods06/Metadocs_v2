@@ -1,6 +1,14 @@
 <?php 
 require_once '../../helpers/verificacion_roles.php';
+require_once '../../backend/documentador/gestor_archivos.php';
 AutorizacionRol('documentador');
+
+$padre_id = isset($_GET['id_expediente']) ? $_GET['id_expediente'] : 0;
+$expediente_seleccionado = $padre_id;
+$carpetas = obtenerExpedientes($conexion_metadocs, $padre_id, $area);
+$documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -60,13 +68,13 @@ AutorizacionRol('documentador');
                 <i class="bi bi-cloud-arrow-up-fill"></i>
                 <h3>Arraste y suelte archivos o haga click para cargar</h3>
                 <p>Formatos soportados: PDF, DOC, DOCX, XLS, XLSX</p>
-                <input type="file" id="input_documento" class="input-documento" accept=".pdf,.doc,.docx,.xls,.xlsx" multiple>
+                <input type="file" id="input_documento" name = "input_documento"class="input-documento" accept=".pdf,.doc,.docx,.xls,.xlsx" multiple>
             </div>
 
             <!-- Vista previa de archivos -->
             <div id="vista_previa" class="vista-previa">
                 <div class="archivo-preview">
-                    <div class="archivo-icono">📄</div>
+                    <div class="archivo-icono"><i class="bi bi-file-earmark"></i></div>
                     <div class="archivo-info">
                         <div class="archivo-nombre" id="nombre_archivo"></div>
                         <div class="archivo-tamano" id="tamano_archivo"></div>
@@ -83,13 +91,13 @@ AutorizacionRol('documentador');
                     <label class="etiqueta-campo" for="categoria">Categoría del documento *</label>
                     <select class="campo-select" id="categoria" name="categoria" required>
                         <option value="">Seleccione una categoría</option>
-                        <option value="identificacion">Documento de Identificación</option>
-                        <option value="academico">Documento Académico</option>
-                        <option value="laboral">Documento Laboral</option>
-                        <option value="financiero">Documento Financiero</option>
-                        <option value="legal">Documento Legal</option>
-                        <option value="medico">Documento Médico</option>
-                        <option value="otro">Otro</option>
+                        <option value="Estratégicos">Estratégicos</option>
+                        <option value="Operativos">Operativos</option>
+                        <option value="Soporte">Soporte</option>
+                        <option value="Legales">Legales</option>
+                        <option value="Financieros">Financieros</option>
+                        <option value="Correspondencia">Correspondencia</option>
+                        
                     </select>
                 </div>
 
@@ -99,47 +107,46 @@ AutorizacionRol('documentador');
                         <label class="etiqueta-campo" for="ubicacion">Ubicación *</label>
                         <select class="campo-select" id="ubicacion" name="ubicacion" required>
                             <option value="">Seleccione una ubicación</option>
-                            <option value="bogota">Bogotá D.C.</option>
-                            <option value="medellin">Medellín</option>
-                            <option value="cali">Cali</option>
-                            <option value="barranquilla">Barranquilla</option>
-                            <option value="cartagena">Cartagena</option>
-                            <option value="bucaramanga">Bucaramanga</option>
-                            <option value="pereira">Pereira</option>
-                            <option value="manizales">Manizales</option>
-                            <option value="palmira">Palmira</option>
-                            <option value="otra">Otra ciudad</option>
+                            <option value="archivo">Archivo</option>
+                            <option value="estante">Estante</option>
+                            <option value="caja">Caja</option>
+                            <option value="boveda">Boveda</option>
+                            
                         </select>
                     </div>
 
                     <div class="grupo-campo">
-                        <label class="etiqueta-campo" for="estado">Estado *</label>
-                        <select class="campo-select" id="estado" name="estado" required>
-                            <option value="">Seleccione un estado</option>
-                            <option value="activo">Activo</option>
-                            <option value="inactivo">Inactivo</option>
-                            <option value="pendiente">Pendiente</option>
-                            <option value="vencido">Vencido</option>
-                            <option value="en_revision">En Revisión</option>
+                        <label class="etiqueta-campo" for="edifico">Edificio *</label>
+                        <select class="campo-select" id="edificio" name="edificio" required>
+                            <option value="">Seleccione un edifico</option>
+                            <option value="principal">Principal</option>
+                            <option value="anexo_a">Anexo-a</option>
+                            <option value="anexo_b">Anexo-b</option>
+                            <option value="deposito">deposito</option>
+                            <option value="archivo_central">Archivo central</option>
+                            
                         </select>
                     </div>
 
                     <div class="grupo-campo">
-                        <label class="etiqueta-campo" for="prioridad">Prioridad</label>
-                        <select class="campo-select" id="prioridad" name="prioridad">
-                            <option value="">Seleccione prioridad</option>
-                            <option value="alta">Alta</option>
-                            <option value="media">Media</option>
-                            <option value="baja">Baja</option>
+                        <label class="etiqueta-campo" for="piso">Piso</label>
+                        <select class="campo-select" id="piso" name="piso">
+                            <option value="">Seleccione el piso</option>
+                            <option value="sotano">Sotano</option>
+                            <option value="planta_baja">Planta baja</option>
+                             <option value="primer_piso">Primer piso</option>
+                            <option value="segundo_piso">Segundo piso</option>
+                            <option value="tercer_piso">Tercer piso</option>
+                            <option value="cuarto_piso">Cuarto piso</option>
                         </select>
                     </div>
                 </div>
 
 
-                <!-- Descripción -->
+                <!-- Observacion -->
                 <div class="grupo-campo">
-                    <label class="etiqueta-campo" for="descripcion">Descripción</label>
-                    <textarea class="campo-input" id="descripcion" name="descripcion" rows="3" placeholder="Descripción opcional del documento"></textarea>
+                    <label class="etiqueta-campo" for="observacion">Observaciones</label>
+                    <textarea class="campo-input" id="observacion" name="observacion" rows="3" placeholder="Observacion del documento"></textarea>
                 </div>
 
                 <!-- Botón de envío -->
@@ -149,12 +156,15 @@ AutorizacionRol('documentador');
                 </button>
 
             </div>
-
+                <input type="hidden" name="accion" value="subir_documento">
+                  <input type="hidden" name="expediente_id" value="<?= $expediente_seleccionado ?>">
         </form>
     </article>
 
         </section>
 
     </main>
+
+    <script src="../../../componentes/js/auditor/subir_archivo.js"> </script>
 </body>
 </html>

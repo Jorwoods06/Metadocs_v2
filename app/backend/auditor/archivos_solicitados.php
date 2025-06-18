@@ -11,5 +11,10 @@ $sentencia_expediente = "SELECT id_expediente, nombre, descripcion, nombres AS n
 $resultado_expediente = $conexion_metadocs->query($sentencia_expediente);
 
 
+$sentencia_documento = "SELECT id_documento, titulo, categoria, nombres, documentos.fecha_creacion FROM documentos JOIN usuarios ON documentos.autor = usuarios.id_usuario JOIN retencion ON documentos.id_retencion = retencion.categoria WHERE documentos.estado = 'revision' AND documentos.id_area = '$area_usuarios';";
+
+$resultado_documento = $conexion_metadocs->query($sentencia_documento);
+
+
 
 ?>

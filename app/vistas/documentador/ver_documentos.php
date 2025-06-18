@@ -233,7 +233,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
                         <p>Escanea un documento y súbelo al sistema</p>
                     </a>
                     
-                    <a href="subir_documento.php" id="subir" class="esc_sub">
+                    <a href="subir_documento.php?id_expediente=<?= $padre_id ?> " id="subir" class="esc_sub">
                         <i class="bi bi-file-earmark-arrow-up"></i>
                         <p>Subir documento</p>
                         <p>Selecciona un archivo desde tu dispositivo</p>

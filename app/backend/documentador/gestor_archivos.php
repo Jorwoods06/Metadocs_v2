@@ -47,6 +47,7 @@ function obtenerDocumentos($conexion, $padre_id, $area) {
             FROM documentos 
             WHERE id_expediente = ? 
             AND id_area = ?
+            AND estado = 'aprobado' 
             AND estado_retencion = 'activo'
             ORDER BY fecha_creacion DESC";
     
@@ -70,8 +71,10 @@ function obtenerInfoExpediente($conexion, $id_expediente) {
     return $resultado ? $resultado->fetch_assoc() : false;
 }
 
-// Función para subir documento
-function subirDocumento($conexion, $archivo, $id_expediente, $area, $id_usuario, $categoria) {
+
+
+// Función para subir documento 
+function subirDocumento($conexion, $archivo, $id_expediente, $area, $id_usuario, $categoria, $ubicacion, $edificio, $piso, $observaciones) {
     if (!isset($archivo) || $archivo['error'] !== UPLOAD_ERR_OK) {
         return false;
     }
@@ -100,7 +103,6 @@ function subirDocumento($conexion, $archivo, $id_expediente, $area, $id_usuario,
     $fila_retencion = $resultado_retencion->fetch_assoc();
     $fin_retencion = $fila_retencion['fecha_retencion'];
 
-    // Estados por defecto - Diferencia: documento en revisión para documentador
     $estado = "revision";
     $estado_retencion = "activo";
 
@@ -127,32 +129,51 @@ function subirDocumento($conexion, $archivo, $id_expediente, $area, $id_usuario,
             return false;
         }
 
+        // Subir archivo al servidor
         if (move_uploaded_file($archivo["tmp_name"], $rutaArchivo)) {
             // Insertar el documento
             $sql = $conexion->prepare("INSERT INTO documentos (titulo, path, id_expediente, id_area, tipo, autor, estado, estado_retencion, id_retencion, fin_retencion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
             $titulo = $nombre_base;
             $tipo = $extension;
-            
+
             $sql->bind_param("ssiisissss", $titulo, $rutaArchivo, $id_expediente, $area, $tipo, $id_usuario, $estado, $estado_retencion, $id_retencion, $fin_retencion);
             $documento_insertado = $sql->execute();
 
             if ($documento_insertado) {
-                $conexion->commit();
-                return true;
+                $id_documento = $conexion->insert_id;
+
+                // CORREGIDO: Insertar ubicación física
+                $sql_ubicacion = $conexion->prepare("INSERT INTO ubicacion_fisico (tipo_ubicacion, id_documento, observaciones, edificio, piso) VALUES (?, ?, ?, ?, ?)");
+                $sql_ubicacion->bind_param("sisss", $ubicacion, $id_documento, $observaciones, $edificio, $piso);
+                $ubicacion_insertada = $sql_ubicacion->execute();
+
+                if ($ubicacion_insertada) {
+                    // CORREGIDO: Confirmar transacción solo si todo salió bien
+                    $conexion->commit();
+                    return true;
+                } else {
+                    // Error al insertar ubicación
+                    $conexion->rollback();
+                    return false;
+                }
             } else {
+                // Error al insertar documento
                 $conexion->rollback();
                 return false;
             }
+        } else {
+            // Error al subir archivo
+            $conexion->rollback();
+            return false;
         }
-        
-        $conexion->rollback();
-        return false;
 
     } catch (Exception $e) {
         $conexion->rollback();
         return false;
     }
 }
+
 
 // Función para descargar documento
 function descargarDocumento($conexion, $documento_id) {
@@ -268,14 +289,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         case 'subir_documento':
             $id_expediente = $_POST['expediente_id'];
-            $archivo = $_FILES['file-input'];
+            $archivo = $_FILES['input_documento'];
             $categoria = $_POST['categoria'];
+            $ubicacion = $_POST['ubicacion'];
+            $edificio = $_POST['edificio'];
+            $piso = $_POST['piso'];
+            $observaciones = $_POST['observacion'];
            
-            if (subirDocumento($conexion_metadocs, $archivo, $id_expediente, $area, $id_usuario, $categoria)) {
-                $_SESSION['doc_exito'] = 'Documento subido con éxito';
-                header("Location: ../../vistas/documentador/ver_documentos.php?success=true&id_expediente=" . $id_expediente);
+            if (subirDocumento($conexion_metadocs, $archivo, $id_expediente, $area, $id_usuario, $categoria, $ubicacion, $edificio, $piso, $observaciones)) {
+                $_SESSION['doc_exito'] = 'Tu documento ha sido recibido y ya está en revisión por un auditor.';
+                header("Location: ../../vistas/documentador/subir_documento.php?success=true&id_expediente=" . $id_expediente);
             } else {
-                header("Location: ../../vistas/documentador/ver_documentos.php?error=upload_failed&id_expediente=" . $id_expediente);
+                header("Location: ../../vistas/documentador/subir_documento.php?error=upload_failed&id_expediente=" . $id_expediente);
             }
             exit;
 

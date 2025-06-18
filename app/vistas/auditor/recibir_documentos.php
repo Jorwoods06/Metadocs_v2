@@ -100,77 +100,156 @@ AutorizacionRol('auditor');
                 </div>
             </div>
 
-            <!-- Generar cartas de expedientes dinámicamente -->
-            <?php
-            if ($resultado_expediente->num_rows > 0) {
-                while ($expediente = $resultado_expediente->fetch_assoc()) {
-            ?>
-                    <article class="carta" id="carta_expediente" data-tipo="expediente">
+            <!-- Contenedor para expedientes -->
+            <div id="contenedor-expedientes" class="contenedor-tipo">
+                <?php
+                if ($resultado_expediente->num_rows > 0) {
+                    while ($expediente = $resultado_expediente->fetch_assoc()) {
+                ?>
+                        <article class="carta" id="carta_expediente" data-tipo="expediente">
+                            <div class="info">
+                                <div id="icono"><i class="bi bi-folder"></i></div>
+                                <div id="info">
+                                    <h3><?php echo htmlspecialchars($expediente['nombre']); ?></h3>
+                                    <p>Expediente</p>
+                                </div>
+                            </div>
+                            <p id="descripcion_expediente"><?php echo htmlspecialchars($expediente['descripcion']); ?></p>
+                            <div id="autor_fecha">
+                                <p><i class="bi bi-person-fill"></i><?php echo htmlspecialchars($expediente['nombre_autor']); ?></p>
+                                <p><i class="bi bi-calendar-fill"></i> <?php echo htmlspecialchars($expediente['fecha_creacion']); ?></p>
+                            </div>
+                            <div id="botones">  
+                                <button type="button" class="aprobado btn-aprobar" data-id="<?php echo $expediente['id_expediente']; ?>">Aprobar</button>
+                                <button type="button" class="rechazado " id="expe_rechazado">Rechazar</button>
+                            </div>
+                        </article>
+                <?php
+                    }
+                } else {
+                ?>
+                    <div class="mensaje-vacio" id="mensaje-expedientes-vacio">
+                        <p>No hay expedientes en revisión.</p>
+                    </div>
+                <?php
+                }
+                ?>
+            </div>
+            
+            <!-- Contenedor para documentos -->
+            <div id="contenedor-documentos" class="contenedor-tipo">
+                <?php
+                if($resultado_documento->num_rows > 0){
+                    while($documento = $resultado_documento->fetch_assoc()){ 
+                ?>
+                    <article class="carta" id="carta_documento" data-tipo="documento">
                         <div class="info">
-                            <div id="icono"><i class="bi bi-folder"></i></div>
+                            <div id="icono"><i class="bi bi-file-earmark"></i></div>
                             <div id="info">
-                                <h3><?php echo htmlspecialchars($expediente['nombre']); ?></h3>
-                                <p>Expediente</p>
+                                <h3><?php echo htmlspecialchars($documento['titulo']);?></h3>
+                                <p><?php echo htmlspecialchars($documento['categoria']);?></p>
                             </div>
                         </div>
-                        <p id="descripcion_expediente"><?php echo htmlspecialchars($expediente['descripcion']); ?></p>
                         <div id="autor_fecha">
-                            <p><i class="bi bi-person-fill"></i><?php echo htmlspecialchars($expediente['nombre_autor']); ?></p>
-                            <p><i class="bi bi-calendar-fill"></i> <?php echo htmlspecialchars($expediente['fecha_creacion']); ?></p>
+                            <p><i class="bi bi-person-fill"></i><?php echo htmlspecialchars($documento['nombres']);?> </p>
+                            <p><i class="bi bi-calendar-fill"></i> <?php echo htmlspecialchars($documento['fecha_creacion']);?></p>
                         </div>
                         <div id="botones">  
-                            <button type="button" class="aprobado btn-aprobar" data-id="<?php echo $expediente['id_expediente']; ?>">Aprobar</button>
-                            <button type="button" class="rechazado" id="expe_rechazado">Rechazar</button>
+                            <button type="button" class="ver">Ver</button>
+                            <button type="button" class="aprobado" data-id="<?php echo $documento['id_documento']; ?>">Aprobar</button>
+                            <button type="button" class="rechazado doc" data-id="<?php echo $documento['id_documento']; ?>">Rechazar</button>
                         </div>
                     </article>
-            <?php
-                }
-            } else {
-                echo "<p>No hay expedientes en revisión.</p>";
-            }
-            ?>
-
-            <!-- Carta de documento (ejemplo estático) -->
-            <article class="carta" id="carta_documento" data-tipo="documento">
-                <div class="info">
-                    <div id="icono"><i class="bi bi-file-earmark"></i></div>
-                    <div id="info">
-                        <h3>Nombre del documento</h3>
-                        <p>tipo "contrato"</p>
+                <?php
+                    }
+                } else {
+                ?>
+                    <div class="mensaje-vacio" id="mensaje-documentos-vacio">
+                        <p>No hay documentos en revisión.</p>
                     </div>
-                </div>
-                <div id="autor_fecha">
-                    <p><i class="bi bi-person-fill"></i>Jorge </p>
-                    <p><i class="bi bi-calendar-fill"></i> 12/06/25</p>
-                </div>
-                <div id="botones">  
-                    <button type="button" class="ver">Ver</button>
-                    <button type="button" class="aprobado">Aprobar</button>
-                    <button type="button" class="rechazado">Rechazar</button>
-                </div>
-            </article>
-
+                <?php
+                }
+                ?>
+            </div>
         </section>
 
     </main>
 
-    <div id="modal_confirmar">
-        <form id="modal_contenedor" action="../../backend/auditor/aprobar_expediente_documento.php" method="POST">
+    <!-- modal aprobar expediente -->
+    <div id="modal_confirmar_expediente" class="modal_confirmar">
+        <form class="modal_contenedor" action="../../backend/auditor/aprobar_expediente_documento.php" method="POST">
             <span class="close">&times;</span>
             <h3>¿Confirmas la aprobación de este expediente?</h3>
             <p>¿Estás seguro de que deseas aprobar este expediente? Esta acción no se puede deshacer y el expediente pasará al siguiente estado del flujo de trabajo.</p>
-            <div id="botones">
-                <button type="submit" id="aprobar">Aprobar</button>
-                <button type="button" id="cancelar">Cancelar</button>
+            <div class="botones_modal">
+                <button type="submit" class="btn_aprobar">Aprobar</button>
+                <button type="button" class="btn_cancelar">Cancelar</button>
             </div>
-
-            <!-- input que guarda el id del expediente a aprobar (en js)-->
-            <input type="hidden" name="datos_expediente" id="datos_expediente" value="">
-
-            <!-- input que guarda un valor para el switch del backend -->
-             <input type="hidden" name="accion" value="aprobar_expediente">
+            
+            <input type="hidden" name="datos_expediente" value="">
+            <input type="hidden" name="accion" value="aprobar_expediente">
         </form>
     </div>
+
+    <!-- modal aprobar documento -->
+    <div id="modal_confirmar_documento" class="modal_confirmar">
+        <form class="modal_contenedor" action="../../backend/auditor/aprobar_expediente_documento.php" method="POST">
+            <span class="close">&times;</span>
+            <h3>¿Confirmas la aprobación de este documento?</h3>
+            <p>¿Estás seguro de que deseas aprobar este documento? Esta acción no se puede deshacer y el documento pasará al siguiente estado del flujo de trabajo.</p>
+            <div class="botones_modal">
+                <button type="submit" class="btn_aprobar">Aprobar</button>
+                <button type="button" class="btn_cancelar">Cancelar</button>
+            </div>
+            
+            <input type="hidden" name="datos_documento" value="">
+            <input type="hidden" name="accion" value="aprobar_documento">
+        </form>
+    </div>
+
+    <!-- modal rechazar expediente -->
+<div id="modal_rechazar_expediente" class="modal_confirmar">
+    <form class="modal_contenedor" action="../../backend/auditor/rechazar_expediente_documento.php" method="POST">
+        <span class="close">&times;</span>
+        <h3>¿Confirmas el rechazo de este expediente?</h3>
+        <p>Por favor, especifica el motivo del rechazo. Esta acción no se puede deshacer.</p>
+        
+        <div class="campo_motivo">
+            <label for="motivo_expediente">Motivo del rechazo:</label>
+            <textarea id="motivo_expediente" name="motivo_rechazo" rows="4" placeholder="Describe el motivo del rechazo..." required></textarea>
+        </div>
+        
+        <div class="botones_modal">
+            <button type="submit" class="btn_rechazar">Rechazar</button>
+            <button type="button" class="btn_cancelar">Cancelar</button>
+        </div>
+        
+        <input type="hidden" name="datos_expediente" value="">
+        <input type="hidden" name="accion" value="rechazar_expediente">
+    </form>
+</div>
+
+<!-- modal rechazar documento -->
+<div id="modal_rechazar_documento" class="modal_confirmar">
+    <form class="modal_contenedor" action="../../backend/auditor/rechazar_expediente_documento.php" method="POST">
+        <span class="close">&times;</span>
+        <h3>¿Confirmas el rechazo de este documento?</h3>
+        <p>Por favor, especifica el motivo del rechazo. Esta acción no se puede deshacer.</p>
+        
+        <div class="campo_motivo">
+            <label for="motivo_documento">Motivo del rechazo:</label>
+            <textarea id="motivo_documento" name="motivo_rechazo" rows="4" placeholder="Describe el motivo del rechazo..." required></textarea>
+        </div>
+        
+        <div class="botones_modal">
+            <button type="submit" class="btn_rechazar">Rechazar</button>
+            <button type="button" class="btn_cancelar">Cancelar</button>
+        </div>
+        
+        <input type="hidden" name="datos_documento" value="">
+        <input type="hidden" name="accion" value="rechazar_documento">
+    </form>
+</div>
 
 </body>
 </html>

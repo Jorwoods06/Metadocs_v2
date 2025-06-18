@@ -137,7 +137,7 @@ CREATE TABLE `expedientes` (
 INSERT INTO `expedientes` (`id_expediente`, `nombre`, `descripcion`, `fecha_creacion`, `expediente_padre`, `id_area`, `estado`, `autor`) VALUES
 (67, 'prueba', 'documento documentador', '2025-06-13', 0, 4, 'aprobado', 40),
 (68, 'expediente auditor', 'este expediente fue subido por un auditor', '2025-06-13', 0, 4, 'aprobado', 26),
-(69, 'Expedienté subido en movil', 'Este expediente fue subido en móvil y por un documentador de modo que se espera que sea aprobado ', '2025-06-13', 0, 4, 'aprobado', 40),
+(69, 'Expedienté subido en movil', 'Este expediente fue subido en móvil y por un documentador de modko que se espera que sea aprobado ', '2025-06-13', 0, 4, 'aprobado', 40),
 (70, 'segundo expediente subido por el auditor ', 'deberia aparecer de una', '2025-06-13', 0, 4, 'aprobado', 26),
 (71, 'Tercera prueba móvil documentador ', 'Debería aparecer solo en solicitudes ', '2025-06-13', 0, 4, 'aprobado', 40);
 

@@ -15,6 +15,7 @@ AutorizacionRol('documentador');
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
     <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
     <script src="../../../componentes/js/admin/panel.js"></script>
+    <link rel="stylesheet" href="../../../componentes/css/documentador/inicio_documentador.css">
 </head>
 <body>
     <header id="cabezote">
@@ -72,7 +73,35 @@ AutorizacionRol('documentador');
         </nav>
        
         <section id="admin-contenido" class="admin">
-            <h1>Inicio documentador</h1>
+            <h1 class="titulo-documentador">Bienvenido Documentador</h1>
+
+            <h2 class="titulo-mediano">selecciona a donde quieres dirigirte</h2>
+
+            <div class="contenedor-general">
+                
+                <a href="solicitudes_doc.php" class ="card-link">
+                    <div class="card-opcion">
+                        <img src="https://cdn-icons-png.flaticon.com/128/8521/8521942.png" alt="solicitudes">
+                        <label for="">Solicitudes</label>
+                    </div>
+                </a>
+                
+                <a href="ver_documentos.php" class="card-link">
+                    <div class="card-opcion">
+                        <img src="https://cdn-icons-png.flaticon.com/128/10650/10650271.png" alt="ver documentos">
+                        <label>Ver documentos</label>
+                    </div>
+                </a>
+
+                 <a href="info_documentador.php" class="card-link">
+                    <div class="card-opcion">
+                        <img src="https://cdn-icons-png.flaticon.com/128/5645/5645106.png" alt="informacion del documentador">
+                        <label>Informacion del documentador</label>
+                    </div>
+                </a>
+
+            </div>
+
         </section>
 
 

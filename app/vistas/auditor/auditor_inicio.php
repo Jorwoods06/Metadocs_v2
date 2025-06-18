@@ -16,6 +16,7 @@ AutorizacionRol('auditor');
     <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
     <script src="../../../componentes/js/documentador/ver_documentos.js"></script>
     <script src="../../../componentes/js/admin/panel.js"></script>
+    <link rel="stylesheet" href="../../../componentes/css/auditor/inicio_auditor.css">
 </head>
 <body>
     <header id="cabezote">
@@ -81,8 +82,55 @@ AutorizacionRol('auditor');
         </nav>
        
         <section id="admin-contenido" class="admin">
-            <h1>Inicio Auditor</h1>
+
+            <h1 class="titulo-auditor">Bienvenido auditor</h1>
+
+            <h2 class="titulo-mediano">Aqui podras seleccionar a lo que quieres estar informado</h2>
+            
+
+            <div class="contenedor-general">
+                
+                <a href="solicitar_documento.php" class="card-link">
+                    <div class="card-opcion">
+                        <img src="https://cdn-icons-png.flaticon.com/128/7871/7871039.png" alt="Solicitar documentos">
+                        <label>Solicitar documentos</label>
+                    </div>
+                </a>
+
+                <a href="recibir_documentos.php" class="card-link">
+                    <div class="card-opcion">
+
+                        <img src="https://cdn-icons-png.flaticon.com/128/15136/15136033.png" alt="Solicitudes">
+                        <label>Solicitudes</label>
+                    </div>
+                </a>
+
+
+                 <a href="archivos_auditor.php" class="card-link">
+                    <div class="card-opcion">
+                        <img src="https://cdn-icons-png.flaticon.com/128/12094/12094609.png" alt="archivo historico">
+                        <label> archivo histórico</label>
+                    </div>
+                </a>
+
+                <a href="" class="card-link">
+                    <div class="card-opcion">
+                        <img src="https://cdn-icons-png.flaticon.com/128/15400/15400355.png" alt="pista de auditoria">
+                        <label> pista de auditoría</label>
+                    </div>
+                </a>
+
+                <a href="info_auditor.php" class="card-link">
+                    <div class="card-opcion">
+                        <img src="https://cdn-icons-png.flaticon.com/128/747/747968.png" alt="Informacion auditor">
+                        <label>Información del auditor</label>
+                    </div>
+                </a>
+
+
+            </div>
         </section>
+
 
 
 </main>

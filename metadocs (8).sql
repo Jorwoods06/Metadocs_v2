@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 14-06-2025 a las 05:20:08
+-- Tiempo de generación: 19-06-2025 a las 03:58:09
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -106,12 +106,21 @@ CREATE TABLE `documentos` (
   `titulo` text NOT NULL,
   `path` varchar(255) DEFAULT NULL,
   `tipo` varchar(255) DEFAULT NULL,
-  `estado` enum('aprobado','revision') DEFAULT NULL,
+  `estado` enum('aprobado','revision','rechazado') DEFAULT NULL,
   `autor` int(255) DEFAULT NULL,
   `estado_retencion` enum('archivado','activo') DEFAULT NULL,
   `id_retencion` int(11) DEFAULT NULL,
   `fin_retencion` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `documentos`
+--
+
+INSERT INTO `documentos` (`id_documento`, `fecha_creacion`, `id_expediente`, `id_area`, `titulo`, `path`, `tipo`, `estado`, `autor`, `estado_retencion`, `id_retencion`, `fin_retencion`) VALUES
+(67, '2025-06-17', 78, 4, 'Formato IEEE Adso-05', '../../uploads/68520cf98c816_Formato IEEE Adso-05.docx', 'docx', 'aprobado', 40, 'activo', 1, '2026-11-17'),
+(68, '2025-06-17', 78, 4, 'Captura de pantalla 2022-10-29 a la(s) 10.07.20 a.m.', '../../uploads/68520d6e67530_Captura de pantalla 2022-10-29 a la(s) 10.07.20 a.m..pdf', 'pdf', 'aprobado', 40, 'activo', 1, '2026-11-17'),
+(69, '2025-06-17', 78, 4, 'ojeras - Búsqueda de Google', '../../uploads/685212700496d_ojeras - Búsqueda de Google.pdf', 'pdf', 'revision', 40, 'activo', 1, '2026-11-17');
 
 -- --------------------------------------------------------
 
@@ -126,7 +135,7 @@ CREATE TABLE `expedientes` (
   `fecha_creacion` date DEFAULT current_timestamp(),
   `expediente_padre` int(11) DEFAULT NULL,
   `id_area` int(11) DEFAULT NULL,
-  `estado` enum('aprobado','revision') DEFAULT NULL,
+  `estado` enum('aprobado','revision','rechazado') DEFAULT NULL,
   `autor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -135,11 +144,8 @@ CREATE TABLE `expedientes` (
 --
 
 INSERT INTO `expedientes` (`id_expediente`, `nombre`, `descripcion`, `fecha_creacion`, `expediente_padre`, `id_area`, `estado`, `autor`) VALUES
-(67, 'prueba', 'documento documentador', '2025-06-13', 0, 4, 'aprobado', 40),
-(68, 'expediente auditor', 'este expediente fue subido por un auditor', '2025-06-13', 0, 4, 'aprobado', 26),
-(69, 'Expedienté subido en movil', 'Este expediente fue subido en móvil y por un documentador de modko que se espera que sea aprobado ', '2025-06-13', 0, 4, 'aprobado', 40),
-(70, 'segundo expediente subido por el auditor ', 'deberia aparecer de una', '2025-06-13', 0, 4, 'aprobado', 26),
-(71, 'Tercera prueba móvil documentador ', 'Debería aparecer solo en solicitudes ', '2025-06-13', 0, 4, 'aprobado', 40);
+(78, 'Expedienté hecho en celular ', 'Aprobar expediente por favor ', '2025-06-17', 0, 4, 'aprobado', 40),
+(79, 'Prueba 2', 'Hola ', '2025-06-17', 0, 4, 'aprobado', 40);
 
 -- --------------------------------------------------------
 
@@ -190,11 +196,21 @@ INSERT INTO `retencion` (`id_retencion`, `categoria`, `duracion_año`, `duracion
 
 CREATE TABLE `ubicacion_fisico` (
   `id_ubicacion` int(11) NOT NULL,
-  `descripcion` text NOT NULL,
   `tipo_ubicacion` enum('Archivo','Estante','Caja','Bóveda','Otro') DEFAULT NULL,
-  `estado` enum('Disponible','Ocupado','Mantenimiento','Inactivo') DEFAULT NULL,
-  `id_documento` int(11) DEFAULT NULL
+  `id_documento` int(11) DEFAULT NULL,
+  `observaciones` text DEFAULT NULL,
+  `edificio` enum('principal','anexo_a','anexo_b','deposito','archivo_central') DEFAULT NULL,
+  `piso` enum('sotano','planta_baja','primer_piso','segundo_piso','tercer_piso','cuarto_piso') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `ubicacion_fisico`
+--
+
+INSERT INTO `ubicacion_fisico` (`id_ubicacion`, `tipo_ubicacion`, `id_documento`, `observaciones`, `edificio`, `piso`) VALUES
+(8, 'Archivo', 67, 'Aprobar por favor ', 'principal', 'sotano'),
+(9, 'Archivo', 68, 'Ap', 'principal', 'sotano'),
+(10, 'Archivo', 69, 'Hola', 'principal', 'sotano');
 
 -- --------------------------------------------------------
 
@@ -222,10 +238,12 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `rol`, `nombres`, `apellidos`, `correo`, `contraseña`, `fecha_creacion`, `fecha_actualizacion`, `id_area`, `cedula`, `telefono`, `estado`) VALUES
-(26, 'auditor', 'jorge xd', 'Galeano', 'jorgemulato206@gmail.com', 'e0a0bbdf18ef381b4c5924026a79bb06', '2025-01-03 20:34:03', '2025-06-13 22:11:26', 4, '1114240641', '3145062530', 'activo'),
+(26, 'auditor', 'jorge xd', 'Galeano', 'jorgemulato206@gmail.com', 'e0a0bbdf18ef381b4c5924026a79bb06', '2025-01-03 20:34:03', '2025-06-15 16:57:14', 4, '1114240641', '3145062530', 'activo'),
 (40, 'documentador', 'metadocs pruebas', 'Bv', 'metadocs7@gmail.com', 'e13453ceb91a91816509a2b74ff97785', '2025-01-11 17:14:45', '2025-06-05 17:53:19', 4, '159', '3145062530', 'activo'),
-(51, 'administrador', 'Jorge Admin', 'Admin', 'dg244049@gmail.com', '5a0f035db329cea241ae3509ad2b824f', '2025-06-02 17:15:57', '2025-06-03 07:29:58', 3, '14445454', '314506253', 'activo'),
-(52, 'visualizador', 'root', 'admin', 'pruebaroot@hotmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2025-06-03 07:21:45', '2025-06-05 17:49:48', 3, '1444464664', '3201542078', 'activo');
+(51, 'administrador', 'Jorge Admin', 'Admin', 'dg244049@gmail.com', '5a0f035db329cea241ae3509ad2b824f', '2025-06-02 17:15:57', '2025-06-15 10:08:06', 3, '14445454', '314506253', 'activo'),
+(52, 'visualizador', 'root', 'admin', 'pruebaroot@hotmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2025-06-03 07:21:45', '2025-06-05 17:49:48', 3, '1444464664', '3201542078', 'activo'),
+(53, 'documentador', 'yelen', 'yelencio', 'yelen@gmail.com', '3b7aab6f0b5bb0d8855e5acc6c6d7eb2', '2025-06-15 10:13:55', '2025-06-15 16:37:52', 1, '1444464664', '123456789', 'activo'),
+(54, 'administrador', 'Daniel Alejandro', 'xd', 'daniel@gmail.com', 'b5ea8985533defbf1d08d5ed2ac8fe9b', '2025-06-17 11:05:51', '2025-06-17 11:05:51', 3, '1444464664', '3201542078', 'activo');
 
 --
 -- Índices para tablas volcadas
@@ -317,19 +335,19 @@ ALTER TABLE `area_acceso`
 -- AUTO_INCREMENT de la tabla `contraseña_resets`
 --
 ALTER TABLE `contraseña_resets`
-  MODIFY `reset_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `reset_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT de la tabla `documentos`
 --
 ALTER TABLE `documentos`
-  MODIFY `id_documento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id_documento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT de la tabla `expedientes`
 --
 ALTER TABLE `expedientes`
-  MODIFY `id_expediente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id_expediente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT de la tabla `pista_auditoria`
@@ -347,13 +365,13 @@ ALTER TABLE `retencion`
 -- AUTO_INCREMENT de la tabla `ubicacion_fisico`
 --
 ALTER TABLE `ubicacion_fisico`
-  MODIFY `id_ubicacion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_ubicacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- Restricciones para tablas volcadas

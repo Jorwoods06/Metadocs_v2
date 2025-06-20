@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const menu_lateral = document.getElementById("menu-lateral");
     const boton_volver = document.getElementById("solo_mobil");
 
-    // Menús
+    // Submenús
     const mostrar_menu_usuarios = document.getElementById("gestion-usuarios");
     const submenu_usuarios = document.querySelector(".gestion-submenu");
 
@@ -53,4 +53,14 @@ document.addEventListener("DOMContentLoaded", function () {
             submenu_usuario.classList.toggle("mostrar");
         });
     }
+
+    // ===== EFECTO DE SELECCIÓN EN MENÚS =====
+    const enlaces_menu = document.querySelectorAll("#menu-lateral a");
+
+    enlaces_menu.forEach(enlace => {
+        enlace.addEventListener("click", function () {
+            enlaces_menu.forEach(e => e.classList.remove("selected"));
+            this.classList.add("selected");
+        });
+    });
 });

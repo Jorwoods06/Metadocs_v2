@@ -33,8 +33,8 @@ AutorizacionRol('administrador');
     <main id="cuerpo">
         <nav id="menu-lateral" class="menu-lateral">
             <figure id="img_menu">
-                <img src="../../../componentes/img/Imagen de WhatsApp 2025-05-01 a las 11.52.47_deffc20c.jpg" alt="imagen del menu lateral">
-            </figure>
+              <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
+        </figure>
             <ul>
 
                 <li>

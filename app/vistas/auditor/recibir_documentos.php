@@ -1,4 +1,6 @@
-<?php 
+<?php
+
+use Dom\Document;
 
 require_once '../../backend/auditor/archivos_solicitados.php';
 require_once '../../helpers/verificacion_roles.php';
@@ -18,6 +20,7 @@ AutorizacionRol('auditor');
     <link rel="stylesheet" href="../../../componentes/css/auditor/recibir_documentos.css">
     <link rel="stylesheet" href="../../../componentes/css/auditor/modal_aprobar_expediente.css">
     <script src="../../../componentes/js/auditor/recibir_documentos.js"></script>
+    <link rel="stylesheet" href="../../../componentes/css/documentador/visor.css">
     <script src="../../../componentes/js/admin/panel.js"></script>
 </head>
 <body>
@@ -155,7 +158,20 @@ AutorizacionRol('auditor');
                             <p><i class="bi bi-calendar-fill"></i> <?php echo htmlspecialchars($documento['fecha_creacion']);?></p>
                         </div>
                         <div id="botones">  
-                            <button type="button" class="ver">Ver</button>
+                        <button type="button" class="ver btn_ver_modal escritorio" 
+                                onclick="verDocumento('<?= urlencode($documento['titulo'] . '.' . $documento['tipo']) ?>', '<?= strtolower($documento['tipo']) ?>')">
+                            <i class="bi bi-eye"></i> Ver
+                        </button>
+
+                     
+
+                   
+                        <button type="button" class="ver btn_ver_nueva_ventana movil" 
+                                onclick="abrirNuevaVentana('<?= urlencode($documento['titulo'] . '.' . $documento['tipo']) ?>')">
+                            <i class="bi bi-eye"></i> Ver
+                        </button>
+
+                            
                             <button type="button" class="aprobado" data-id="<?php echo $documento['id_documento']; ?>">Aprobar</button>
                             <button type="button" class="rechazado doc" data-id="<?php echo $documento['id_documento']; ?>">Rechazar</button>
                         </div>
@@ -251,5 +267,13 @@ AutorizacionRol('auditor');
     </form>
 </div>
 
+<!-- Modal para visualizar documentos -->
+<div id="modal_visor">
+    <div id="modal_visor_content">
+        <span id="cerrar_visor">&times;</span>
+        <iframe id="visor_documento" src=""></iframe>
+    </div>
+</div>
+    <script src="../../../componentes/js/documentador/visor.js" ></script>
 </body>
 </html>

@@ -3,7 +3,7 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 
 use ConvertApi\ConvertApi;
 
-// 🔐 Clave de API de ConvertAPI
+//  Clave de API de ConvertAPI
 $API_KEY = 'Kfilut7lXcr41xSRbOT7W37Hhq82pqqi'; // Reemplaza por tu clave real
 
 // Configurar la API key
@@ -11,12 +11,12 @@ ConvertApi::setApiCredentials($API_KEY);
 
 // Validar si se recibió el nombre del archivo
 if (!isset($_GET['file'])) {
-    die("⚠️ Archivo no especificado.");
+    die(" Archivo no especificado.");
 }
 
 $archivo = basename($_GET['file']); // evita rutas externas
 
-// 🔧 CORRECCIÓN: Si el archivo no tiene extensión, intentar encontrarla
+//  CORRECCIÓN: Si el archivo no tiene extensión, intentar encontrarla
 $extension_archivo = strtolower(pathinfo($archivo, PATHINFO_EXTENSION));
 if (empty($extension_archivo)) {
     // Buscar el archivo con cualquier extensión
@@ -28,7 +28,7 @@ if (empty($extension_archivo)) {
     }
 }
 
-// 🔧 CORRECCIÓN: Ruta corregida para la estructura app/helpers/ -> app/uploads/
+
 $path_archivo = __DIR__ . "/../uploads/" . $archivo;
 
 // Verifica si el archivo existe
@@ -52,7 +52,7 @@ if (!file_exists($path_archivo)) {
     }
     
     if (!$archivo_encontrado) {
-        die("⚠️ El archivo '$archivo' no existe en ninguna de las rutas esperadas.<br>
+        die(" El archivo '$archivo' no existe en ninguna de las rutas esperadas.<br>
              Ruta principal: $path_archivo<br>
              Verifica que el archivo esté subido correctamente.");
     }
@@ -143,7 +143,7 @@ if (in_array($extension, $permitidos)) {
             exit;
 
         } catch (Exception $e) {
-            die("❌ Error al convertir el documento: " . $e->getMessage());
+            die(" Error al convertir el documento: " . $e->getMessage());
         }
     }
 }
@@ -161,5 +161,5 @@ function limpiarCacheAntiguo($directorio, $horas = 24) {
 }
 
 // Si el tipo no está soportado
-die("⚠️ Tipo de archivo '$extension' no soportado para visualización.");
+die(" Tipo de archivo '$extension' no soportado para visualización.");
 ?>

@@ -311,8 +311,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
            
             if (subirDocumento($conexion_metadocs, $archivo, $id_expediente, $area, $id_usuario, $categoria, $ubicacion, $edificio, $piso, $observaciones)) {
 
-                    session_start();
-$_SESSION['show_modal'] = true;
+                  session_start();
+                  $_SESSION['show_modal'] = true;
                   header("Location: ../../vistas/documentador/ver_documentos.php?upload_success=true&id_expediente=" . $id_expediente);
             } else {
                 header("Location: ../../vistas/documentador/ver_documentos.php?error=upload_failed&id_expediente=" . $id_expediente);

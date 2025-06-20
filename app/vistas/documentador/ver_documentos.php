@@ -9,10 +9,20 @@ $expediente_seleccionado = $padre_id;
 $carpetas = obtenerExpedientes($conexion_metadocs, $padre_id, $area);
 $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
 
+
+
+
+$mostrar_modal = false;
+if (isset($_SESSION['show_modal']) && $_SESSION['show_modal'] === true) {
+    $mostrar_modal = true;
+    unset($_SESSION['show_modal']); 
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documentador | Metadocs</title>
@@ -22,8 +32,12 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
     <link rel="stylesheet" href="../../../componentes/css/documentador/ver_documentos.css">
     <link rel="stylesheet" href="../../../componentes/css/documentador/modal_expediente.css">
     <link rel="stylesheet" href="../../../componentes/css/auditor/modal_scanear_subir_doc.css">
+    <link rel="stylesheet" href="../../../componentes/css/documentador/visor.css">
+    <link rel="stylesheet" href="../../../componentes/css/documentador/archivo_revision.css">
     <script src="../../../componentes/js/documentador/ver_documentos.js"></script>
     <script src="../../../componentes/js/admin/panel.js"></script>
+    
+   
 </head>
 <body>
     <header id="cabezote">
@@ -55,7 +69,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
                         Solicitudes
                     </a>
                 </li>
-                <!-- cerrado sesion -->  
+                
                 <li class="gestion-usuarios">
                     <a href="#" id="cerrado-usuarios">
                         <i class="bi bi-person"></i>
@@ -78,10 +92,10 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
         </nav>
        
         <section id="admin-contenido" class="admin">
-            <!-- Título y botones cuando hay expediente seleccionado -->
+           
             <?php if ($expediente_seleccionado): ?>
 <div class="title-button-container">
-    <!-- Contenedor para título y botones en la misma fila en tablet+ -->
+  
     <div class="title-header-row">
         <h1>Documentos</h1>
         <div class="header-buttons">
@@ -94,7 +108,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
         </div>
     </div>
     
-    <!-- Breadcrumb de navegación -->
+    <!-- navegación -->
     <div class="breadcrumb">
         <a href="?">Inicio</a> / 
         <a href="javascript:history.back()" class="back-button">Atrás</a> /
@@ -133,7 +147,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
                 </thead>
                 <tbody>
                     <?php 
-                    // Variable para controlar si hay contenido
+                    
                     $tiene_contenido = false;
                     
                     // Mostrar expedientes/carpetas
@@ -150,12 +164,8 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
                             <td class="documento-tipo">expediente</td>
                             <td class="documento-fecha"><?= htmlspecialchars($carpeta['fecha_creacion']); ?></td>
                             <td class="documento-accion">
-                                <button class="btn_accion" data-id="<?= $carpeta['id_expediente']; ?>">⋮</button>
-                                <div class="action-dropdown-menu">
-                                    <button class="action-dropdown-item edit-expediente">
-                                        <i class="bi bi-pencil-square"></i> Editar
-                                    </button>
-                                </div>
+                                <button class="btn_accion" data-id="<?= $carpeta['id_expediente']; ?>"><i class="bi bi-pencil-square"></i></button>
+                                
                             </td>
                         </tr>
                     <?php 
@@ -175,15 +185,22 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
                             <td class="documento-tipo"><?= htmlspecialchars($documento['tipo']); ?></td>
                             <td class="documento-fecha"><?= htmlspecialchars($documento['fecha_creacion']); ?></td>
                             <td class="documento-accion">
-                                <button class="btn_accion" data-id="doc-<?= $documento['id_documento'] ?>"><i class="bi bi-eye"></i></button>
+                                <button class="btn_accion btn_ver_modal escritorio" onclick="verDocumento('<?= urlencode($documento['titulo'] . '.' . $documento['tipo']) ?>', '<?= strtolower($documento['tipo']) ?>')">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+
+                                    <button class="btn_accion btn_ver_nueva_ventana movil" onclick="abrirNuevaVentana('<?= urlencode($documento['titulo'] . '.' . $documento['tipo']) ?>')">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+
+                             
                                
                             </td>
                         </tr>
                     <?php 
                         endforeach;
                     endif;
-                    
-                    // Mostrar mensaje si no hay contenido
+                  
                     if (!$tiene_contenido): 
                     ?>
                         <tr>
@@ -219,7 +236,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
         </div>
     </div>
 
-  <div id="modal_escanear_subir">
+    <div id="modal_escanear_subir">
         <div id="modal_contenido">
             <span class="cerrar_modal_esc_sub ">&times;</span>
             
@@ -240,6 +257,14 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
                     </a>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Modal para visualizar documentos -->
+    <div id="modal_visor">
+        <div id="modal_visor_content">
+            <span id="cerrar_visor">&times;</span>
+            <iframe id="visor_documento" src=""></iframe>
         </div>
     </div>
 
@@ -267,6 +292,22 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
         </div>
     </div>-->
 
+
+    <!-- modal archivo en revision -->
+<?php if($mostrar_modal): ?>
+       <div class="modal-overlay" id="modalOverlay">
+            <div class="modal">
+            <span class="close" id="mrd">&times;</span>
+            <div class="icon"><i class="bi bi-check2-circle"></i></div>
+            <h2>Subida completada</h2>
+            <p>Tu documento ha sido recibido y ya está en revisión por un auditor.</p>
+            </div>
+        </div>
+ <?php endif; ?>
+
     <script src="../../../componentes/js/documentador/tabla_click.js"></script>
+    <script src="../../../componentes/js/documentador/visor.js"></script>
+    
+   
 </body>
 </html>

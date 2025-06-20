@@ -24,4 +24,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+
+    // modal, mensaje de subida exitoso
+
+    const m_subida = document.getElementById("modalOverlay")
+    const b_subida = document.getElementById("mrd"
+
+    
+    )
+    
+    b_subida.addEventListener("click", ()=>{
+           if(m_subida.style.display == 'none'){
+            m_subida.style.display='flex';
+        } else{
+            m_subida.style.display='none';
+        }
+    })
+
+    
+
+
+
 });

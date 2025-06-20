@@ -21,6 +21,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
     <link rel="stylesheet" href="../../../componentes/css/documentador/modal_expediente.css">
     <link rel="stylesheet" href="../../../componentes/css/auditor/archivos_auditor.css">
+    <link rel="stylesheet" href="../../../componentes/css/documentador/visor.css">
     <script src="../../../componentes/js/auditor/auditor_ver_docs.js"></script>
     <script src="../../../componentes/js/admin/panel.js"></script>
 </head>
@@ -148,12 +149,8 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
                             <td class="documento-tipo">expediente</td>
                             <td class="documento-fecha"><?= htmlspecialchars($carpeta['fecha_creacion']); ?></td>
                             <td class="documento-accion">
-                                <button class="btn_accion" data-id="<?= $carpeta['id_expediente']; ?>"><i class="bi bi-three-dots-vertical"></i></button>
-                                <div class="action-dropdown-menu">
-                                    <button class="action-dropdown-item edit-expediente">
-                                        <i class="bi bi-pencil-square"></i> Editar
-                                    </button>
-                                </div>
+                                <button class="btn_accion" data-id="<?= $carpeta['id_expediente']; ?>"><i class="bi bi-pencil-square"></i></button>
+                               
                             </td>
                         </tr>
                     <?php 
@@ -173,22 +170,13 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
                             <td class="documento-tipo"><?= htmlspecialchars($documento['tipo']); ?></td>
                             <td class="documento-fecha"><?= htmlspecialchars($documento['fecha_creacion']); ?></td>
                             <td class="documento-accion">
-                                <button class="btn_accion" data-id="doc-<?= $documento['id_documento'] ?>"><i class="bi bi-eye"></i></button>
-                                <div class="action-dropdown-menu">
-                                    <button class="action-dropdown-item view-document">
-                                        <i class="bi bi-eye"></i> Ver
-                                    </button>
-                                    <button class="action-dropdown-item delete-document">
-                                        <i class="bi bi-trash3"></i> Eliminar
-                                    </button>
-                                    <form method="post" action="../../backend/auditor/gestor_archivos_auditor.php" style="display:inline;">
-                                        <input type="hidden" name="accion" value="descargar_documento">
-                                        <input type="hidden" name="documento_id" value="<?= $documento['id_documento'] ?>">
-                                        <button type="submit" class="action-dropdown-item">
-                                            <i class="bi bi-download"></i> Descargar
-                                        </button>
-                                    </form>
-                                </div>
+                                <button class="btn_accion btn_ver_modal escritorio" onclick="verDocumento('<?= urlencode($documento['titulo'] . '.' . $documento['tipo']) ?>', '<?= strtolower($documento['tipo']) ?>')">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+
+                                <button class="btn_accion btn_ver_nueva_ventana movil" onclick="abrirNuevaVentana('<?= urlencode($documento['titulo'] . '.' . $documento['tipo']) ?>')">
+                                    <i class="bi bi-eye"></i>
+                                </button>
                             </td>
                         </tr>
                     <?php 
@@ -231,43 +219,13 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
         </div>
     </div>
 
-    <!-- Modal para subir documento 
-    <div id="modal_documento" class="modal">
-        <form action="../../backend/auditor/gestor_archivos_auditor.php" method="post" enctype="multipart/form-data" id="upload-form">
-            <div class="file-uploader">
-                <span class="close">&times;</span>
-                <h2>Subir archivo</h2>
-            
-                <div id="upload-area" class="upload-area">
-                    <input type="file" id="file-input" name="file-input">
-                    <label for="file-input" class="upload-label">
-                        <i class="bi bi-cloud-upload"></i>
-                        <p>Arrastre y suelte archivos o haga clic para cargar</p>
-                    </label>
-                </div>
-                
-                <input type="hidden" name="expediente_id" value="<?= $expediente_seleccionado ?>">
-                
-                <div class="form-group">
-                    <label class="form-label" for="documentCategory">Categoría del documento:</label>
-                    <select class="form-select" id="documentCategory" name="categoria" required>
-                        <option value="" disabled selected>Seleccione una categoría</option>
-                        <option value="estrategicos">Estratégicos</option>
-                        <option value="operativos">Operativos</option>
-                        <option value="soporte">Soporte</option>
-                        <option value="legales_contractuales">Legales</option>
-                        <option value="financieros_contables">Financieros</option>
-                        <option value="correspondencia">Correspondencia</option>
-                    </select>
-                </div>
-                
-                <div id="action-buttons-container" style="display: none; margin-top: 1rem;">
-                    <button id="cancel-upload" type="button" style="margin-right: 1rem;">Cancelar</button>
-                    <button id="upload-file" type="submit" name="accion" value="subir_documento">Subir</button>
-                </div>
-            </div>
-        </form>
-    </div>-->
+    <!-- Modal para visualizar documentos -->
+    <div id="modal_visor">
+        <div id="modal_visor_content">
+            <span id="cerrar_visor">&times;</span>
+            <iframe id="visor_documento" src=""></iframe>
+        </div>
+    </div>
 
     <!-- Modal para editar expediente 
     <div id="editModal" class="modal">
@@ -293,6 +251,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
         </div>
     </div>-->
 
-        <script src="../../../componentes/js/documentador/tabla_click.js"></script>
+    <script src="../../../componentes/js/documentador/tabla_click.js"></script>
+    <script src="../../../componentes/js/documentador/visor.js"></script>
 </body>
 </html>

@@ -33,8 +33,8 @@ AutorizacionRol('administrador');
     <main id="cuerpo">
         <nav id="menu-lateral" class="menu-lateral">
             <figure id="img_menu">
-                <img src="../../../componentes/img/Imagen de WhatsApp 2025-05-01 a las 11.52.47_deffc20c.jpg" alt="imagen del menu lateral">
-            </figure>
+              <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
+        </figure>
             <ul>
 
                 <li>
@@ -48,7 +48,7 @@ AutorizacionRol('administrador');
                     <a href="#" id="gestion-usuarios" class="activo"><i class="bi bi-people"></i> Gestión Usuarios</a>
                     <ul class="sub_menu gestion-submenu" id="sub_menu">
                         <li><a href="../../vistas/admin/creacion_usuario.php"><i class="bi bi-person-plus"></i> Crear usuario</a></li>
-                        <li><a href="../admin/ver_usuarios.php"><i class="bi bi-eye"></i> Ver usuario</a></li>
+                        <li><a href="../admin/ver_usuarios.php" class="submenu-activo"><i class="bi bi-eye"></i> Ver usuario</a></li>
                     </ul>
                 </li>
                 <li><a href="../admin/admin_reporte.php"><i class="bi bi-file-earmark-text"></i> Reportes</a></li>

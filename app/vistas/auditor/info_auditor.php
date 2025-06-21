@@ -50,7 +50,7 @@ AutorizacionRol('auditor');
                 </li>
                
                 <li>
-                    <a href="">
+                    <a href="../../vistas/auditor/pista_auditoria.php">
                         <i class="bi bi-list-check"></i>
                         Pista auditoria
                     </a>

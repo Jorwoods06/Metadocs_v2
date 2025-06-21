@@ -50,7 +50,7 @@ AutorizacionRol('auditor');
                 </li>
                
                 <li>
-                    <a href="">
+                    <a href="../../vistas/auditor/pista_auditoria.php">
                         <i class="bi bi-list-check"></i>
 
                         Pista auditoria
@@ -113,7 +113,7 @@ AutorizacionRol('auditor');
                     </div>
                 </a>
 
-                <a href="" class="card-link">
+                <a href="../../vistas/auditor/pista_auditoria.php" class="card-link">
                     <div class="card-opcion">
                         <img src="https://cdn-icons-png.flaticon.com/128/15400/15400355.png" alt="pista de auditoria">
                         <label> pista de auditoría</label>

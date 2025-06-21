@@ -13,8 +13,10 @@ AutorizacionRol('auditor');
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
-    <link rel="stylesheet" href="../../../componentes/css/auditor/solicitar.css">
+    <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
+    <script src="../../../componentes/js/documentador/ver_documentos.js"></script>
     <script src="../../../componentes/js/admin/panel.js"></script>
+    <link rel="stylesheet" href="../../../componentes/css/auditor/inicio_auditor.css">
 </head>
 <body>
     <header id="cabezote">
@@ -29,26 +31,26 @@ AutorizacionRol('auditor');
             </figure>
             <ul>
                 <li>
-                    <a href="auditor_inicio.php" >
+                    <a href="../../vistas/auditor/auditor_inicio.php">
                         <i class="bi bi-house-door"></i>
                         Inicio
                     </a>
                 </li>
                 <li class="gestion_usuario">
-                    <a href="#" id="gestion-usuarios"  class="activo" >
-                        <i class="bi bi-file-earmark-text" ></i>
+                    <a href="#" id="gestion-usuarios" >
+                        <i class="bi bi-file-earmark-text"></i>
                         Gestión Documentos
                     </a>
                     <ul class="sub_menu gestion-submenu" id="sub_menu">
                         <li><a href="recibir_documentos.php"><i class="bi bi-envelope-paper"></i>Solicitudes</a></li>
                         <li><a href="archivos_auditor.php"><i class="bi bi-eye"></i> Ver documentos</a></li>
-                        <li><a href="#"><i class="bi bi-file-earmark-plus"></i> Solicitar documentos</a></li>
+                        <li><a href="solicitar_documento.php"><i class="bi bi-file-earmark-plus"></i> Solicitar documentos</a></li>
                          <li><a href=""> <i class="bi bi-clock-history"></i> Archivo historico</a></li>
                     </ul>
                 </li>
                
                 <li>
-                    <a href="../../vistas/auditor/pista_auditoria.php">
+                    <a href="#"  class="activo">
                         <i class="bi bi-list-check"></i>
 
                         Pista auditoria
@@ -81,50 +83,8 @@ AutorizacionRol('auditor');
        
         <section id="admin-contenido" class="admin">
 
-     <h1>Solicitar documentos</h1>
-
-        <div class="formulario-solicitud">
-            <form action="ruta_a_guardar.php" method="post">
-                <div class="campo">
-                    <label for="tipo">Tipo de documento:</label>
-                    <select id="tipo" name="tipo">
-                        <option value="">Seleccione...</option>
-                        <option value="cedula">Cédula de Ciudadanía</option>
-                        <option value="rut">RUT</option>
-                        <option value="certificado_laboral">Certificado Laboral</option>
-                        <option value="certificado_ingresos">Certificado de Ingresos</option>
-                        <option value="referencias_comerciales">Referencias Comerciales</option>
-                        <option value="extractos_bancarios">Extractos Bancarios</option>
-                        <option value="autorizacion_centrales">Autorización Centrales de Riesgo</option>
-                        <option value="declaracion_renta">Declaración de Renta</option>
-                        <option value="estados_financieros">Estados Financieros</option>
-                        <option value="poder_representacion">Poder de Representación</option>
-                    </select>
-                </div>
-
-                <div class="campo">
-                    <label for="descripcion">Descripción:</label>
-                    <textarea id="descripcion" name="descripcion" placeholder="Describe qué documento necesitas y para qué."></textarea>
-                </div>
-               
-                <div class="campo">
-                    <label for="responsable">Responsable:</label>
-                    <div class="usuario-selector">
-                        <input type="text" 
-                               id="responsable" 
-                               name="responsable_display" 
-                               class="usuario-input" 
-                               placeholder="Buscar usuario..." 
-                               autocomplete="off">
-                        <input type="hidden" name="responsable" id="responsable_id">
-                        <div class="usuario-dropdown" id="usuario-dropdown"></div>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn-solicitar">Solicitar documento</button>
-            </form>
-        </div>
-</section>
+            <h1>malparado</h1>
+        </section>
 
 
 

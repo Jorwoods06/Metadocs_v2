@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:3306
--- Tiempo de generación: 19-06-2025 a las 03:58:09
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 20-06-2025 a las 18:41:55
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -238,6 +238,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `rol`, `nombres`, `apellidos`, `correo`, `contraseña`, `fecha_creacion`, `fecha_actualizacion`, `id_area`, `cedula`, `telefono`, `estado`) VALUES
+(11, 'administrador', 'juanes', 'montenegro', 'juanes@gmail.com', '21e88dca84b8346fdbc455e332de9ee5', '2025-06-20 00:03:06', '2025-06-20 00:03:06', 4, '1006429235', '3172323357', 'activo'),
 (26, 'auditor', 'jorge xd', 'Galeano', 'jorgemulato206@gmail.com', 'e0a0bbdf18ef381b4c5924026a79bb06', '2025-01-03 20:34:03', '2025-06-15 16:57:14', 4, '1114240641', '3145062530', 'activo'),
 (40, 'documentador', 'metadocs pruebas', 'Bv', 'metadocs7@gmail.com', 'e13453ceb91a91816509a2b74ff97785', '2025-01-11 17:14:45', '2025-06-05 17:53:19', 4, '159', '3145062530', 'activo'),
 (51, 'administrador', 'Jorge Admin', 'Admin', 'dg244049@gmail.com', '5a0f035db329cea241ae3509ad2b824f', '2025-06-02 17:15:57', '2025-06-15 10:08:06', 3, '14445454', '314506253', 'activo'),

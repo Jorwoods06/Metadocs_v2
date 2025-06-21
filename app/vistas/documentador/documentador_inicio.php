@@ -88,14 +88,14 @@ AutorizacionRol('documentador');
                 
                 <a href="ver_documentos.php" class="card-link">
                     <div class="card-opcion">
-                        <img src="https://cdn-icons-png.flaticon.com/128/10650/10650271.png" alt="ver documentos">
+                        <img src="https://cdn-icons-png.flaticon.com/128/10650/10650289.png" alt="ver documentos">
                         <label>Ver documentos</label>
                     </div>
                 </a>
 
                  <a href="info_documentador.php" class="card-link">
                     <div class="card-opcion">
-                        <img src="https://cdn-icons-png.flaticon.com/128/5645/5645106.png" alt="informacion del documentador">
+                        <img src="https://cdn-icons-png.flaticon.com/128/5655/5655237.png" alt="informacion del documentador">
                         <label>Informacion del documentador</label>
                     </div>
                 </a>

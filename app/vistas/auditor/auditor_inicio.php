@@ -92,7 +92,7 @@ AutorizacionRol('auditor');
                 
                 <a href="solicitar_documento.php" class="card-link">
                     <div class="card-opcion">
-                        <img src="https://cdn-icons-png.flaticon.com/128/7871/7871039.png" alt="Solicitar documentos">
+                        <img src="https://cdn-icons-png.flaticon.com/128/8212/8212410.png" alt="Solicitar documentos">
                         <label>Solicitar documentos</label>
                     </div>
                 </a>
@@ -100,7 +100,7 @@ AutorizacionRol('auditor');
                 <a href="recibir_documentos.php" class="card-link">
                     <div class="card-opcion">
 
-                        <img src="https://cdn-icons-png.flaticon.com/128/15136/15136033.png" alt="Solicitudes">
+                        <img src="https://cdn-icons-png.flaticon.com/128/12824/12824819.png" alt="Solicitudes">
                         <label>Solicitudes</label>
                     </div>
                 </a>
@@ -108,7 +108,7 @@ AutorizacionRol('auditor');
 
                  <a href="archivos_auditor.php" class="card-link">
                     <div class="card-opcion">
-                        <img src="https://cdn-icons-png.flaticon.com/128/12094/12094609.png" alt="archivo historico">
+                        <img src="https://cdn-icons-png.flaticon.com/128/11907/11907348.png" alt="archivo historico">
                         <label> archivo histórico</label>
                     </div>
                 </a>
@@ -122,7 +122,7 @@ AutorizacionRol('auditor');
 
                 <a href="info_auditor.php" class="card-link">
                     <div class="card-opcion">
-                        <img src="https://cdn-icons-png.flaticon.com/128/747/747968.png" alt="Informacion auditor">
+                        <img src="https://cdn-icons-png.flaticon.com/128/5655/5655237.png" alt="Informacion auditor">
                         <label>Información del auditor</label>
                     </div>
                 </a>

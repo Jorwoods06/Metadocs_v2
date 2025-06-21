@@ -17,6 +17,7 @@ AutorizacionRol('auditor');
     <script src="../../../componentes/js/documentador/ver_documentos.js"></script>
     <script src="../../../componentes/js/admin/panel.js"></script>
     <link rel="stylesheet" href="../../../componentes/css/auditor/inicio_auditor.css">
+    <link rel="stylesheet" href="../../../componentes/css/auditor/pista_auditoria.css">
 </head>
 <body>
     <header id="cabezote">
@@ -83,7 +84,29 @@ AutorizacionRol('auditor');
        
         <section id="admin-contenido" class="admin">
 
-            <h1>malparado</h1>
+            <h1>Pista auditoria</h1>
+            <h2></h2>
+            <div class="tabla-contenedor">
+                <table class="tabla-auditoria">
+                    <thead>
+                        <tr>
+                            <th>USUARIO</th>
+                            <th>ACCION</th>
+                            <th>ENTIDAD</th>
+                            <th>FECHA</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>JORGE</td>
+                            <td>LABORAL</td>
+                            <td>ESTUDIANTE</td>
+                            <td>20-06-2025</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
 
 

@@ -72,61 +72,58 @@ require_once "..\..\backend/administrador/interfaz_usuario.php"
             </ul>
         </nav>
        
-        <section class="contenido-usuario">
-            <h1 class="titulo-usaurio">Informacion del Usuario</h1>
-            <div class="info-usuario">
-                <div class="info-usuarios">
-                    <img src="../../../componentes/img/usuario.png" alt="logo de usuario" class="avatar-usuario">
-                    <div class="nombre-usuario"><?=htmlspecialchars($fila["nombres"])?></div>
+            <section class="contenido-usuario">
+                <h1 class="titulo-usaurio">Informacion del Usuario</h1>
+                <div class="contenedor-general">
+                    <div class="info-usuarios">
+                        <img src="../../../componentes/img/usuario.png" alt="logo de usuario" class="avatar-usuario">
+                        <div class="nombre-usuario"><?=htmlspecialchars($fila["nombres"])?></div>
+                    </div>
+
+                    <div class="contenedor-datos"> 
+                        <div class="datos">
+                            <label>Descripción laboral</label>
+                            <div class="valor"><?=htmlspecialchars($mensaje)?></div>
+                        </div>
+
+                        <div class="datos">
+                            <label>Nombre</label>
+                            <div class="valor"><?= htmlspecialchars($fila["nombres"]) ?></div>  
+                        </div>
+
+                        <div class="datos">
+                            <label>Apellido</label>
+                            <div class="valor"><?= htmlspecialchars($fila["apellidos"]) ?></div>
+                        </div>
+
+                        <div class="datos">
+                            <label>Correo Electrónico</label>
+                            <div class="valor"><?= htmlspecialchars($fila["correo"]) ?></div>
+                        </div>
+
+                        <div class="datos">
+                            <label>Número telefónico</label>
+                            <div class="valor"><?= htmlspecialchars($fila["telefono"]) ?></div>
+                        </div>
+
+                        <div class="datos">
+                            <label>Cédula</label>
+                            <div class="valor"><?= htmlspecialchars($fila["cedula"]) ?></div>
+                        </div>
+
+                        <div class="datos">
+                            <label>Área</label>
+                            <div class="valor"><?= htmlspecialchars($fila["area"]) ?></div>
+                        </div>
+
+                        <div class="datos">
+                            <label>Rol</label>
+                            <div class="valor"><?= htmlspecialchars($fila["rol"]) ?></div>
+                        </div>
+                    </div> <!-- <- Cierre correcto -->
                 </div>
-            
-              <div class="contenedor-datos">
 
-            <div class="datos">
-                <label>Descripción laboral</label>
-                <div class="valor">
-                   <?=htmlspecialchars($mensaje)?>
-                </div>
-            </div>
-
-            <div class="datos">
-                <label>Nombre</label>
-                <div class="valor"><?= htmlspecialchars($fila["nombres"]) ?></div>  
-            </div>
-
-            <div class="datos">
-                <label>Apellido</label>
-                <div class="valor"><?= htmlspecialchars($fila["apellidos"]) ?></div>
-            </div>
-
-             <div class="datos">
-                <label>Correo Electronico</label>
-                <div class="valor"><?= htmlspecialchars($fila["correo"]) ?></div>
-            </div>
-
-             <div class="datos">
-                <label>Numero telefónico</label>
-                <div class="valor"><?= htmlspecialchars($fila["telefono"]) ?></div>
-            </div>
-            
-            <div class="datos">
-                <label>Cedula</label>
-                <div class="valor"><?= htmlspecialchars($fila["cedula"]) ?></div>
-            </div>
-
-            <div class="datos">
-                <label>Area</label>
-                <div class="valor"><?= htmlspecialchars($fila["area"]) ?></div>
-            </div>
-
-            <div class="datos">
-                <label>Rol</label>
-                <div class="valor"><?= htmlspecialchars($fila["rol"]) ?></div>
-            </div>
-
-        </div>
-            </div>
-        </section>
+            </section>
     </main>
 </body>
 </html>

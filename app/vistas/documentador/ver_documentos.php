@@ -33,7 +33,7 @@ if (isset($_SESSION['show_modal']) && $_SESSION['show_modal'] === true) {
     <link rel="stylesheet" href="../../../componentes/css/documentador/modal_expediente.css">
     <link rel="stylesheet" href="../../../componentes/css/auditor/modal_scanear_subir_doc.css">
     <link rel="stylesheet" href="../../../componentes/css/documentador/visor.css">
-    <link rel="stylesheet" href="../../../componentes/css/documentador/archivo_revision.css">
+   
     <script src="../../../componentes/js/documentador/ver_documentos.js"></script>
     <script src="../../../componentes/js/admin/panel.js"></script>
     
@@ -307,7 +307,7 @@ if (isset($_SESSION['show_modal']) && $_SESSION['show_modal'] === true) {
 
     <script src="../../../componentes/js/documentador/tabla_click.js"></script>
     <script src="../../../componentes/js/documentador/visor.js"></script>
-    
+    <?php include '../../vistas/log/modal_cerrar_sesion.php'; ?>
    
 </body>
 </html>

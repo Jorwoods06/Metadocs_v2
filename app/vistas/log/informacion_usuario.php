@@ -125,5 +125,6 @@ require_once "..\..\backend/administrador/interfaz_usuario.php"
 
             </section>
     </main>
+    <?php include '../../vistas/log/modal_cerrar_sesion.php'; ?>
 </body>
 </html>

@@ -253,5 +253,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
 
     <script src="../../../componentes/js/documentador/tabla_click.js"></script>
     <script src="../../../componentes/js/documentador/visor.js"></script>
+
+    <?php include '../../vistas/log/modal_cerrar_sesion.php'; ?>
 </body>
 </html>

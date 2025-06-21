@@ -275,5 +275,6 @@ AutorizacionRol('auditor');
     </div>
 </div>
     <script src="../../../componentes/js/documentador/visor.js" ></script>
+    <?php include '../../vistas/log/modal_cerrar_sesion.php'; ?>
 </body>
 </html>

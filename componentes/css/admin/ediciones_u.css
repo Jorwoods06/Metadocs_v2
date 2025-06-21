@@ -72,7 +72,7 @@
   border: 1px solid #ccc;
 }
 
-.modal-content button {
+.modal-content .btn {
   background-color: #2a4860;
   width: 50%;
   color: #fff;
@@ -83,7 +83,7 @@
   align-self: flex-end;
 }
 
-.modal-content button:hover {
+.modal-content .btn:hover {
   background-color: #2a4860;
 }
 

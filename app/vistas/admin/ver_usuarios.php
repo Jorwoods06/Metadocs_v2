@@ -149,7 +149,7 @@ AutorizacionRol('administrador');
                     <option value="otro">Otro</option>
                 </select>
 
-                <button type="submit" class="btn_editar">Guardar cambios</button>
+                <button type="submit" class="btn btn_editar">Guardar cambios</button>
             </form>
         </div>
     </div>
@@ -169,5 +169,8 @@ AutorizacionRol('administrador');
             
         </form>
     </div>
+
+    <?php include '../../vistas/log/modal_cerrar_sesion.php'; ?>
 </body>
+
 </html>

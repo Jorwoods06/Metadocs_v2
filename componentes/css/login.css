@@ -18,7 +18,7 @@ body {
     font-size: 17px;
     width: 100%;
     overflow-x: hidden;
-    overflow-y: auto; 
+  
 }
 
 figure {
@@ -47,7 +47,7 @@ figure {
     width: 100%;
     margin: 0 auto;
     gap: 10px;
-    overflow-y: auto; 
+    
 }
 
 #form input {
@@ -201,7 +201,7 @@ figure {
         margin: auto;
         max-width: 500px; 
         height: 100%;
-        overflow-y: auto; 
+       
     }
 
     #form figure {

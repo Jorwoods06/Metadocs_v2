@@ -83,4 +83,5 @@ AutorizacionRol('administrador');
 
 </main>
 </body>
+    <?php include '../../vistas/log/modal_cerrar_sesion.php'; ?>
 </html>

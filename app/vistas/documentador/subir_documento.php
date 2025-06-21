@@ -160,7 +160,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
         </section>
 
     </main>
-
+    <?php include '../../vistas/log/modal_cerrar_sesion.php'; ?>
     <script src="../../../componentes/js/auditor/subir_archivo.js"> </script>
 </body>
 </html>

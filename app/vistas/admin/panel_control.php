@@ -139,7 +139,9 @@ AutorizacionRol('administrador');
 
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </main>
+
     
+    <?php include '../../vistas/log/modal_cerrar_sesion.php'; ?>
 </body>
 
 </html>

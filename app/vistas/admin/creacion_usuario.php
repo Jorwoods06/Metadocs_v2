@@ -208,5 +208,6 @@ unset($_SESSION['correo_existente']);
 
             <script src="../../../componentes/js/log/coincidir_contraseña.js"></script>
     </main>
+    <?php include '../../vistas/log/modal_cerrar_sesion.php'; ?>
 </body>
 </html>

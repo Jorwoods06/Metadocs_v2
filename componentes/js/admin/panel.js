@@ -63,4 +63,17 @@ document.addEventListener("DOMContentLoaded", function () {
             this.classList.add("selected");
         });
     });
+
+
+
+    const btn_cerrar = document.getElementById("cerrar_sesion");
+    const modal = document.getElementById("modal");
+
+    btn_cerrar.addEventListener("click", ()=>{
+        if (modal.style.display == 'flex') {
+            modal.style.display = 'none';
+        }else{
+            modal.style.display = 'flex';
+        }
+    })
 });

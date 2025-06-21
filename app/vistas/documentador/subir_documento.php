@@ -42,11 +42,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
                         <i class="bi bi-person"></i>Usuario
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
-                        <li>
-                            <form action="../../backend/login/cerrar_sesion.php" method="post">
-                                <button type="submit"><i class="bi bi-box-arrow-left"></i>Cerrar sesión</button>
-                            </form>
-                        </li>
+                          <li><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
                         <li><a href="info_documentador.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
                         <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
                     </ul>

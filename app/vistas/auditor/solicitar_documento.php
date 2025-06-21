@@ -42,7 +42,7 @@ AutorizacionRol('auditor');
                     <ul class="sub_menu gestion-submenu" id="sub_menu">
                         <li><a href="recibir_documentos.php"><i class="bi bi-envelope-paper"></i>Solicitudes</a></li>
                         <li><a href="archivos_auditor.php"><i class="bi bi-eye"></i> Ver documentos</a></li>
-                        <li><a href="#"><i class="bi bi-file-earmark-plus"></i> Solicitar documentos</a></li>
+                        <li><a href="#" class="submenu-activo"><i class="bi bi-file-earmark-plus"></i> Solicitar documentos</a></li>
                          <li><a href=""> <i class="bi bi-clock-history"></i> Archivo historico</a></li>
                     </ul>
                 </li>

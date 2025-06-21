@@ -22,7 +22,7 @@ require_once "..\..\backend/administrador/interfaz_usuario.php"
     <main id="cuerpo">
         <nav id="menu-lateral" class="menu-lateral">
             <figure id="img_menu">
-                <img src="../../../componentes/img/Imagen de WhatsApp 2025-05-01 a las 11.52.47_deffc20c.jpg" alt="imagen del menu lateral">
+                 <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
             </figure>
             <ul>
                 <li>
@@ -56,7 +56,7 @@ require_once "..\..\backend/administrador/interfaz_usuario.php"
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
                         <li><form action="../../backend/login/cerrar_sesion.php" method="post"><button type="submit"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</button></form></li>
-                        <li><a href="../../vistas/admin/informacion_usuario.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
+                        <li><a href="../../vistas/admin/informacion_usuario.php" class="submenu-activo"><i class="bi bi-info-circle"></i> Info usuario</a></li>
                         <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
 
                        

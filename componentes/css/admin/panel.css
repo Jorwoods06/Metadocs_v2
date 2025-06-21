@@ -148,42 +148,17 @@ body {
   z-index: 1;
 }
 
+/* Elemento activo del submenú - borde azul oscuro estático */
+.sub_menu a.submenu-activo::before {
+  background-color: #2A4860 !important; /* Color azul oscuro permanente */
+}
+
 /* Hover - cambia el color del borde parcial */
 .sub_menu a:hover::before {
-   background-color: #2A4860; /* Color rojo por defecto en hover */
- /* Color rojo por defecto en hover */
+   background-color: #2A4860; /* Color azul oscuro por defecto en hover */
 }
 
 /* Estados activos con diferentes colores */
-.sub_menu a.activo-submenu::before {
-  background-color: #4CAF50; /* Verde para activo */
-}
-
-/* Clases adicionales para diferentes colores según la sección */
-.sub_menu a.color-azul:hover::before,
-.sub_menu a.color-azul.activo-submenu::before {
-  background-color: #2196F3; /* Azul */
-}
-
-.sub_menu a.color-verde:hover::before,
-.sub_menu a.color-verde.activo-submenu::before {
-  background-color: #4CAF50; /* Verde */
-}
-
-.sub_menu a.color-naranja:hover::before,
-.sub_menu a.color-naranja.activo-submenu::before {
-  background-color: #FF9800; /* Naranja */
-}
-
-.sub_menu a.color-purpura:hover::before,
-.sub_menu a.color-purpura.activo-submenu::before {
-  background-color: #9C27B0; /* Púrpura */
-}
-
-.sub_menu a.color-rojo:hover::before,
-.sub_menu a.color-rojo.activo-submenu::before {
-  background-color: #F44336; /* Rojo */
-}
 
 .sub_menu a .bi {
   font-size: 1.1rem;
@@ -220,8 +195,13 @@ body {
   z-index: 1;
 }
 
+/* Botón activo del submenú */
+.sub_menu form button.submenu-activo::before {
+  background-color: #2A4860 !important;
+}
+
 .sub_menu form button:hover::before {
-  background-color: #FF4444;
+  background-color: #2A4860;
 }
 
 .sub_menu form button .bi {
@@ -279,6 +259,14 @@ body {
 
 /* ===== ESCRITORIO ===== */
 @media screen and (min-width: 1024px) {
+
+   #admin-contenido {
+      margin-left: 16%;
+      padding: 30px;
+     
+    
+    }
+
   #cabezote {
     display: none;
   }

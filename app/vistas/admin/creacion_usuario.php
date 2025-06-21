@@ -48,7 +48,7 @@ unset($_SESSION['correo_existente']);
                         <i class="bi bi-people"></i> Gestión Usuarios
                     </a>
                     <ul class="sub_menu gestion-submenu" id="sub_menu">
-                        <li><a href="../../vistas/admin/creacion_usuario.php"><i class="bi bi-person-plus activo-submenu"></i> Crear usuario</a></li>
+                        <li><a href="../../vistas/admin/creacion_usuario.php" class="submenu-activo"><i class="bi bi-person-plus activo-submenu"></i> Crear usuario</a></li>
                         <li><a href="../admin/ver_usuarios.php"><i class="bi bi-eye"></i> Ver usuario</a></li>
                     </ul>
                 </li>

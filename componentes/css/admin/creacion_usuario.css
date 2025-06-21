@@ -1,153 +1,236 @@
-
-
-section.admin {
-    width: 100%;
-    padding: 2rem 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+body {
+    display: flex;
+    min-height: 100vh;
+}
 .contenedor-formulario {
-    max-width: 960px;
+    max-width: 900px;
     width: 100%;
-    background: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 0 16px rgba(0, 0, 0, 0.05);
+    padding: 0 20px;
 }
 
 h2 {
-    font-size: clamp(1.5rem, 2.5vw, 2.5rem);
     color: #2c3e50;
-    margin-bottom: 0.25rem;
+    margin-bottom: 5px;
+    font-size: 2rem;
+    
 }
 
 .subtitle {
-    font-size: clamp(0.9rem, 2vw, 1rem);
     color: #7f8c8d;
-    margin-bottom: 2rem;
+    margin-bottom: 30px;
+    font-size: 14px;
 }
 
-/* FORM */
-form {
-    width: 100%;
-}
 
 .form-row {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    gap: 20px;
+    margin-bottom: 20px;
+    align-items: flex-start;
 }
 
+/* Grupos de campos */
 .form-group {
-    flex: 1 1 250px;
+    flex: 1;
     display: flex;
     flex-direction: column;
 }
 
+/* Labels */
 label {
-    margin-bottom: 0.5rem;
+    display: block;
+    margin-bottom: 8px;
     font-weight: 500;
-    font-size: clamp(0.85rem, 1.8vw, 1rem);
     color: #2c3e50;
+    font-size: 14px;
 }
 
+/* Inputs y selects */
 input, select {
-    padding: 0.75rem 1rem;
-    font-size: clamp(0.9rem, 2vw, 1rem);
+    width: 100%;
+    padding: 12px 15px;
     border: 1px solid #ddd;
     border-radius: 6px;
-    width: 100%;
+    font-size: 14px;
+    outline: none;
     transition: border-color 0.2s ease;
+    height: 45px;
 }
+
 
 input::placeholder {
     color: #aaa;
 }
 
-/* Cédula campo único y responsive */
-.form-group.cedula-unico {
-    display: block;
+/* Selects personalizados */
+select {
+    background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' fill='%23666' viewBox='0 0 16 16'><path d='M8 10L4 6h8l-4 4z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px;
+    padding-right: 35px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
-/* Botón de acción */
+
+.form-row:nth-child(5) {
+    display: flex;
+    gap: 15px;
+}
+
+.form-row:nth-child(5) .form-group {
+    flex: 1;
+}
+
+
+
+
+#mensaje_err {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+}
+
+/* Botones de acción */
 .form-actions {
     display: flex;
     justify-content: flex-end;
-    padding-top: 1.5rem;
+    padding-top: 20px;
     border-top: 1px solid #eee;
 }
 
 .btn-crear {
     background-color: #3D688A;
-    color: white;
+    color: #fff;
     border: none;
-    padding: 0.75rem 2rem;
+    padding: 12px 30px;
     border-radius: 6px;
-    font-size: 1rem;
-    font-weight: 600;
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s ease;
     min-width: 150px;
 }
 
 .btn-crear:hover {
     background-color: #2a4860;
-    transform: translateY(-2px);
+    transform: translateY(-1px);
     box-shadow: 0 4px 8px rgba(61, 104, 138, 0.3);
 }
 
-/* Mensaje de error */
-#mensaje_err {
-    color: #dc3545;
-    font-size: 0.8rem;
-    margin-top: 0.5rem;
-    display: none;
+
+.mensaje_exito, .correo_existente {
+    position: fixed;
+    top: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #d4edda;
+    color: #155724;
+    padding: 22.5px 18px;
+    border: 1px solid #c3e6cb;
+    border-radius: 4.5px;
+    box-shadow: 0 3.6px 5.4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    animation: fadeIn 0.5s ease-out, fadeOut 0.5s ease-in 4.5s forwards;
+    min-width: 300px;
+    text-align: center;
 }
 
-/* Campo con error visual */
-input.input-error {
-    border-color: #dc3545;
+.mensaje_exito p, .correo_existente p {
+    margin: 0 auto;
+}
+
+.correo_existente {
+    background-color: #FFCDD2;
+    color: #B71C1C;
+    border: 1px solid #E57373;
+}
+
+
+input#email.input-error {
+    border: 1.62px solid #dc3545;
     background-color: #fff5f5;
 }
 
-/* ===================== RESPONSIVE ===================== */
 
-/* Móviles pequeños (hasta 600px) */
-@media (max-width: 599px) {
-    .form-row {
-        flex-direction: column;
+.mensaje_err { 
+    display: none;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-9px);
     }
-
-    .btn-crear {
-        width: 100%;
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
     }
 }
 
-/* Tabletas vertical/horizontal (600px - 1023px) */
-@media (min-width: 600px) and (max-width: 1023px) {
-    input, select {
-        padding: 1rem 1.5rem;
-    }
-
-    h2 {
-        font-size: 2rem;
-    }
-
-    .subtitle {
-        font-size: 1rem;
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-9px);
     }
 }
-
-/* Escritorio y pantallas grandes */
 @media (min-width: 1024px) {
-    .contenedor-formulario {
-        padding: 3rem;
+    .cedula-grupo2 {
+    display: none;
     }
+}
+@media (max-width: 767px) {
+    .cedula-grupo {
+    display: none;
+    }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+    .cedula-grupo2 {
+    display: none;
+    }
+    input, select {
+    font-size: 20px;
+    padding: 20px 28px;
+    height: 64px;
+    }
+    input::placeholder {
+    font-size: 20px;
+    }
+    label {
+    font-size: 20px;
+    }
+}
 
+@media (min-width: 1024px) and (max-width: 1366px) {
+    input, select {
+        font-size: 20px;
+        padding: 20px 28px;
+        height: 64px;
+    }
+    input::placeholder {
+        font-size: 20px;
+    }
+    label {
+        font-size: 20px;
+    }
+    h2 {
+        font-size: 2.5rem;
+    }
+    .subtitle {
+        font-size: 16px;
+    }
     .form-row {
-        gap: 2rem;
+        gap: 25px;
     }
 }

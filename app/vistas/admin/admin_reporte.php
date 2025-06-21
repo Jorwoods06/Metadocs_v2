@@ -14,6 +14,7 @@ AutorizacionRol('administrador');
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
     <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
+    <link rel="stylesheet" href="../../../componentes/css/admin/reporte.css">
     <script src="../../../componentes/js/admin/panel.js"></script>
 </head>
 <body>

@@ -13,11 +13,17 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
 
 
 $mostrar_modal = false;
+$mostrar_modal_expediente = false;
+
 if (isset($_SESSION['show_modal']) && $_SESSION['show_modal'] === true) {
     $mostrar_modal = true;
     unset($_SESSION['show_modal']); 
 }
 
+if (isset($_SESSION['show_modal_expediente']) && $_SESSION['show_modal_expediente'] === true) {
+    $mostrar_modal_expediente = true; 
+    unset($_SESSION['show_modal_expediente']); 
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -295,8 +301,8 @@ if (isset($_SESSION['show_modal']) && $_SESSION['show_modal'] === true) {
 
     <!-- modal archivo en revision -->
 <?php if($mostrar_modal): ?>
-       <div class="modal-overlay" id="modalOverlay">
-            <div class="modal">
+       <div class="modal-overlay-doc" id="modalOverlay">
+            <div class="modal_doc_recibido">
             <span class="close" id="mrd">&times;</span>
             <div class="icon"><i class="bi bi-check2-circle"></i></div>
             <h2>Subida completada</h2>
@@ -305,9 +311,21 @@ if (isset($_SESSION['show_modal']) && $_SESSION['show_modal'] === true) {
         </div>
  <?php endif; ?>
 
+ <?php if($mostrar_modal_expediente): ?>
+       <div class="modal-overlay-doc" id="modalOverlay">
+            <div class="modal_doc_recibido">
+            <span class="close" id="mrd">&times;</span>
+            <div class="icon"><i class="bi bi-check2-circle"></i></div>
+            <h2>Subida completada</h2>
+            <p>Tu expediente ha sido recibido y ya está en revisión por un auditor.</p>
+            </div>
+        </div>
+ <?php endif; ?>
+
     <script src="../../../componentes/js/documentador/tabla_click.js"></script>
+    <script src="../../../componentes/js/documentador/filtro_tabla.js"></script>
     <script src="../../../componentes/js/documentador/visor.js"></script>
-    
+    <?php include '../../vistas/log/modal_cerrar_sesion.php'; ?>
    
 </body>
 </html>

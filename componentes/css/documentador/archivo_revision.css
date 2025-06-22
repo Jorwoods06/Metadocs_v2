@@ -1,4 +1,4 @@
- .modal-overlay {
+ .modal-overlay-doc {
       display: flex;
       position: fixed;
       top: 0; left: 0;
@@ -14,7 +14,7 @@
 
     
 
-    .modal {
+    .modal_doc_recibido {
         
       position: relative;
       background-color: #ffffff;
@@ -28,7 +28,7 @@
     }
 
     
-.modal .close {
+.modal_doc_recibido .close {
   position: absolute;
   top: 12px;
   right: 12px;
@@ -37,20 +37,20 @@
   cursor: pointer;
 }
 
-    .modal .icon {
+    .modal_doc_recibido .icon {
       font-size: 2.5rem;
       color: #3D688A;
       margin-bottom: 1rem;
     }
 
-    .modal h2 {
+    .modal_doc_recibido h2 {
       font-size: 1.25rem;
       font-weight: 600;
       margin-bottom: 0.5rem;
       color: #222;
     }
 
-    .modal p {
+    .modal_doc_recibido p {
       font-size: 1rem;
       line-height: 1.5;
       color: #555;
@@ -58,39 +58,39 @@
 
     /* Tablets */
     @media (min-width: 600px) {
-      .modal {
+      .modal_doc_recibido {
         padding: 2rem;
       }
 
-      .modal h2 {
+      .modal_doc_recibido h2 {
         font-size: 1.5rem;
       }
 
-      .modal p {
+      .modal_doc_recibido p {
         font-size: 1.1rem;
       }
 
-      .modal .icon {
+      .modal_doc_recibido .icon {
         font-size: 3rem;
       }
     }
 
     /* Escritorio */
     @media (min-width: 1024px) {
-      .modal {
+      .modal_doc_recibido {
         max-width: 500px;
         padding: 2.5rem;
       }
 
-      .modal h2 {
+      .modal_doc_recibido h2 {
         font-size: 1.75rem;
       }
 
-      .modal p {
+      .modal_doc_recibidol p {
         font-size: 1.125rem;
       }
 
-      .modal .icon {
+      .modal_doc_recibido.icon {
         font-size: 3.5rem;
       }
     }

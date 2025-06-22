@@ -130,5 +130,7 @@ AutorizacionRol('documentador');
             </div>
         </section>
     </main>
+
+    <?php include '../../vistas/log/modal_cerrar_sesion.php'; ?>
 </body>
 </html>

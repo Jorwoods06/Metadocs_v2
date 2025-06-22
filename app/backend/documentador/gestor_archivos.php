@@ -292,6 +292,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $padreId = $_POST['expediente_padre'] ?? 0;
             
             if (subirExpediente($conexion_metadocs, $nombre, $descripcion, $padreId, $area, $id_usuario)) {
+                session_start();
+                  $_SESSION['show_modal_expediente'] = true;
                 header("Location: ../../vistas/documentador/ver_documentos.php?success=true&id_expediente=" . $padreId);
                 exit();
             } else {

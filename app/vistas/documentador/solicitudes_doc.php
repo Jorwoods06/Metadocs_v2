@@ -89,6 +89,7 @@ AutorizacionRol('documentador');
         </section>
     </main>
 
+<<<<<<< HEAD
     <script>
     document.addEventListener("DOMContentLoaded", () => {
         const mensajes = document.querySelectorAll(".mensaje");
@@ -110,5 +111,8 @@ AutorizacionRol('documentador');
         });
     });
     </script>
+=======
+    <?php include '../../vistas/log/modal_cerrar_sesion.php'; ?>
+>>>>>>> 8732a091fa669ab3a564f2cfef5b37c8b6fcce13
 </body>
 </html>

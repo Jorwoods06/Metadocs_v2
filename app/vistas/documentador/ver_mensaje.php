@@ -7,12 +7,13 @@ AutorizacionRol('documentador');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentador | Metadocs</title>
+    <title>Mensaje | Metadocs</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
     <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
     <link rel="stylesheet" href="../../../componentes/css/documentador/solicitudes_doc.css">
+    <link rel="stylesheet" href="../../../componentes/css/documentador/ver_mensaje.css">
     <script src="../../../componentes/js/admin/panel.js" defer></script>
 </head>
 <body>
@@ -23,7 +24,7 @@ AutorizacionRol('documentador');
     <main id="cuerpo">
         <nav id="menu-lateral" class="menu-lateral">
             <figure id="img_menu">
-                <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
+                <img src="../../../componentes/img/Imagen de WhatsApp 2025-05-01 a las 11.52.47_deffc20c.jpg" alt="imagen del menu lateral">
             </figure>
             <ul>
                 <li><a href="documentador_inicio.php"><i class="bi bi-house-door"></i>Inicio</a></li>
@@ -49,72 +50,22 @@ AutorizacionRol('documentador');
             </ul>
         </nav>
 
-  <section class="contenedor-principal">
-  <h1>Solicitudes Recibidas</h1>
+        <section class="contenedor-principal">
+        
+            <div class="mensaje-detalle">
+                <h2>Juan Pérez <span class="rol">(Auditor)</span></h2>
+                <div class="fecha">Enviado el: 12 de junio de 2025</div>
+                <div class="descripcion">
+                    Hola jorge llanos,<br><br>
+                    Lo que pasa es que estoy necesitando el documento de validación de la graduacion del sena para el área de administración. Por favor revísalo y me puedes confirmar si está completo o si falta algo para aprobarlo.<br><br>
+                    Gracias de antemano.
+                </div>
+            </div>
+            <div class="boton-volver">
+                <a href="solicitudes_doc.php">← Volver</a>
+            </div>
 
-  <div class="filtro-mensajes">
-    <label for="tipo-filtro">Filtrar por tipo:</label>
-    <select id="tipo-filtro">
-      <option value="todos">Todos</option>
-      <option value="documento">Solicitud de documento</option>
-      <option value="aprobado">Documento aprobado</option>
-      <option value="rechazado">Expediente rechazado</option>
-    </select>
-  </div>
-
-  <div class="contenedor-mensajes">
-    <div class="lista-mensajes">
-
-      <div class="mensaje no-visto" data-tipo="documento">
-        <div class="icono-mensaje">
-          <i class="bi bi-file-earmark-arrow-up"></i>
-        </div>
-        <div class="contenido-mensaje">
-          <h2>Juan Pérez</h2>
-          <p>Solicitud de documento</p>
-        </div>
-        <div class="fecha-mensaje">
-          <p>hace 2h</p>
-        </div>
-      </div>
-
-      <div class="mensaje no-visto" data-tipo="aprobado">
-        <div class="icono-mensaje">
-          <i class="bi bi-file-earmark-check"></i>
-        </div>
-        <div class="contenido-mensaje">
-          <h2>Juan Pérez</h2>
-          <p>Tu documento fue aprobado</p>
-        </div>
-        <div class="fecha-mensaje">
-          <p>hace 5h</p>
-        </div>
-      </div>
-
-      <div class="mensaje no-visto" data-tipo="rechazado">
-        <div class="icono-mensaje">
-          <i class="bi bi-folder-x"></i>
-        </div>
-        <div class="contenido-mensaje">
-          <h2>Juan Pérez</h2>
-          <p>Tu expediente fue rechazado</p>
-        </div>
-        <div class="fecha-mensaje">
-          <p>hace 1h</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-
-
+        </section>
     </main>
-
-
-    <?php include '../../vistas/log/modal_cerrar_sesion.php'; ?>
-    <script src="../../../componentes/js/documentador/filtro_solicitud.js"></script>
 </body>
 </html>

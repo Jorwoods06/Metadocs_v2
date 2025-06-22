@@ -1,6 +1,7 @@
 <?php 
 
 require_once '../../helpers/verificacion_roles.php';
+require_once '../../backend/auditor/lista_documentadores.php';
 
 AutorizacionRol('auditor');
 ?>
@@ -89,6 +90,12 @@ AutorizacionRol('auditor');
                     <label for="tipo">Categoria</label>
                     <select id="tipo" name="tipo">
                         <option value="">Seleccione...</option>
+                        <option value="Estratégicos">Estratégicos</option>
+                        <option value="Operativos">Operativos</option>
+                        <option value="Soporte">Soporte</option>
+                        <option value="Legales">Legales</option>
+                        <option value="Financieros">Financieros</option>
+                        <option value="Correspondencia">Correspondencia</option>
                         
                     </select>
                 </div>
@@ -120,6 +127,22 @@ AutorizacionRol('auditor');
 
 
 </main>
+
+<script>
+    // Datos de documentadores desde PHP
+    const documentadores = <?php echo json_encode($datos_documentadores['datos_completos']); ?>;
+    
+    // Convertir a formato que espera el JavaScript
+    const documentadoresFormateados = documentadores.map(doc => ({
+        id: doc.id,
+        nombre: doc.nombre_completo
+    }));
+    
+    // Reemplazar la variable global
+    window.documentadores = documentadoresFormateados;
+</script>
+
+<script src="../../../componentes/js/auditor/usuarios_input.js"></script>
     <?php include '../../vistas/log/modal_cerrar_sesion.php'; ?>
 </body>
 </html>

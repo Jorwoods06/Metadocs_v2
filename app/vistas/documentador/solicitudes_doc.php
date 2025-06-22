@@ -23,7 +23,7 @@ AutorizacionRol('documentador');
     <main id="cuerpo">
         <nav id="menu-lateral" class="menu-lateral">
             <figure id="img_menu">
-                   <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
+                <img src="../../../componentes/img/Imagen de WhatsApp 2025-05-01 a las 11.52.47_deffc20c.jpg" alt="imagen del menu lateral">
             </figure>
             <ul>
                 <li><a href="documentador_inicio.php"><i class="bi bi-house-door"></i>Inicio</a></li>
@@ -34,7 +34,11 @@ AutorizacionRol('documentador');
                         <i class="bi bi-person"></i>Usuario
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
-                          <li><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
+                        <li>
+                            <form action="../../backend/login/cerrar_sesion.php" method="post">
+                                <button type="submit"><i class="bi bi-box-arrow-left"></i>Cerrar sesión</button>
+                            </form>
+                        </li>
                         <li><a href="info_documentador.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
                         <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
                     </ul>
@@ -49,64 +53,62 @@ AutorizacionRol('documentador');
             <div class="contenedor-mensajes">
                 <h1>Mensajes Recibidos</h1>
 
-                <div class="filtros" id = "filtros">
+                <div class="filtros" id="filtros">
                     <input type="text" placeholder="Buscar por nombre...">
-                    <button><i class="bi bi-search"></i></button> <!-- Esto es una lupa -->
-
+                    <button><i class="bi bi-search"></i></button>
                 </div>
 
-                <div class="lista-mensajes" id = "lista-mensajes">
+                <div class="lista-mensajes" id="lista-mensajes">
 
-                    <div class="mensaje no-visto">
-
+                    <div class="mensaje no-visto" data-id="1">
                         <h2>Juan Pérez <span>(Auditor)</span></h2>
-
                         <p>Hola, por favor envíame el documento X...</p>
-
-                        <div class="info-mensaje" id = "info-mensaje">
-
+                        <div class="info-mensaje" id="info-mensaje">
                             <span class="fecha">12/06/2025</span>
-
-                            <label class="estado" id = "estado">
-
+                            <label class="estado" id="estado">
                                 <input type="checkbox" class="check-visto" />
-
                                 <span class="texto-visto">visto</span>
-
                             </label>
-
                         </div>
-
                     </div>
 
-                    <div class="mensaje visto">
-
+                    <div class="mensaje visto" data-id="2">
                         <h2>jorge Gómez <span>(Auditor)</span></h2>
-
                         <p>Recuerda cargar el informe mensual...</p>
-
-                        <div class="info-mensaje" id = "info-mensaje">
-
+                        <div class="info-mensaje" id="info-mensaje">
                             <span class="fecha">11/06/2025</span>
-
-                                <label class="estado">
-
+                            <label class="estado">
                                 <input type="checkbox" class="check-visto" checked />
-
                                 <span class="texto-visto">visto</span>
-
                             </label>
-
                         </div>
-
                     </div>
 
                 </div>
-
             </div>
-
         </section>
-
     </main>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const mensajes = document.querySelectorAll(".mensaje");
+
+        mensajes.forEach((mensaje) => {
+            mensaje.addEventListener("click", () => {
+                const idMensaje = mensaje.getAttribute("data-id");
+                if (idMensaje) {
+                    window.location.href = `ver_mensaje.php?id=${idMensaje}`;
+                }
+            });
+
+            const checkbox = mensaje.querySelector("input[type='checkbox']");
+            if (checkbox) {
+                checkbox.addEventListener("click", (event) => {
+                    event.stopPropagation();
+                });
+            }
+        });
+    });
+    </script>
 </body>
 </html>

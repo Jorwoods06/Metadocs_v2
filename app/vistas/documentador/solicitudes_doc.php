@@ -45,70 +45,71 @@ AutorizacionRol('documentador');
             </ul>
         </nav>
 
-        <section class="contenedor-principal">
-            <div class="contenedor-mensajes">
-                <h1>Mensajes Recibidos</h1>
+  <section class="contenedor-principal">
+  <h1>Solicitudes Recibidas</h1>
 
-                <div class="filtros" id = "filtros">
-                    <input type="text" placeholder="Buscar por nombre...">
-                    <button><i class="bi bi-search"></i></button> <!-- Esto es una lupa -->
+  <div class="filtro-mensajes">
+    <label for="tipo-filtro">Filtrar por tipo:</label>
+    <select id="tipo-filtro">
+      <option value="todos">Todos</option>
+      <option value="documento">Solicitud de documento</option>
+      <option value="aprobado">Documento aprobado</option>
+      <option value="rechazado">Expediente rechazado</option>
+    </select>
+  </div>
 
-                </div>
+  <div class="contenedor-mensajes">
+    <div class="lista-mensajes">
 
-                <div class="lista-mensajes" id = "lista-mensajes">
+      <div class="mensaje no-visto" data-tipo="documento">
+        <div class="icono-mensaje">
+          <i class="bi bi-file-earmark-arrow-up"></i>
+        </div>
+        <div class="contenido-mensaje">
+          <h2>Juan Pérez</h2>
+          <p>Solicitud de documento</p>
+        </div>
+        <div class="fecha-mensaje">
+          <p>hace 2h</p>
+        </div>
+      </div>
 
-                    <div class="mensaje no-visto">
+      <div class="mensaje no-visto" data-tipo="aprobado">
+        <div class="icono-mensaje">
+          <i class="bi bi-file-earmark-check"></i>
+        </div>
+        <div class="contenido-mensaje">
+          <h2>Juan Pérez</h2>
+          <p>Tu documento fue aprobado</p>
+        </div>
+        <div class="fecha-mensaje">
+          <p>hace 5h</p>
+        </div>
+      </div>
 
-                        <h2>Juan Pérez <span>(Auditor)</span></h2>
+      <div class="mensaje no-visto" data-tipo="rechazado">
+        <div class="icono-mensaje">
+          <i class="bi bi-folder-x"></i>
+        </div>
+        <div class="contenido-mensaje">
+          <h2>Juan Pérez</h2>
+          <p>Tu expediente fue rechazado</p>
+        </div>
+        <div class="fecha-mensaje">
+          <p>hace 1h</p>
+        </div>
+      </div>
 
-                        <p>Hola, por favor envíame el documento X...</p>
+    </div>
+  </div>
+</section>
 
-                        <div class="info-mensaje" id = "info-mensaje">
 
-                            <span class="fecha">12/06/2025</span>
 
-                            <label class="estado" id = "estado">
-
-                                <input type="checkbox" class="check-visto" />
-
-                                <span class="texto-visto">visto</span>
-
-                            </label>
-
-                        </div>
-
-                    </div>
-
-                    <div class="mensaje visto">
-
-                        <h2>jorge Gómez <span>(Auditor)</span></h2>
-
-                        <p>Recuerda cargar el informe mensual...</p>
-
-                        <div class="info-mensaje" id = "info-mensaje">
-
-                            <span class="fecha">11/06/2025</span>
-
-                                <label class="estado">
-
-                                <input type="checkbox" class="check-visto" checked />
-
-                                <span class="texto-visto">visto</span>
-
-                            </label>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
 
     </main>
 
     <?php include '../../vistas/log/modal_cerrar_sesion.php'; ?>
+    <script src="../../../componentes/js/documentador/filtro_solicitud.js"></script>
 </body>
 </html>

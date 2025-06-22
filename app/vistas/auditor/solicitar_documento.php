@@ -86,19 +86,10 @@ AutorizacionRol('auditor');
         <div class="formulario-solicitud">
             <form action="ruta_a_guardar.php" method="post">
                 <div class="campo">
-                    <label for="tipo">Tipo de documento:</label>
+                    <label for="tipo">Categoria</label>
                     <select id="tipo" name="tipo">
                         <option value="">Seleccione...</option>
-                        <option value="cedula">Cédula de Ciudadanía</option>
-                        <option value="rut">RUT</option>
-                        <option value="certificado_laboral">Certificado Laboral</option>
-                        <option value="certificado_ingresos">Certificado de Ingresos</option>
-                        <option value="referencias_comerciales">Referencias Comerciales</option>
-                        <option value="extractos_bancarios">Extractos Bancarios</option>
-                        <option value="autorizacion_centrales">Autorización Centrales de Riesgo</option>
-                        <option value="declaracion_renta">Declaración de Renta</option>
-                        <option value="estados_financieros">Estados Financieros</option>
-                        <option value="poder_representacion">Poder de Representación</option>
+                        
                     </select>
                 </div>
 

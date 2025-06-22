@@ -1,235 +1,162 @@
-
+/* === Base (Mobile First) === */
 .contenedor-principal {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    box-sizing: border-box;
+  padding: 20px 16px;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
 }
 
-
-.contenedor-mensajes h1 {
-    font-size: 2em;
-    color: #333;
-    text-align: center;
-    margin-bottom: 10px;
+.contenedor-principal h1 {
+  font-size: 1.8em;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
-
-.filtros {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
+/* Filtro de mensajes */
+.filtro-mensajes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
 }
 
-.filtros input,
-.filtros button {
-    padding: 12px 16px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    font-size: 1em;
-    outline: none;
+.filtro-mensajes label {
+  font-weight: bold;
+  font-size: 1em;
+  color: #333;
 }
 
-.filtros button {
-    background-color: #3D688A;
-    color: white;
-    cursor: pointer;
-    border: none;
+.filtro-mensajes select {
+  padding: 8px;
+  font-size: 1em;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 100%;
+  outline: none;
 }
-
-.filtros button:hover {
-    background-color: #345a77;
-}
-
 
 .lista-mensajes {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
-
 
 .mensaje {
-    background-color: white;
-    border-radius: 12px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  gap: 12px;
+  border-bottom: 1px solid #ddd;
+  box-sizing: border-box;
+}
+
+.icono-mensaje {
+  font-size: 28px;
+  color: #3D688A;
+  flex-shrink: 0;
+}
+
+.contenido-mensaje {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.contenido-mensaje h2 {
+  font-size: 1.2em;
+  margin-bottom: 4px;
+  color: #333;
+}
+
+.contenido-mensaje p {
+  margin: 0;
+  color: #666;
+}
+
+.fecha-mensaje {
+  font-size: 0.9em;
+  color: #888;
+  white-space: nowrap;
+}
+
+
+/* === Tablet (700px+) === */
+@media screen and (min-width: 700px) {
+  .mensaje {
     padding: 20px;
-    border: 1px solid #ccc;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-}
-
-.mensaje h2 {
-    font-size: 1.2em;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.mensaje p {
-    margin-bottom: 15px;
-    color: #444;
-}
-
-
-.info-mensaje {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.9em;
-    color: #666;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.info-mensaje .estado {
-    display: flex;
+    gap: 16px;
+    flex-direction: row;
     align-items: center;
-    gap: 5px;
-}
+  }
 
-.estado input[type="checkbox"] {
-    transform: scale(1.2);
-}
+  .icono-mensaje {
+    font-size: 32px;
+  }
 
+  .contenido-mensaje h2 {
+    font-size: 1.4em;
+  }
 
-.mensaje.no-visto {
-    background-color: #fff;
-}
+  .contenido-mensaje p {
+    font-size: 1.1em;
+  }
 
-.mensaje.visto {
-    background-color: #fff;
-}
-
-/* Responsive celular */
-
-@media screen and (max-width: 699px) {
-    .contenedor-principal {
-        padding: 20px 10px;
-        margin-left: 0;
-    }
-
-    .filtros {
-        flex-wrap: nowrap;
-        flex-direction: row;
-        justify-content: center;
-    }
-
-    .filtros input {
-        flex: 1;
-        min-width: 0;
-    }
-
-    .filtros button {
-        width: auto;
-        padding: 12px 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .filtros button i {
-        font-size: 1.2em;
-    }
+  .fecha-mensaje {
+    font-size: 1em;
+   
+  }
 }
 
 
-/* Responsive tablet */
-@media screen and (min-width: 700px) and (max-width: 1023px) {
-    .contenedor-principal {
-        padding: 40px 30px;
-        margin-left: 0;
-    }
-
-    .filtros {
-        flex-wrap: nowrap;
-        justify-content: center;
-        gap: 10px;
-    }
-
-    .filtros input,
-    .filtros select {
-        width: 200px;
-    }
-
-    .filtros button {
-        width: 45px;
-        height: 45px;
-        padding: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .filtros button i {
-        font-size: 1.2em;
-    }
-
-    .mensaje h2 {
-        font-size: 1.3em;
-    }
-
-    .mensaje p {
-        font-size: 1em;
-    }
-}
-
-/* Responsive escritorio */
+/* === Escritorio (1024px+) === */
 @media screen and (min-width: 1024px) {
-    .contenedor-principal {
-        margin-left: 220px;
-        
-    }
+  .contenedor-principal {
+    margin-left: 240px;
+    padding: 40px 30px 0 0;
+  }
 
-    .filtros {
-        justify-content: flex-start;
-    }
+  .contenedor-principal h1 {
+    text-align: left;
+    font-size: 2em;
+  }
 
-    .contenedor-mensajes h1 {
-        text-align: left;
-    }
+  .filtro-mensajes {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .filtro-mensajes select {
+    width: auto;
+  }
+
+  .mensaje {
+    padding: 24px;
+    gap: 20px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .icono-mensaje {
+    font-size: 32px;
+  }
+
+  .contenido-mensaje h2 {
+    font-size: 1.4em;
+  }
+
+  .contenido-mensaje p {
+    font-size: 1em;
+  }
+
+  .fecha-mensaje {
+    font-size: 1em;
+    align-content: center;
+  }
 }
-/* iPad Pro */
-@media screen and (min-width: 1024px) and (max-width: 1366px) {
-    
-
-    .contenedor-mensajes h1 {
-        font-size: 2em;
-    }
-
-    .filtros input,
-    .filtros select {
-        width: 250px;
-        font-size: 1.1em;
-        padding: 14px 18px;
-    }
-
-    .filtros button {
-        width: 50px;
-        height: 50px;
-    }
-
-    .filtros button i {
-        font-size: 1.4em;
-    }
-
-    .mensaje h2 {
-        font-size: 1.6em;
-    }
-
-    .mensaje p {
-        font-size: 1.1em;
-    }
-
-    .info-mensaje {
-        font-size: 1em;
-    }
-
-    .check-visto + .texto-visto {
-        font-size: 1em;
-    }
-}
-

@@ -178,9 +178,9 @@
 }
 
 /* Responsive escritorio */
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1024px){
     .contenedor-principal {
-        margin-left: 220px;
+        margin-left: 260px;
         
     }
 
@@ -194,8 +194,10 @@
 }
 /* iPad Pro */
 @media screen and (min-width: 1024px) and (max-width: 1366px) {
-    
-
+    .contenedor-principal {
+        margin-left: 200px;
+        
+    }
     .contenedor-mensajes h1 {
         font-size: 2em;
     }
@@ -230,6 +232,12 @@
 
     .check-visto + .texto-visto {
         font-size: 1em;
+    }
+}
+/* Responsive para pantallas 4K */
+@media screen and (min-width: 1660px) {
+    .contenedor-principal {
+        margin-left: 400px; /* Ajusta este valor según cuánto lo quieras correr */
     }
 }
 

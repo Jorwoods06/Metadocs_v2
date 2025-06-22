@@ -67,6 +67,7 @@
     background: #ffffff;
     border: 1px solid #e5e7eb;
     border-radius: 12px;
+    margin-bottom: 24px;
     padding: 20px;
     display: flex;
     flex-direction: column;

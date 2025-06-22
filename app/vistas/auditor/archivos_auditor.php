@@ -22,6 +22,8 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
     <link rel="stylesheet" href="../../../componentes/css/documentador/modal_expediente.css">
     <link rel="stylesheet" href="../../../componentes/css/auditor/archivos_auditor.css">
     <link rel="stylesheet" href="../../../componentes/css/documentador/visor.css">
+    <link rel="stylesheet" href="../../../componentes/css/auditor/modal_editar_expediente.css">
+    <script src="../../../componentes/js/auditor/editar_expediente.js"></script>
     <script src="../../../componentes/js/auditor/auditor_ver_docs.js"></script>
     <script src="../../../componentes/js/admin/panel.js"></script>
 </head>
@@ -227,33 +229,39 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
         </div>
     </div>
 
-    <!-- Modal para editar expediente 
-    <div id="editModal" class="modal">
-        <div class="modal-content">
-            <form action="../../backend/auditor/gestor_archivos_auditor.php" method="post">
-                <div id="titulo_carpeta_header">
-                    <span class="close">&times;</span>
-                    <h2>Editar expediente</h2>
-                </div>
-                <div id="input_carpeta">
-                    <input type="hidden" name="id_expediente" id="edit_expediente_id">
-                    <label for="nuevo_titulo">Título</label>
-                    <input type="text" id="nuevo_titulo" name="nuevo_titulo" required>
-                    
-                    <label for="nueva_descripcion">Descripción</label>
-                    <textarea id="nueva_descripcion" name="nueva_descripcion" required></textarea>
-                </div>
-                <div id="btn_carpeta">
-                    <input type="hidden" name="accion" value="editar_expediente">
-                    <button type="submit">Guardar cambios</button>
-                </div>
-            </form>
-        </div>
-    </div>-->
+    
+<div id="modal_edicion_expediente" class="modal_expediente">
+    <div class="contenido_modal_expediente">
+        <form action="../../backend/auditor/gestor_archivos_auditor.php" method="post">
+            
+            <div class="cabecera_modal_expediente">
+                
+                <h2 class="titulo_modal_expediente">Editar expediente</h2>
+                <span class="cerrar_modal_expediente">&times;</span>
+            </div>
+            
+            <div class="cuerpo_formulario_expediente">
+                <input type="hidden" name="id_expediente" id="campo_id_expediente">
+                
+                <label for="campo_titulo_expediente">Título</label>
+                <input type="text" id="campo_titulo_expediente" name="nuevo_titulo" required>
+                
+                <label for="campo_descripcion_expediente">Descripción</label>
+                <textarea id="campo_descripcion_expediente" name="nueva_descripcion" required></textarea>
+            </div>
+            
+            <div class="acciones_formulario_expediente">
+                <input type="hidden" name="accion" value="editar_expediente">
+                <button type="submit" class="boton_guardar_expediente">Guardar cambios</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 
     <script src="../../../componentes/js/documentador/tabla_click.js"></script>
     <script src="../../../componentes/js/documentador/visor.js"></script>
-
+    <script src="../../../componentes/js/documentador/filtro_tabla.js"></script>
     <?php include '../../vistas/log/modal_cerrar_sesion.php'; ?>
 </body>
 </html>

@@ -151,6 +151,10 @@ AutorizacionRol('auditor');
                             <div id="info">
                                 <h3><?php echo htmlspecialchars($documento['titulo']);?></h3>
                                 <p><?php echo htmlspecialchars($documento['categoria']);?></p>
+                                <p class="expediente-info">
+                                    Expediente Destino: 
+                                    <strong><?php echo htmlspecialchars($documento['expediente'] ?? 'expediente_ejemplo'); ?></strong>
+                                </p>
                             </div>
                         </div>
                         <div id="autor_fecha">
@@ -225,7 +229,7 @@ AutorizacionRol('auditor');
 
     <!-- modal rechazar expediente -->
 <div id="modal_rechazar_expediente" class="modal_confirmar">
-    <form class="modal_contenedor" action="../../backend/auditor/rechazar_expediente_documento.php" method="POST">
+    <form class="modal_contenedor" action="../../backend/auditor/aprobar_expediente_documento.php" method="POST">
         <span class="close">&times;</span>
         <h3>¿Confirmas el rechazo de este expediente?</h3>
         <p>Por favor, especifica el motivo del rechazo. Esta acción no se puede deshacer.</p>
@@ -247,7 +251,7 @@ AutorizacionRol('auditor');
 
 <!-- modal rechazar documento -->
 <div id="modal_rechazar_documento" class="modal_confirmar">
-    <form class="modal_contenedor" action="../../backend/auditor/rechazar_expediente_documento.php" method="POST">
+    <form class="modal_contenedor" action="../../backend/auditor/aprobar_expediente_documento.php" method="POST">
         <span class="close">&times;</span>
         <h3>¿Confirmas el rechazo de este documento?</h3>
         <p>Por favor, especifica el motivo del rechazo. Esta acción no se puede deshacer.</p>

@@ -13,6 +13,7 @@ AutorizacionRol('documentador');
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
     <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
     <link rel="stylesheet" href="../../../componentes/css/documentador/solicitudes_doc.css">
+    <link rel="stylesheet" href="../../../componentes/css/documentador/contenido_solicitud.css">
     <script src="../../../componentes/js/admin/panel.js" defer></script>
 </head>
 <body>
@@ -108,6 +109,35 @@ AutorizacionRol('documentador');
 
 
     </main>
+
+ <!-- Contenido solicitud -->
+
+  <div id="contenido_solicitud">
+  <div id="cont_solicitud">
+    
+    <!-- Botón cerrar -->
+    <span class="cerrar_contenido" id="cerrar_contenido">&times;</span>
+    
+    <div id="info_auditor">
+      <div id="icono"><i class="bi bi-person-lines-fill"></i></div>
+      <div id="info">
+        <p>Jorge</p>
+        <p id="auditor">Auditor</p>
+      </div>
+    </div>
+
+    <div id="mensaje">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, provident. Eum facilis laudantium animi facere deserunt. Beatae esse quod saepe, blanditiis possimus ratione voluptatem tempora reiciendis suscipit fugiat nemo itaque Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, provident. Eum facilis laudantium animi facere deserunt. Beatae esse quod saepe, blanditiis possimus ratione voluptatem tempora reiciendis suscipit fugiat nemo itaque?</p>
+    </div>
+
+    <div id="expediente_y_categoria">
+      <p>Expediente destino: </p>
+      <p>Categoria: </p>
+    </div>
+
+  </div>
+</div>
+
 
 
     <?php include '../../vistas/log/modal_cerrar_sesion.php'; ?>

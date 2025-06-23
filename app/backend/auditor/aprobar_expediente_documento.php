@@ -1,5 +1,9 @@
 <?php
 require_once '../../helpers/conexion_bd.php';
+require_once '../../helpers/info_usuario.php';
+
+
+$id_usuario = $usuario['id_usuario'];
 
 $id_expediente = $_POST['datos_expediente'];
 $id_documento = $_POST['datos_documento'];
@@ -22,25 +26,57 @@ function aprobarExpediente($conexion, $id_expediente) {
         error_log("Error al preparar la consulta: " . $conexion->error);
         return false;
     }
+
+    //notificar la subida a la base de datos
+
+    
 }
 
-function aprobarDocumento($conexion, $id_documento){
+function aprobarDocumento($conexion, $id_documento, $usuario_destinatario, $titulo, $id_usuario){
     $sql_aprobar = "UPDATE `documentos` SET `estado` = 'aprobado' WHERE `documentos`.`id_documento` = ?;";
+    
     if($sentencia = $conexion->prepare($sql_aprobar)){
         $sentencia->bind_param('i', $id_documento);
+        
         if ($sentencia->execute()) {
             $sentencia->close();
-            return true;
+
+            // Después de aprobar el documento, registrar la actividad
+            $mensaje = "Tu documento ". $titulo. " fue aprobado con exito";
+            $tipo_actividad = 'documento_aprobado';
+
+            $sql_actividad = "INSERT INTO actividades (id_usuario, tipo_actividad, mensaje, fecha_creacion, usuario_destinatario) 
+                              VALUES (?, ?, ?, NOW(), ?)";
+
+            if ($stmt_actividad = $conexion->prepare($sql_actividad)) {
+                $stmt_actividad->bind_param('isss', $id_usuario, $tipo_actividad, $mensaje, $usuario_destinatario);
+                
+                if (!$stmt_actividad->execute()) {
+                    error_log("Error al insertar actividad: " . $stmt_actividad->error);
+                    $stmt_actividad->close();
+                    return false;
+                }
+                $stmt_actividad->close();
+                return true;
+            } else {
+                error_log("Error al preparar consulta de actividad: " . $conexion->error);
+                return false;
+            }
+
         } else {
             error_log("Error al ejecutar la consulta: " . $sentencia->error);
             $sentencia->close();
             return false;
         }
+
     } else {
         error_log("Error al preparar la consulta: " . $conexion->error);
-        return false; 
+        return false;
     }
 }
+
+
+
 
 function rechazarExpediente($conexion, $id_expediente){
     $sql_rechazar = "UPDATE `expedientes` SET `estado` = 'rechazado' WHERE `id_expediente` = ?; ";
@@ -146,14 +182,15 @@ switch($_POST['accion']){
         break;
 
     case 'aprobar_documento':
-
-        if(aprobarDocumento($conexion_metadocs, $id_documento)){
-             header("Location: ../../vistas/auditor/recibir_documentos.php?sucess=true");
-        }else{
-            header("Location: ../../vistas/auditor/recibir_documentos.php?error=true");
-        }
-
-        break;
+    $usuario_destinatario = $_POST['usuario_destinatario'];
+    $titulo = $_POST['titulo'];
+    
+    if(aprobarDocumento($conexion_metadocs, $id_documento, $usuario_destinatario, $titulo, $id_usuario)){
+         header("Location: ../../vistas/auditor/recibir_documentos.php?sucess=true");
+    }else{
+        header("Location: ../../vistas/auditor/recibir_documentos.php?error=true");
+    }
+    break;
 
     case  'rechazar_expediente':
 

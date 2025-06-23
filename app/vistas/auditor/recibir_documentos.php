@@ -211,21 +211,24 @@ AutorizacionRol('auditor');
         </form>
     </div>
 
+ 
     <!-- modal aprobar documento -->
-    <div id="modal_confirmar_documento" class="modal_confirmar">
-        <form class="modal_contenedor" action="../../backend/auditor/aprobar_expediente_documento.php" method="POST">
-            <span class="close">&times;</span>
-            <h3>¿Confirmas la aprobación de este documento?</h3>
-            <p>¿Estás seguro de que deseas aprobar este documento? Esta acción no se puede deshacer y el documento pasará al siguiente estado del flujo de trabajo.</p>
-            <div class="botones_modal">
-                <button type="submit" class="btn_aprobar">Aprobar</button>
-                <button type="button" class="btn_cancelar">Cancelar</button>
-            </div>
-            
-            <input type="hidden" name="datos_documento" value="">
-            <input type="hidden" name="accion" value="aprobar_documento">
-        </form>
-    </div>
+<div id="modal_confirmar_documento" class="modal_confirmar">
+    <form class="modal_contenedor" action="../../backend/auditor/aprobar_expediente_documento.php" method="POST">
+        <span class="close">&times;</span>
+        <h3>¿Confirmas la aprobación de este documento?</h3>
+        <p>¿Estás seguro de que deseas aprobar este documento? Esta acción no se puede deshacer y el documento pasará al siguiente estado del flujo de trabajo.</p>
+        <div class="botones_modal">
+            <button type="submit" class="btn_aprobar">Aprobar</button>
+            <button type="button" class="btn_cancelar">Cancelar</button>
+        </div>
+        
+        <input type="hidden" name="datos_documento" value="">
+        <input type="hidden" name="accion" value="aprobar_documento">
+        <input type="hidden" name="usuario_destinatario" value="">
+        <input type="hidden" name="titulo" value="">
+    </form>
+</div>
 
     <!-- modal rechazar expediente -->
 <div id="modal_rechazar_expediente" class="modal_confirmar">

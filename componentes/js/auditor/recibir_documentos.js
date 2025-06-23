@@ -93,22 +93,55 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Event listeners para botones de aprobar DOCUMENTOS
-    const botonesAprobarDocumentos = document.querySelectorAll("#contenedor-documentos .aprobado");
-    botonesAprobarDocumentos.forEach(boton => {
-        boton.addEventListener("click", (e) => {
-            // Obtener el ID del documento desde el atributo data-id del botón
-            const idDocumento = e.target.getAttribute('data-id');
-            
-            // Asignar el ID al input hidden del modal de documentos
-            if (inputHiddenDocumento && idDocumento) {
-                inputHiddenDocumento.value = idDocumento;
-            }
-            
-            // Mostrar el modal de documentos
-            mostrarModal(modalDocumento);
-        });
-    });
+    // Reemplaza la sección de "Event listeners para botones de aprobar DOCUMENTOS" con esto:
 
+// Event listeners para botones de aprobar DOCUMENTOS
+// Event listeners para botones de aprobar DOCUMENTOS
+const botonesAprobarDocumentos = document.querySelectorAll("#contenedor-documentos .aprobado");
+botonesAprobarDocumentos.forEach(boton => {
+    boton.addEventListener("click", (e) => {
+        // Obtener el ID del documento desde el atributo data-id del botón
+        const idDocumento = e.target.getAttribute('data-id');
+        
+        // Obtener la carta completa para extraer más información
+        const carta = e.target.closest('.carta');
+        
+        // Extraer título del documento - usando selector más específico
+        const titulo = carta?.querySelector('.info h3')?.textContent?.trim() || '';
+        
+        // Extraer nombre del usuario/autor - método más robusto
+        const autorElement = carta?.querySelector('[id="autor_fecha"] p i.bi-person-fill');
+        let autor = '';
+        if (autorElement && autorElement.parentNode) {
+            // Obtener todo el texto del párrafo y limpiar el icono
+            autor = autorElement.parentNode.textContent.replace(/^\s*/, '').trim();
+        }
+        
+        console.log('ID:', idDocumento); // Para debug
+        console.log('Título:', titulo); // Para debug  
+        console.log('Autor:', autor); // Para debug
+        
+        // Asignar los valores a los inputs hidden del modal de documentos
+        if (inputHiddenDocumento && idDocumento) {
+            inputHiddenDocumento.value = idDocumento;
+        }
+        
+        // Llenar los campos adicionales
+        const inputUsuarioDestinatario = modalDocumento?.querySelector("input[name='usuario_destinatario']");
+        const inputTitulo = modalDocumento?.querySelector("input[name='titulo']");
+        
+        if (inputUsuarioDestinatario) {
+            inputUsuarioDestinatario.value = autor;
+        }
+        
+        if (inputTitulo) {
+            inputTitulo.value = titulo;
+        }
+        
+        // Mostrar el modal de documentos
+        mostrarModal(modalDocumento);
+    });
+});
     // Event listeners para cerrar modal de expedientes
     if (btnCancelarExpediente) {
         btnCancelarExpediente.addEventListener("click", () => {

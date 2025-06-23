@@ -81,7 +81,7 @@ AutorizacionRol('auditor');
      <h1>Solicitar documentos</h1>
 
         <div class="formulario-solicitud">
-            <form action="ruta_a_guardar.php" method="post">
+            <form action="../../backend/auditor/enviar_solicitud.php" method="post">
                 <div class="campo">
                     <label for="tipo">Categoria</label>
                     <select id="tipo" name="tipo">

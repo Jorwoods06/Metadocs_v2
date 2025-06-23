@@ -20,7 +20,6 @@ AutorizacionRol('auditor');
 <body>
     <header id="cabezote">
         <i class="bi bi-list" id="menu_opciones"></i>
-
     </header>
 
     <main id="cuerpo">
@@ -51,7 +50,6 @@ AutorizacionRol('auditor');
                 <li>
                     <a href="../../vistas/auditor/pista_auditoria.php">
                         <i class="bi bi-list-check"></i>
-
                         Pista auditoria
                     </a>
                 </li>
@@ -66,8 +64,6 @@ AutorizacionRol('auditor');
                         <li><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
                         <li><a href="info_auditor.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
                         <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
-
-                       
                     </ul>
                 </li>
 
@@ -96,8 +92,35 @@ AutorizacionRol('auditor');
                         <option value="Legales">Legales</option>
                         <option value="Financieros">Financieros</option>
                         <option value="Correspondencia">Correspondencia</option>
-                        
                     </select>
+                </div>
+
+                 <div class="campo">
+                    <label for="responsable">Responsable:</label>
+                    <div class="usuario-selector">
+                        <input type="text" 
+                               id="responsable" 
+                               name="responsable_display" 
+                               class="usuario-input" 
+                               placeholder="Buscar documentador..." 
+                               autocomplete="off">
+                        <input type="hidden" name="responsable" id="responsable_id">
+                        <div class="usuario-dropdown" id="usuario-dropdown"></div>
+                    </div>
+                </div>
+
+                <div class="campo">
+                    <label for="expediente">Expediente destinado:</label>
+                    <div class="usuario-selector">
+                        <input type="text" 
+                               id="expediente" 
+                               name="expediente_display" 
+                               class="usuario-input" 
+                               placeholder="Buscar expediente..." 
+                               autocomplete="off">
+                        <input type="hidden" name="expediente" id="expediente_id">
+                        <div class="usuario-dropdown" id="expediente-dropdown"></div>
+                    </div>
                 </div>
 
                 <div class="campo">
@@ -105,41 +128,20 @@ AutorizacionRol('auditor');
                     <textarea id="descripcion" name="descripcion" placeholder="Describe qué documento necesitas y para qué."></textarea>
                 </div>
                
-                <div class="campo">
-                    <label for="responsable">Responsable:</label>
-                    <div class="usuario-selector">
-                        <input type="text" 
-                               id="responsable" 
-                               name="responsable_display" 
-                               class="usuario-input" 
-                               placeholder="Buscar usuario..." 
-                               autocomplete="off">
-                        <input type="hidden" name="responsable" id="responsable_id">
-                        <div class="usuario-dropdown" id="usuario-dropdown"></div>
-                    </div>
-                </div>
-
                 <button type="submit" class="btn-solicitar">Solicitar documento</button>
             </form>
         </div>
 </section>
 
-
-
 </main>
 
 <script>
-    // Datos de documentadores desde PHP
-    const documentadores = <?php echo json_encode($datos_documentadores['datos_completos']); ?>;
+    // Datos desde PHP
+    const datosCompletos = <?php echo json_encode($datos_documentadores['datos_completos']); ?>;
     
-    // Convertir a formato que espera el JavaScript
-    const documentadoresFormateados = documentadores.map(doc => ({
-        id: doc.id,
-        nombre: doc.nombre_completo
-    }));
-    
-    // Reemplazar la variable global
-    window.documentadores = documentadoresFormateados;
+    // Hacer los datos globales para el JavaScript
+    window.documentadores = datosCompletos.documentadores;
+    window.expedientes = datosCompletos.expedientes;
 </script>
 
 <script src="../../../componentes/js/auditor/usuarios_input.js"></script>

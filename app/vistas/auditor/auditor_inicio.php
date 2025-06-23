@@ -85,7 +85,7 @@ AutorizacionRol('auditor');
 
             <h1 class="titulo-auditor">Bienvenido auditor</h1>
 
-            <h2 class="titulo-mediano">Aqui podras seleccionar a lo que quieres estar informado</h2>
+            <h2 class="titulo-mediano">Aqui podras seleccionar con que quieres estar informado</h2>
             
 
             <div class="contenedor-general">

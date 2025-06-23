@@ -1,6 +1,7 @@
 <?php 
 
 require_once '../../helpers/verificacion_roles.php';
+require_once '../../backend/administrador/consulta_docs.php';
 AutorizacionRol('administrador');
 
 ?>
@@ -92,8 +93,8 @@ AutorizacionRol('administrador');
                         <i class="bi bi-collection"></i>
                     </div>
                     <div class="contenido-texto">
-                        <h3>Total de documentos</h3>
-                        <h2>100</h2>
+                        <h3>Documentos aprobados</h3>
+                        <h2><?php echo $recuentos_aprobados; ?></h2>
                     </div>
                 </div>
 
@@ -102,8 +103,8 @@ AutorizacionRol('administrador');
                         <i class="bi bi-archive"></i>
                     </div>
                     <div class="contenido-texto">
-                        <h3>Archivo historico</h3>
-                        <h2>100</h2>
+                        <h3>Documentos archivados</h3>
+                        <h2><?php echo $recuentos_archivados; ?></h2>
                     </div>
                 </div>
 
@@ -113,7 +114,7 @@ AutorizacionRol('administrador');
                     </div>
                     <div class="contenido-texto">
                         <h3>En revisión</h3>
-                        <h2>100</h2>
+                        <h2><?php echo $recuentos_revision; ?></h2>
                     </div>
                 </div>
 
@@ -123,7 +124,7 @@ AutorizacionRol('administrador');
                     </div>
                     <div class="contenido-texto">
                         <h3>usuarios Activos</h3>
-                        <h2>100</h2>
+                        <h2><?php echo $recuentos_usuarios; ?></h2>
                     </div>
                 </div>
 

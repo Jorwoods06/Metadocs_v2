@@ -78,7 +78,6 @@ AutorizacionRol('administrador');
                     <option value="administrador">Administrador</option>
                     <option value="auditor">Auditor</option>
                     <option value="documentador">Documentador</option>
-                    <option value="visualizador">Visualizador</option>
                 </select>
             </div>
 
@@ -136,7 +135,6 @@ AutorizacionRol('administrador');
                 <label>Rol:</label>
                 <select id="rol_editar">
                     <option value="administrador">Administrador</option>
-                    <option value="visualizador">Visualizador</option>
                     <option value="documentador">Documentador</option>
                     <option value="auditor">Auditor</option>
                 </select>

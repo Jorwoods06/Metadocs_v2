@@ -1,7 +1,8 @@
 <?php 
-
+require_once '../../helpers/conexio_graficas.php';
 require_once '../../helpers/verificacion_roles.php';
 require_once '../../backend/administrador/consulta_docs.php';
+require_once '../../backend/administrador/consulta_para_grafica.php';
 AutorizacionRol('administrador');
 
 ?>
@@ -15,6 +16,8 @@ AutorizacionRol('administrador');
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
     <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+     <link rel="stylesheet" href="../../../componentes/css/admin/panel_control_graficas.css">
     <script src="../../../componentes/js/admin/panel.js"></script>
     <script src="../../../componentes/js/admin/grafica_documentos.js"></script>
 </head>
@@ -85,93 +88,10 @@ AutorizacionRol('administrador');
         </nav>
        
         <section id="admin-contenido" class="admin">
-            <h1>Panel control</h1>
-            <?php
-// config.php - Configuración de base de datos
-$host = 'localhost';
-$db_name = 'metadocs';
-$username = 'root';
-$password = '';
+            
+         
 
-// Función para obtener conexión
-function getConnection() {
-    global $host, $db_name, $username, $password;
-    
-    $conn = mysqli_connect($host, $username, $password, $db_name);
-    
-    if (!$conn) {
-        die("Error de conexión: " . mysqli_connect_error());
-    }
-    
-    // Configurar charset para evitar problemas con caracteres especiales
-    mysqli_set_charset($conn, "utf8");
-    
-    return $conn;
-}
 
-// dashboard.php - Página principal con gráficos
-$conn = getConnection();
-?>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard de Documentos</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-    <style>
-       
-        .header {
-            background: linear-gradient(135deg, #3D688A 0%, #2E5A7A 100%);
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        .stat-card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        .stat-number {
-            font-size: 2em;
-            font-weight: bold;
-            color: #3D688A;
-        }
-        .stat-label {
-            color: #666;
-            margin-top: 5px;
-        }
-        .charts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 20px;
-        }
-        .chart-container {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .chart-title {
-            font-size: 1.3em;
-            font-weight: bold;
-            margin-bottom: 20px;
-            color: #333;
-            text-align: center;
-        }
-    </style>
-</head>
-<body>
     <div class="container">
         <div class="header">
             <h1>📊 Dashboard de Documentos</h1>
@@ -180,28 +100,7 @@ $conn = getConnection();
 
         <!-- Estadísticas generales -->
         <div class="stats-grid">
-            <?php
-            // Total documentos
-            $query = "SELECT COUNT(*) as total FROM documentos";
-            $result = mysqli_query($conn, $query);
-            $totalDocs = mysqli_fetch_assoc($result)['total'];
-
-            // Total áreas
-            $query = "SELECT COUNT(DISTINCT id_area) as total FROM documentos";
-            $result = mysqli_query($conn, $query);
-            $totalAreas = mysqli_fetch_assoc($result)['total'];
-
-            // Documentos activos
-            $query = "SELECT COUNT(*) as total FROM documentos WHERE estado_retencion = 'activo'";
-            $result = mysqli_query($conn, $query);
-            $docsActivos = mysqli_fetch_assoc($result)['total'];
-
-            // Documentos rechazados
-            $query = "SELECT COUNT(*) as total FROM documentos WHERE estado = 'rechazado'";
-            $result = mysqli_query($conn, $query);
-            $docsRechazados = mysqli_fetch_assoc($result)['total'];
-            ?>
-            
+           
             <div class="stat-card">
                 <div class="stat-number"><?php echo $totalDocs; ?></div>
                 <div class="stat-label">Total Documentos</div>

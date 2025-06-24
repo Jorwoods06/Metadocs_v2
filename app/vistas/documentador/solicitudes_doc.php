@@ -37,7 +37,7 @@ require_once '../../backend/documentador/recibir_actividades.php';
                         <i class="bi bi-person"></i>Usuario
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
-                         <li><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
+                        <li><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
                         <li><a href="info_documentador.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
                         <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
                     </ul>
@@ -75,10 +75,10 @@ require_once '../../backend/documentador/recibir_actividades.php';
             $datos_json = htmlspecialchars(json_encode($notificacion), ENT_QUOTES, 'UTF-8');
             ?>
             <div class="mensaje <?php echo $notificacion['es_visto'] ? 'visto' : 'no-visto'; ?> clickeable" 
-                 data-tipo="<?php echo htmlspecialchars($notificacion['tipo_actividad']); ?>"
-                 data-id="<?php echo $notificacion['id']; ?>"
-                 data-modal="<?php echo htmlspecialchars($notificacion['modal']); ?>"
-                 onclick="abrirModal('<?php echo htmlspecialchars($notificacion['modal']); ?>', <?php echo $datos_json; ?>)">
+                    data-tipo="<?php echo htmlspecialchars($notificacion['tipo_actividad']); ?>"
+                    data-id="<?php echo $notificacion['id']; ?>"
+                    data-modal="<?php echo htmlspecialchars($notificacion['modal']); ?>"
+                    onclick="abrirModal('<?php echo htmlspecialchars($notificacion['modal']); ?>', <?php echo $datos_json; ?>)">
                 
                 <div class="icono-mensaje">
                     <i class="bi <?php echo htmlspecialchars($notificacion['icono']); ?>"></i>
@@ -169,7 +169,7 @@ require_once '../../backend/documentador/recibir_actividades.php';
             
             <div class="modal-header documento-aprobado">
                 <div class="icono-estado">
-                   <i class="bi bi-person"></i>
+                    <i class="bi bi-person"></i>
                 </div>
                 <div class="info-usuario">
                     <h3 id="modal-doc-aprobado-usuario">-</h3>
@@ -244,7 +244,7 @@ require_once '../../backend/documentador/recibir_actividades.php';
                         <span class="detalle-label">Nombre del documento:</span>
                         <span class="detalle-valor" id="modal-doc-rechazado-titulo">-</span>
                     </div>
-                   
+                    
                     <div class="detalle-item">
                         <span class="detalle-label">Categoría:</span>
                         <span class="detalle-valor" id="modal-doc-rechazado-categoria">-</span>
@@ -295,7 +295,7 @@ require_once '../../backend/documentador/recibir_actividades.php';
                         <span class="detalle-label">Nombre expediente:</span>
                         <span class="detalle-valor" id="modal-exp-aprobado-titulo">-</span>
                     </div>
-                  
+                    
                     <div class="detalle-item">
                         <span class="detalle-label">Fecha de aprobación:</span>
                         <span class="detalle-valor" id="modal-exp-aprobado-fecha">-</span>
@@ -322,7 +322,7 @@ require_once '../../backend/documentador/recibir_actividades.php';
             
             <div class="modal-header expediente-rechazado">
                 <div class="icono-estado">
-                  <i class="bi bi-person"></i>
+                <i class="bi bi-person"></i>
                 </div>
                 <div class="info-usuario">
                     <h3 id="modal-exp-rechazado-usuario">-</h3>

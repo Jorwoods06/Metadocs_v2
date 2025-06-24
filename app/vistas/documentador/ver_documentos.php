@@ -43,7 +43,7 @@ if (isset($_SESSION['show_modal_expediente']) && $_SESSION['show_modal_expedient
     <script src="../../../componentes/js/documentador/ver_documentos.js"></script>
     <script src="../../../componentes/js/admin/panel.js"></script>
     
-   
+    
 </head>
 <body>
     <header id="cabezote">
@@ -53,7 +53,7 @@ if (isset($_SESSION['show_modal_expediente']) && $_SESSION['show_modal_expedient
     <main id="cuerpo">
         <nav id="menu-lateral" class="menu-lateral">
             <figure id="img_menu">
-                   <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
+                    <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
             </figure>
             <ul>
                 <li>
@@ -82,7 +82,7 @@ if (isset($_SESSION['show_modal_expediente']) && $_SESSION['show_modal_expedient
                         Usuario
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
-                          <li><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
+                            <li><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
                         <li><a href="info_documentador.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
                         <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
                     </ul>
@@ -96,12 +96,12 @@ if (isset($_SESSION['show_modal_expediente']) && $_SESSION['show_modal_expedient
                 </li>
             </ul>
         </nav>
-       
+        
         <section id="admin-contenido" class="admin">
-           
+        
             <?php if ($expediente_seleccionado): ?>
 <div class="title-button-container">
-  
+
     <div class="title-header-row">
         <h1>Documentos</h1>
         <div class="header-buttons">
@@ -199,14 +199,14 @@ if (isset($_SESSION['show_modal_expediente']) && $_SESSION['show_modal_expedient
                                         <i class="bi bi-eye"></i>
                                     </button>
 
-                             
-                               
+                                
+                                
                             </td>
                         </tr>
                     <?php 
                         endforeach;
                     endif;
-                  
+                    
                     if (!$tiene_contenido): 
                     ?>
                         <tr>
@@ -301,7 +301,7 @@ if (isset($_SESSION['show_modal_expediente']) && $_SESSION['show_modal_expedient
 
     <!-- modal archivo en revision -->
 <?php if($mostrar_modal): ?>
-       <div class="modal-overlay-doc" id="modalOverlay">
+        <div class="modal-overlay-doc" id="modalOverlay">
             <div class="modal_doc_recibido">
             <span class="close" id="mrd">&times;</span>
             <div class="icon"><i class="bi bi-check2-circle"></i></div>
@@ -309,10 +309,10 @@ if (isset($_SESSION['show_modal_expediente']) && $_SESSION['show_modal_expedient
             <p>Tu documento ha sido recibido y ya está en revisión por un auditor.</p>
             </div>
         </div>
- <?php endif; ?>
+<?php endif; ?>
 
- <?php if($mostrar_modal_expediente): ?>
-       <div class="modal-overlay-doc" id="modalOverlay">
+<?php if($mostrar_modal_expediente): ?>
+        <div class="modal-overlay-doc" id="modalOverlay">
             <div class="modal_doc_recibido">
             <span class="close" id="mrd">&times;</span>
             <div class="icon"><i class="bi bi-check2-circle"></i></div>
@@ -320,12 +320,12 @@ if (isset($_SESSION['show_modal_expediente']) && $_SESSION['show_modal_expedient
             <p>Tu expediente ha sido recibido y ya está en revisión por un auditor.</p>
             </div>
         </div>
- <?php endif; ?>
+<?php endif; ?>
 
     <script src="../../../componentes/js/documentador/tabla_click.js"></script>
     <script src="../../../componentes/js/documentador/filtro_tabla.js"></script>
     <script src="../../../componentes/js/documentador/visor.js"></script>
     <?php include '../../vistas/log/modal_cerrar_sesion.php'; ?>
-   
+    
 </body>
 </html>

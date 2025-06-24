@@ -21,7 +21,7 @@ AutorizacionRol('administrador');
     <script src="../../../componentes/js/admin/modal_editar.js" ></script>
     <link rel="stylesheet" href="../../../componentes/css/admin/eliminar_u.css">
     <script src="../../../componentes/js/admin/modal_eliminar.js" ></script>
-     <script src="../../../componentes/js/admin/filtro_busqueda_usuarios.js" ></script>
+    <script src="../../../componentes/js/admin/filtro_busqueda_usuarios.js" ></script>
     <link rel="stylesheet" href="../../../componentes/css/admin/lista_u.css">
 
 </head>
@@ -33,7 +33,7 @@ AutorizacionRol('administrador');
     <main id="cuerpo">
         <nav id="menu-lateral" class="menu-lateral">
             <figure id="img_menu">
-              <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
+                <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
         </figure>
             <ul>
 
@@ -66,7 +66,7 @@ AutorizacionRol('administrador');
             </ul>
         </nav>
 
-       <section id="admin-contenido" class="admin">
+        <section id="admin-contenido" class="admin">
 
             <h1>Lista de usuarios</h1>
 
@@ -117,7 +117,7 @@ AutorizacionRol('administrador');
         </section>
     </main>
 
-   
+
     <!-- Modal editar -->
 
 

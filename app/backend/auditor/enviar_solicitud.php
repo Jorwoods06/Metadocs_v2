@@ -18,11 +18,11 @@ if($_SERVER['REQUEST_METHOD'] != 'POST'){
     $id_usuario = $usuario['id_usuario'];
 
 
-       $mensaje_json = json_encode([
+        $mensaje_json = json_encode([
         'categoria' => $categoria,
         'expediente_destinado' => $expediente,
         'descripcion' => $descripcion,
- 
+
     ], JSON_UNESCAPED_UNICODE);
 
     
@@ -31,20 +31,20 @@ if($_SERVER['REQUEST_METHOD'] != 'POST'){
     $mensaje_escaped = mysqli_real_escape_string($conexion_metadocs, $mensaje_json);
 
     
-  $sql_actividad = "INSERT INTO actividades (id_usuario, tipo_actividad, mensaje, fecha_creacion, usuario_destinatario) 
+    $sql_actividad = "INSERT INTO actividades (id_usuario, tipo_actividad, mensaje, fecha_creacion, usuario_destinatario) 
         VALUES ('$id_usuario_escaped', '$tipo_actividad_escaped', '$mensaje_escaped', NOW(), '$responsable')";
 
 
 if (mysqli_query($conexion_metadocs, $sql_actividad)) {
-      
+    
         $id_solicitud = mysqli_insert_id($conexion_metadocs);
         
-       header('Location: ../../vistas/auditor/solicitar_documento.php?msg=solicitud_enviada');
-       
-      
+        header('Location: ../../vistas/auditor/solicitar_documento.php?msg=solicitud_enviada');
+        
+        
     } else {
         // Error en la consulta
-       header('Location: ../../vistas/auditor/solicitar_documento.php?msg=error_en_la_consulta');
+        header('Location: ../../vistas/auditor/solicitar_documento.php?msg=error_en_la_consulta');
     }
     
     // Cerrar conexión

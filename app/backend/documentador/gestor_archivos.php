@@ -110,7 +110,7 @@ function subirDocumento($conexion, $archivo, $id_expediente, $area, $id_usuario,
     $conexion->begin_transaction();
 
     try {
-       
+        
         $directorio = "../../uploads/";
         if (!file_exists($directorio)) {
             mkdir($directorio, 0777, true);
@@ -128,10 +128,10 @@ function subirDocumento($conexion, $archivo, $id_expediente, $area, $id_usuario,
             return false;
         }
 
-   
+    
         if (file_exists($rutaArchivo)) {
-         
-          
+        
+        
             $contador = 1;
             $nombre_sin_extension = pathinfo($nombre_archivo, PATHINFO_FILENAME);
             $extension_archivo = pathinfo($nombre_archivo, PATHINFO_EXTENSION);
@@ -145,7 +145,7 @@ function subirDocumento($conexion, $archivo, $id_expediente, $area, $id_usuario,
 
         
         if (move_uploaded_file($archivo["tmp_name"], $rutaArchivo)) {
-          
+        
             $sql = $conexion->prepare("INSERT INTO documentos (titulo, path, id_expediente, id_area, tipo, autor, estado, estado_retencion, id_retencion, fin_retencion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
             $titulo = $nombre_base;
@@ -157,13 +157,13 @@ function subirDocumento($conexion, $archivo, $id_expediente, $area, $id_usuario,
             if ($documento_insertado) {
                 $id_documento = $conexion->insert_id;
 
-              
+            
                 $sql_ubicacion = $conexion->prepare("INSERT INTO ubicacion_fisico (tipo_ubicacion, id_documento, observaciones, edificio, piso) VALUES (?, ?, ?, ?, ?)");
                 $sql_ubicacion->bind_param("sisss", $ubicacion, $id_documento, $observaciones, $edificio, $piso);
                 $ubicacion_insertada = $sql_ubicacion->execute();
 
                 if ($ubicacion_insertada) {
-               
+                
                     $conexion->commit();
                     return true;
                 } else {
@@ -293,7 +293,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             if (subirExpediente($conexion_metadocs, $nombre, $descripcion, $padreId, $area, $id_usuario)) {
                 session_start();
-                  $_SESSION['show_modal_expediente'] = true;
+                    $_SESSION['show_modal_expediente'] = true;
                 header("Location: ../../vistas/documentador/ver_documentos.php?success=true&id_expediente=" . $padreId);
                 exit();
             } else {
@@ -310,12 +310,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $edificio = $_POST['edificio'];
             $piso = $_POST['piso'];
             $observaciones = $_POST['observacion'];
-           
+            
             if (subirDocumento($conexion_metadocs, $archivo, $id_expediente, $area, $id_usuario, $categoria, $ubicacion, $edificio, $piso, $observaciones)) {
 
-                  session_start();
-                  $_SESSION['show_modal'] = true;
-                  header("Location: ../../vistas/documentador/ver_documentos.php?upload_success=true&id_expediente=" . $id_expediente);
+                    session_start();
+                    $_SESSION['show_modal'] = true;
+                    header("Location: ../../vistas/documentador/ver_documentos.php?upload_success=true&id_expediente=" . $id_expediente);
             } else {
                 header("Location: ../../vistas/documentador/ver_documentos.php?error=upload_failed&id_expediente=" . $id_expediente);
             }

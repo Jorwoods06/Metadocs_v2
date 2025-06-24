@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST'){
         }
     }
 function editar_usuario($conexion, $correo_original) {
- 
+
     if (!isset($_POST['nombre']) || !isset($_POST['correo_nuevo']) || 
         !isset($_POST['rol']) || !isset($_POST['area'])) {
         return ['success' => false, 'error' => 'Faltan datos requeridos'];
@@ -79,7 +79,7 @@ function editar_usuario($conexion, $correo_original) {
         $id_area = $row_area['id_area'];
         $sentencia_area->close();
 
-       
+        
         $consulta_editar = "UPDATE usuarios SET nombres = ?, correo = ?, rol = ?, id_area = ? WHERE correo = ?";
         $sentencia = $conexion->prepare($consulta_editar);
         $sentencia->bind_param("sssis", $nombre, $correo_nuevo, $rol, $id_area, $correo_original);
@@ -114,7 +114,7 @@ function editar_usuario($conexion, $correo_original) {
 
         case 'editar_usuario':
             $resultado = editar_usuario($conexion_metadocs, $correo) ;
-             echo json_encode($resultado);
+            echo json_encode($resultado);
             break;
 
         default:

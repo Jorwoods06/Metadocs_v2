@@ -69,7 +69,7 @@ function aprobarExpediente($conexion, $id_expediente, $usuario_destinatario, $no
             $tipo_actividad = 'expediente_aprobado';
 
             $sql_actividad = "INSERT INTO actividades (id_usuario, tipo_actividad, mensaje, fecha_creacion, usuario_destinatario) 
-                              VALUES (?, ?, ?, NOW(), ?)";
+                                (?, ?, ?, NOW(), ?)";
 
             if ($stmt_actividad = $conexion->prepare($sql_actividad)) {
                 $stmt_actividad->bind_param('isss', $id_usuario, $tipo_actividad, $mensaje_json, $usuario_destinatario_completo);
@@ -121,7 +121,7 @@ function aprobarDocumento($conexion, $id_documento, $usuario_destinatario, $titu
             $tipo_actividad = 'documento_aprobado';
 
             $sql_actividad = "INSERT INTO actividades (id_usuario, tipo_actividad, mensaje, fecha_creacion, usuario_destinatario) 
-                              VALUES (?, ?, ?, NOW(), ?)";
+                                VALUES (?, ?, ?, NOW(), ?)";
 
             if ($stmt_actividad = $conexion->prepare($sql_actividad)) {
                 $stmt_actividad->bind_param('isss', $id_usuario, $tipo_actividad, $mensaje_json, $usuario_destinatario_completo);
@@ -173,7 +173,7 @@ function rechazarExpediente($conexion, $id_expediente, $usuario_destinatario, $n
             $tipo_actividad = 'expediente_rechazado';
 
             $sql_actividad = "INSERT INTO actividades (id_usuario, tipo_actividad, mensaje, fecha_creacion, usuario_destinatario) 
-                              VALUES (?, ?, ?, NOW(), ?)";
+                                VALUES (?, ?, ?, NOW(), ?)";
 
             if ($stmt_actividad = $conexion->prepare($sql_actividad)) {
                 $stmt_actividad->bind_param('isss', $id_usuario, $tipo_actividad, $mensaje_json, $usuario_destinatario_completo);
@@ -258,7 +258,7 @@ function rechazarDocumento($conexion, $id_documento, $usuario_destinatario, $tit
         $tipo_actividad = 'documento_rechazado';
 
         $sql_actividad = "INSERT INTO actividades (id_usuario, tipo_actividad, mensaje, fecha_creacion, usuario_destinatario) 
-                          VALUES (?, ?, ?, NOW(), ?)";
+                            VALUES (?, ?, ?, NOW(), ?)";
 
         $stmt_actividad = $conexion->prepare($sql_actividad);
         if (!$stmt_actividad) {

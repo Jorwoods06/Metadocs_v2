@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST'){
 }else{
 
     if(!isset($_POST['gmail']) && !isset($_POST['contrasena'])){
-       
+        
         echo "no se puede ejecutar la operación púes faltan datos";
     
     }else{
@@ -31,11 +31,11 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST'){
         $autenticacion = $resultado -> fetch_object();
 
         if (!$autenticacion) {
-           
+            
             $_SESSION['denegado'] = 'Acceso denegado, no existes en el sistema';
-           
+            
             header('Location: ../../../login.php'); 
-           
+            
             exit();
         }else{
             
@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST'){
                 switch ($rol) {
                     
                     case 'administrador':
-                       
+                        
                         header("Location: ../../vistas/admin/panel_control.php");
                         break;
                     case 'visualizador':

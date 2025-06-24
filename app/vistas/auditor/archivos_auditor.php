@@ -35,7 +35,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
     <main id="cuerpo">
         <nav id="menu-lateral" class="menu-lateral">
             <figure id="img_menu">
-                   <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
+                    <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
             </figure>
             <ul>
                 <li>
@@ -53,10 +53,10 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
                         <li><a href="recibir_documentos.php"><i class="bi bi-envelope-paper"></i>Solicitudes</a></li>
                         <li><a href="#" class="submenu-activo"><i class="bi bi-eye"></i> Ver documentos</a></li>
                         <li><a href="solicitar_documento.php"><i class="bi bi-file-earmark-plus"></i> Solicitar documentos</a></li>
-                         <li><a href="archivo_historico.php"> <i class="bi bi-clock-history"></i> Archivo historico</a></li>
+                        <li><a href="archivo_historico.php"> <i class="bi bi-clock-history"></i> Archivo historico</a></li>
                     </ul>
                 </li>
-               
+
                 <li>
                     <a href="../../vistas/auditor/pista_auditoria.php">
                         <i class="bi bi-list-check"></i>
@@ -84,7 +84,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
                 </li>
             </ul>
         </nav>
-       
+        
         <section id="admin-contenido" class="admin">
             <!-- Título y botones cuando hay expediente seleccionado -->
             <?php if ($expediente_seleccionado): ?>
@@ -92,7 +92,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
     <!-- Contenedor para título y botones en la misma fila en tablet+ -->
     <div class="title-header-row">
         <h1>Documentos</h1>
-       
+        
     </div>
     
     <!-- Breadcrumb de navegación -->
@@ -152,7 +152,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
                             <td class="documento-fecha"><?= htmlspecialchars($carpeta['fecha_creacion']); ?></td>
                             <td class="documento-accion">
                                 <button class="btn_accion" data-id="<?= $carpeta['id_expediente']; ?>"><i class="bi bi-pencil-square"></i></button>
-                               
+                                
                             </td>
                         </tr>
                     <?php 

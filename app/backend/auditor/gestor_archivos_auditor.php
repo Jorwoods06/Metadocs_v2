@@ -271,7 +271,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id_expediente = $_POST['expediente_id'];
             $archivo = $_FILES['file-input'];
             $categoria = $_POST['categoria'];
-           
+            
             if (subirDocumento($conexion_metadocs, $archivo, $id_expediente, $area, $id_usuario, $categoria)) {
                 $_SESSION['doc_exito'] = 'Documento subido con éxito';
                 header("Location: ../../vistas/auditor/archivos_auditor.php?success=true&id_expediente=" . $id_expediente);

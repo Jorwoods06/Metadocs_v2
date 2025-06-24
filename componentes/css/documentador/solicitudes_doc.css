@@ -116,7 +116,7 @@
 /* === Escritorio (1024px+) === */
 @media screen and (min-width: 1024px) {
   .contenedor-principal {
-    margin-left: 240px;
+    margin-left: 18%;
     padding: 40px 30px 0 0;
   }
 

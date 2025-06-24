@@ -22,7 +22,7 @@ if($_SERVER['REQUEST_METHOD'] != 'POST'){
         'categoria' => $categoria,
         'expediente_destinado' => $expediente,
         'descripcion' => $descripcion,
-        'estado' => 'pendiente'
+ 
     ], JSON_UNESCAPED_UNICODE);
 
     

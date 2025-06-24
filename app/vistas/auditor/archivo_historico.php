@@ -22,6 +22,8 @@ if (isset($documentos_archivados)) {
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
     <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
     <link rel="stylesheet" href="../../../componentes/css/auditor/archivo_historico.css">
+    <!-- Agregar CSS del visor para consistencia -->
+    <link rel="stylesheet" href="../../../componentes/css/documentador/visor.css">
 </head>
 <body>
    
@@ -128,11 +130,14 @@ if (isset($documentos_archivados)) {
                 <tbody id="cuerpoTabla">
                     <?php if (isset($documentos_archivados) && !empty($documentos_archivados)): ?>
                         <?php foreach ($documentos_archivados as $documento): ?>
-                            <tr>
-                                <td><?php echo htmlspecialchars($documento['titulo']); ?></td>
-                                <td><?php echo htmlspecialchars($documento['categoria']); ?></td>
-                                <td><?php echo htmlspecialchars($documento['tipo']); ?></td>
-                                <td>
+                            <tr class="documentos" data-document-id="<?= isset($documento['id_documento']) ? $documento['id_documento'] : '' ?>">
+                                <td class="documento-nombre">
+                                    <i class="bi bi-file-earmark-text"></i> 
+                                    <?php echo htmlspecialchars($documento['titulo']); ?>
+                                </td>
+                                <td class="documento-categoria"><?php echo htmlspecialchars($documento['categoria']); ?></td>
+                                <td class="documento-tipo"><?php echo htmlspecialchars($documento['tipo']); ?></td>
+                                <td class="documento-fecha">
                                     <?php 
                                     // Formatear la fecha
                                     if ($documento['fin_retencion']) {
@@ -143,9 +148,17 @@ if (isset($documentos_archivados)) {
                                     }
                                     ?>
                                 </td>
-                                <td>
-                                    <button class="btn-accion" onclick="verDocumento('<?php echo htmlspecialchars($documento['titulo']); ?>')">
-                                        <i class="bi bi-eye"></i> Ver
+                                <td class="documento-accion">
+                                    <!-- Botón para escritorio - Modal -->
+                                    <button class="btn_accion_archivo btn_ver_modal escritorio" 
+                                            onclick="verDocumento('<?= urlencode($documento['titulo'] . '.' . $documento['tipo']) ?>', '<?= strtolower($documento['tipo']) ?>')">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+
+                                    <!-- Botón para móvil - Nueva ventana -->
+                                    <button class="btn_accion__archivo btn_ver_nueva_ventana movil" 
+                                            onclick="abrirNuevaVentana('<?= urlencode($documento['titulo'] . '.' . $documento['tipo']) ?>')">
+                                        <i class="bi bi-eye"></i>
                                     </button>
                                 </td>
                             </tr>
@@ -167,109 +180,23 @@ if (isset($documentos_archivados)) {
 </section>
 
     </main>
-    
+
+    <!-- Modal para visualizar documentos -->
+    <div id="modal_visor">
+        <div id="modal_visor_content">
+            <span id="cerrar_visor">&times;</span>
+            <iframe id="visor_documento" src=""></iframe>
+        </div>
+    </div>
+
     <?php include '../../vistas/log/modal_cerrar_sesion.php'; ?>
 
     <!-- Scripts -->
     <script src="../../../componentes/js/admin/panel.js"></script>
-    <script>
-        // Función para filtrar la tabla
-        function filtrarTabla() {
-            const busqueda = document.getElementById('entradaBusqueda').value.toLowerCase().trim();
-            const categoriaFiltro = document.getElementById('filtroCategoria').value.toLowerCase();
-            const tbody = document.getElementById('cuerpoTabla');
-            const filas = tbody.getElementsByTagName('tr');
-            let filasVisibles = 0;
-            let hayDocumentos = false;
-
-            // Verificar si hay documentos reales (no solo la fila vacía)
-            for (let i = 0; i < filas.length; i++) {
-                const fila = filas[i];
-                if (fila.id !== 'filaVacia' && fila.id !== 'filaSinResultados') {
-                    hayDocumentos = true;
-                    break;
-                }
-            }
-
-            // Si no hay documentos, no hacer filtrado
-            if (!hayDocumentos) {
-                return;
-            }
-
-            // Remover fila de "sin resultados" si existe
-            const filaSinResultados = document.getElementById('filaSinResultados');
-            if (filaSinResultados) {
-                filaSinResultados.remove();
-            }
-
-            // Ocultar fila vacía original si existe
-            const filaVacia = document.getElementById('filaVacia');
-            if (filaVacia) {
-                filaVacia.style.display = 'none';
-            }
-
-            // Filtrar filas
-            for (let i = 0; i < filas.length; i++) {
-                const fila = filas[i];
-                
-                // Saltar filas especiales
-                if (fila.id === 'filaSinResultados' || fila.id === 'filaVacia') {
-                    continue;
-                }
-                
-                const celdas = fila.getElementsByTagName('td');
-                if (celdas.length >= 2) {
-                    const nombre = celdas[0].textContent.toLowerCase().trim();
-                    const categoria = celdas[1].textContent.toLowerCase().trim();
-                    
-                    const coincideNombre = busqueda === '' || nombre.includes(busqueda);
-                    const coincideCategoria = categoriaFiltro === '' || categoria === categoriaFiltro;
-                    
-                    if (coincideNombre && coincideCategoria) {
-                        fila.style.display = '';
-                        filasVisibles++;
-                    } else {
-                        fila.style.display = 'none';
-                    }
-                }
-            }
-
-            // Si no hay filas visibles después del filtrado, mostrar mensaje
-            if (filasVisibles === 0 && hayDocumentos) {
-                const nuevaFila = document.createElement('tr');
-                nuevaFila.id = 'filaSinResultados';
-                nuevaFila.innerHTML = `
-                    <td colspan="5" style="text-align: center; padding: 20px; color: #6c757d; font-style: italic;">
-                        No se encontraron documentos que coincidan con los filtros seleccionados.
-                    </td>
-                `;
-                tbody.appendChild(nuevaFila);
-            }
-        }
-
-        // Función para ver documento
-        function verDocumento(titulo) {
-            // Aquí puedes implementar la lógica para ver el documento
-            // Por ejemplo, abrir un modal o redirigir a otra página
-            alert('Funcionalidad para ver documento: ' + titulo + '\n\nImplementar según los requerimientos del sistema.');
-            
-            // Ejemplo de implementación:
-            // window.open('ver_documento.php?titulo=' + encodeURIComponent(titulo), '_blank');
-            // o mostrar un modal con los detalles del documento
-        }
-
-        // Función para limpiar filtros
-        function limpiarFiltros() {
-            document.getElementById('entradaBusqueda').value = '';
-            document.getElementById('filtroCategoria').value = '';
-            filtrarTabla();
-        }
-
-        // Inicialización cuando el DOM esté listo
-        document.addEventListener('DOMContentLoaded', function() {
-            // Cualquier inicialización adicional aquí
-            console.log('Página de archivo histórico cargada correctamente');
-        });
-    </script>
+    <script src="../../../componentes/js/auditor/auditor_ver_docs.js"></script>
+    <script src="../../../componentes/js/auditor/filtro_archivado.js"></script>
+    <script src="../../../componentes/js/documentador/visor.js"></script>
+    <!-- Agregar script adicional para manejo de tabla si es necesario -->
+    <script src="../../../componentes/js/documentador/tabla_click.js"></script>
 </body>
 </html>

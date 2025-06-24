@@ -31,7 +31,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
     <main id="cuerpo">
         <nav id="menu-lateral" class="menu-lateral">
             <figure id="img_menu">
-                  <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
+                    <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
             </figure>
             <ul>
                 <li><a href="documentador_inicio.php"><i class="bi bi-house-door"></i>Inicio</a></li>
@@ -62,7 +62,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
             <!-- Área de subida de archivos -->
             <div id="area_division">
                 <i class="bi bi-cloud-arrow-up-fill"></i>
-                <h3>Arraste y suelte archivos o haga click para cargar</h3>
+                <h3>Haga click para cargar</h3>
                 <p>Formatos soportados: PDF, DOC, DOCX, XLS, XLSX</p>
                 <input type="file" id="input_documento" name = "input_documento"class="input-documento" accept=".pdf,.doc,.docx,.xls,.xlsx" multiple>
             </div>

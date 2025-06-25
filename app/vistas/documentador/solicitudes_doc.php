@@ -30,7 +30,7 @@ require_once '../../backend/documentador/recibir_actividades.php';
             </figure>
             <ul>
                 <li><a href="documentador_inicio.php"><i class="bi bi-house-door"></i>Inicio</a></li>
-                <li><a href="ver_documentos.php"><i class="bi bi-file-earmark-text"></i>Documentos</a></li>
+                <li><a href="ver_documentos.php"><i class="bi bi-file-earmark-text"></i>Carpetas</a></li>
                 <li><a href="" class="activo"><i class="bi bi-envelope-paper"></i>Solicitudes</a></li>
                 <li class="gestion-usuarios">
                     <a href="#" id="cerrado-usuarios">

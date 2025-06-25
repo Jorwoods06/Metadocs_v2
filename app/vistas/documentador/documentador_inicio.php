@@ -38,7 +38,7 @@ AutorizacionRol('documentador');
                     <li>
                     <a href="ver_documentos.php">
                         <i class="bi bi-file-earmark-text"></i>
-                        Documentos
+                        Carpetas
                     </a>
                 </li>
                 
@@ -89,7 +89,7 @@ AutorizacionRol('documentador');
                 <a href="ver_documentos.php" class="card-link">
                     <div class="card-opcion">
                         <img src="https://cdn-icons-png.flaticon.com/128/10650/10650289.png" alt="ver documentos">
-                        <label>Ver documentos</label>
+                        <label>Documentos</label>
                     </div>
                 </a>
 

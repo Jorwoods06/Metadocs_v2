@@ -50,8 +50,8 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
                         Gestión Documentos
                     </a>
                     <ul class="sub_menu gestion-submenu" id="sub_menu">
-                        <li><a href="recibir_documentos.php"><i class="bi bi-envelope-paper"></i>Solicitudes</a></li>
-                        <li><a href="#" class="submenu-activo"><i class="bi bi-eye"></i> Ver documentos</a></li>
+                        <li><a href="recibir_documentos.php"><i class="bi bi-envelope-paper"></i>pendientes</a></li>
+                        <li><a href="#" class="submenu-activo"><i class="bi bi-eye"></i> Carpetas</a></li>
                         <li><a href="solicitar_documento.php"><i class="bi bi-file-earmark-plus"></i> Solicitar documentos</a></li>
                         <li><a href="archivo_historico.php"> <i class="bi bi-clock-history"></i> Archivo historico</a></li>
                     </ul>
@@ -111,14 +111,14 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
 </div>
 <?php else: ?>
 <div class="title-button-container">
-    <h1>Documentos</h1>
+    <h1>Carpetas</h1>
 </div>
 <?php endif; ?>
 
             <div class="buscar-documentos">
                 <input type="text" class="input-buscar" placeholder="Buscar carpeta o archivo...">
                 <?php if (!$expediente_seleccionado): ?>
-                <button class="btn-crear" id="btn_crear">Crear expediente</button>
+                <button class="btn-crear" id="btn_crear">Crear Carpeta</button>
                 <?php endif; ?>
             </div>
 

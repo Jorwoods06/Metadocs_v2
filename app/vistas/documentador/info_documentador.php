@@ -40,7 +40,7 @@ AutorizacionRol('documentador');
                 <li>
                     <a href="ver_documentos.php">
                         <i class="bi bi-file-earmark-text"></i>
-                        Documentos
+                        Carpetas
                     </a>
                 </li>
                 

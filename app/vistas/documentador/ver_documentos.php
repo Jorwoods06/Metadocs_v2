@@ -65,7 +65,7 @@ if (isset($_SESSION['show_modal_expediente']) && $_SESSION['show_modal_expedient
                 <li>
                     <a href="#" class="activo">
                         <i class="bi bi-file-earmark-text"></i>
-                        Documentos
+                        Carpetas
                     </a>
                 </li>
                 
@@ -103,13 +103,13 @@ if (isset($_SESSION['show_modal_expediente']) && $_SESSION['show_modal_expedient
 <div class="title-button-container">
 
     <div class="title-header-row">
-        <h1>Documentos</h1>
+        <h1>Carpetas</h1>
         <div class="header-buttons">
             <button type="button" id="btn_documento">
                 <i class="bi bi-upload"></i> Subir documento
             </button>
             <button type="button" id="btn_crear">
-                <i class="bi bi-plus-circle"></i> Crear expediente
+                <i class="bi bi-plus-circle"></i> Crear Carpetas
             </button>
         </div>
     </div>

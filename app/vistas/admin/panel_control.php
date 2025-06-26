@@ -27,7 +27,7 @@ AutorizacionRol('administrador');
     <main id="cuerpo">
         <nav id="menu-lateral" class="menu-lateral">
             <figure id="img_menu">
-                  <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
+                    <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
             </figure>
             <ul>
                 <li>
@@ -68,7 +68,7 @@ AutorizacionRol('administrador');
                         <i class="bi bi-person"></i>
                         Usuario
                     </a>
-                       <ul class="sub_menu usuario-submenu" id="sub_menu">
+                        <ul class="sub_menu usuario-submenu" id="sub_menu">
                         <li><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
                         <li><a href="../log/informacion_usuario.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
                         <li><a href="../log/nueva_contraseña.php"><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
@@ -83,7 +83,7 @@ AutorizacionRol('administrador');
                 </li>
             </ul>
         </nav>
-       
+        
         <section id="admin-contenido" class="admin">
             <h1>Panel control</h1>
             <?php

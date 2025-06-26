@@ -53,8 +53,8 @@ if (!file_exists($path_archivo)) {
     
     if (!$archivo_encontrado) {
         die(" El archivo '$archivo' no existe en ninguna de las rutas esperadas.<br>
-             Ruta principal: $path_archivo<br>
-             Verifica que el archivo esté subido correctamente.");
+            Ruta principal: $path_archivo<br>
+            Verifica que el archivo esté subido correctamente.");
     }
 }
 

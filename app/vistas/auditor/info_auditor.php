@@ -19,15 +19,15 @@ AutorizacionRol('auditor');
     <link rel="stylesheet" href="../../../componentes/css/admin/informacion_usuario.css">
 </head>
 <body>
-   
-   <header id="cabezote">
+    
+    <header id="cabezote">
         <i class="bi bi-list" id="menu_opciones"></i>
     </header>
 
     <main id="cuerpo">
         <nav id="menu-lateral" class="menu-lateral">
             <figure id="img_menu">
-                  <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
+                    <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
             </figure>
             <ul>
                 <li>
@@ -42,13 +42,13 @@ AutorizacionRol('auditor');
                         Gestión Documentos
                     </a>
                     <ul class="sub_menu gestion-submenu" id="sub_menu">
-                        <li><a href="recibir_documentos.php"><i class="bi bi-envelope-paper"></i>Solicitudes</a></li>
-                        <li><a href="archivos_auditor.php"><i class="bi bi-eye"></i> Ver documentos</a></li>
+                        <li><a href="recibir_documentos.php"><i class="bi bi-envelope-paper"></i>pendientes</a></li>
+                        <li><a href="archivos_auditor.php"><i class="bi bi-eye"></i>Carpetas</a></li>
                         <li><a href="solicitar_documento.php"><i class="bi bi-file-earmark-plus"></i> Solicitar documentos</a></li>
-                         <li><a href="archivo_historico.php"> <i class="bi bi-clock-history"></i> Archivo historico</a></li>
+                        <li><a href="archivo_historico.php"> <i class="bi bi-clock-history"></i> Archivo historico</a></li>
                     </ul>
                 </li>
-               
+                
                 <li>
                     <a href="../../vistas/auditor/pista_auditoria.php">
                         <i class="bi bi-list-check"></i>
@@ -76,7 +76,7 @@ AutorizacionRol('auditor');
                 </li>
             </ul>
         </nav>
-       
+        
         <section class="contenido-usuario">
             <h1 class="titulo-usaurio">Informacion del Usuario</h1>
             <div class="info-usuario">
@@ -85,12 +85,12 @@ AutorizacionRol('auditor');
                     <div class="nombre-usuario"><?=htmlspecialchars($fila["nombres"])?></div>
                 </div>
             
-              <div class="contenedor-datos">
+                <div class="contenedor-datos">
 
             <div class="datos">
                 <label>Descripción laboral</label>
                 <div class="valor">
-                   <?=htmlspecialchars($mensaje)?>
+                    <?=htmlspecialchars($mensaje)?>
                 </div>
             </div>
 
@@ -104,12 +104,12 @@ AutorizacionRol('auditor');
                 <div class="valor"><?= htmlspecialchars($fila["apellidos"]) ?></div>
             </div>
 
-             <div class="datos">
+            <div class="datos">
                 <label>Correo Electronico</label>
                 <div class="valor"><?= htmlspecialchars($fila["correo"]) ?></div>
             </div>
 
-             <div class="datos">
+            <div class="datos">
                 <label>Numero telefónico</label>
                 <div class="valor"><?= htmlspecialchars($fila["telefono"]) ?></div>
             </div>

@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // Enviar el correo
                 $mail->send();
-                 header('Location: ../../vistas/log/correo_enviado.php');
+                header('Location: ../../vistas/log/correo_enviado.php');
                 exit;
 
             } catch (Exception $e) {
@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         
         $_SESSION['no_existe'] = 'El correo electrónico que ingresaste no se encuentra en el sistema';
-         header('Location: ../../vistas/log/recuperacion.php ');
+        header('Location: ../../vistas/log/recuperacion.php ');
         exit();
     }
 }

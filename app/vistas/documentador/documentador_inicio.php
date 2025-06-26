@@ -26,7 +26,7 @@ AutorizacionRol('documentador');
     <main id="cuerpo">
         <nav id="menu-lateral" class="menu-lateral">
             <figure id="img_menu">
-                  <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
+                    <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
             </figure>
             <ul>
                 <li>
@@ -35,10 +35,10 @@ AutorizacionRol('documentador');
                         Inicio
                     </a>
                 </li>
-                 <li>
+                    <li>
                     <a href="ver_documentos.php">
                         <i class="bi bi-file-earmark-text"></i>
-                       Documentos
+                        Carpetas
                     </a>
                 </li>
                 
@@ -55,11 +55,11 @@ AutorizacionRol('documentador');
                         Usuario
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
-                          <li><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
+                        <li><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
                         <li><a href="../documentador/info_documentador.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
                         <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
 
-                       
+                        
                     </ul>
                 </li>
 
@@ -71,7 +71,7 @@ AutorizacionRol('documentador');
                 </li>
             </ul>
         </nav>
-       
+        
         <section id="admin-contenido" class="admin">
             <h1 class="titulo-documentador">Bienvenido Documentador</h1>
 
@@ -89,11 +89,11 @@ AutorizacionRol('documentador');
                 <a href="ver_documentos.php" class="card-link">
                     <div class="card-opcion">
                         <img src="https://cdn-icons-png.flaticon.com/128/10650/10650289.png" alt="ver documentos">
-                        <label>Ver documentos</label>
+                        <label>Documentos</label>
                     </div>
                 </a>
 
-                 <a href="info_documentador.php" class="card-link">
+                <a href="info_documentador.php" class="card-link">
                     <div class="card-opcion">
                         <img src="https://cdn-icons-png.flaticon.com/128/5655/5655237.png" alt="informacion del documentador">
                         <label>Informacion del documentador</label>

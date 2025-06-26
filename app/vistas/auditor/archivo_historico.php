@@ -26,15 +26,15 @@ if (isset($documentos_archivados)) {
     <link rel="stylesheet" href="../../../componentes/css/documentador/visor.css">
 </head>
 <body>
-   
-   <header id="cabezote">
+
+    <header id="cabezote">
         <i class="bi bi-list" id="menu_opciones"></i>
     </header>
 
     <main id="cuerpo">
         <nav id="menu-lateral" class="menu-lateral">
             <figure id="img_menu">
-                  <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
+                    <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
             </figure>
             <ul>
                 <li>
@@ -49,13 +49,13 @@ if (isset($documentos_archivados)) {
                         Gestión Documentos
                     </a>
                     <ul class="sub_menu gestion-submenu" id="sub_menu">
-                        <li><a href="recibir_documentos.php"><i class="bi bi-envelope-paper"></i>Solicitudes</a></li>
-                        <li><a href="archivos_auditor.php"><i class="bi bi-eye"></i> Ver documentos</a></li>
+                        <li><a href="recibir_documentos.php"><i class="bi bi-envelope-paper"></i>pendientes</a></li>
+                        <li><a href="archivos_auditor.php"><i class="bi bi-eye"></i>Carpetas</a></li>
                         <li><a href="solicitar_documento.php"><i class="bi bi-file-earmark-plus"></i> Solicitar documentos</a></li>
-                         <li><a href=""  class="submenu-activo"> <i class="bi bi-clock-history"></i> Archivo historico</a></li>
+                        <li><a href=""  class="submenu-activo"> <i class="bi bi-clock-history"></i> Archivo historico</a></li>
                     </ul>
                 </li>
-               
+                
                 <li>
                     <a href="../../vistas/auditor/pista_auditoria.php">
                         <i class="bi bi-list-check"></i>
@@ -83,8 +83,8 @@ if (isset($documentos_archivados)) {
                 </li>
             </ul>
         </nav>
-       
-       <section id="admin-contenido" class="admin">
+        
+        <section id="admin-contenido" class="admin">
     <div class="contenedor_archivo">
 
         <h1>Archivo historico</h1>

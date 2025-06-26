@@ -32,7 +32,7 @@ AutorizacionRol('auditor');
     <main id="cuerpo">
         <nav id="menu-lateral" class="menu-lateral">
             <figure id="img_menu">
-                  <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
+                    <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
             </figure>
             <ul>
                 <li>
@@ -47,13 +47,13 @@ AutorizacionRol('auditor');
                         Gestión Documentos
                     </a>
                     <ul class="sub_menu gestion-submenu" id="sub_menu">
-                        <li><a href="#" class="submenu-activo"><i class="bi bi-envelope-paper" ></i>Solicitudes</a></li>
-                        <li><a href="archivos_auditor.php"><i class="bi bi-eye"></i> Ver documentos</a></li>
+                        <li><a href="#" class="submenu-activo"><i class="bi bi-envelope-paper" ></i>pendientes</a></li>
+                        <li><a href="archivos_auditor.php"><i class="bi bi-eye"></i>Carpetas</a></li>
                         <li><a href="solicitar_documento.php"><i class="bi bi-file-earmark-plus"></i> Solicitar documentos</a></li>
-                         <li><a href="archivo_historico.php"> <i class="bi bi-clock-history"></i> Archivo historico</a></li>
+                        <li><a href="archivo_historico.php"> <i class="bi bi-clock-history"></i> Archivo historico</a></li>
                     </ul>
                 </li>
-               
+                
                 <li>
                     <a href="../../vistas/auditor/pista_auditoria.php">
                         <i class="bi bi-list-check"></i>
@@ -73,7 +73,7 @@ AutorizacionRol('auditor');
                         <li><a href="info_auditor.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
                         <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
 
-                       
+                        
                     </ul>
                 </li>
 
@@ -85,7 +85,7 @@ AutorizacionRol('auditor');
                 </li>
             </ul>
         </nav>
-       
+        
         <section id="admin-contenido" class="admin">
             
             <div id="titulo">
@@ -167,9 +167,9 @@ AutorizacionRol('auditor');
                             <i class="bi bi-eye"></i> Ver
                         </button>
 
-                     
+                        
 
-                   
+                    
                         <button type="button" class="ver btn_ver_nueva_ventana movil" 
                                 onclick="abrirNuevaVentana('<?= urlencode($documento['titulo'] . '.' . $documento['tipo']) ?>')">
                             <i class="bi bi-eye"></i> Ver
@@ -195,10 +195,10 @@ AutorizacionRol('auditor');
 
     </main>
 
-  
+    
 
- 
- <!-- modal aprobar documento -->
+    
+<!-- modal aprobar documento -->
 <div id="modal_confirmar_documento" class="modal_confirmar">
     <form class="modal_contenedor" action="../../backend/auditor/aprobar_expediente_documento.php" method="POST">
         <span class="close">&times;</span>
@@ -217,7 +217,7 @@ AutorizacionRol('auditor');
         <input type="hidden" name="expediente" value="">
     </form>
 </div>
- <!-- modal aprobar expediente -->
+<!-- modal aprobar expediente -->
 <div id="modal_confirmar_expediente" class="modal_confirmar">
     <form class="modal_contenedor" action="../../backend/auditor/aprobar_expediente_documento.php" method="POST">
         <span class="close">&times;</span>

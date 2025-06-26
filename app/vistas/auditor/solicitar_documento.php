@@ -25,7 +25,7 @@ AutorizacionRol('auditor');
     <main id="cuerpo">
         <nav id="menu-lateral" class="menu-lateral">
             <figure id="img_menu">
-                   <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
+                    <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
             </figure>
             <ul>
                 <li>
@@ -40,13 +40,13 @@ AutorizacionRol('auditor');
                         Gestión Documentos
                     </a>
                     <ul class="sub_menu gestion-submenu" id="sub_menu">
-                        <li><a href="recibir_documentos.php"><i class="bi bi-envelope-paper"></i>Solicitudes</a></li>
-                        <li><a href="archivos_auditor.php"><i class="bi bi-eye"></i> Ver documentos</a></li>
+                        <li><a href="recibir_documentos.php"><i class="bi bi-envelope-paper"></i>pendientes</a></li>
+                        <li><a href="archivos_auditor.php"><i class="bi bi-eye"></i>Carpetas</a></li>
                         <li><a href="#" class="submenu-activo"><i class="bi bi-file-earmark-plus"></i> Solicitar documentos</a></li>
-                         <li><a href="archivo_historico.php"> <i class="bi bi-clock-history"></i> Archivo historico</a></li>
+                        <li><a href="archivo_historico.php"> <i class="bi bi-clock-history"></i> Archivo historico</a></li>
                     </ul>
                 </li>
-               
+                
                 <li>
                     <a href="../../vistas/auditor/pista_auditoria.php">
                         <i class="bi bi-list-check"></i>
@@ -75,10 +75,10 @@ AutorizacionRol('auditor');
                 </li>
             </ul>
         </nav>
-       
+        
         <section id="admin-contenido" class="admin">
 
-     <h1>Solicitar documentos</h1>
+    <h1>Solicitar documentos</h1>
 
         <div class="formulario-solicitud">
             <form action="../../backend/auditor/enviar_solicitud.php" method="post">
@@ -95,15 +95,15 @@ AutorizacionRol('auditor');
                     </select>
                 </div>
 
-                 <div class="campo">
+                <div class="campo">
                     <label for="responsable">Responsable:</label>
                     <div class="usuario-selector">
                         <input type="text" 
-                               id="responsable" 
-                               name="responsable_display" 
-                               class="usuario-input" 
-                               placeholder="Buscar documentador..." 
-                               autocomplete="off">
+                                id="responsable" 
+                                name="responsable_display" 
+                                class="usuario-input" 
+                                placeholder="Buscar documentador..." 
+                                autocomplete="off">
                         <input type="hidden" name="responsable" id="responsable_id">
                         <div class="usuario-dropdown" id="usuario-dropdown"></div>
                     </div>
@@ -113,11 +113,11 @@ AutorizacionRol('auditor');
                     <label for="expediente">Expediente destinado:</label>
                     <div class="usuario-selector">
                         <input type="text" 
-                               id="expediente" 
-                               name="expediente_display" 
-                               class="usuario-input" 
-                               placeholder="Buscar expediente..." 
-                               autocomplete="off">
+                                id="expediente" 
+                                name="expediente_display" 
+                                class="usuario-input" 
+                                placeholder="Buscar expediente..." 
+                                autocomplete="off">
                         <input type="hidden" name="expediente" id="expediente_id">
                         <div class="usuario-dropdown" id="expediente-dropdown"></div>
                     </div>
@@ -127,7 +127,7 @@ AutorizacionRol('auditor');
                     <label for="descripcion">Descripción:</label>
                     <textarea id="descripcion" name="descripcion" placeholder="Describe qué documento necesitas y para qué."></textarea>
                 </div>
-               
+                
                 <button type="submit" class="btn-solicitar">Solicitar documento</button>
             </form>
         </div>

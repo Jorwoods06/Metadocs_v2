@@ -31,7 +31,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
     <main id="cuerpo">
         <nav id="menu-lateral" class="menu-lateral">
             <figure id="img_menu">
-                  <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
+                    <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
             </figure>
             <ul>
                 <li><a href="documentador_inicio.php"><i class="bi bi-house-door"></i>Inicio</a></li>
@@ -42,7 +42,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
                         <i class="bi bi-person"></i>Usuario
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
-                          <li><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
+                            <li><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
                         <li><a href="info_documentador.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
                         <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
                     </ul>
@@ -54,7 +54,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
         </nav>
 
         <section class="contenedor-principal">
-           <h1>Subir documento</h1>
+            <h1>Subir documento</h1>
 
             <article id="form_contenedor">
         <form id="form_documento" action="../../backend/documentador/gestor_archivos.php" method="post" enctype="multipart/form-data">
@@ -62,7 +62,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
             <!-- Área de subida de archivos -->
             <div id="area_division">
                 <i class="bi bi-cloud-arrow-up-fill"></i>
-                <h3>Arraste y suelte archivos o haga click para cargar</h3>
+                <h3>Haga click para cargar</h3>
                 <p>Formatos soportados: PDF, DOC, DOCX, XLS, XLSX</p>
                 <input type="file" id="input_documento" name = "input_documento"class="input-documento" accept=".pdf,.doc,.docx,.xls,.xlsx" multiple>
             </div>
@@ -130,7 +130,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
                             <option value="">Seleccione el piso</option>
                             <option value="sotano">Sotano</option>
                             <option value="planta_baja">Planta baja</option>
-                             <option value="primer_piso">Primer piso</option>
+                            <option value="primer_piso">Primer piso</option>
                             <option value="segundo_piso">Segundo piso</option>
                             <option value="tercer_piso">Tercer piso</option>
                             <option value="cuarto_piso">Cuarto piso</option>
@@ -153,7 +153,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
 
             </div>
                 <input type="hidden" name="accion" value="subir_documento">
-                  <input type="hidden" name="expediente_id" value="<?= $expediente_seleccionado ?>">
+                    <input type="hidden" name="expediente_id" value="<?= $expediente_seleccionado ?>">
         </form>
     </article>
 

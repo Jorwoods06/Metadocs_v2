@@ -42,20 +42,14 @@ AutorizacionRol('auditor');
                         Gestión Documentos
                     </a>
                     <ul class="sub_menu gestion-submenu" id="sub_menu">
-                        <li><a href="recibir_documentos.php"><i class="bi bi-envelope-paper"></i>Solicitudes</a></li>
+                        <li><a href="recibir_documentos.php"><i class="bi bi-envelope-paper"></i>Pendientes</a></li>
                         <li><a href="archivos_auditor.php"><i class="bi bi-eye"></i> Ver documentos</a></li>
                         <li><a href="solicitar_documento.php"><i class="bi bi-file-earmark-plus"></i> Solicitar documentos</a></li>
                          <li><a href=""> <i class="bi bi-clock-history"></i> Archivo historico</a></li>
                     </ul>
                 </li>
                
-                <li>
-                    <a href="../../vistas/auditor/pista_auditoria.php">
-                        <i class="bi bi-list-check"></i>
-
-                        Pista auditoria
-                    </a>
-                </li>
+                
                 
                     <!-- cerrado sesion -->  
                 <li class="gestion-usuarios">
@@ -82,51 +76,65 @@ AutorizacionRol('auditor');
         </nav>
        
         <section id="admin-contenido" class="admin">
+            <div class="header-welcome">
+                <h1 class="titulo-auditor">¡Hola, Auditor </h1>
+                <p class="subtitulo-welcome">Bienvenido de vuelta
+            </div>
 
-            <h1 class="titulo-auditor">Bienvenido auditor</h1>
+            <div class="main-section">
+                
+                    <div class="section-header">
+                        <h2 class="section-title">Acciones Repidas</h2>
+                        <p class="section-subtitle">Accede rapidamente a las funciones utlizadas</p>
+                    </div>
 
-            <h2 class="titulo-mediano">Aqui podras seleccionar con que quieres estar informado</h2>
+                    <div class="contendor-general">
+                        <a href="solicitar_documento.php" class="card-link">
+                            <div class="card-option">
+                                <div class="icon-container">
+                                    <img src="https://cdn-icons-png.flaticon.com/128/8212/8212410.png" alt="Solicitar documentos">
+                                </div>
+                                <h3>Solicitar documentos</h3>
+                                <p>Solicita los documentos necesarios</p>
+                            </div>
+                        </a>
+
+                        <a href="recibir_documentos.php" class="card-link">
+                            <div class="card-opcion">
+                                <div class="icon-container">
+                                    <img src="https://cdn-icons-png.flaticon.com/128/12824/12824819.png" alt="Solicitudes">
+                                </div>
+                                <h3>Pendientes</h3>
+                                <p>Revisa y gestiona solicitudes</p>
+                            </div>
+                        </a>
+
+                        <a href="archivo_auditor.php" class="card-link">
+                            <div class="card-opcion">
+                                <div class="icon-container">
+                                    <img src="https://cdn-icons-png.flaticon.com/128/11907/11907348.png" alt="Archivo historico">
+                                </div>
+                                <h3>Archivo historico</h3>
+                                <p>Accede al historial de documentos</p>
+                            </div>
+                        </a>
+
+                        <a href="info_auditor.php" class="card-link">
+                            <div class="card-opcion">
+                                <div class="icon-container">
+                                    <img src="https://cdn-icons-png.flaticon.com/128/5655/5655237.png" alt="Informacion auditor">
+                                </div>
+                                <h3>Informacion auditor</h3>
+                                <p>Consulta tu informacion personal</p>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
             
 
-            <div class="contenedor-general">
-                
-                <a href="solicitar_documento.php" class="card-link">
-                    <div class="card-opcion">
-                        <img src="https://cdn-icons-png.flaticon.com/128/8212/8212410.png" alt="Solicitar documentos">
-                        <label>Solicitar documentos</label>
-                    </div>
-                </a>
-
-                <a href="recibir_documentos.php" class="card-link">
-                    <div class="card-opcion">
-
-                        <img src="https://cdn-icons-png.flaticon.com/128/12824/12824819.png" alt="Solicitudes">
-                        <label>Solicitudes</label>
-                    </div>
-                </a>
-
-
-                 <a href="archivos_auditor.php" class="card-link">
-                    <div class="card-opcion">
-                        <img src="https://cdn-icons-png.flaticon.com/128/11907/11907348.png" alt="archivo historico">
-                        <label> archivo histórico</label>
-                    </div>
-                </a>
-
-                <a href="../../vistas/auditor/pista_auditoria.php" class="card-link">
-                    <div class="card-opcion">
-                        <img src="https://cdn-icons-png.flaticon.com/128/15400/15400355.png" alt="pista de auditoria">
-                        <label> pista de auditoría</label>
-                    </div>
-                </a>
-
-                <a href="info_auditor.php" class="card-link">
-                    <div class="card-opcion">
-                        <img src="https://cdn-icons-png.flaticon.com/128/5655/5655237.png" alt="Informacion auditor">
-                        <label>Información del auditor</label>
-                    </div>
-                </a>
-
+            
 
             </div>
         </section>

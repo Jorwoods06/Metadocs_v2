@@ -1,3 +1,5 @@
+
+
 /* Estilos base para móvil */
 .title-button-container {
     display: flex;
@@ -195,15 +197,19 @@
     line-height: 1.3;
 }
 
+
+
 .documento-accion {
     position: absolute;
-    right: 20px;
+    left: 20px;
     top: 20px;
 }
 
 /* Botón de acción */
 .btn_accion {
     border: none;
+    margin-left: auto;
+    margin-right: 10px;
     background-color: transparent;
     cursor: pointer;
     padding: 8px;

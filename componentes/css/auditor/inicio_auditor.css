@@ -1,84 +1,124 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
+/* General */
 body {
-  background-color: #ffffff;
-  color: #333;
+   
+    
+    background-color: #f4f6f8;
+    margin: 0;
+    padding: 0;
+    color: #333;
 }
 
 .admin {
-  padding: 3rem;
-  max-width: 1200px;
-  margin: auto;
+    padding: 2rem;
+}
+
+/* Encabezado */
+.header-welcome {
+    margin-bottom: 2rem;
 }
 
 .titulo-auditor {
-  font-size: 36px;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 10px;
-  color: #1a1a1a;
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+    color: #3D688A; 
 }
 
-.titulo-mediano {
-  font-size: 18px;
-  text-align: center;
-  color: #666;
-  margin-bottom: 50px;
+.subtitulo-welcome {
+    font-size: 1.1rem;
+    color: #555;
 }
 
-.contenedor-general {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-  justify-content: center;
+.highlight {
+    color: #3D688A; 
+    font-weight: 600;
 }
 
-.card-opcion {
-  background: rgba(245, 245, 246, 0.8);
-  border-radius: 20px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
-  width: 220px;
-  height: 300px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  padding: 25px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+
+.main-section {
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
-.card-opcion:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+/* Título sección */
+.section-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.2rem;
+    color: #3D688A;
 }
 
-.card-opcion img {
-  width: 70px;
-  height: 70px;
-  margin-bottom: 20px;
-  transition: transform 0.3s ease;
+.section-subtitle {
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 1.5rem;
 }
 
-.card-opcion:hover img {
-  transform: scale(1.1);
+/* Contenedor de tarjetas */
+.contendor-general {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
 }
 
-.card-opcion label {
-  font-size: 17px;
-  color: #222;
-  font-weight: 500;
-  text-decoration: none;
-  cursor: pointer;
+/* Enlace de tarjeta */
+.card-link {
+    text-decoration: none;
+    color: inherit;
 }
 
-.card-link{
-  color: inherit;
-  text-decoration: none
+/* Tarjetas */
+.card-option, .card-opcion {
+    background-color: #ffffff;
+    border: 2px solid transparent;
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s ease;
+    height: 100%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.card-option:hover, .card-opcion:hover {
+    border-color: #3D688A;
+    transform: translateY(-6px);
+    box-shadow: 0 6px 18px rgba(61, 104, 138, 0.2);
+}
+
+/* Iconos */
+.icon-container img {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1rem;
+    filter: grayscale(20%);
+}
+
+/* Título tarjeta */
+.card-option h3, .card-opcion h3 {
+    font-size: 1.1rem;
+    margin: 0 0 0.5rem 0;
+    color: #3D688A; /* Color para títulos */
+}
+
+/* Descripción */
+.card-option p, .card-opcion p {
+    font-size: 0.95rem;
+    color: #6b6b6b;
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .contendor-general {
+        grid-template-columns: 1fr;
+    }
+
+    .admin {
+        padding: 1rem;
+    }
 }

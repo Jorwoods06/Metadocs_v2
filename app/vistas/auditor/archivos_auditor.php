@@ -50,19 +50,13 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
                         Gestión Documentos
                     </a>
                     <ul class="sub_menu gestion-submenu" id="sub_menu">
-                        <li><a href="recibir_documentos.php"><i class="bi bi-envelope-paper"></i>Solicitudes</a></li>
+                        <li><a href="recibir_documentos.php"><i class="bi bi-envelope-paper"></i>Pendientes</a></li>
                         <li><a href="#" class="submenu-activo"><i class="bi bi-eye"></i> Ver documentos</a></li>
                         <li><a href="solicitar_documento.php"><i class="bi bi-file-earmark-plus"></i> Solicitar documentos</a></li>
                          <li><a href=""> <i class="bi bi-clock-history"></i> Archivo historico</a></li>
                     </ul>
                 </li>
                
-                <li>
-                    <a href="../../vistas/auditor/pista_auditoria.php">
-                        <i class="bi bi-list-check"></i>
-                        Pista auditoria
-                    </a>
-                </li>
                 
                 <li class="gestion-usuarios">
                     <a href="#" id="cerrado-usuarios">
@@ -118,7 +112,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
             <div class="buscar-documentos">
                 <input type="text" class="input-buscar" placeholder="Buscar carpeta o archivo...">
                 <?php if (!$expediente_seleccionado): ?>
-                <button class="btn-crear" id="btn_crear">Crear expediente</button>
+                <button class="btn-crear" id="btn_crear">Crear archivo</button>
                 <?php endif; ?>
             </div>
 
@@ -129,7 +123,8 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
                         <th>NOMBRE</th>
                         <th>TIPO</th>
                         <th>FECHA SUBIDA</th>
-                        <th></th>
+                        <th>HORA</th> 
+                        <th>ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -150,6 +145,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
                             </td>
                             <td class="documento-tipo">expediente</td>
                             <td class="documento-fecha"><?= htmlspecialchars($carpeta['fecha_creacion']); ?></td>
+                            <td class="documento-hora">15:27</td>
                             <td class="documento-accion">
                                 <button class="btn_accion" data-id="<?= $carpeta['id_expediente']; ?>"><i class="bi bi-pencil-square"></i></button>
                                
@@ -172,6 +168,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
                             <td class="documento-tipo"><?= htmlspecialchars($documento['tipo']); ?></td>
                             <td class="documento-fecha"><?= htmlspecialchars($documento['fecha_creacion']); ?></td>
                             <td class="documento-accion">
+
                                 <button class="btn_accion btn_ver_modal escritorio" onclick="verDocumento('<?= urlencode($documento['titulo'] . '.' . $documento['tipo']) ?>', '<?= strtolower($documento['tipo']) ?>')">
                                     <i class="bi bi-eye"></i>
                                 </button>

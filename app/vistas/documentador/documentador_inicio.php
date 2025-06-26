@@ -55,12 +55,15 @@ AutorizacionRol('documentador');
                         Usuario
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
-                        <li><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
+                        
                         <li><a href="../documentador/info_documentador.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
                         <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
 
                         
                     </ul>
+
+                    <li><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
+
                 </li>
 
                 <li class="solo_mobil">

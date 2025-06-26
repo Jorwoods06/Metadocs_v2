@@ -82,10 +82,13 @@ if (isset($_SESSION['show_modal_expediente']) && $_SESSION['show_modal_expedient
                         Usuario
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
-                            <li><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
+                            
                         <li><a href="info_documentador.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
                         <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
                     </ul>
+
+                    <li><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
+
                 </li>
 
                 <li class="solo_mobil">
@@ -130,14 +133,14 @@ if (isset($_SESSION['show_modal_expediente']) && $_SESSION['show_modal_expedient
 </div>
 <?php else: ?>
 <div class="title-button-container">
-    <h1>Documentos</h1>
+    <h1>Carpetas</h1>
 </div>
 <?php endif; ?>
             </div>
             <div class="buscar-documentos">
                 <input type="text" class="input-buscar" placeholder="Buscar carpeta o archivo...">
                 <?php if (!$expediente_seleccionado): ?>
-                <button class="btn-crear" id="btn_crear">Crear expediente</button>
+                <button class="btn-crear" id="btn_crear">Crear Carpeta</button>
                 <?php endif; ?>
             </div>
 

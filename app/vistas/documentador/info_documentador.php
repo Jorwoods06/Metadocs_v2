@@ -40,21 +40,21 @@ AutorizacionRol('documentador');
                  <li>
                     <a href="ver_documentos.php">
                         <i class="bi bi-file-earmark-text"></i>
-                       Documentos
+                       Archivos
                     </a>
                 </li>
                 
                 <li>
                     <a href="solicitudes_doc.php">
                         <i class="bi bi-envelope-paper"></i>
-                            Solicitudes
+                        Pendientes
                     </a>
                 </li>
                     <!-- cerrado sesion -->  
                 <li class="gestion-usuarios">
                     <a href="#" id="cerrado-usuarios" class="activo">
                         <i class="bi bi-person"></i>
-                        Usuario
+                        Documentador
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
                          <li><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>

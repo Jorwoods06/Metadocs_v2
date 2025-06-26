@@ -53,7 +53,7 @@ AutorizacionRol('administrador');
                 </li>
                 <li><a href="../admin/admin_reporte.php"><i class="bi bi-file-earmark-text"></i> Reportes</a></li>
                 <li class="gestion-usuarios">
-                    <a href="#" id="cerrado-usuarios"><i class="bi bi-person"></i> Usuario</a>
+                    <a href="#" id="cerrado-usuarios"><i class="bi bi-person"></i> Admin</a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
                         <li><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
                         <li><a href="../log/informacion_usuario.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>

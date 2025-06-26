@@ -38,21 +38,21 @@ AutorizacionRol('documentador');
                  <li>
                     <a href="ver_documentos.php">
                         <i class="bi bi-file-earmark-text"></i>
-                       Documentos
+                       Archivos
                     </a>
                 </li>
                 
                 <li>
                     <a href="solicitudes_doc.php">
                         <i class="bi bi-envelope-paper"></i>
-                            Solicitudes
+                            Pendientes
                     </a>
                 </li>
                     <!-- cerrado sesion -->  
                 <li class="gestion-usuarios">
                     <a href="#" id="cerrado-usuarios">
                         <i class="bi bi-person"></i>
-                        Usuario
+                        Documentador
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
                           <li><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
@@ -89,14 +89,14 @@ AutorizacionRol('documentador');
                     <a href="solicitudes_doc.php" class ="card-link">
                         <div class="card-opcion">
                             <img src="https://cdn-icons-png.flaticon.com/128/8521/8521942.png" alt="solicitudes">
-                            <label for="">Solicitudes</label>
+                            <label for="">Pendientes</label>
                         </div>
                     </a>
                     
                     <a href="ver_documentos.php" class="card-link">
                         <div class="card-opcion">
                             <img src="https://cdn-icons-png.flaticon.com/128/10650/10650289.png" alt="ver documentos">
-                            <label>Ver documentos</label>
+                            <label>Ver archivos</label>
                         </div>
                     </a>
 

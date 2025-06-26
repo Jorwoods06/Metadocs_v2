@@ -47,7 +47,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
                 <li class="gestion_usuario">
                     <a href="#" id="gestion-usuarios" class="activo">
                         <i class="bi bi-file-earmark-text" ></i>
-                        Gestión Documentos
+                        Gestión de archivos
                     </a>
                     <ul class="sub_menu gestion-submenu" id="sub_menu">
                         <li><a href="recibir_documentos.php"><i class="bi bi-envelope-paper"></i>Pendientes</a></li>
@@ -61,7 +61,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
                 <li class="gestion-usuarios">
                     <a href="#" id="cerrado-usuarios">
                         <i class="bi bi-person"></i>
-                        Usuario
+                        Auditor
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
                         <li><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
@@ -85,7 +85,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
 <div class="title-button-container">
     <!-- Contenedor para título y botones en la misma fila en tablet+ -->
     <div class="title-header-row">
-        <h1>Documentos</h1>
+        <h1>Carpetas</h1>
        
     </div>
     

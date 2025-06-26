@@ -35,11 +35,11 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
             </figure>
             <ul>
                 <li><a href="documentador_inicio.php"><i class="bi bi-house-door"></i>Inicio</a></li>
-                <li><a href="ver_documentos.php" class="activo"><i class="bi bi-file-earmark-text"></i>Documentos</a></li>
-                <li><a href="solicitudes_doc.php" ><i class="bi bi-envelope-paper"></i>Solicitudes</a></li>
+                <li><a href="ver_documentos.php" class="activo"><i class="bi bi-file-earmark-text"></i>Archivos</a></li>
+                <li><a href="solicitudes_doc.php" ><i class="bi bi-envelope-paper"></i>Pendientes</a></li>
                 <li class="gestion-usuarios">
                     <a href="#" id="cerrado-usuarios">
-                        <i class="bi bi-person"></i>Usuario
+                        <i class="bi bi-person"></i>Documentador
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
                           <li><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>

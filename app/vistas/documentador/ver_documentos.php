@@ -65,7 +65,7 @@ if (isset($_SESSION['show_modal_expediente']) && $_SESSION['show_modal_expedient
                 <li>
                     <a href="#" class="activo">
                         <i class="bi bi-file-earmark-text"></i>
-                        Documentos
+                        Archivos
                     </a>
                 </li>
                 
@@ -79,7 +79,7 @@ if (isset($_SESSION['show_modal_expediente']) && $_SESSION['show_modal_expedient
                 <li class="gestion-usuarios">
                     <a href="#" id="cerrado-usuarios">
                         <i class="bi bi-person"></i>
-                        Usuario
+                        Documentador
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
                           <li><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
@@ -103,13 +103,13 @@ if (isset($_SESSION['show_modal_expediente']) && $_SESSION['show_modal_expedient
 <div class="title-button-container">
   
     <div class="title-header-row">
-        <h1>Documentos</h1>
+        <h1>Archivos</h1>
         <div class="header-buttons">
             <button type="button" id="btn_documento">
                 <i class="bi bi-upload"></i> Subir documento
             </button>
             <button type="button" id="btn_crear">
-                <i class="bi bi-plus-circle"></i> Crear expediente
+                <i class="bi bi-plus-circle"></i> Crear carpetas
             </button>
         </div>
     </div>
@@ -130,14 +130,14 @@ if (isset($_SESSION['show_modal_expediente']) && $_SESSION['show_modal_expedient
 </div>
 <?php else: ?>
 <div class="title-button-container">
-    <h1>Documentos</h1>
+    <h1>Archivos</h1>
 </div>
 <?php endif; ?>
             </div>
             <div class="buscar-documentos">
                 <input type="text" class="input-buscar" placeholder="Buscar carpeta o archivo...">
                 <?php if (!$expediente_seleccionado): ?>
-                <button class="btn-crear" id="btn_crear">Crear expediente</button>
+                <button class="btn-crear" id="btn_crear">Crear carpeta</button>
                 <?php endif; ?>
             </div>
 
@@ -148,7 +148,8 @@ if (isset($_SESSION['show_modal_expediente']) && $_SESSION['show_modal_expedient
                         <th>NOMBRE</th>
                         <th>TIPO</th>
                         <th>FECHA SUBIDA</th>
-                        <th></th>
+                        <th>HORA</th>
+                        <th>ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -167,8 +168,9 @@ if (isset($_SESSION['show_modal_expediente']) && $_SESSION['show_modal_expedient
                                     <i class="bi bi-folder2"></i> <?= htmlspecialchars($carpeta['nombre']); ?>
                                 </a>
                             </td>
-                            <td class="documento-tipo">expediente</td>
+                            <td class="documento-tipo">carpeta</td>
                             <td class="documento-fecha"><?= htmlspecialchars($carpeta['fecha_creacion']); ?></td>
+                            <td class="documento-hora">15:27</td>
                             <td class="documento-accion">
                                 <button class="btn_accion" data-id="<?= $carpeta['id_expediente']; ?>"><i class="bi bi-pencil-square"></i></button>
                                 
@@ -210,7 +212,7 @@ if (isset($_SESSION['show_modal_expediente']) && $_SESSION['show_modal_expedient
                     if (!$tiene_contenido): 
                     ?>
                         <tr>
-                            <td colspan="4" class="no-content">No hay expedientes ni documentos para mostrar.</td>
+                            <td colspan="4" class="no-content">No hay carpetas ni documentos para mostrar.</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>
@@ -224,7 +226,7 @@ if (isset($_SESSION['show_modal_expediente']) && $_SESSION['show_modal_expedient
         <div id="form_carpeta">
             <form action="../../backend/documentador/gestor_archivos.php" method="post">
                 <div id="titulo_carpeta_header">
-                    <h2>Crear expediente</h2>
+                    <h2>Crear carpeta</h2>
                     <span class="close" id="close">&times;</span>
                 </div>
                 <div id="input_carpeta">

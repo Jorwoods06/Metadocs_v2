@@ -66,7 +66,7 @@ AutorizacionRol('administrador');
                 <li class="gestion-usuarios">
                     <a href="#" id="cerrado-usuarios">
                         <i class="bi bi-person"></i>
-                        Usuario
+                        Admin
                     </a>
                        <ul class="sub_menu usuario-submenu" id="sub_menu">
                         <li><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>

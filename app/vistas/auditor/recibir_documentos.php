@@ -44,7 +44,7 @@ AutorizacionRol('auditor');
                 <li class="gestion_usuario">
                     <a href="#" id="gestion-usuarios"  class="activo">
                         <i class="bi bi-file-earmark-text"></i>
-                        Gestión Documentos
+                        Gestión de archivos
                     </a>
                     <ul class="sub_menu gestion-submenu" id="sub_menu">
                         <li><a href="#" class="submenu-activo"><i class="bi bi-envelope-paper" ></i>Pendientes</a></li>
@@ -60,7 +60,7 @@ AutorizacionRol('auditor');
                 <li class="gestion-usuarios">
                     <a href="#" id="cerrado-usuarios">
                         <i class="bi bi-person"></i>
-                        Usuario
+                        Auditor
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
                         <li><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>

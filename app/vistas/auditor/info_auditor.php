@@ -58,7 +58,7 @@ AutorizacionRol('auditor');
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
                         <li><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
-                        <li><a href="../log/informacion_usuario.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
+                        <li><a href="../log/informacion_usuario.php"><i class="bi bi-info-circle"></i> Info auditor</a></li>
                         <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
                     </ul>
                 </li>
@@ -73,7 +73,7 @@ AutorizacionRol('auditor');
         </nav>
        
         <section class="contenido-usuario">
-            <h1 class="titulo-usaurio">Informacion del Usuario</h1>
+            <h1 class="titulo-usaurio">Informacion del auditor</h1>
             <div class="info-usuario">
                 <div class="info-usuarios">
                     <img src="../../../componentes/img/usuario.png" alt="logo de usuario" class="avatar-usuario">

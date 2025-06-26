@@ -94,12 +94,15 @@ AutorizacionRol('administrador');
 
     <div class="container">
         <div class="header">
-            <h1>📊 Dashboard de Documentos</h1>
+            <h1>Dashboard de Documentos</h1>
             <p>Análisis estadístico de documentos por mes y área</p>
         </div>
 
         <!-- Estadísticas generales -->
+         <p><i class="bi bi-speedometer"></i> Resumen General</p>
         <div class="stats-grid">
+
+            
            
             <div class="stat-card">
                 <div class="stat-number"><?php echo $totalDocs; ?></div>
@@ -117,9 +120,66 @@ AutorizacionRol('administrador');
                 <div class="stat-number"><?php echo $docsRechazados; ?></div>
                 <div class="stat-label">Documentos Rechazados</div>
             </div>
+            <div class="stat-card">
+                <div class="stat-number"><?php echo $totalArchivado; ?></div>
+                <div class="stat-label">Documentos Archivados</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number"><?php echo $totalCarpetas; ?></div>
+                <div class="stat-label">Total Carpetas</div>
+            </div>
+
+
+        </div>
+
+
+        <div class="system-info">
+            <h2 class="section-title">
+                <i class="bi bi-info-circle-fill"></i>
+                Información del Sistema
+            </h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="bi bi-database-fill"></i>
+                    </div>
+                    <div class="info-details">
+                        <h4>Base de Datos</h4>
+                        <span>MySQL - Conectado</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="bi bi-hdd-stack-fill"></i>
+                    </div>
+                    <div class="info-details">
+                        <h4>Servidor</h4>
+                        <span><?php echo $host; ?></span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">
+                       <i class="bi bi-calendar-fill"></i>
+                    </div>
+                    <div class="info-details">
+                        <h4>Última Actualización</h4>
+                        <span><?php echo date('d/m/Y H:i'); ?></span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">
+                       <i class="bi bi-person-fill-gear"></i>
+                    </div>
+                    <div class="info-details">
+                        <h4>Usuario Administrador</h4>
+                        <span><?php echo htmlspecialchars($usuario['nombres']);?></span>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Gráficos -->
+         <p><i class="bi bi-bar-chart-line"></i> Análisis y Estadísticas</p>
         <div class="charts-grid">
             <!-- Gráfico: Documentos por mes -->
             <div class="chart-container">
@@ -135,7 +195,7 @@ AutorizacionRol('administrador');
 
             <!-- Gráfico: Estado de documentos -->
             <div class="chart-container">
-                <div class="chart-title">📋 Estado de Documentos</div>
+                <div class="chart-title">📋 Retencion documentos</div>
                 <canvas id="estadoDocumentos"></canvas>
             </div>
 
@@ -293,17 +353,17 @@ AutorizacionRol('administrador');
         <?php
         $query = "
             SELECT 
-                estado,
+                estado_retencion,
                 COUNT(*) as cantidad
             FROM documentos 
-            GROUP BY estado
+            GROUP BY estado_retencion
         ";
         $result = mysqli_query($conn, $query);
         
         $estados = [];
         $cantidadesEstado = [];
         while($row = mysqli_fetch_assoc($result)) {
-            $estados[] = ucfirst($row['estado']);
+            $estados[] = ucfirst($row['estado_retencion']);
             $cantidadesEstado[] = $row['cantidad'];
         }
         ?>
@@ -397,6 +457,222 @@ AutorizacionRol('administrador');
             }
         });
     </script>
+ 
+        <p><i class="bi bi-bar-chart-line"></i> Usuarios del sistema</p>
+
+        <div class="container">
+       
+
+        <div class="main-panel">
+            <div class="stats-container">
+                
+                
+                <div class="stats-list">
+                    <div class="stat-row total">
+                        <div class="stat-row-icon"><i class="bi bi-people-fill"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-label">Total de Usuarios</div>
+                            <div class="stat-main-value"><?php echo $total_usuarios; ?></div>
+                            <div class="stat-detail">Usuarios registrados en el sistema</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-row active">
+                        <div class="stat-row-icon"><i class="bi bi-person-check-fill"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-label">Usuarios Activos</div>
+                            <div class="stat-main-value"><?php echo $usuarios_activos; ?></div>
+                            <div class="stat-detail"><?php echo round(($usuarios_activos/$total_usuarios)*100, 1); ?>% del total de usuarios</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-row inactive">
+                        <div class="stat-row-icon"><i class="bi bi-person-fill-x"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-label">Usuarios Inactivos</div>
+                            <div class="stat-main-value"><?php echo $usuarios_inactivos; ?></div>
+                            <div class="stat-detail"><?php echo round(($usuarios_inactivos/$total_usuarios)*100, 1); ?>% del total de usuarios</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-row areas">
+                        <div class="stat-row-icon"><i class="bi bi-building-fill"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-label">Áreas Activas</div>
+                            <div class="stat-main-value"><?php echo $areas_unicas; ?></div>
+                            <div class="stat-detail">Departamentos con usuarios asignados</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3 class="chart-title">Distribución de Usuarios</h3>
+                    <div class="chart-controls">
+                        <button class="chart-btn active" onclick="cambiarGrafico('roles')">Por Roles</button>
+                        <button class="chart-btn" onclick="cambiarGrafico('areas')">Por Áreas</button>
+                        <button class="chart-btn" onclick="cambiarGrafico('estado')">Por Estado</button>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="mainChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <script>
+        // Datos procesados de la base de datos
+        const datosUsuarios = {
+            roles: {
+                'auditor': 1,
+                'documentador': 3,
+                'administrador': 4
+            },
+            areas: {
+                'Área 1': 1,
+                'Área 2': 1,
+                'Área 3': 2,
+                'Área 4': 4
+            },
+            estado: {
+                'Activos': 6,
+                'Inactivos': 2
+            }
+        };
+
+        let chart;
+        let tipoActual = 'roles';
+
+        const colores = {
+            roles: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'],
+            areas: ['#06b6d4', '#84cc16', '#f97316', '#ec4899'],
+            estado: ['#10b981', '#ef4444']
+        };
+
+        function crearGrafico(tipo) {
+            const ctx = document.getElementById('mainChart').getContext('2d');
+            
+            if (chart) {
+                chart.destroy();
+            }
+
+            let datos, etiquetas, coloresFondo;
+            
+            switch(tipo) {
+                case 'roles':
+                    etiquetas = Object.keys(datosUsuarios.roles).map(rol => 
+                        rol.charAt(0).toUpperCase() + rol.slice(1)
+                    );
+                    datos = Object.values(datosUsuarios.roles);
+                    coloresFondo = colores.roles.slice(0, datos.length);
+                    break;
+                case 'areas':
+                    etiquetas = Object.keys(datosUsuarios.areas);
+                    datos = Object.values(datosUsuarios.areas);
+                    coloresFondo = colores.areas.slice(0, datos.length);
+                    break;
+                case 'estado':
+                    etiquetas = Object.keys(datosUsuarios.estado);
+                    datos = Object.values(datosUsuarios.estado);
+                    coloresFondo = colores.estado;
+                    break;
+            }
+
+            const esEstado = tipo === 'estado';
+
+            chart = new Chart(ctx, {
+                type: esEstado ? 'doughnut' : 'bar',
+                data: {
+                    labels: etiquetas,
+                    datasets: [{
+                        label: 'Cantidad de usuarios',
+                        data: datos,
+                        backgroundColor: coloresFondo,
+                        borderColor: coloresFondo.map(color => color + '80'),
+                        borderWidth: 2,
+                        borderRadius: esEstado ? 0 : 8,
+                        borderSkipped: false,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: esEstado,
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                usePointStyle: true,
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0,0,0,0.8)',
+                            titleColor: 'white',
+                            bodyColor: 'white',
+                            borderColor: 'rgba(255,255,255,0.2)',
+                            borderWidth: 1,
+                            cornerRadius: 8,
+                            displayColors: true,
+                            callbacks: {
+                                label: function(context) {
+                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const porcentaje = ((context.parsed / total) * 100).toFixed(1);
+                                    return `${context.label}: ${context.parsed} (${porcentaje}%)`;
+                                }
+                            }
+                        }
+                    },
+                    scales: esEstado ? {} : {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1,
+                                color: '#6b7280'
+                            },
+                            grid: {
+                                color: 'rgba(0,0,0,0.1)'
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: '#6b7280'
+                            },
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 1000,
+                        easing: 'easeInOutQuart'
+                    }
+                }
+            });
+        }
+
+        function cambiarGrafico(tipo) {
+            // Actualizar botones
+            document.querySelectorAll('.chart-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Cambiar gráfico
+            tipoActual = tipo;
+            crearGrafico(tipo);
+        }
+
+       
+
+       
+
+        </script>
 </body>
 </html>
 

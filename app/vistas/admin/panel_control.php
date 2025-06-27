@@ -87,7 +87,7 @@ AutorizacionRol('administrador');
             </ul>
         </nav>
        
-        <section id="admin-contenido" class="admin">
+       <section id="admin-contenido" class="admin">
             
          
 
@@ -95,11 +95,11 @@ AutorizacionRol('administrador');
     <div class="container">
         <div class="header">
             <h1>Dashboard de Documentos</h1>
-            <p>Análisis estadístico de documentos por mes y área</p>
+            <p>Análisis estadístico de archivos</p>
         </div>
 
         <!-- Estadísticas generales -->
-         <p><i class="bi bi-speedometer"></i> Resumen General</p>
+        <p class="section-header resumen"><i class="bi bi-speedometer"></i> Resumen General</p>
         <div class="stats-grid">
 
             
@@ -131,13 +131,10 @@ AutorizacionRol('administrador');
 
 
         </div>
-
+    <p class="section-header resumen"><i class="bi bi-info-circle-fill"></i> Informacion del sistema</p>
 
         <div class="system-info">
-            <h2 class="section-title">
-                <i class="bi bi-info-circle-fill"></i>
-                Información del Sistema
-            </h2>
+            
             <div class="info-grid">
                 <div class="info-item">
                     <div class="info-icon">
@@ -178,31 +175,22 @@ AutorizacionRol('administrador');
             </div>
         </div>
 
-        <!-- Gráficos -->
-         <p><i class="bi bi-bar-chart-line"></i> Análisis y Estadísticas</p>
-        <div class="charts-grid">
-            <!-- Gráfico: Documentos por mes -->
+        <!-- Gráficos de Documentos - SECCIÓN MEJORADA -->
+        <p class="section-header analisis"><i class="bi bi-bar-chart-line"></i> Análisis y Estadísticas</p>
+        <div class="main-panel">
             <div class="chart-container">
-                <div class="chart-title">📅 Documentos Subidos por Mes</div>
-                <canvas id="documentosPorMes"></canvas>
-            </div>
-
-            <!-- Gráfico: Documentos por área -->
-            <div class="chart-container">
-                <div class="chart-title">🏢 Documentos por Área</div>
-                <canvas id="documentosPorArea"></canvas>
-            </div>
-
-            <!-- Gráfico: Estado de documentos -->
-            <div class="chart-container">
-                <div class="chart-title">📋 Retencion documentos</div>
-                <canvas id="estadoDocumentos"></canvas>
-            </div>
-
-            <!-- Gráfico: Tipo de documentos -->
-            <div class="chart-container">
-                <div class="chart-title">📄 Tipos de Documentos</div>
-                <canvas id="tipoDocumentos"></canvas>
+                <div class="chart-header">
+                    <h3 class="chart-title">Análisis de Documentos</h3>
+                    <div class="chart-controls">
+                        <button class="chart-btn active" onclick="cambiarGraficoDocumentos('mes')">Por Mes</button>
+                        <button class="chart-btn" onclick="cambiarGraficoDocumentos('area')">Por Área</button>
+                        <button class="chart-btn" onclick="cambiarGraficoDocumentos('estado')">Por Estado</button>
+                        <button class="chart-btn" onclick="cambiarGraficoDocumentos('tipo')">Por Tipo</button>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="documentosChart"></canvas>
+                </div>
             </div>
         </div>
     </div>
@@ -222,8 +210,9 @@ AutorizacionRol('administrador');
             info: '#5B8AB3'
         };
 
-        // Datos para gráfico de documentos por mes
+        // Datos para todos los gráficos de documentos
         <?php
+        // Datos para gráfico de documentos por mes
         $query = "
             SELECT 
                 DATE_FORMAT(fecha_creacion, '%Y-%m') as mes,
@@ -240,117 +229,25 @@ AutorizacionRol('administrador');
             $meses[] = $row['mes'];
             $cantidades[] = $row['cantidad'];
         }
-        ?>
-
-        const ctx1 = document.getElementById('documentosPorMes').getContext('2d');
-        new Chart(ctx1, {
-            type: 'line',
-            data: {
-                labels: <?php echo json_encode($meses); ?>,
-                datasets: [{
-                    label: 'Documentos Subidos',
-                    data: <?php echo json_encode($cantidades); ?>,
-                    borderColor: colorPalette.primary,
-                    backgroundColor: colorPalette.primary + '20',
-                    borderWidth: 3,
-                    fill: true,
-                    tension: 0.4,
-                    pointBackgroundColor: colorPalette.primary,
-                    pointBorderColor: '#ffffff',
-                    pointBorderWidth: 2,
-                    pointRadius: 5
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        grid: {
-                            color: '#e0e0e0'
-                        }
-                    },
-                    x: {
-                        grid: {
-                            color: '#e0e0e0'
-                        }
-                    }
-                }
-            }
-        });
 
         // Datos para gráfico de documentos por área
-        <?php
         $query = "
            SELECT documentos.id_area, area_acceso.nombre, COUNT(*) AS cantidad
             FROM documentos
             JOIN area_acceso ON area_acceso.id_area = documentos.id_area
             GROUP BY documentos.id_area, area_acceso.nombre
             ORDER BY cantidad DESC;
-
         ";
         $result = mysqli_query($conn, $query);
         
-        $areas = [];
+        $areasDoc = [];
         $cantidadesArea = [];
         while($row = mysqli_fetch_assoc($result)) {
-            $areas[] = 'Área ' . $row['nombre'];
+            $areasDoc[] = 'Área ' . $row['nombre'];
             $cantidadesArea[] = $row['cantidad'];
         }
-        ?>
-
-        const ctx2 = document.getElementById('documentosPorArea').getContext('2d');
-        new Chart(ctx2, {
-            type: 'bar',
-            data: {
-                labels: <?php echo json_encode($areas); ?>,
-                datasets: [{
-                    label: 'Cantidad de Documentos',
-                    data: <?php echo json_encode($cantidadesArea); ?>,
-                    backgroundColor: [
-                        colorPalette.primary,
-                        colorPalette.secondary,
-                        colorPalette.accent1,
-                        colorPalette.accent2,
-                        colorPalette.complement1,
-                        colorPalette.complement2,
-                        colorPalette.success,
-                        colorPalette.warning
-                    ],
-                    borderWidth: 0,
-                    borderRadius: 4
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        grid: {
-                            color: '#e0e0e0'
-                        }
-                    },
-                    x: {
-                        grid: {
-                            display: false
-                        }
-                    }
-                }
-            }
-        });
 
         // Datos para gráfico de estado de documentos
-        <?php
         $query = "
             SELECT 
                 estado_retencion,
@@ -360,50 +257,14 @@ AutorizacionRol('administrador');
         ";
         $result = mysqli_query($conn, $query);
         
-        $estados = [];
+        $estadosDoc = [];
         $cantidadesEstado = [];
         while($row = mysqli_fetch_assoc($result)) {
-            $estados[] = ucfirst($row['estado_retencion']);
+            $estadosDoc[] = ucfirst($row['estado_retencion']);
             $cantidadesEstado[] = $row['cantidad'];
         }
-        ?>
-
-        const ctx3 = document.getElementById('estadoDocumentos').getContext('2d');
-        new Chart(ctx3, {
-            type: 'doughnut',
-            data: {
-                labels: <?php echo json_encode($estados); ?>,
-                datasets: [{
-                    data: <?php echo json_encode($cantidadesEstado); ?>,
-                    backgroundColor: [
-                        colorPalette.primary,
-                        colorPalette.success,
-                        colorPalette.warning,
-                        colorPalette.danger
-                    ],
-                    borderWidth: 3,
-                    borderColor: '#ffffff',
-                    hoverBorderWidth: 4
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            padding: 20,
-                            usePointStyle: true,
-                            pointStyle: 'circle'
-                        }
-                    }
-                },
-                cutout: '60%'
-            }
-        });
 
         // Datos para gráfico de tipo de documentos
-        <?php
         $query = "
             SELECT 
                 tipo,
@@ -414,51 +275,313 @@ AutorizacionRol('administrador');
         ";
         $result = mysqli_query($conn, $query);
         
-        $tipos = [];
+        $tiposDoc = [];
         $cantidadesTipo = [];
         while($row = mysqli_fetch_assoc($result)) {
-            $tipos[] = strtoupper($row['tipo']);
+            $tiposDoc[] = strtoupper($row['tipo']);
             $cantidadesTipo[] = $row['cantidad'];
         }
         ?>
 
-        const ctx4 = document.getElementById('tipoDocumentos').getContext('2d');
-        new Chart(ctx4, {
-            type: 'pie',
-            data: {
-                labels: <?php echo json_encode($tipos); ?>,
-                datasets: [{
-                    data: <?php echo json_encode($cantidadesTipo); ?>,
-                    backgroundColor: [
-                        colorPalette.primary,
-                        colorPalette.secondary,
-                        colorPalette.complement1,
-                        colorPalette.complement2,
-                        colorPalette.accent1,
-                        colorPalette.accent2
-                    ],
-                    borderWidth: 3,
-                    borderColor: '#ffffff',
-                    hoverBorderWidth: 4
-                }]
+        // Objeto con todos los datos de documentos
+        const datosDocumentos = {
+            mes: {
+                labels: <?php echo json_encode($meses); ?>,
+                data: <?php echo json_encode($cantidades); ?>,
+                tipo: 'line'
             },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            padding: 20,
-                            usePointStyle: true,
-                            pointStyle: 'circle'
+            area: {
+                labels: <?php echo json_encode($areasDoc); ?>,
+                data: <?php echo json_encode($cantidadesArea); ?>,
+                tipo: 'bar'
+            },
+            estado: {
+                labels: <?php echo json_encode($estadosDoc); ?>,
+                data: <?php echo json_encode($cantidadesEstado); ?>,
+                tipo: 'doughnut'
+            },
+            tipo: {
+                labels: <?php echo json_encode($tiposDoc); ?>,
+                data: <?php echo json_encode($cantidadesTipo); ?>,
+                tipo: 'pie'
+            }
+        };
+
+        let chartDocumentos;
+        let tipoActualDocumentos = 'mes';
+
+        const coloresDocumentos = {
+            mes: [colorPalette.primary],
+            area: [colorPalette.primary, colorPalette.secondary, colorPalette.accent1, colorPalette.accent2, colorPalette.complement1, colorPalette.complement2, colorPalette.success, colorPalette.warning],
+            estado: [colorPalette.primary, colorPalette.success, colorPalette.warning, colorPalette.danger],
+            tipo: [colorPalette.primary, colorPalette.secondary, colorPalette.complement1, colorPalette.complement2, colorPalette.accent1, colorPalette.accent2]
+        };
+
+       // CORRECCIÓN PARA LOS GRÁFICOS DE DOCUMENTOS
+function crearGraficoDocumentos(categoria) {
+    const ctx = document.getElementById('documentosChart').getContext('2d');
+    
+    if (chartDocumentos) {
+        chartDocumentos.destroy();
+    }
+
+    const datos = datosDocumentos[categoria];
+    const tipoGrafico = datos.tipo;
+    const coloresFondo = coloresDocumentos[categoria];
+
+    let configGrafico = {
+        type: tipoGrafico,
+        data: {
+            labels: datos.labels,
+            datasets: [{
+                label: categoria === 'mes' ? 'Documentos Subidos' : 'Cantidad de Documentos',
+                data: datos.data,
+                backgroundColor: tipoGrafico === 'line' ? coloresFondo[0] + '20' : coloresFondo,
+                borderColor: tipoGrafico === 'line' ? coloresFondo[0] : '#ffffff',
+                borderWidth: tipoGrafico === 'line' ? 3 : (tipoGrafico === 'bar' ? 0 : 3),
+                borderRadius: tipoGrafico === 'bar' ? 4 : 0,
+                fill: tipoGrafico === 'line' ? true : false,
+                tension: tipoGrafico === 'line' ? 0.4 : 0,
+                pointBackgroundColor: tipoGrafico === 'line' ? coloresFondo[0] : undefined,
+                pointBorderColor: tipoGrafico === 'line' ? '#ffffff' : undefined,
+                pointBorderWidth: tipoGrafico === 'line' ? 2 : undefined,
+                pointRadius: tipoGrafico === 'line' ? 5 : undefined,
+                hoverBorderWidth: (tipoGrafico === 'doughnut' || tipoGrafico === 'pie') ? 4 : undefined
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: tipoGrafico === 'doughnut' || tipoGrafico === 'pie',
+                    position: 'bottom',
+                    labels: {
+                        padding: 20,
+                        usePointStyle: true,
+                        pointStyle: 'circle',
+                        font: {
+                            size: 12
+                        }
+                    }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(0,0,0,0.8)',
+                    titleColor: 'white',
+                    bodyColor: 'white',
+                    borderColor: 'rgba(255,255,255,0.2)',
+                    borderWidth: 1,
+                    cornerRadius: 8,
+                    displayColors: true,
+                    callbacks: {
+                        label: function(context) {
+                            // CORRECCIÓN AQUÍ - Usar la propiedad correcta según el tipo de gráfico
+                            let valor;
+                            
+                            if (tipoGrafico === 'doughnut' || tipoGrafico === 'pie') {
+                                // Para gráficos circulares, usar context.parsed
+                                valor = context.parsed;
+                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                const porcentaje = ((valor / total) * 100).toFixed(1);
+                                return `${context.label}: ${valor} (${porcentaje}%)`;
+                            } else if (tipoGrafico === 'line') {
+                                // Para gráficos de línea, usar context.parsed.y
+                                valor = context.parsed.y;
+                                return `${context.dataset.label}: ${valor}`;
+                            } else {
+                                // Para gráficos de barras, usar context.parsed.y
+                                valor = context.parsed.y;
+                                return `${context.dataset.label}: ${valor}`;
+                            }
                         }
                     }
                 }
+            },
+            scales: (tipoGrafico === 'doughnut' || tipoGrafico === 'pie') ? {} : {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        color: '#e0e0e0'
+                    },
+                    ticks: {
+                        color: '#6b7280'
+                    }
+                },
+                x: {
+                    grid: {
+                        color: tipoGrafico === 'bar' ? 'transparent' : '#e0e0e0',
+                        display: tipoGrafico !== 'bar'
+                    },
+                    ticks: {
+                        color: '#6b7280'
+                    }
+                }
+            },
+            animation: {
+                duration: 1000,
+                easing: 'easeInOutQuart'
             }
-        });
+        }
+    };
+
+    // Configuración especial para gráfico de líneas
+    if (tipoGrafico === 'line') {
+        configGrafico.options.cutout = undefined;
+    }
+
+    // Configuración especial para gráfico doughnut
+    if (tipoGrafico === 'doughnut') {
+        configGrafico.options.cutout = '60%';
+    }
+
+    chartDocumentos = new Chart(ctx, configGrafico);
+}
+
+// CORRECCIÓN PARA LOS GRÁFICOS DE USUARIOS
+function crearGrafico(tipo) {
+    const ctx = document.getElementById('mainChart').getContext('2d');
+    
+    if (chart) {
+        chart.destroy();
+    }
+
+    let datos, etiquetas, coloresFondo;
+    
+    switch(tipo) {
+        case 'roles':
+            etiquetas = datosUsuarios.roles.labels;
+            datos = datosUsuarios.roles.data;
+            coloresFondo = colores.roles.slice(0, datos.length);
+            break;
+        case 'areas':
+            etiquetas = datosUsuarios.areas.labels;
+            datos = datosUsuarios.areas.data;
+            coloresFondo = colores.areas.slice(0, datos.length);
+            break;
+        case 'estado':
+            etiquetas = datosUsuarios.estado.labels;
+            datos = datosUsuarios.estado.data;
+            coloresFondo = colores.estado;
+            break;
+    }
+
+    const esEstado = tipo === 'estado';
+
+    chart = new Chart(ctx, {
+        type: esEstado ? 'doughnut' : 'bar',
+        data: {
+            labels: etiquetas,
+            datasets: [{
+                label: 'Cantidad de usuarios',
+                data: datos,
+                backgroundColor: coloresFondo,
+                borderColor: coloresFondo.map(color => color + '80'),
+                borderWidth: 2,
+                borderRadius: esEstado ? 0 : 8,
+                borderSkipped: false,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: esEstado,
+                    position: 'bottom',
+                    labels: {
+                        padding: 20,
+                        usePointStyle: true,
+                        font: {
+                            size: 12
+                        }
+                    }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(0,0,0,0.8)',
+                    titleColor: 'white',
+                    bodyColor: 'white',
+                    borderColor: 'rgba(255,255,255,0.2)',
+                    borderWidth: 1,
+                    cornerRadius: 8,
+                    displayColors: true,
+                    callbacks: {
+                        label: function(context) {
+                            // CORRECCIÓN AQUÍ - Usar la propiedad correcta
+                            let valor;
+                            
+                            if (esEstado) {
+                                // Para gráfico doughnut (estado), usar context.parsed
+                                valor = context.parsed;
+                            } else {
+                                // Para gráficos de barras (roles y areas), usar context.parsed.y
+                                valor = context.parsed.y;
+                            }
+                            
+                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                            const porcentaje = ((valor / total) * 100).toFixed(1);
+                            return `${context.label}: ${valor} (${porcentaje}%)`;
+                        }
+                    }
+                }
+            },
+            scales: esEstado ? {} : {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1,
+                        color: '#6b7280'
+                    },
+                    grid: {
+                        color: 'rgba(0,0,0,0.1)'
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: '#6b7280'
+                    },
+                    grid: {
+                        display: false
+                    }
+                }
+            },
+            animation: {
+                duration: 1000,
+                easing: 'easeInOutQuart'
+            }
+        }
+    });
+
+
+            // Configuración especial para gráfico de líneas
+            if (tipoGrafico === 'line') {
+                configGrafico.options.cutout = undefined;
+            }
+
+            // Configuración especial para gráfico doughnut
+            if (tipoGrafico === 'doughnut') {
+                configGrafico.options.cutout = '60%';
+            }
+
+            chartDocumentos = new Chart(ctx, configGrafico);
+        }
+
+        function cambiarGraficoDocumentos(categoria) {
+            // Actualizar botones
+            document.querySelectorAll('.chart-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Cambiar gráfico
+            tipoActualDocumentos = categoria;
+            crearGraficoDocumentos(categoria);
+        }
+
+        // Inicializar el gráfico por defecto
+        crearGraficoDocumentos('mes');
     </script>
  
-        <p><i class="bi bi-bar-chart-line"></i> Usuarios del sistema</p>
+       <p class="section-header usuarios"><i class="bi bi-people-fill"></i> Usuarios del sistema</p>
 
         <div class="container">
        
@@ -521,160 +644,212 @@ AutorizacionRol('administrador');
             </div>
         </div>
     </div>
+<script>
+// Datos dinámicos procesados de la base de datos
+<?php 
+// Cantidad usuarios por rol 
+$query = "SELECT rol, COUNT(*) AS cantidad 
+FROM usuarios
+GROUP BY rol;
+";
 
-     <script>
-        // Datos procesados de la base de datos
-        const datosUsuarios = {
-            roles: {
-                'auditor': 1,
-                'documentador': 3,
-                'administrador': 4
-            },
-            areas: {
-                'Área 1': 1,
-                'Área 2': 1,
-                'Área 3': 2,
-                'Área 4': 4
-            },
-            estado: {
-                'Activos': 6,
-                'Inactivos': 2
-            }
-        };
+$result = mysqli_query($conn, $query);
 
-        let chart;
-        let tipoActual = 'roles';
+$roles = [];
+$cantidad_rol = [];
 
-        const colores = {
-            roles: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'],
-            areas: ['#06b6d4', '#84cc16', '#f97316', '#ec4899'],
-            estado: ['#10b981', '#ef4444']
-        };
+while($row = mysqli_fetch_assoc($result)) {
+    $roles[] = strtoupper($row['rol']);
+    $cantidad_rol[] = $row['cantidad'];
+}
 
-        function crearGrafico(tipo) {
-            const ctx = document.getElementById('mainChart').getContext('2d');
-            
-            if (chart) {
-                chart.destroy();
-            }
+// Cantidad usuarios por área 
+$query = "SELECT usuarios.id_area, area_acceso.nombre, COUNT(*) AS cantidad 
+FROM usuarios 
+JOIN area_acceso ON area_acceso.id_area = usuarios.id_area 
+GROUP BY usuarios.id_area, area_acceso.nombre 
+ORDER BY cantidad DESC;";
 
-            let datos, etiquetas, coloresFondo;
-            
-            switch(tipo) {
-                case 'roles':
-                    etiquetas = Object.keys(datosUsuarios.roles).map(rol => 
-                        rol.charAt(0).toUpperCase() + rol.slice(1)
-                    );
-                    datos = Object.values(datosUsuarios.roles);
-                    coloresFondo = colores.roles.slice(0, datos.length);
-                    break;
-                case 'areas':
-                    etiquetas = Object.keys(datosUsuarios.areas);
-                    datos = Object.values(datosUsuarios.areas);
-                    coloresFondo = colores.areas.slice(0, datos.length);
-                    break;
-                case 'estado':
-                    etiquetas = Object.keys(datosUsuarios.estado);
-                    datos = Object.values(datosUsuarios.estado);
-                    coloresFondo = colores.estado;
-                    break;
-            }
+$result = mysqli_query($conn, $query);
 
-            const esEstado = tipo === 'estado';
+$areas = [];
+$cantidad_area = [];
 
-            chart = new Chart(ctx, {
-                type: esEstado ? 'doughnut' : 'bar',
-                data: {
-                    labels: etiquetas,
-                    datasets: [{
-                        label: 'Cantidad de usuarios',
-                        data: datos,
-                        backgroundColor: coloresFondo,
-                        borderColor: coloresFondo.map(color => color + '80'),
-                        borderWidth: 2,
-                        borderRadius: esEstado ? 0 : 8,
-                        borderSkipped: false,
-                    }]
+while($row = mysqli_fetch_assoc($result)){
+    $areas[] = strtoupper($row['nombre']);
+    $cantidad_area[] = $row['cantidad'];
+}
+
+// Estado usuarios 
+$query = "SELECT usuarios.estado, COUNT(*) AS cantidad 
+FROM usuarios 
+GROUP BY estado;";
+
+$result = mysqli_query($conn, $query);
+
+$estados = [];
+$cantidad_estado = [];
+
+while($row = mysqli_fetch_assoc($result)){
+    $estados[] = strtoupper($row['estado']);
+    $cantidad_estado[] = $row['cantidad'];
+}
+?>
+
+const datosUsuarios = {
+    roles: {
+        labels: <?php echo json_encode($roles); ?>,
+        data: <?php echo json_encode($cantidad_rol); ?>
+    },
+    areas: {
+        labels: <?php echo json_encode($areas); ?>,
+        data: <?php echo json_encode($cantidad_area); ?>
+    },
+    estado: {
+        labels: <?php echo json_encode($estados); ?>,
+        data: <?php echo json_encode($cantidad_estado); ?>
+    }
+};
+
+let chart;
+let tipoActual = 'roles';
+
+const colores = {
+    roles: ['#2A4860', '#3D688A', '#5B8DB3'],
+    areas: ['#2A4860', '#3D688A', '#5B8DB3', '#B3D1E6'],
+    estado: ['#3D688A', '#ef4444']
+};
+
+function crearGrafico(tipo) {
+    const ctx = document.getElementById('mainChart').getContext('2d');
+    
+    if (chart) {
+        chart.destroy();
+    }
+
+    let datos, etiquetas, coloresFondo;
+    
+    switch(tipo) {
+        case 'roles':
+            etiquetas = datosUsuarios.roles.labels;
+            datos = datosUsuarios.roles.data;
+            coloresFondo = colores.roles.slice(0, datos.length);
+            break;
+        case 'areas':
+            etiquetas = datosUsuarios.areas.labels;
+            datos = datosUsuarios.areas.data;
+            coloresFondo = colores.areas.slice(0, datos.length);
+            break;
+        case 'estado':
+            etiquetas = datosUsuarios.estado.labels;
+            datos = datosUsuarios.estado.data;
+            coloresFondo = colores.estado;
+            break;
+    }
+
+    const esEstado = tipo === 'estado';
+
+    chart = new Chart(ctx, {
+        type: esEstado ? 'doughnut' : 'bar',
+        data: {
+            labels: etiquetas,
+            datasets: [{
+                label: 'Cantidad de usuarios',
+                data: datos,
+                backgroundColor: coloresFondo,
+                borderColor: coloresFondo.map(color => color + '80'),
+                borderWidth: 2,
+                borderRadius: esEstado ? 0 : 8,
+                borderSkipped: false,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: esEstado,
+                    position: 'bottom',
+                    labels: {
+                        padding: 20,
+                        usePointStyle: true,
+                        font: {
+                            size: 12
+                        }
+                    }
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: esEstado,
-                            position: 'bottom',
-                            labels: {
-                                padding: 20,
-                                usePointStyle: true,
-                                font: {
-                                    size: 12
-                                }
+                tooltip: {
+                    backgroundColor: 'rgba(0,0,0,0.8)',
+                    titleColor: 'white',
+                    bodyColor: 'white',
+                    borderColor: 'rgba(255,255,255,0.2)',
+                    borderWidth: 1,
+                    cornerRadius: 8,
+                    displayColors: true,
+                    callbacks: {
+                        label: function(context) {
+                            // CORRECCIÓN AQUÍ - Usar la propiedad correcta según el tipo de gráfico
+                            let valor;
+                            
+                            if (esEstado) {
+                                // Para gráfico doughnut (estado), usar context.parsed
+                                valor = context.parsed;
+                            } else {
+                                // Para gráficos de barras (roles y areas), usar context.parsed.y
+                                valor = context.parsed.y;
                             }
-                        },
-                        tooltip: {
-                            backgroundColor: 'rgba(0,0,0,0.8)',
-                            titleColor: 'white',
-                            bodyColor: 'white',
-                            borderColor: 'rgba(255,255,255,0.2)',
-                            borderWidth: 1,
-                            cornerRadius: 8,
-                            displayColors: true,
-                            callbacks: {
-                                label: function(context) {
-                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                                    const porcentaje = ((context.parsed / total) * 100).toFixed(1);
-                                    return `${context.label}: ${context.parsed} (${porcentaje}%)`;
-                                }
-                            }
+                            
+                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                            const porcentaje = ((valor / total) * 100).toFixed(1);
+                            return `${context.label}: ${valor} (${porcentaje}%)`;
                         }
-                    },
-                    scales: esEstado ? {} : {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                stepSize: 1,
-                                color: '#6b7280'
-                            },
-                            grid: {
-                                color: 'rgba(0,0,0,0.1)'
-                            }
-                        },
-                        x: {
-                            ticks: {
-                                color: '#6b7280'
-                            },
-                            grid: {
-                                display: false
-                            }
-                        }
-                    },
-                    animation: {
-                        duration: 1000,
-                        easing: 'easeInOutQuart'
                     }
                 }
-            });
+            },
+            scales: esEstado ? {} : {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1,
+                        color: '#6b7280'
+                    },
+                    grid: {
+                        color: 'rgba(0,0,0,0.1)'
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: '#6b7280'
+                    },
+                    grid: {
+                        display: false
+                    }
+                }
+            },
+            animation: {
+                duration: 1000,
+                easing: 'easeInOutQuart'
+            }
         }
+    });
+}
 
-        function cambiarGrafico(tipo) {
-            // Actualizar botones
-            document.querySelectorAll('.chart-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            // Cambiar gráfico
-            tipoActual = tipo;
-            crearGrafico(tipo);
-        }
+function cambiarGrafico(tipo) {
+    // Actualizar botones
+    document.querySelectorAll('.chart-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    event.target.classList.add('active');
+    
+    // Cambiar gráfico
+    tipoActual = tipo;
+    crearGrafico(tipo);
+}
 
-       
+// Inicializar el gráfico por defecto
+crearGrafico('roles');
+</script>
 
-       
-
-        </script>
-</body>
-</html>
 
 <?php
 // Cerrar la conexión al final

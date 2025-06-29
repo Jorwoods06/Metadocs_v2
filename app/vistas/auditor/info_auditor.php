@@ -25,11 +25,12 @@ AutorizacionRol('auditor');
     </header>
 
     <main id="cuerpo">
-        <nav id="menu-lateral" class="menu-lateral">
+       <nav id="menu-lateral" class="menu-lateral">
             <figure id="img_menu">
                     <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
             </figure>
             <ul>
+             <div class="menu-opciones-principales">
                 <li>
                     <a href="auditor_inicio.php" >
                         <i class="bi bi-house-door"></i>
@@ -37,15 +38,15 @@ AutorizacionRol('auditor');
                     </a>
                 </li>
                 <li class="gestion_usuario">
-                    <a href="#" id="gestion-usuarios" >
+                    <a href="#" id="gestion-usuarios" class="activo">
                         <i class="bi bi-file-earmark-text" ></i>
-                        Gestión Documentos
+                        Gestión Archivos
                     </a>
                     <ul class="sub_menu gestion-submenu" id="sub_menu">
                         <li><a href="recibir_documentos.php"><i class="bi bi-envelope-paper"></i>pendientes</a></li>
-                        <li><a href="archivos_auditor.php"><i class="bi bi-eye"></i>Carpetas</a></li>
-                        <li><a href="solicitar_documento.php"><i class="bi bi-file-earmark-plus"></i> Solicitar documentos</a></li>
-                        <li><a href="archivo_historico.php"> <i class="bi bi-clock-history"></i> Archivo historico</a></li>
+                        <li><a href="archivos_auditor.php"><i class="bi bi-eye"></i>Archivos</a></li>
+                        <li><a href="solicitar_documento.php"><i class="bi bi-file-earmark-plus"></i> Solicitar archivos</a></li>
+                        <li><a href=""  class="submenu-activo"> <i class="bi bi-clock-history"></i> Archivo historico</a></li>
                     </ul>
                 </li>
                 
@@ -57,13 +58,13 @@ AutorizacionRol('auditor');
                 </li>
                 
                 <li class="gestion-usuarios">
-                    <a href="#" id="cerrado-usuarios" class="activo">
+                    <a href="#" id="cerrado-usuarios" >
                         <i class="bi bi-person"></i>
-                        Usuario
+                        Auditor
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
-                        <li><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
-                        <li><a href="../log/informacion_usuario.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
+                        
+                        <li><a href="../log/informacion_usuario.php"><i class="bi bi-info-circle"></i> Info auditor</a></li>
                         <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
                     </ul>
                 </li>
@@ -74,8 +75,14 @@ AutorizacionRol('auditor');
                         Volver
                     </a>
                 </li>
+            </div>
+
+            <li class="cerrar-sesion-separado">
+            <a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesión</a>
+        </li>
             </ul>
         </nav>
+        
         
         <section class="contenido-usuario">
             <h1 class="titulo-usaurio">Informacion del Usuario</h1>

@@ -41,8 +41,7 @@
 .entrada-filtro:focus,
 .seleccion-filtro:focus {
     outline: none;
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+    
 }
 
 /* === Tabla === */
@@ -115,28 +114,51 @@
     padding: 3rem;
     color: #6b7280;
 }
-
-/* === Scrollbar personalizada (solo WebKit) === */
-.envoltorio-tabla::-webkit-scrollbar {
-    height: 8px;
-}
-.envoltorio-tabla::-webkit-scrollbar-track {
-    background: #f1f5f9;
-}
-.envoltorio-tabla::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
-    border-radius: 4px;
-}
-.envoltorio-tabla::-webkit-scrollbar-thumb:hover {
-    background: #94a3b8;
+.paginacion {
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
 }
 
-/* === Accesibilidad === */
-.boton:focus {
-    outline: 2px solid #3b82f6;
-    outline-offset: 2px;
+.btn-paginacion {
+    display: inline-block;
+    padding: 10px 16px;
+    margin: 0 2px;
+    background-color: #f8f9fa;
+    color: #6c757d;
+    text-decoration: none;
+    border: 2px solid #e9ecef;
+    border-radius: 0;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    min-width: 44px;
+    text-align: center;
+    box-sizing: border-box;
 }
 
+.btn-paginacion:hover {
+    background-color: #e9ecef;
+    color: #495057;
+    border-color: #dee2e6;
+   
+}
+
+.btn-paginacion.activa {
+    background-color: #3D688A;
+    color: white;
+    border: none;
+    
+}
+
+.btn-paginacion.activa:hover {
+    background-color: #2A4860;
+
+}
 /* === Responsive: Tablet (≥768px) === */
 @media (min-width: 768px) {
     .filtros_archivo {

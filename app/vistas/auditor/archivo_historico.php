@@ -2,6 +2,7 @@
 require_once '../../helpers/verificacion_roles.php';
 require_once '../../backend/auditor/lista_doc_archivados.php';
 
+
 AutorizacionRol('auditor');
 
 // DEBUG: Verifica si la variable existe
@@ -20,9 +21,8 @@ if (isset($documentos_archivados)) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
-    <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
     <link rel="stylesheet" href="../../../componentes/css/auditor/archivo_historico.css">
-    <!-- Agregar CSS del visor para consistencia -->
+   
     <link rel="stylesheet" href="../../../componentes/css/documentador/visor.css">
 </head>
 <body>
@@ -37,6 +37,7 @@ if (isset($documentos_archivados)) {
                     <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
             </figure>
             <ul>
+             <div class="menu-opciones-principales">
                 <li>
                     <a href="auditor_inicio.php" >
                         <i class="bi bi-house-door"></i>
@@ -46,12 +47,12 @@ if (isset($documentos_archivados)) {
                 <li class="gestion_usuario">
                     <a href="#" id="gestion-usuarios" class="activo">
                         <i class="bi bi-file-earmark-text" ></i>
-                        Gestión Documentos
+                        Gestión Archivos
                     </a>
                     <ul class="sub_menu gestion-submenu" id="sub_menu">
                         <li><a href="recibir_documentos.php"><i class="bi bi-envelope-paper"></i>pendientes</a></li>
-                        <li><a href="archivos_auditor.php"><i class="bi bi-eye"></i>Carpetas</a></li>
-                        <li><a href="solicitar_documento.php"><i class="bi bi-file-earmark-plus"></i> Solicitar documentos</a></li>
+                        <li><a href="archivos_auditor.php"><i class="bi bi-eye"></i>Archivos</a></li>
+                        <li><a href="solicitar_documento.php"><i class="bi bi-file-earmark-plus"></i> Solicitar archivos</a></li>
                         <li><a href=""  class="submenu-activo"> <i class="bi bi-clock-history"></i> Archivo historico</a></li>
                     </ul>
                 </li>
@@ -66,11 +67,11 @@ if (isset($documentos_archivados)) {
                 <li class="gestion-usuarios">
                     <a href="#" id="cerrado-usuarios" >
                         <i class="bi bi-person"></i>
-                        Usuario
+                        Auditor
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
-                        <li><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
-                        <li><a href="../log/informacion_usuario.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
+                        
+                        <li><a href="../log/informacion_usuario.php"><i class="bi bi-info-circle"></i> Info auditor</a></li>
                         <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
                     </ul>
                 </li>
@@ -81,6 +82,11 @@ if (isset($documentos_archivados)) {
                         Volver
                     </a>
                 </li>
+            </div>
+
+            <li class="cerrar-sesion-separado">
+            <a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesión</a>
+        </li>
             </ul>
         </nav>
         
@@ -175,7 +181,24 @@ if (isset($documentos_archivados)) {
             <div class="sin-resultados" id="sinResultados" style="display: none;">
                 No se encontraron documentos que coincidan con los filtros seleccionados.
             </div>
+           
+
         </div>
+         <div class="paginacion" style="text-align:center; margin-top:20px;">
+    <?php if ($pagina > 1): ?>
+        <a href="?pagina=<?php echo $pagina - 1; ?>" class="btn-paginacion">Anterior</a>
+    <?php endif; ?>
+
+    <?php for ($i = 1; $i <= $total_paginas; $i++): ?>
+        <a href="?pagina=<?php echo $i; ?>" class="btn-paginacion <?php echo ($i == $pagina) ? 'activa' : ''; ?>">
+            <?php echo $i; ?>
+        </a>
+    <?php endfor; ?>
+
+    <?php if ($pagina < $total_paginas): ?>
+        <a href="?pagina=<?php echo $pagina + 1; ?>" class="btn-paginacion">Siguiente</a>
+    <?php endif; ?>
+</div>
     </div>
 </section>
 

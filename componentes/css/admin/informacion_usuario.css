@@ -106,8 +106,8 @@ html, body {
 
 @media (min-width: 992px) {
   .contenido-usuario {
-    margin-left: 280px;
-    padding-left: 20px;
+    margin-left: 16%;
+  
     
   }
 }

@@ -20,58 +20,49 @@ require_once "..\..\backend/administrador/interfaz_usuario.php"
     </header>
 
     <main id="cuerpo">
-        <nav id="menu-lateral" class="menu-lateral">
-            <figure id="img_menu">
-                 <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
-            </figure>
-            <ul>
-                <li>
-                    <a href="../admin/panel_control.php">
-                        <i class="bi bi-bar-chart-line"></i>
-                        Panel Control
-                    </a>
-                </li>
-                <li class="gestion_usuario">
-                    <a href="#" id="gestion-usuarios" >
-                        <i class="bi bi-people"></i>
-                        Gestión Usuarios
-                    </a>
-                    <ul class="sub_menu gestion-submenu" id="sub_menu">
-                        <li><a href="../../vistas/admin/creacion_usuario.php"><i class="bi bi-person-plus"></i> Crear usuario</a></li>
-                        <li><a href="../admin/ver_usuarios.php"><i class="bi bi-eye"></i> Ver usuario</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="../admin/admin_reporte.php">
-                        <i class="bi bi-file-earmark-text"></i>
-                        Reportes 
-                    </a>
-                </li>
-                
-                    <!-- cerrado sesion -->  
-                <li class="gestion-usuarios">
-                    <a href="#" id="cerrado-usuarios" class="activo">
-                        <i class="bi bi-person"></i>
-                        Usuario
-                    </a>
-                    <ul class="sub_menu usuario-submenu" id="sub_menu">
-                          <li><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
-                        <li><a href="../../vistas/log/informacion_usuario.php" class="submenu-activo"><i class="bi bi-info-circle"></i> Info usuario</a></li>
-                        <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
+         <nav id="menu-lateral" class="menu-lateral">
+    <figure id="img_menu">
+        <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
+    </figure>
+    <ul>
+        <!-- Opciones principales del menú -->
+        <div class="menu-opciones-principales">
+            <li>
+                <a href="../admin/panel_control.php">
+                    <i class="bi bi-bar-chart-line"></i>
+                    Panel Control
+                </a>
+            </li>
 
-                       
-                    </ul>
-                </li>
+            <li class="gestion_usuario">
+                <a href="#" id="gestion-usuarios" class="activo"><i class="bi bi-people"></i> Gestión Usuarios</a>
+                <ul class="sub_menu gestion-submenu" id="sub_menu">
+                    <li><a href="../../vistas/admin/creacion_usuario.php"><i class="bi bi-person-plus"></i> Crear usuario</a></li>
+                    <li><a href="../admin/ver_usuarios.php" class="submenu-activo"><i class="bi bi-eye"></i> Ver usuario</a></li>
+                </ul>
+            </li>
+            
+            <li><a href="../admin/admin_reporte.php"><i class="bi bi-file-earmark-text"></i> Reportes</a></li>
+            
+            <li class="gestion-usuarios">
+                <a href="#" id="cerrado-usuarios"><i class="bi bi-person"></i> Admin</a>
+                <ul class="sub_menu usuario-submenu" id="sub_menu">
+                    <li><a href="../log/informacion_usuario.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
+                    <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
+                </ul>
+            </li>
+            
+            <li class="solo_mobil">
+                <a href="#" id="solo_mobil"><i class="bi bi-arrow-left"></i> Volver</a>
+            </li>
+        </div>
 
-                <li class="solo_mobil">
-                    <a href="#" id="solo_mobil">
-                        <i class="bi bi-arrow-left-circle"></i>
-                        Volver
-                    </a>
-                </li>
-            </ul>
-        </nav>
-       
+        <!-- Botón cerrar sesión separado -->
+        <li class="cerrar-sesion-separado">
+            <a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesión</a>
+        </li>
+    </ul>
+</nav>
             <section class="contenido-usuario">
                 <h1 class="titulo-usaurio">Informacion del Usuario</h1>
                 <div class="contenedor-general">

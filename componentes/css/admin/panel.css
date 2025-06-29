@@ -75,6 +75,21 @@ body {
   list-style: none;
   display: flex;
   flex-direction: column;
+  flex: 1; /* Permite que el ul ocupe el espacio disponible */
+}
+
+/* Contenedor para las opciones principales del menú */
+.menu-opciones-principales {
+  flex: 1; /* Ocupa todo el espacio disponible */
+}
+
+/* Separador visual para el botón cerrar sesión */
+.cerrar-sesion-separado {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin: auto  0 20px; /* Empuja el elemento hacia abajo */
+  
+
+  
 }
 
 /* Estilo base para enlaces */
@@ -214,26 +229,13 @@ body {
 }
 
 /* ===== BOTÓN VOLVER (solo en móvil) ===== */
-.solo_mobil a {
-  border-top: 1px solid #ccc;
-  margin-top: 20px;
-  padding-top: 20px;
-  color: #C0C0C0 !important;
-}
 
-.solo_mobil a .bi {
-  color: #C0C0C0 !important;
-}
 
-.solo_mobil a:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #ffffff !important;
-}
+
 
 /* ===== CONTENIDO PRINCIPAL ===== */
 #admin-contenido {
   padding: 20px;
-
   width: 100%;
 }
 
@@ -263,8 +265,6 @@ body {
    #admin-contenido {
       margin-left: 16%;
       padding: 30px;
-     
-    
     }
 
   #cabezote {

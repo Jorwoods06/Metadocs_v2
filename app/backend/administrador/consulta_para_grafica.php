@@ -36,7 +36,7 @@
 
             // Tottal carpetaS
 
-            $query = "SELECT COUNT(*) as total FROM expedientes";
+            $query = "SELECT COUNT(*) as total FROM expedientes WHERE estado  = 'aprobado'";
             $result = mysqli_query($conn, $query);
             $totalCarpetas = mysqli_fetch_assoc($result)['total'];
 

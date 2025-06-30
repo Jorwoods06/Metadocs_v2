@@ -29,15 +29,16 @@ require_once '../../backend/documentador/recibir_actividades.php';
                 <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
             </figure>
             <ul>
+             <div class="menu-opciones-principales">
                 <li><a href="documentador_inicio.php"><i class="bi bi-house-door"></i>Inicio</a></li>
-                <li><a href="ver_documentos.php"><i class="bi bi-file-earmark-text"></i>Carpetas</a></li>
+                <li><a href="ver_documentos.php"><i class="bi bi-file-earmark-text"></i>Archivos</a></li>
                 <li><a href="" class="activo"><i class="bi bi-envelope-paper"></i>Solicitudes</a></li>
                 <li class="gestion-usuarios">
                     <a href="#" id="cerrado-usuarios">
                         <i class="bi bi-person"></i>Usuario
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
-                        <li><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
+                     
                         <li><a href="info_documentador.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
                         <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
                     </ul>
@@ -45,7 +46,11 @@ require_once '../../backend/documentador/recibir_actividades.php';
                 <li class="solo_mobil">
                     <a href="#" id="solo_mobil"><i class="bi bi-arrow-left-circle"></i>Volver</a>
                 </li>
+                  </div>
+                   <li  class="cerrar-sesion-separado"><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
             </ul>
+        
+           
         </nav>
 
         <section class="contenedor-principal">
@@ -67,7 +72,7 @@ require_once '../../backend/documentador/recibir_actividades.php';
                 <!-- Reemplaza la sección de generación de notificaciones en tu HTML con esto: -->
 
 <div class="lista-mensajes" id="lista-notificaciones">
-    <!-- PASO 10: AQUÍ SE GENERAN LAS NOTIFICACIONES DINÁMICAMENTE -->
+   
     <?php if (!empty($notificaciones_procesadas)): ?>
         <?php foreach ($notificaciones_procesadas as $notificacion): ?>
             <?php 

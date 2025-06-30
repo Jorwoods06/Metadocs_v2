@@ -31,6 +31,7 @@ AutorizacionRol('documentador');
                     <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
             </figure>
             <ul>
+             <div class="menu-opciones-principales">
                 <li>
                     <a href="documentador_inicio.php" >
                         <i class="bi bi-house-door"></i>
@@ -40,7 +41,7 @@ AutorizacionRol('documentador');
                 <li>
                     <a href="ver_documentos.php">
                         <i class="bi bi-file-earmark-text"></i>
-                        Carpetas
+                        Archivos
                     </a>
                 </li>
                 
@@ -57,11 +58,11 @@ AutorizacionRol('documentador');
                         Usuario
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
-                        <li><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
+                      
                         <li><a href="../documentador/info_documentador.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
                         <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
 
-                        
+             
                     </ul>
                 </li>
 
@@ -71,6 +72,8 @@ AutorizacionRol('documentador');
                         Volver
                     </a>
                 </li>
+             </div>
+               <li  class="cerrar-sesion-separado"><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
             </ul>
         </nav>
         

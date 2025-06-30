@@ -6,8 +6,20 @@ AutorizacionRol('auditor');
 
 $padre_id = isset($_GET['id_expediente']) ? $_GET['id_expediente'] : 0;
 $expediente_seleccionado = $padre_id;
-$carpetas = obtenerExpedientes($conexion_metadocs, $padre_id, $area);
-$documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
+
+$resultado_expedientes = obtenerExpedientes($conexion_metadocs, $padre_id, $area);
+$carpetas = $resultado_expedientes['expedientes'];
+$pagina_expedientes = $resultado_expedientes['pagina_actual'];
+$total_paginas_expedientes = $resultado_expedientes['total_paginas'];
+$total_registros_expedientes = $resultado_expedientes['total_registros'];
+
+$resultado_contenido = obtenerContenidoUnificado($conexion_metadocs, $padre_id, $area);
+$contenido_unificado = $resultado_contenido['contenido'];
+$pagina_actual = $resultado_contenido['pagina_actual'];
+$total_paginas = $resultado_contenido['total_paginas'];
+$total_registros = $resultado_contenido['total_registros'];
+
+
 
 ?>
 <!DOCTYPE html>
@@ -95,7 +107,21 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
         <section id="admin-contenido" class="admin">
             <!-- Título y botones cuando hay expediente seleccionado -->
             <?php if ($expediente_seleccionado): ?>
+                <div class="breadcrumb">
+                <a href="?">Inicio</a> <i class="bi bi-chevron-right"></i> 
+                <a href="javascript:history.back()" class="back-button">Atrás</a> 
+              <?php 
+                $carpeta_actual = obtenerInfoExpediente($conexion_metadocs, $expediente_seleccionado);
+                if ($carpeta_actual) {
+                
+                    echo '<i class="bi bi-chevron-right"></i> ' . htmlspecialchars($carpeta_actual['nombre']);
+                } else {
+                
+                }
+            ?>
+            </div>
 <div class="title-button-container">
+    
     <!-- Contenedor para título y botones en la misma fila en tablet+ -->
     <div class="title-header-row">
         <h1>Documentos</h1>
@@ -103,18 +129,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
     </div>
     
     <!-- Breadcrumb de navegación -->
-    <div class="breadcrumb">
-        <a href="?">Inicio</a> / 
-        <a href="javascript:history.back()" class="back-button">Atrás</a> /
-        <?php 
-        $carpeta_actual = obtenerInfoExpediente($conexion_metadocs, $expediente_seleccionado);
-        if ($carpeta_actual) {
-            echo htmlspecialchars($carpeta_actual['nombre']);
-        } else {
-            echo "Expediente no encontrado";
-        }
-        ?>
-    </div>
+   
 </div>
 <?php else: ?>
 <div class="title-button-container">
@@ -129,79 +144,103 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
                 <?php endif; ?>
             </div>
 
-            <article class="tabla-documentos">
-                <table>
-                <thead>
-                    <tr class="table-cabeza">
-                        <th>NOMBRE</th>
-                        <th>TIPO</th>
-                        <th>FECHA SUBIDA</th>
-                        <th></th>
+          <article class="tabla-documentos">
+        <table>
+            <thead>
+                <tr class="table-cabeza">
+                    <th>NOMBRE</th>
+                    <th>TIPO</th>
+                    <th>FECHA SUBIDA</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (!empty($contenido_unificado)): ?>
+                    <?php foreach ($contenido_unificado as $item): ?>
+                        <?php if ($item['tipo_contenido'] === 'expediente'): ?>
+                            <tr class="documentos" data-url="?id_expediente=<?= $item['id']; ?>">
+                                <td class="documento-nombre">
+                                    <a href="?id_expediente=<?= $item['id']; ?>">
+                                        <i class="bi bi-folder2"></i> <?= htmlspecialchars($item['nombre']); ?>
+                                    </a>
+                                </td>
+                                <td class="documento-tipo">expediente</td>
+                                <td class="documento-fecha"><?= htmlspecialchars($item['fecha_creacion']); ?></td>
+                                <td class="documento-accion">
+                                    <button class="btn_accion" data-id="<?= $item['id']; ?>">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        <?php else: ?>
+                            <tr class="documentos" data-document-id="<?= $item['id'] ?>">
+                                <td class="documento-nombre">
+                                    <i class="bi bi-file-earmark-text"></i> 
+                                    <?= htmlspecialchars($item['nombre']); ?>
+                                </td>
+                                <td class="documento-tipo"><?= htmlspecialchars($item['tipo']); ?></td>
+                                <td class="documento-fecha"><?= htmlspecialchars($item['fecha_creacion']); ?></td>
+                                <td class="documento-accion">
+                                    <button class="btn_accion btn_ver_modal escritorio" onclick="verDocumento('<?= urlencode($item['nombre'] . '.' . $item['tipo']) ?>', '<?= strtolower($item['tipo']) ?>')">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                    <button class="btn_accion btn_ver_nueva_ventana movil" onclick="abrirNuevaVentana('<?= urlencode($item['titulo'] . '.' . $item['tipo']) ?>')">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="4" class="no-content">
+                            <?php if ($expediente_seleccionado): ?>
+                                No hay contenido para mostrar en este expediente.
+                            <?php else: ?>
+                                No hay expedientes para mostrar.
+                            <?php endif; ?>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    <?php 
-                    // Variable para controlar si hay contenido
-                    $tiene_contenido = false;
-                    
-                    // Mostrar expedientes/carpetas
-                    if (!empty($carpetas)):
-                        $tiene_contenido = true;
-                        foreach ($carpetas as $carpeta): 
-                    ?>
-                        <tr class="documentos" data-url="?id_expediente=<?= $carpeta['id_expediente']; ?>">
-                            <td class="documento-nombre">
-                                <a href="?id_expediente=<?= $carpeta['id_expediente']; ?>">
-                                    <i class="bi bi-folder2"></i> <?= htmlspecialchars($carpeta['nombre']); ?>
-                                </a>
-                            </td>
-                            <td class="documento-tipo">expediente</td>
-                            <td class="documento-fecha"><?= htmlspecialchars($carpeta['fecha_creacion']); ?></td>
-                            <td class="documento-accion">
-                                <button class="btn_accion" data-id="<?= $carpeta['id_expediente']; ?>"><i class="bi bi-pencil-square"></i></button>
-                                
-                            </td>
-                        </tr>
-                    <?php 
-                        endforeach; 
-                    endif;
-                    
-                    // Mostrar documentos si hay expediente seleccionado
-                    if ($expediente_seleccionado && !empty($documentos)): 
-                        $tiene_contenido = true;
-                        foreach ($documentos as $documento): 
-                    ?>
-                        <tr class="documentos" data-document-id="<?= $documento['id_documento'] ?>">
-                            <td class="documento-nombre">
-                                <i class="bi bi-file-earmark-text"></i> 
-                                <?= htmlspecialchars($documento['titulo']); ?>
-                            </td>
-                            <td class="documento-tipo"><?= htmlspecialchars($documento['tipo']); ?></td>
-                            <td class="documento-fecha"><?= htmlspecialchars($documento['fecha_creacion']); ?></td>
-                            <td class="documento-accion">
-                                <button class="btn_accion btn_ver_modal escritorio" onclick="verDocumento('<?= urlencode($documento['titulo'] . '.' . $documento['tipo']) ?>', '<?= strtolower($documento['tipo']) ?>')">
-                                    <i class="bi bi-eye"></i>
-                                </button>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </article>
 
-                                <button class="btn_accion btn_ver_nueva_ventana movil" onclick="abrirNuevaVentana('<?= urlencode($documento['titulo'] . '.' . $documento['tipo']) ?>')">
-                                    <i class="bi bi-eye"></i>
-                                </button>
-                            </td>
-                        </tr>
-                    <?php 
-                        endforeach;
-                    endif;
-                    
-                    // Mostrar mensaje si no hay contenido
-                    if (!$tiene_contenido): 
-                    ?>
-                        <tr>
-                            <td colspan="4" class="no-content">No hay expedientes ni documentos para mostrar.</td>
-                        </tr>
-                    <?php endif; ?>
-                </tbody>
-                </table>
-            </article>
+    <!-- Paginación unificada -->
+    <?php if ($total_paginas > 1): ?>
+        <div class="paginacion" style="text-align:center; margin-top:20px;">
+            <?php if ($pagina_actual > 1): ?>
+                <a href="?pagina=<?php echo $pagina_actual - 1; ?><?php echo $padre_id ? '&id_expediente=' . $padre_id : ''; ?>" class="btn-paginacion">Anterior</a>
+            <?php endif; ?>
+
+            <?php for ($i = 1; $i <= $total_paginas; $i++): ?>
+                <a href="?pagina=<?php echo $i; ?><?php echo $padre_id ? '&id_expediente=' . $padre_id : ''; ?>" 
+                   class="btn-paginacion <?php echo ($i == $pagina_actual) ? 'activa' : ''; ?>">
+                    <?php echo $i; ?>
+                </a>
+            <?php endfor; ?>
+
+            <?php if ($pagina_actual < $total_paginas): ?>
+                <a href="?pagina=<?php echo $pagina_actual + 1; ?><?php echo $padre_id ? '&id_expediente=' . $padre_id : ''; ?>" class="btn-paginacion">Siguiente</a>
+            <?php endif; ?>
+            
+            <div class="info-paginacion">
+                <small>
+                    Página <?php echo $pagina_actual; ?> de <?php echo $total_paginas; ?> 
+                    (<?php echo $total_registros; ?> elementos total)
+                </small>
+            </div>
+        </div>
+    <?php endif; ?>
+
+    <!-- Información cuando no hay paginación -->
+    <?php if (!empty($contenido_unificado) && $total_paginas == 1): ?>
+        <div class="info-paginacion" style="text-align:center; margin-top:10px;">
+            <small><?php echo $total_registros; ?> elementos total</small>
+        </div>
+    <?php endif; ?>
+
+
         </section>
     </main>
 

@@ -51,7 +51,7 @@ AutorizacionRol('auditor');
                         <li><a href="#" class="submenu-activo"><i class="bi bi-envelope-paper"></i>pendientes</a></li>
                         <li><a href="archivos_auditor.php"><i class="bi bi-eye"></i>Archivos</a></li>
                         <li><a href="solicitar_documento.php"><i class="bi bi-file-earmark-plus"></i> Solicitar archivos</a></li>
-                        <li><a href=""  > <i class="bi bi-clock-history"></i> Archivo historico</a></li>
+                        <li><a href="archivo_historico.php"  > <i class="bi bi-clock-history"></i> Archivo historico</a></li>
                     </ul>
                 </li>
                 

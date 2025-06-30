@@ -69,7 +69,7 @@ function aprobarExpediente($conexion, $id_expediente, $usuario_destinatario, $no
             $tipo_actividad = 'expediente_aprobado';
 
             $sql_actividad = "INSERT INTO actividades (id_usuario, tipo_actividad, mensaje, fecha_creacion, usuario_destinatario) 
-                                (?, ?, ?, NOW(), ?)";
+                                VALUES (?, ?, ?, NOW(), ?)";
 
             if ($stmt_actividad = $conexion->prepare($sql_actividad)) {
                 $stmt_actividad->bind_param('isss', $id_usuario, $tipo_actividad, $mensaje_json, $usuario_destinatario_completo);

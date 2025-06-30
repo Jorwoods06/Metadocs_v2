@@ -23,40 +23,226 @@ function subirExpediente($conexion, $nombre, $descripcion, $padreId, $area, $id_
     }
 }
 
-// Función para obtener los expedientes y así enviarlos al front 
-function obtenerExpedientes($conexion, $padreId, $area) {
-    if ($padreId === 0) {
-        $sql_obtenerExpediente = "SELECT id_expediente, nombre, descripcion, fecha_creacion FROM `expedientes` WHERE (expediente_padre IS NULL OR expediente_padre = 0) AND id_area = ? AND estado ='aprobado' ORDER BY nombre;";
-        $sentencia_expedientes = $conexion->prepare($sql_obtenerExpediente);
-        $sentencia_expedientes->bind_param('i', $area);
-        $sentencia_expedientes->execute();
-        $resultado_expedientes = $sentencia_expedientes->get_result();
-    } else {
-        $sql_obtenerExpediente = "SELECT id_expediente, nombre, descripcion, fecha_creacion FROM `expedientes` WHERE expediente_padre = ? AND id_area = ? AND estado ='aprobado'  ORDER BY nombre";
-        $sentencia_expedientes = $conexion->prepare($sql_obtenerExpediente);
-        $sentencia_expedientes->bind_param('ii', $padreId, $area);
-        $sentencia_expedientes->execute();
-        $resultado_expedientes = $sentencia_expedientes->get_result();
-    }
-    return $resultado_expedientes ? $resultado_expedientes->fetch_all(MYSQLI_ASSOC) : [];
-}
 
-// Función para obtener documentos de un expediente específico
+
+// Función para obtener documentos de un expediente específico con paginación
 function obtenerDocumentos($conexion, $padre_id, $area) {
+    $cantidad_tabla = 5;
+    // Cambiar aquí: usar pagina_doc en lugar de pagina
+    $pagina = isset($_GET['pagina_doc']) ? (int)$_GET['pagina_doc'] : 1;
+    $inicio = ($pagina - 1) * $cantidad_tabla;
+    
+    // Consulta con paginación
     $sql = "SELECT id_documento, titulo, path, fecha_creacion, tipo 
             FROM documentos 
             WHERE id_expediente = ? 
             AND id_area = ?
             AND estado = 'aprobado' 
             AND estado_retencion = 'activo'
-            ORDER BY fecha_creacion DESC";
+            ORDER BY fecha_creacion DESC
+            LIMIT ?, ?";
     
     $stmt = $conexion->prepare($sql);
-    $stmt->bind_param("ii", $padre_id, $area);
+    $stmt->bind_param("iiii", $padre_id, $area, $inicio, $cantidad_tabla);
     $stmt->execute();
     $resultado = $stmt->get_result();
-    return $resultado ? $resultado->fetch_all(MYSQLI_ASSOC) : [];
+    $documentos = $resultado->fetch_all(MYSQLI_ASSOC);
+    
+    // Obtener total de registros para calcular páginas
+    $sql_total = "SELECT COUNT(*) as total 
+                 FROM documentos 
+                 WHERE id_expediente = ? 
+                 AND id_area = ? 
+                 AND estado = 'aprobado' 
+                 AND estado_retencion = 'activo'";
+    
+    $stmt_total = $conexion->prepare($sql_total);
+    $stmt_total->bind_param("ii", $padre_id, $area);
+    $stmt_total->execute();
+    $result_total = $stmt_total->get_result();
+    $total_filas = $result_total->fetch_assoc()['total'];
+    $total_paginas = ceil($total_filas / $cantidad_tabla);
+    
+    return [
+        'documentos' => $documentos,
+        'pagina_actual' => $pagina,
+        'total_paginas' => $total_paginas,
+        'total_registros' => $total_filas
+    ];
 }
+function obtenerContenidoUnificado($conexion, $padre_id, $area) {
+    $cantidad_tabla = 10;
+    $pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+    $inicio = ($pagina - 1) * $cantidad_tabla;
+    
+    if ($padre_id === 0) {
+        // Solo expedientes en la raíz
+        $sql = "SELECT id_expediente as id, nombre, descripcion, fecha_creacion, 'expediente' as tipo_contenido
+                FROM expedientes 
+                WHERE (expediente_padre IS NULL OR expediente_padre = 0) 
+                AND id_area = ? 
+                AND estado = 'aprobado' 
+                ORDER BY nombre 
+                LIMIT ?, ?";
+        
+        $stmt = $conexion->prepare($sql);
+        $stmt->bind_param('iii', $area, $inicio, $cantidad_tabla);
+        
+        // Contar total
+        $sql_total = "SELECT COUNT(*) as total 
+                     FROM expedientes 
+                     WHERE (expediente_padre IS NULL OR expediente_padre = 0) 
+                     AND id_area = ? 
+                     AND estado = 'aprobado'";
+        
+        $stmt_total = $conexion->prepare($sql_total);
+        $stmt_total->bind_param('i', $area);
+        
+    } else {
+        // Expedientes + documentos unificados
+        $sql = "(SELECT id_expediente as id, nombre , descripcion, fecha_creacion, 'expediente' as tipo_contenido, '' as tipo
+                FROM expedientes 
+                WHERE expediente_padre = ? 
+                AND id_area = ? 
+                AND estado = 'aprobado')
+                UNION ALL
+                (SELECT id_documento as id, titulo, '' as descripcion, fecha_creacion, 'documento' as tipo_contenido, tipo
+                FROM documentos 
+                WHERE id_expediente = ? 
+                AND id_area = ?
+                AND estado = 'aprobado' 
+                AND estado_retencion = 'activo')
+                ORDER BY tipo_contenido DESC, fecha_creacion DESC
+                LIMIT ?, ?";
+        
+        $stmt = $conexion->prepare($sql);
+        $stmt->bind_param('iiiiii', $padre_id, $area, $padre_id, $area, $inicio, $cantidad_tabla);
+        
+        // Contar total unificado
+        $sql_total = "(SELECT COUNT(*) as count FROM expedientes 
+                      WHERE expediente_padre = ? AND id_area = ? AND estado = 'aprobado')
+                      UNION ALL
+                      (SELECT COUNT(*) as count FROM documentos 
+                      WHERE id_expediente = ? AND id_area = ? AND estado = 'aprobado' 
+                      AND estado_retencion = 'activo')";
+        
+        $stmt_total = $conexion->prepare($sql_total);
+        $stmt_total->bind_param('iiii', $padre_id, $area, $padre_id, $area);
+    }
+    
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+    $contenido = $resultado->fetch_all(MYSQLI_ASSOC);
+    
+    // Calcular total
+    $stmt_total->execute();
+    $result_total = $stmt_total->get_result();
+    
+    if ($padre_id === 0) {
+        $total_filas = $result_total->fetch_assoc()['total'];
+    } else {
+        // Sumar los conteos de expedientes y documentos
+        $total_filas = 0;
+        while ($row = $result_total->fetch_assoc()) {
+            $total_filas += $row['count'];
+        }
+    }
+    
+    $total_paginas = ceil($total_filas / $cantidad_tabla);
+    
+    return [
+        'contenido' => $contenido,
+        'pagina_actual' => $pagina,
+        'total_paginas' => $total_paginas,
+        'total_registros' => $total_filas
+    ];
+}
+
+
+// Función mejorada para obtener expedientes (manteniendo la estructura anterior)
+function obtenerExpedientes($conexion, $padreId, $area) {
+    $cantidad_tabla = 10;
+    // Cambiar aquí: usar pagina_exp en lugar de pagina
+    $pagina = isset($_GET['pagina_exp']) ? (int)$_GET['pagina_exp'] : 1;
+    $inicio = ($pagina - 1) * $cantidad_tabla;
+    
+    if ($padreId === 0) {
+        // Consulta para obtener expedientes con paginación
+        $sql_paginacion = "SELECT id_expediente, nombre, descripcion, fecha_creacion 
+                          FROM `expedientes` 
+                          WHERE (expediente_padre IS NULL OR expediente_padre = 0) 
+                          AND id_area = ? 
+                          AND estado = 'aprobado' 
+                          ORDER BY nombre 
+                          LIMIT ?, ?";
+        
+        $stmt = $conexion->prepare($sql_paginacion);
+        $stmt->bind_param('iii', $area, $inicio, $cantidad_tabla);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+        $expedientes = $resultado->fetch_all(MYSQLI_ASSOC);
+
+        // Obtener total de registros para calcular páginas
+        $sql_total = "SELECT COUNT(*) as total 
+                     FROM expedientes 
+                     WHERE (expediente_padre IS NULL OR expediente_padre = 0) 
+                     AND id_area = ? 
+                     AND estado = 'aprobado'";
+        
+        $stmt_total = $conexion->prepare($sql_total);
+        $stmt_total->bind_param('i', $area);
+        $stmt_total->execute();
+        $result_total = $stmt_total->get_result();
+        $total_filas = $result_total->fetch_assoc()['total'];
+        $total_paginas = ceil($total_filas / $cantidad_tabla);
+
+        return [
+            'expedientes' => $expedientes,
+            'pagina_actual' => $pagina,
+            'total_paginas' => $total_paginas,
+            'total_registros' => $total_filas
+        ];
+        
+    } else {
+        // Para subcarpetas, también con paginación
+        $sql_paginacion = "SELECT id_expediente, nombre, descripcion, fecha_creacion 
+                          FROM `expedientes` 
+                          WHERE expediente_padre = ? 
+                          AND id_area = ? 
+                          AND estado = 'aprobado'  
+                          ORDER BY nombre
+                          LIMIT ?, ?";
+        
+        $stmt = $conexion->prepare($sql_paginacion);
+        $stmt->bind_param('iiii', $padreId, $area, $inicio, $cantidad_tabla);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+        $expedientes = $resultado->fetch_all(MYSQLI_ASSOC);
+        
+        // Obtener total de subcarpetas
+        $sql_total = "SELECT COUNT(*) as total 
+                     FROM expedientes 
+                     WHERE expediente_padre = ? 
+                     AND id_area = ? 
+                     AND estado = 'aprobado'";
+        
+        $stmt_total = $conexion->prepare($sql_total);
+        $stmt_total->bind_param('ii', $padreId, $area);
+        $stmt_total->execute();
+        $result_total = $stmt_total->get_result();
+        $total_filas = $result_total->fetch_assoc()['total'];
+        $total_paginas = ceil($total_filas / $cantidad_tabla);
+        
+        return [
+            'expedientes' => $expedientes,
+            'pagina_actual' => $pagina,
+            'total_paginas' => $total_paginas,
+            'total_registros' => $total_filas
+        ];
+    }
+}
+
+
 
 // Función para obtener información de un expediente específico
 function obtenerInfoExpediente($conexion, $id_expediente) {

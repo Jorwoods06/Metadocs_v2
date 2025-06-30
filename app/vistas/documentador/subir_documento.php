@@ -34,22 +34,25 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
                     <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
             </figure>
             <ul>
+                <div class="menu-opciones-principales">
                 <li><a href="documentador_inicio.php"><i class="bi bi-house-door"></i>Inicio</a></li>
-                <li><a href="ver_documentos.php" class="activo"><i class="bi bi-file-earmark-text"></i>Documentos</a></li>
+                <li><a href="ver_documentos.php" class="activo"><i class="bi bi-file-earmark-text"></i>Archivos</a></li>
                 <li><a href="solicitudes_doc.php" ><i class="bi bi-envelope-paper"></i>Solicitudes</a></li>
                 <li class="gestion-usuarios">
                     <a href="#" id="cerrado-usuarios">
-                        <i class="bi bi-person"></i>Usuario
+                        <i class="bi bi-person"></i>Documentador
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
-                            <li><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
-                        <li><a href="info_documentador.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
+                            
+                        <li><a href="info_documentador.php"><i class="bi bi-info-circle"></i> Info documentador</a></li>
                         <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
                     </ul>
                 </li>
                 <li class="solo_mobil">
                     <a href="#" id="solo_mobil"><i class="bi bi-arrow-left-circle"></i>Volver</a>
                 </li>
+                </div>
+                    <li  class="cerrar-sesion-separado"><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
             </ul>
         </nav>
 

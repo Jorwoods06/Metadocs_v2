@@ -83,6 +83,51 @@
   color: #888;
   white-space: nowrap;
 }
+.paginacion {
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.btn-paginacion {
+    display: inline-block;
+    padding: 10px 16px;
+    margin: 0 2px;
+    background-color: #f8f9fa;
+    color: #6c757d;
+    text-decoration: none;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    min-width: 44px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.btn-paginacion:hover {
+    background-color: #e9ecef;
+    color: #495057;
+    border: none;
+    
+}
+
+.btn-paginacion.activa {
+    background-color: #3D688A;
+    color: white;
+  
+}
+
+.btn-paginacion.activa:hover {
+    background-color: #2A4860;
+    
+    transform: none;
+}
+
 
 
 /* === Tablet (700px+) === */
@@ -159,4 +204,5 @@
     font-size: 1em;
     align-content: center;
   }
+
 }

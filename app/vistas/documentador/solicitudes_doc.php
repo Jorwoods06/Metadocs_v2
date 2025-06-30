@@ -111,6 +111,21 @@ require_once '../../backend/documentador/recibir_actividades.php';
 </div>
                 </div>
             </div>
+                  <div class="paginacion" style="text-align:center; margin-top:20px;">
+    <?php if ($pagina_actual > 1): ?>
+        <a href="?pagina=<?php echo $pagina_actual - 1; ?>" class="btn-paginacion">Anterior</a>
+    <?php endif; ?>
+
+    <?php for ($i = 1; $i <= $total_paginas; $i++): ?>
+        <a href="?pagina=<?php echo $i; ?>" class="btn-paginacion <?php echo ($i == $pagina_actual) ? 'activa' : ''; ?>">
+            <?php echo $i; ?>
+        </a>
+    <?php endfor; ?>
+
+    <?php if ($pagina_actual < $total_paginas): ?>
+        <a href="?pagina=<?php echo $pagina + 1; ?>" class="btn-paginacion">Siguiente</a>
+    <?php endif; ?>
+</div>
         </section>
     </main>
 

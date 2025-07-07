@@ -33,9 +33,38 @@ body {
 
 .contenedor-general {
   display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
+  gap: 1.5rem;
   justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 0 1rem;
+}
+
+/* Vista de PC: una sola línea */
+@media (min-width: 1024px) {
+  .contenedor-general {
+    flex-wrap: nowrap;
+    justify-content: center;
+    overflow-x: visible;
+  }
+}
+
+/* Vista tablet: permitir wrap */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .contenedor-general {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* Vista móvil: una columna */
+@media (max-width: 767px) {
+  .contenedor-general {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
 }
 
 .card-opcion {
@@ -46,28 +75,29 @@ body {
   height: 300px;
   text-align: center;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   padding: 25px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .card-opcion:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
 }
 
 .card-opcion img {
   width: 70px;
   height: 70px;
   margin-bottom: 20px;
-  transition: transform 0.3s ease;
+  transition: transform 0.2s ease;
 }
 
 .card-opcion:hover img {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .card-opcion label {
@@ -76,9 +106,37 @@ body {
   font-weight: 500;
   text-decoration: none;
   cursor: pointer;
+  transition: color 0.2s ease;
+  line-height: 1.4;
+  text-align: center;
 }
 
-.card-link{
+.card-opcion:hover label {
+  color: #1a1a1a;
+}
+
+.card-link {
   color: inherit;
-  text-decoration: none
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+/* Animación de entrada progresiva - removida para evitar conflictos */
+.card-opcion {
+  /* Removí las animaciones automáticas */
+}
+
+/* Mejoras adicionales para la accesibilidad */
+.card-opcion:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+.card-opcion:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.card-opcion:focus-visible {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
 }

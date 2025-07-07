@@ -118,7 +118,7 @@ AutorizacionRol('auditor');
 
                 <a href="../../vistas/auditor/pista_auditoria.php" class="card-link">
                     <div class="card-opcion">
-                        <img src="https://cdn-icons-png.flaticon.com/128/15400/15400355.png" alt="pista de auditoria">
+                        <img src="../../../componentes/img/aud.png" alt="pista de auditoria">
                         <label> pista de auditoría</label>
                     </div>
                 </a>

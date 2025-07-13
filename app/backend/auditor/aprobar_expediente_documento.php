@@ -3,6 +3,7 @@ require_once '../../helpers/conexion_bd.php';
 require_once '../../helpers/info_usuario.php';
 
 $id_usuario = $usuario['id_usuario'];
+$id_area = $usuario['id_area'];
 
 $id_expediente = $_POST['datos_expediente'] ?? null;
 $id_documento = $_POST['datos_documento'] ?? null;
@@ -47,7 +48,29 @@ function obtenerNombreCompletoUsuario($conexion, $identificador_usuario) {
     return $identificador_usuario;
 }
 
-function aprobarExpediente($conexion, $id_expediente, $usuario_destinatario, $nombre_expediente, $id_usuario) {
+// FUNCIÓN PARA REGISTRAR AUDITORÍA
+function registrarAuditoria($conexion, $id_area, $accion, $entidad, $entidad_id, $id_usuario, $rol) {
+    $sql_auditoria = "INSERT INTO pista_auditoria (id_area, accion, fecha_accion, entidad, entidad_id, id_usuario, rol) 
+                      VALUES (?, ?, NOW(), ?, ?, ?, ?) ";
+    
+    if ($stmt_auditoria = $conexion->prepare($sql_auditoria)) {
+        $stmt_auditoria->bind_param('issiis', $id_area, $accion, $entidad, $entidad_id, $id_usuario,$rol);
+        
+        if ($stmt_auditoria->execute()) {
+            $stmt_auditoria->close();
+            return true;
+        } else {
+            error_log("Error al insertar auditoría: " . $stmt_auditoria->error);
+            $stmt_auditoria->close();
+            return false;
+        }
+    } else {
+        error_log("Error al preparar consulta de auditoría: " . $conexion->error);
+        return false;
+    }
+}
+
+function aprobarExpediente($conexion, $id_expediente, $usuario_destinatario, $nombre_expediente, $id_usuario, $id_area) {
     $sql_aprobar = "UPDATE `expedientes` SET `estado` = 'aprobado' WHERE `id_expediente` = ?;";
 
     if ($sentencia = $conexion->prepare($sql_aprobar)) {
@@ -55,6 +78,10 @@ function aprobarExpediente($conexion, $id_expediente, $usuario_destinatario, $no
 
         if ($sentencia->execute()) {
             $sentencia->close();
+
+            //registrar auditoria 
+            
+            registrarAuditoria($conexion, $id_area, 'aprobó', 'expediente', $id_expediente, $id_usuario, "auditor");
 
             // Obtener el nombre completo del usuario destinatario
             $usuario_destinatario_completo = obtenerNombreCompletoUsuario($conexion, $usuario_destinatario);
@@ -97,7 +124,7 @@ function aprobarExpediente($conexion, $id_expediente, $usuario_destinatario, $no
     }
 }
 
-function aprobarDocumento($conexion, $id_documento, $usuario_destinatario, $titulo, $categoria, $expediente, $id_usuario){
+function aprobarDocumento($conexion, $id_documento, $usuario_destinatario, $titulo, $categoria, $expediente, $id_usuario, $id_area){
     $sql_aprobar = "UPDATE `documentos` SET `estado` = 'aprobado' WHERE `documentos`.`id_documento` = ?;";
     
     if($sentencia = $conexion->prepare($sql_aprobar)){
@@ -105,6 +132,9 @@ function aprobarDocumento($conexion, $id_documento, $usuario_destinatario, $titu
         
         if ($sentencia->execute()) {
             $sentencia->close();
+
+
+              registrarAuditoria($conexion, $id_area, 'aprobó', 'documento', $id_documento, $id_usuario,"auditor");
 
             // Obtener el nombre completo del usuario destinatario
             $usuario_destinatario_completo = obtenerNombreCompletoUsuario($conexion, $usuario_destinatario);
@@ -150,7 +180,7 @@ function aprobarDocumento($conexion, $id_documento, $usuario_destinatario, $titu
     }
 }
 
-function rechazarExpediente($conexion, $id_expediente, $usuario_destinatario, $nombre_expediente, $motivo_rechazo, $id_usuario){
+function rechazarExpediente($conexion, $id_expediente, $usuario_destinatario, $nombre_expediente, $motivo_rechazo, $id_usuario, $id_area){
     $sql_rechazar = "UPDATE `expedientes` SET `estado` = 'rechazado' WHERE `id_expediente` = ?;";
 
     if($sentencia = $conexion->prepare($sql_rechazar)){
@@ -158,6 +188,9 @@ function rechazarExpediente($conexion, $id_expediente, $usuario_destinatario, $n
 
         if ($sentencia->execute()) {
             $sentencia->close();
+
+
+             registrarAuditoria($conexion, $id_area, 'rechazó', 'expediente', $id_expediente, $id_usuario,"auditor");
 
             // Obtener el nombre completo del usuario destinatario
             $usuario_destinatario_completo = obtenerNombreCompletoUsuario($conexion, $usuario_destinatario);
@@ -201,7 +234,7 @@ function rechazarExpediente($conexion, $id_expediente, $usuario_destinatario, $n
     }
 }
 
-function rechazarDocumento($conexion, $id_documento, $usuario_destinatario, $titulo, $categoria, $expediente, $motivo_rechazo, $id_usuario) {
+function rechazarDocumento($conexion, $id_documento, $usuario_destinatario, $titulo, $categoria, $expediente, $motivo_rechazo, $id_usuario, $id_area) {
     // Iniciar transacción
     $conexion->begin_transaction();
     
@@ -280,6 +313,10 @@ function rechazarDocumento($conexion, $id_documento, $usuario_destinatario, $tit
                 error_log("Advertencia: No se pudo eliminar el archivo físico: " . $ruta_archivo);
             }
         }
+
+         if (!registrarAuditoria($conexion, $id_area, 'rechazó', 'documento', $id_documento, $id_usuario, "auditor")) {
+            throw new Exception("Error al registrar auditoría");
+        }
         
         // Confirmar la transacción
         $conexion->commit();
@@ -303,7 +340,7 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST'){
             $usuario_destinatario = $_POST['usuario_destinatario'];
             $nombre_expediente = $_POST['nombre_expediente'];
             
-            if(aprobarExpediente($conexion_metadocs, $id_expediente, $usuario_destinatario, $nombre_expediente, $id_usuario)){
+            if(aprobarExpediente($conexion_metadocs, $id_expediente, $usuario_destinatario, $nombre_expediente, $id_usuario, $id_area)){
                 header("Location: ../../vistas/auditor/recibir_documentos.php?sucess=true");
             }else{
                 header("Location: ../../vistas/auditor/recibir_documentos.php?error=true");
@@ -316,7 +353,7 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST'){
             $categoria = $_POST['categoria'];
             $expediente = $_POST['expediente'];
             
-            if(aprobarDocumento($conexion_metadocs, $id_documento, $usuario_destinatario, $titulo, $categoria, $expediente, $id_usuario)){
+            if(aprobarDocumento($conexion_metadocs, $id_documento, $usuario_destinatario, $titulo, $categoria, $expediente, $id_usuario, $id_area)){
                 header("Location: ../../vistas/auditor/recibir_documentos.php?sucess=true");
             }else{
                 header("Location: ../../vistas/auditor/recibir_documentos.php?error=true");
@@ -327,7 +364,7 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST'){
             $usuario_destinatario = $_POST['usuario_destinatario'];
             $nombre_expediente = $_POST['nombre_expediente'];
             
-            if(rechazarExpediente($conexion_metadocs, $id_expediente, $usuario_destinatario, $nombre_expediente, $motivo_rechazo, $id_usuario)){
+            if(rechazarExpediente($conexion_metadocs, $id_expediente, $usuario_destinatario, $nombre_expediente, $motivo_rechazo, $id_usuario, $id_area)){
                 header("Location: ../../vistas/auditor/recibir_documentos.php?sucess=true");
             }else{
                 header("Location: ../../vistas/auditor/recibir_documentos.php?error=true");
@@ -340,7 +377,7 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST'){
             $categoria = $_POST['categoria'];
             $expediente = $_POST['expediente'];
             
-            if (rechazarDocumento($conexion_metadocs, $id_documento, $usuario_destinatario, $titulo, $categoria, $expediente, $motivo_rechazo, $id_usuario)) {
+            if (rechazarDocumento($conexion_metadocs, $id_documento, $usuario_destinatario, $titulo, $categoria, $expediente, $motivo_rechazo, $id_usuario,  $id_area)) {
                 header("Location: ../../vistas/auditor/recibir_documentos.php?sucess=true");
             }else{
                 header("Location: ../../vistas/auditor/recibir_documentos.php?error=true");

@@ -3,12 +3,36 @@
 require_once '../../helpers/conexion_bd.php';
 require_once '../../helpers/info_usuario.php';
 
+$id_area = $usuario['id_area'];
+
 
 if($_SERVER['REQUEST_METHOD'] != 'POST'){
 
     echo 'no tienes acceso a esta vista';
 
 }else{
+
+    function registrarAuditoria($conexion, $id_area, $accion, $entidad, $entidad_id, $id_usuario,$rol) {
+    $sql_auditoria = "INSERT INTO pista_auditoria (id_area, accion, fecha_accion, entidad, entidad_id, id_usuario,rol) 
+                      VALUES (?, ?, NOW(), ?, ?, ?,?)";
+    
+    if ($stmt_auditoria = $conexion->prepare($sql_auditoria)) {
+        $stmt_auditoria->bind_param('issiis', $id_area, $accion, $entidad, $entidad_id, $id_usuario,$rol);
+        
+        if ($stmt_auditoria->execute()) {
+            $stmt_auditoria->close();
+            return true;
+        } else {
+            error_log("Error al insertar auditoría: " . $stmt_auditoria->error);
+            $stmt_auditoria->close();
+            return false;
+        }
+    } else {
+        error_log("Error al preparar consulta de auditoría: " . $conexion->error);
+        return false;
+    }
+}
+
 
     $categoria = $_POST['tipo'];
     $responsable = $_POST['responsable_display'];
@@ -38,6 +62,8 @@ if($_SERVER['REQUEST_METHOD'] != 'POST'){
 if (mysqli_query($conexion_metadocs, $sql_actividad)) {
     
         $id_solicitud = mysqli_insert_id($conexion_metadocs);
+
+         registrarAuditoria($conexion_metadocs, $id_area, 'solicito', 'documento', $id_solicitud, $id_usuario, "auditor");
         
         header('Location: ../../vistas/auditor/solicitar_documento.php?msg=solicitud_enviada');
         

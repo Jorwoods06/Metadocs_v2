@@ -10,19 +10,47 @@ if ($conexion_metadocs->connect_error) {
     die("Connection failed: " . $conexion_metadocs->connect_error);
 }
 
+function registrarAuditoria($conexion, $id_area, $accion, $entidad, $entidad_id, $id_usuario, $rol) {
+    $sql_auditoria = "INSERT INTO pista_auditoria (id_area, accion, fecha_accion, entidad, entidad_id, id_usuario,rol) 
+                      VALUES (?, ?, NOW(), ?, ?, ?, ?)";
+    
+    if ($stmt_auditoria = $conexion->prepare($sql_auditoria)) {
+        $stmt_auditoria->bind_param('issiis', $id_area, $accion, $entidad, $entidad_id, $id_usuario, $rol);
+        
+        if ($stmt_auditoria->execute()) {
+            $stmt_auditoria->close();
+            return true;
+        } else {
+            error_log("Error al insertar auditoría: " . $stmt_auditoria->error);
+            $stmt_auditoria->close();
+            return false;
+        }
+    } else {
+        error_log("Error al preparar consulta de auditoría: " . $conexion->error);
+        return false;
+    }
+}
 // Función subir expediente
 function subirExpediente($conexion, $nombre, $descripcion, $padreId, $area, $id_usuario) {
-    $estado = 'revision'; // Diferencia: estado en revisión para documentador
+    $estado = 'revision';
     $sql_expediente = $conexion->prepare("INSERT INTO expedientes (nombre, descripcion, expediente_padre, id_area, estado, autor) VALUES (?,?,?,?,?,?)");
 
     if ($sql_expediente) {
-        $sql_expediente->bind_param("ssiisi", $nombre, $descripcion, $padreId, $area, $estado, $id_usuario); 
-        return $sql_expediente->execute();
+        $sql_expediente->bind_param("ssiisi", $nombre, $descripcion, $padreId, $area, $estado, $id_usuario);
+        
+        if ($sql_expediente->execute()) {
+            // REGISTRAR AUDITORÍA
+            $id_expediente = $conexion->insert_id;
+          
+            registrarAuditoria($conexion, $area, 'subió', 'expediente', $id_expediente, $id_usuario, "documentador");
+            
+            return true;
+        }
+        return false;
     } else {
         die("Error al preparar la consulta: " . $conexion->error);
     }
 }
-
 
 
 // Función para obtener documentos de un expediente específico con paginación
@@ -342,6 +370,8 @@ function subirDocumento($conexion, $archivo, $id_expediente, $area, $id_usuario,
 
             if ($documento_insertado) {
                 $id_documento = $conexion->insert_id;
+
+                 registrarAuditoria($conexion, $area, 'subió', 'documento', $id_documento, $id_usuario,"documentador");
 
             
                 $sql_ubicacion = $conexion->prepare("INSERT INTO ubicacion_fisico (tipo_ubicacion, id_documento, observaciones, edificio, piso) VALUES (?, ?, ?, ?, ?)");

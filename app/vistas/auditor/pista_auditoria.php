@@ -14,6 +14,7 @@ AutorizacionRol('auditor');
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
     <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
+    <script src="../../../componentes/js/auditor/obtener_actividades.js"></script>
 
     <script src="../../../componentes/js/admin/panel.js"></script>
 
@@ -86,7 +87,89 @@ AutorizacionRol('auditor');
         
         <section id="admin-contenido" class="admin">
 
-           <h1>que</h1>
+            <div class="registro-actividades">
+        <div class="registro-header">
+            <h2>
+                <i class="bi bi-activity"></i>
+                Registro de Actividades
+            </h2>
+            <p class="registro-descripcion">
+                Historial de acciones realizadas por los usuarios documentadores del sistema
+            </p>
+        </div>
+
+        <div class="filtros-container">
+            <div class="filtro-busqueda">
+                <i class="bi bi-search"></i>
+                <input type="text" id="busqueda" placeholder="Buscar por nombre, acción o título...">
+            </div>
+            <div class="filtros-selectores">
+               
+                <div class="filtro-selector">
+                    <label for="filtro-archivo">Archivo:</label>
+                    <select id="filtro-archivo">
+                        <option value="">Todos los archivos</option>
+                        <option value="Documento">Documento</option>
+                        <option value="Expediente">Expediente</option>
+                    
+                    </select>
+                </div>
+            </div>
+        </div>
+
+      
+        <div class="tabla-container">
+            <!-- Vista de tabla para tablet y desktop -->
+            <table class="tabla-actividades">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Acción</th>
+                      
+                        <th>Archivo</th>
+                        <th>Título</th>
+                          <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-body">
+                    <!-- Los datos se cargarán dinámicamente -->
+                </tbody>
+            </table>
+
+            <!-- Vista de tarjetas para móvil -->
+            <div class="actividades-cards" id="cards-container">
+                <!-- Las tarjetas se cargarán dinámicamente -->
+            </div>
+
+            <div class="mensaje-sin-resultados" id="sin-resultados" style="display: none;">
+                <i class="bi bi-search"></i>
+                <p>No se encontraron registros que coincidan con los filtros aplicados.</p>
+            </div>
+        </div>
+
+        <!-- Fragmento HTML para agregar después del div tabla-container -->
+<div class="paginacion-container">
+    <div class="info-paginacion">
+        <span id="info-registros"> 0 registros</span>
+    </div>
+    <div class="paginacion-controles">
+        <button id="btn-anterior" class="btn-paginacion" disabled>
+            <i class="bi bi-chevron-left"></i>
+            Anterior
+        </button>
+        <div class="numeros-pagina" id="numeros-pagina">
+            <!-- Los números se generarán dinámicamente -->
+        </div>
+        <button id="btn-siguiente" class="btn-paginacion" disabled>
+            Siguiente
+            <i class="bi bi-chevron-right"></i>
+        </button>
+    </div>
+</div>
+
+<!-- Agregar este script al final del body -->
+
+    </div>
         </section>
 
 

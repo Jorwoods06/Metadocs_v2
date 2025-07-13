@@ -42,6 +42,13 @@ AutorizacionRol('administrador');
                 </a>
             </li>
 
+              <li>
+                <a href="../admin/pista_auditoria.php">
+                    <i class="bi bi-journal-check"></i>
+                    Actividades usuarios
+                </a>
+            </li>
+
             <li class="gestion_usuario">
                 <a href="#" id="gestion-usuarios"><i class="bi bi-people"></i> Gestión Usuarios</a>
                 <ul class="sub_menu gestion-submenu" id="sub_menu">

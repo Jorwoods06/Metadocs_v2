@@ -11,6 +11,27 @@ if ($conexion_metadocs->connect_error) {
 }
 
 
+ function registrarAuditoria($conexion, $id_area, $accion, $entidad, $entidad_id, $id_usuario, $rol) {
+    $sql_auditoria = "INSERT INTO pista_auditoria (id_area, accion, fecha_accion, entidad, entidad_id, id_usuario, rol) 
+                      VALUES (?, ?, NOW(), ?, ?, ?, ?)";
+    
+    if ($stmt_auditoria = $conexion->prepare($sql_auditoria)) {
+        $stmt_auditoria->bind_param('issiis', $id_area, $accion, $entidad, $entidad_id, $id_usuario, $rol);
+        
+        if ($stmt_auditoria->execute()) {
+            $stmt_auditoria->close();
+            return true;
+        } else {
+            error_log("Error al insertar auditoría: " . $stmt_auditoria->error);
+            $stmt_auditoria->close();
+            return false;
+        }
+    } else {
+        error_log("Error al preparar consulta de auditoría: " . $conexion->error);
+        return false;
+    }
+}
+
 
 // Función subir expediente
 function subirExpediente($conexion, $nombre, $descripcion, $padreId, $area, $id_usuario) {
@@ -386,7 +407,7 @@ function descargarDocumento($conexion, $documento_id) {
 }
 
 // Función para editar expediente
-function editarExpediente($conexion, $id_expediente, $nuevo_titulo, $nueva_descripcion) {
+function editarExpediente($conexion, $id_expediente, $nuevo_titulo, $nueva_descripcion, $area, $id_usuario) {
     try {
         // Obtener el expediente_padre antes de editar
         $sql_parent = "SELECT expediente_padre FROM expedientes WHERE id_expediente = ?";
@@ -416,6 +437,9 @@ function editarExpediente($conexion, $id_expediente, $nuevo_titulo, $nueva_descr
         }
         
         if ($stmt->affected_rows >= 0) {
+
+            registrarAuditoria($conexion, $area, 'editó', 'expediente', $id_expediente, $id_usuario, "auditor");
+
             return [
                 'success' => true,
                 'expediente_padre' => $expediente_padre
@@ -474,7 +498,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $nuevo_titulo = $_POST['nuevo_titulo'];
                 $nueva_descripcion = $_POST['nueva_descripcion'];
                 
-                $resultado = editarExpediente($conexion_metadocs, $id_expediente, $nuevo_titulo, $nueva_descripcion);
+                $resultado = editarExpediente($conexion_metadocs, $id_expediente, $nuevo_titulo, $nueva_descripcion, $area , $id_usuario);
                 
                 if ($resultado['success']) {
                     if ($resultado['expediente_padre']) {

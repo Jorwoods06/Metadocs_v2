@@ -260,7 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputHiddenRechazarDoc = modalRechazarDocumento?.querySelector("input[name='datos_documento']");
 
     // Event listeners para botones de rechazar EXPEDIENTES - CORREGIDO
-    const botonesRechazarExpedientes = document.querySelectorAll("#contenedor-expedientes .rechazado");
+    const botonesRechazarExpedientes = document.querySelectorAll("#contenedor-expedientes .btn-accion.rechazado");
     botonesRechazarExpedientes.forEach(boton => {
         boton.addEventListener("click", (e) => {
             console.log('🚫 Click en botón rechazar expediente');

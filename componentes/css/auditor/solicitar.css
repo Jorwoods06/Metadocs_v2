@@ -1,49 +1,76 @@
+/* Mobile First - Modern Clean Design */
+/* Base: 320px and up */
+
 h1 {
-    font-size: 22px;
-    color: #333;
-    margin-bottom: 45px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #2A4860;
+    margin-bottom: 32px;
+    text-align: center;
+    letter-spacing: -0.5px;
 }
 
 /* Contenedor del formulario */
 .formulario-solicitud {
-    background-color: #fff;
-    border-radius: 8px;
-    width: 100%;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(45, 72, 96, 0.08);
+    padding: 24px 20px;
+
+    border: 1px solid rgba(61, 104, 138, 0.1);
 }
 
 /* Campos del formulario */
 .campo {
-    margin-bottom: 20px;
+    margin-bottom: 24px;
 }
 
 .campo label {
     display: block;
-    margin-bottom: 6px;
-    font-weight: bold;
-    color: #333;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    color: #2A4860;
+    letter-spacing: 0.2px;
 }
 
 .campo input,
 .campo select,
 .campo textarea {
     width: 100%;
-    padding: 12px;
-    border: 1px solid #aaa;
-    border-radius: 4px;
+    padding: 14px 16px;
+    border: 1.5px solid #E1E8ED;
+    border-radius: 8px;
+    background-color: #FAFBFC;
     font-size: 16px;
+    color: #333333;
     outline: none;
-    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
 }
 
-.campo input:focus,
-.campo select:focus,
-.campo textarea:focus {
-    border-color: #375a7f;
+
+.campo input:hover,
+.campo select:hover,
+.campo textarea:hover {
+    border-color: #B8CDD9;
+}
+
+.campo select {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233D688A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 18px;
+    appearance: none;
+    padding-right: 45px;
+    cursor: pointer;
 }
 
 .campo textarea {
-    min-height: 100px;
+    min-height: 120px;
     resize: vertical;
+    font-family: inherit;
+    line-height: 1.5;
 }
 
 /* Selector con búsqueda (usuarios / expedientes) */
@@ -53,33 +80,36 @@ h1 {
 }
 
 .usuario-input {
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
-    background-color: #fff;
-    transition: border-color 0.3s ease;
+    padding: 14px 16px;
+    border: 1.5px solid #E1E8ED;
+    border-radius: 8px;
+    background-color: #FAFBFC;
+    font-size: 16px;
+    color: #333333;
+    outline: none;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
 }
 
-.usuario-input:focus {
-    border-color: #375a7f;
+
+.usuario-input:hover {
+    border-color: #B8CDD9;
 }
 
 /* Dropdown de sugerencias */
 .usuario-dropdown {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 4px);
     left: 0;
     right: 0;
-    background: white;
-    border: 1px solid #ddd;
-    border-top: none;
-    border-radius: 0 0 4px 4px;
+    background: #ffffff;
+    border: 1.5px solid #E1E8ED;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(45, 72, 96, 0.12);
     max-height: 200px;
     overflow-y: auto;
     z-index: 1000;
     display: none;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .usuario-dropdown.show {
@@ -87,109 +117,190 @@ h1 {
 }
 
 .dropdown-item {
-    padding: 10px 12px;
+    padding: 12px 16px;
     cursor: pointer;
-    border-bottom: 1px solid #eee;
-    font-size: 14px;
-    color: #333;
-    transition: background-color 0.2s ease;
+    border-bottom: 1px solid #F0F4F7;
+    font-size: 15px;
+    color: #333333;
+    background-color: #ffffff;
+    transition: all 0.15s ease;
 }
 
 .dropdown-item:last-child {
     border-bottom: none;
+    border-radius: 0 0 6px 6px;
+}
+
+.dropdown-item:first-child {
+    border-radius: 6px 6px 0 0;
 }
 
 .dropdown-item:hover,
 .dropdown-item.selected {
-    background-color: #f8f9fa;
-    color: #3D688A;
+    background-color: #F8FAFC;
+    color: #2A4860;
+    transform: translateX(2px);
 }
 
 .dropdown-item:active {
-    background-color: #e9ecef;
+    background-color: #EDF2F7;
 }
 
 .no-results {
-    padding: 12px;
-    color: #666;
-    font-style: italic;
+    padding: 16px;
+    color: #6B7280;
+    font-size: 15px;
     text-align: center;
+    background-color: #F8FAFC;
+    font-style: italic;
 }
 
 /* Scrollbar personalizada */
+.usuario-dropdown {
+    scrollbar-width: thin;
+    scrollbar-color: #C1CDD7 #F8FAFC;
+}
+
 .usuario-dropdown::-webkit-scrollbar {
     width: 6px;
 }
 
 .usuario-dropdown::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: #F8FAFC;
+    border-radius: 3px;
 }
 
 .usuario-dropdown::-webkit-scrollbar-thumb {
-    background: #c1c1c1;
+    background: #C1CDD7;
     border-radius: 3px;
 }
 
 .usuario-dropdown::-webkit-scrollbar-thumb:hover {
-    background: #a8a8a8;
+    background: #3D688A;
 }
 
 /* Botón de envío */
 .btn-solicitar {
-    background-color: #3D688A;
-    color: #fff;
+    background: #3D688A;
+    color: #ffffff;
     border: none;
-    padding: 16px;
+    border-radius: 8px;
+    padding: 16px 24px;
     font-size: 16px;
-    border-radius: 5px;
+    font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.3s ease;
     width: 100%;
+    margin-top: 12px;
+
+    transition: all 0.2s ease;
+    letter-spacing: 0.3px;
 }
 
-.btn-solicitar:hover {
-    background-color: #2c3e50;
+
+
+.btn-solicitar:disabled {
+    background: #E5E7EB;
+    color: #9CA3AF;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
 }
 
-.btn-solicitar:active {
-    transform: translateY(1px);
-}
 
-/* Responsive - móviles */
-@media (max-width: 768px) {
-    .usuario-dropdown {
-        max-height: 150px;
+
+/* Small tablets: 768px and up */
+@media screen and (min-width: 768px) {
+    h1 {
+        font-size: 26px;
+        text-align: left;
+        margin-bottom: 40px;
     }
-
+    
+    .formulario-solicitud {
+        max-width: 100%;
+     
+        border-radius: 16px;
+    }
+    
+    .campo {
+        margin-bottom: 32px;
+    }
+    
+    .campo label {
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+    
+    .campo input,
+    .campo select,
+    .campo textarea,
+    .usuario-input {
+        font-size: 15px;
+        padding: 16px 20px;
+    }
+    
     .dropdown-item {
-        padding: 12px;
+        padding: 14px 20px;
+        font-size: 15px;
+    }
+    
+    .btn-solicitar {
+        width: auto;
+        min-width: 220px;
+        padding: 18px 36px;
+        font-size: 15px;
+        margin-top: 16px;
+    }
+    
+    .usuario-dropdown {
+        max-height: 240px;
+    }
+}
+
+/* Large tablets: 1024px and up */
+@media screen and (min-width: 1024px) {
+    h1 {
+        font-size: 28px;
+        margin-bottom: 48px;
+    }
+    
+  
+    .campo {
+        margin-bottom: 36px;
+    }
+    
+    .campo label {
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+    
+    .campo textarea {
+        min-height: 140px;
+    }
+    
+    .btn-solicitar {
+        min-width: 260px;
+        padding: 20px 44px;
         font-size: 16px;
     }
 }
 
-/* Tablet */
-@media screen and (min-width: 768px) {
+/* Desktop: 1200px and up */
+@media screen and (min-width: 1200px) {
+  
     h1 {
-        font-size: 24px;
-        text-align: left;
+        font-size: 32px;
+        margin-bottom: 56px;
     }
-
+    
+    .campo {
+        margin-bottom: 40px;
+    }
+    
     .campo input,
     .campo select,
-    .campo textarea {
-        font-size: 15px;
-    }
-
-    .btn-solicitar {
-        width: auto;
-        padding: 14px 24px;
-        font-size: 15px;
-    }
-}
-
-/* Desktop */
-@media screen and (min-width: 1024px) {
-    h1 {
-        font-size: 28px;
+    .campo textarea,
+    .usuario-input {
+        padding: 18px 22px;
     }
 }

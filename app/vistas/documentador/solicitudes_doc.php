@@ -14,7 +14,6 @@ require_once '../../backend/documentador/recibir_actividades.php';
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
     <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
     <link rel="stylesheet" href="../../../componentes/css/documentador/solicitudes_doc.css">
-    <link rel="stylesheet" href="../../../componentes/css/documentador/contenido_solicitud.css">
     <link rel="stylesheet" href="../../../componentes/css/documentador/modales_doc_exp.css">
     <script src="../../../componentes/js/admin/panel.js" defer></script>
 </head>
@@ -35,11 +34,11 @@ require_once '../../backend/documentador/recibir_actividades.php';
                 <li><a href="" class="activo"><i class="bi bi-envelope-paper"></i>Solicitudes</a></li>
                 <li class="gestion-usuarios">
                     <a href="#" id="cerrado-usuarios">
-                        <i class="bi bi-person"></i>Usuario
+                        <i class="bi bi-person"></i>Documentador
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
                      
-                        <li><a href="info_documentador.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
+                        <li><a href="info_documentador.php"><i class="bi bi-info-circle"></i> Info documentador</a></li>
                         <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
                     </ul>
                 </li>
@@ -52,81 +51,96 @@ require_once '../../backend/documentador/recibir_actividades.php';
         
            
         </nav>
+<section class="contenedor-principal">
+    <h1>Solicitudes Recibidas</h1>
 
-        <section class="contenedor-principal">
-            <h1>Solicitudes Recibidas</h1>
+    <div class="filtro-mensajes">
+        <label for="tipo-filtro">Filtrar por tipo:</label>
+        <select id="tipo-filtro">
+            <option value="todos">Todos</option>
+            <option value="solicitud_documento">Solicitud de documento</option>
+            <option value="documento_aprobado">Documento aprobado</option>
+            <option value="documento_rechazado">Documento rechazado</option>
+            <option value="expediente_aprobado">Expediente aprobado</option>
+            <option value="expediente_rechazado">Expediente rechazado</option>
+        </select>
+    </div>
 
-            <div class="filtro-mensajes">
-                <label for="tipo-filtro">Filtrar por tipo:</label>
-                <select id="tipo-filtro">
-                    <option value="todos">Todos</option>
-                    <option value="solicitud_documento">Solicitud de documento</option>
-                    <option value="documento_aprobado">Documento aprobado</option>
-                    <option value="documento_rechazado">Documento rechazado</option>
-                    <option value="expediente_aprobado">Expediente aprobado</option>
-                    <option value="expediente_rechazado">Expediente rechazado</option>
-                </select>
-            </div>
-
-            <div class="contenedor-mensajes">
-                <!-- Reemplaza la sección de generación de notificaciones en tu HTML con esto: -->
-
-<div class="lista-mensajes" id="lista-notificaciones">
-   
-    <?php if (!empty($notificaciones_procesadas)): ?>
-        <?php foreach ($notificaciones_procesadas as $notificacion): ?>
-            <?php 
-            // Escapar los datos para JavaScript de forma segura
-            $datos_json = htmlspecialchars(json_encode($notificacion), ENT_QUOTES, 'UTF-8');
-            ?>
-            <div class="mensaje <?php echo $notificacion['es_visto'] ? 'visto' : 'no-visto'; ?> clickeable" 
-                    data-tipo="<?php echo htmlspecialchars($notificacion['tipo_actividad']); ?>"
-                    data-id="<?php echo $notificacion['id']; ?>"
-                    data-modal="<?php echo htmlspecialchars($notificacion['modal']); ?>"
-                    onclick="abrirModal('<?php echo htmlspecialchars($notificacion['modal']); ?>', <?php echo $datos_json; ?>)">
-                
-                <div class="icono-mensaje">
-                    <i class="bi <?php echo htmlspecialchars($notificacion['icono']); ?>"></i>
+    <div class="contenedor-mensajes">
+        <div class="lista-mensajes" id="lista-notificaciones">
+            <?php if (!empty($notificaciones_procesadas)): ?>
+                <table class="tabla-solicitudes">
+                    <thead>
+                        <tr>
+                            <th class="col-icono">Tipo</th>
+                            <th class="col-usuario">Usuario</th>
+                            <th class="col-fecha">Fecha</th>
+                            <th class="col-estado">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($notificaciones_procesadas as $notificacion): ?>
+                            <?php 
+                            // Escapar los datos para JavaScript de forma segura
+                            $datos_json = htmlspecialchars(json_encode($notificacion), ENT_QUOTES, 'UTF-8');
+                            ?>
+                            <tr class="mensaje <?php echo $notificacion['es_visto'] ? 'visto' : 'no-visto'; ?> clickeable" 
+                                data-tipo="<?php echo htmlspecialchars($notificacion['tipo_actividad']); ?>"
+                                data-id="<?php echo $notificacion['id']; ?>"
+                                data-modal="<?php echo htmlspecialchars($notificacion['modal']); ?>"
+                                onclick="abrirModal('<?php echo htmlspecialchars($notificacion['modal']); ?>', <?php echo $datos_json; ?>)">
+                                
+                                <td class="col-icono">
+                                    <i class="bi <?php echo htmlspecialchars($notificacion['icono']); ?> icono-tipo"></i>
+                                </td>
+                                
+                                <td class="col-usuario">
+                                    <div class="nombre-usuario"><?php echo htmlspecialchars($notificacion['usuario_nombre']); ?></div>
+                                    <div class="tipo-solicitud"><?php echo htmlspecialchars($notificacion['texto_tipo']); ?></div>
+                                </td>
+                                
+                                <td class="col-fecha">
+                                    <?php echo htmlspecialchars($notificacion['tiempo_transcurrido']); ?>
+                                </td>
+                                
+                                <td class="col-estado">
+                                    <span class="estado-badge <?php echo $notificacion['es_visto'] ? 'estado-visto' : 'estado-nuevo'; ?>">
+                                        <?php echo $notificacion['es_visto'] ? 'Visto' : 'Nuevo'; ?>
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <?php // Opcional: Mostrar debug para cada notificación durante desarrollo ?>
+                            <?php // debug_notificacion($notificacion); ?>
+                            
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            <?php else: ?>
+                <div class="mensaje-vacio">
+                    <i class="bi bi-inbox"></i>
+                    <p>No tienes notificaciones en este momento</p>
                 </div>
-                
-                <div class="contenido-mensaje">
-                    <h2><?php echo htmlspecialchars($notificacion['usuario_nombre']); ?></h2>
-                    <p><?php echo htmlspecialchars($notificacion['texto_tipo']); ?></p>
-                </div>
-                
-                <div class="fecha-mensaje">
-                    <p><?php echo htmlspecialchars($notificacion['tiempo_transcurrido']); ?></p>
-                </div>
-            </div>
-            
-            <?php // Opcional: Mostrar debug para cada notificación durante desarrollo ?>
-            <?php // debug_notificacion($notificacion); ?>
-            
-        <?php endforeach; ?>
-    <?php else: ?>
-        <div class="mensaje-vacio">
-            <p>No tienes notificaciones en este momento</p>
+            <?php endif; ?>
         </div>
-    <?php endif; ?>
-</div>
-                </div>
-            </div>
-                  <div class="paginacion" style="text-align:center; margin-top:20px;">
-    <?php if ($pagina_actual > 1): ?>
-        <a href="?pagina=<?php echo $pagina_actual - 1; ?>" class="btn-paginacion">Anterior</a>
-    <?php endif; ?>
+    </div>
 
-    <?php for ($i = 1; $i <= $total_paginas; $i++): ?>
-        <a href="?pagina=<?php echo $i; ?>" class="btn-paginacion <?php echo ($i == $pagina_actual) ? 'activa' : ''; ?>">
-            <?php echo $i; ?>
-        </a>
-    <?php endfor; ?>
+    <div class="paginacion" style="text-align:center; margin-top:20px;">
+        <?php if ($pagina_actual > 1): ?>
+            <a href="?pagina=<?php echo $pagina_actual - 1; ?>" class="btn-paginacion">Anterior</a>
+        <?php endif; ?>
 
-    <?php if ($pagina_actual < $total_paginas): ?>
-        <a href="?pagina=<?php echo $pagina + 1; ?>" class="btn-paginacion">Siguiente</a>
-    <?php endif; ?>
-</div>
-        </section>
+        <?php for ($i = 1; $i <= $total_paginas; $i++): ?>
+            <a href="?pagina=<?php echo $i; ?>" class="btn-paginacion <?php echo ($i == $pagina_actual) ? 'activa' : ''; ?>">
+                <?php echo $i; ?>
+            </a>
+        <?php endfor; ?>
+
+        <?php if ($pagina_actual < $total_paginas): ?>
+            <a href="?pagina=<?php echo $pagina + 1; ?>" class="btn-paginacion">Siguiente</a>
+        <?php endif; ?>
+    </div>
+</section>
     </main>
 
     <!-- PASO 11: MODALES DINÁMICOS -->

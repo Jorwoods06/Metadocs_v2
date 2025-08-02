@@ -37,7 +37,7 @@ AutorizacionRol('auditor');
             <ul>
              <div class="menu-opciones-principales">
                 <li>
-                    <a href="auditor_inicio.php" >
+                    <a href="inicio_auditor.php" >
                         <i class="bi bi-house-door"></i>
                         Inicio
                     </a>
@@ -69,7 +69,7 @@ AutorizacionRol('auditor');
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
                         
-                        <li><a href="../log/informacion_usuario.php"><i class="bi bi-info-circle"></i> Info auditor</a></li>
+                         <li><a href="../../vistas/auditor/info_auditor.php"><i class="bi bi-info-circle"></i> Info auditor</a></li>
                         <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
                     </ul>
                 </li>
@@ -89,112 +89,159 @@ AutorizacionRol('auditor');
         </nav>
         
         
-        <section id="admin-contenido" class="admin">
-            
-            <div id="titulo">
+<section id="admin-contenido" class="admin">
+    
+    <div id="titulo">
+        <h1>Solicitudes de documentos</h1>
+        <p>Revisa y aprueba documentos pendientes de validación</p>
+    </div>
 
-                <h1>Solicitudes de documentos</h1>
-                <p>Revisa y aprueba documentos pendientes de validación</p>
+    <div class="navegacion-doc-expe">
+        <div class="botones-navegacion">
+            <button type="button" id="btn-documentos" data-tipo="documento"><i class="bi bi-file-earmark"></i>Documentos</button>
+            <button type="button" id="btn-expedientes" data-tipo="expediente"><i class="bi bi-folder"></i>Expedientes</button>
+        </div>
+    </div>
 
-            </div>
-
-
-            <div class="navegacion-doc-expe">
-                <div class="botones-navegacion">
-                    <button type="button"  id="btn-documentos" data-tipo="documento"><i class="bi bi-file-earmark"></i>Documentos</button>
-                    <button type="button" id="btn-expedientes" data-tipo="expediente"><i class="bi bi-folder"></i>Expedientes</button>
-                </div>
-            </div>
-
-            <!-- Contenedor para expedientes -->
-            <div id="contenedor-expedientes" class="contenedor-tipo">
-                <?php
-                if ($resultado_expediente->num_rows > 0) {
-                    while ($expediente = $resultado_expediente->fetch_assoc()) {
-                ?>
-                        <article class="carta" id="carta_expediente" data-tipo="expediente">
-                            <div class="info">
-                                <div id="icono"><i class="bi bi-folder"></i></div>
-                                <div id="info">
-                                    <h3><?php echo htmlspecialchars($expediente['nombre']); ?></h3>
-                                    <p>Expediente</p>
+    <!-- Contenedor para expedientes -->
+    <div id="contenedor-expedientes" class="contenedor-tipo">
+        <div class="tabla-header">
+            <i class="bi bi-folder"></i>
+            Expedientes Pendientes
+        </div>
+        <div class="tabla-contenido">
+            <table class="tabla-solicitudes">
+                <thead>
+                    <tr>
+                        <th>Expediente</th>
+                        <th>Descripción</th>
+                        <th>Autor y Fecha</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    if ($resultado_expediente->num_rows > 0) {
+                        while ($expediente = $resultado_expediente->fetch_assoc()) {
+                    ?>
+                            <tr class="carta" id="carta_expediente" data-tipo="expediente">
+                                <td>
+                                    <div class="info">
+                                        <h3><?php echo htmlspecialchars($expediente['nombre']); ?></h3>
+                                        <p>Expediente</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p id="descripcion_expediente"><?php echo htmlspecialchars($expediente['descripcion']); ?></p>
+                                </td>
+                                <td>
+                                    <div id="autor_fecha">
+                                        <p><i class="bi bi-person-fill"></i><?php echo htmlspecialchars($expediente['nombre_autor']." ". $expediente['apellidos']); ?></p>
+                                        <p><i class="bi bi-calendar-fill"></i> <?php echo htmlspecialchars($expediente['fecha_creacion']); ?></p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div id="botones">  
+                                        <button type="button" class="aprobado btn-aprobar" data-id="<?php echo $expediente['id_expediente']; ?>">Aprobar</button>
+                                        <button type="button" class="rechazado btn-accion" id="expe_rechazado">Rechazar</button>
+                                    </div>
+                                </td>
+                            </tr>
+                    <?php
+                        }
+                    } else {
+                    ?>
+                        <tr>
+                            <td colspan="4">
+                                <div class="mensaje-vacio" id="mensaje-expedientes-vacio">
+                                    <p>No hay expedientes en revisión.</p>
                                 </div>
-                            </div>
-                            <p id="descripcion_expediente"><?php echo htmlspecialchars($expediente['descripcion']); ?></p>
-                            <div id="autor_fecha">
-                                <p><i class="bi bi-person-fill"></i><?php echo htmlspecialchars($expediente['nombre_autor']." ". $expediente['apellidos']); ?></p>
-                                <p><i class="bi bi-calendar-fill"></i> <?php echo htmlspecialchars($expediente['fecha_creacion']); ?></p>
-                            </div>
-                            <div id="botones">  
-                                <button type="button" class="aprobado btn-aprobar" data-id="<?php echo $expediente['id_expediente']; ?>">Aprobar</button>
-                                <button type="button" class="rechazado " id="expe_rechazado">Rechazar</button>
-                            </div>
-                        </article>
-                <?php
+                            </td>
+                        </tr>
+                    <?php
                     }
-                } else {
-                ?>
-                    <div class="mensaje-vacio" id="mensaje-expedientes-vacio">
-                        <p>No hay expedientes en revisión.</p>
-                    </div>
-                <?php
-                }
-                ?>
-            </div>
-            
-            <!-- Contenedor para documentos -->
-            <div id="contenedor-documentos" class="contenedor-tipo">
-                <?php
-                if($resultado_documento->num_rows > 0){
-                    while($documento = $resultado_documento->fetch_assoc()){ 
-                ?>
-                    <article class="carta" id="carta_documento" data-tipo="documento">
-                        <div class="info">
-                            <div id="icono"><i class="bi bi-file-earmark"></i></div>
-                            <div id="info">
-                                <h3><?php echo htmlspecialchars($documento['titulo']);?></h3>
-                                <p><?php echo htmlspecialchars($documento['categoria']);?></p>
-                                <p class="expediente-info">
-                                    Expediente Destino: 
-                                    <strong><?php echo htmlspecialchars($documento['expediente'] ?? 'expediente_ejemplo'); ?></strong>
-                                </p>
-                            </div>
-                        </div>
-                        <div id="autor_fecha">
-                            <p><i class="bi bi-person-fill"></i><?php echo htmlspecialchars($documento['nombres'] ." ". $documento['apellidos']);?> </p>
-                            <p><i class="bi bi-calendar-fill"></i> <?php echo htmlspecialchars($documento['fecha_creacion']);?></p>
-                        </div>
-                        <div id="botones">  
-                        <button type="button" class="ver btn_ver_modal escritorio" 
-                                onclick="verDocumento('<?= urlencode($documento['titulo'] . '.' . $documento['tipo']) ?>', '<?= strtolower($documento['tipo']) ?>')">
-                            <i class="bi bi-eye"></i> Ver
-                        </button>
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <!-- Contenedor para documentos -->
+    <div id="contenedor-documentos" class="contenedor-tipo">
+        <div class="tabla-header">
+            <i class="bi bi-file-earmark"></i>
+            Documentos Pendientes
+        </div>
+        <div class="tabla-contenido">
+            <table class="tabla-solicitudes">
+                <thead>
+                    <tr>
+                        <th>Documento</th>
+                        <th>Autor y Fecha</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    if($resultado_documento->num_rows > 0){
+                        while($documento = $resultado_documento->fetch_assoc()){ 
+                    ?>
+                        <tr class="carta" id="carta_documento" data-tipo="documento">
+                            <td>
+                                <div class="info">
+                                    <div id="info">
+                                        <h3><?php echo htmlspecialchars($documento['titulo']);?></h3>
+                                        <p><?php echo htmlspecialchars($documento['categoria']);?></p>
+                                        <p class="expediente-info">
+                                            Expediente Destino: 
+                                            <strong><?php echo htmlspecialchars($documento['expediente'] ?? 'expediente_ejemplo'); ?></strong>
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div id="autor_fecha">
+                                    <p><i class="bi bi-person-fill"></i><?php echo htmlspecialchars($documento['nombres'] ." ". $documento['apellidos']);?> </p>
+                                    <p><i class="bi bi-calendar-fill"></i> <?php echo htmlspecialchars($documento['fecha_creacion']);?></p>
+                                </div>
+                            </td>
+                            <td>
+                                <div id="botones">  
+                                <button type="button" class="ver btn_ver_modal escritorio" 
+                                        onclick="verDocumento('<?= urlencode($documento['titulo'] . '.' . $documento['tipo']) ?>', '<?= strtolower($documento['tipo']) ?>')">
+                                    <i class="bi bi-eye"></i> Ver
+                                </button>
 
-                        
-
-                    
-                        <button type="button" class="ver btn_ver_nueva_ventana movil" 
-                                onclick="abrirNuevaVentana('<?= urlencode($documento['titulo'] . '.' . $documento['tipo']) ?>')">
-                            <i class="bi bi-eye"></i> Ver
-                        </button>
-
-                            
-                            <button type="button" class="aprobado" data-id="<?php echo $documento['id_documento']; ?>">Aprobar</button>
-                            <button type="button" class="rechazado doc" data-id="<?php echo $documento['id_documento']; ?>">Rechazar</button>
-                        </div>
-                    </article>
-                <?php
+                                <button type="button" class="ver btn_ver_nueva_ventana movil" 
+                                        onclick="abrirNuevaVentana('<?= urlencode($documento['titulo'] . '.' . $documento['tipo']) ?>')">
+                                    <i class="bi bi-eye"></i> Ver
+                                </button>
+                                    
+                                    <button type="button" class="aprobado" data-id="<?php echo $documento['id_documento']; ?>">Aprobar</button>
+                                    <button type="button" class="rechazado doc" data-id="<?php echo $documento['id_documento']; ?>">Rechazar</button>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php
+                        }
+                    } else {
+                    ?>
+                        <tr>
+                            <td colspan="3">
+                                <div class="mensaje-vacio" id="mensaje-documentos-vacio">
+                                    <p>No hay documentos en revisión.</p>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php
                     }
-                } else {
-                ?>
-                    <div class="mensaje-vacio" id="mensaje-documentos-vacio">
-                        <p>No hay documentos en revisión.</p>
-                    </div>
-                <?php
-                }
-                ?>
-            </div>
-        </section>
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
 
     </main>
 

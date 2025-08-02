@@ -39,7 +39,7 @@ if (isset($documentos_archivados)) {
             <ul>
              <div class="menu-opciones-principales">
                 <li>
-                    <a href="auditor_inicio.php" >
+                    <a href="inicio_auditor.php" >
                         <i class="bi bi-house-door"></i>
                         Inicio
                     </a>
@@ -71,7 +71,7 @@ if (isset($documentos_archivados)) {
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
                         
-                        <li><a href="../log/informacion_usuario.php"><i class="bi bi-info-circle"></i> Info auditor</a></li>
+                         <li><a href="../../vistas/auditor/info_auditor.php"><i class="bi bi-info-circle"></i> Info auditor</a></li>
                         <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
                     </ul>
                 </li>

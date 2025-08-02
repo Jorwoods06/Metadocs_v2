@@ -1,327 +1,377 @@
-#admin-contenido {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 16px;
-}
+ #admin-contenido {
+            padding: 16px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
 
-#titulo h1 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 6px;
-    color: #111827;
-}
+        /* Header Section */
+        #titulo {
+            background: white;
+            padding: 20px 16px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+            border-left: 4px solid #3D688A;
+        }
 
-#titulo p {
-    color: #6b7280;
-    font-size: 0.9rem;
-    line-height: 1.4;
-}
+        #titulo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2A4860;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
 
-.navegacion-doc-expe {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 4px;
-}
+        #titulo p {
+            color: #6B7280;
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
 
-.botones-navegacion {
-    display: flex;
-    background: #f9fafb;
-    padding: 3px;
-    border-radius: 10px;
-    width: 100%;
-    max-width: 400px;
-    border: 1px solid #e5e7eb;
-}
+        /* Navigation Tabs */
+        .navegacion-doc-expe {
+            margin-bottom: 20px;
+        }
 
-.botones-navegacion button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    padding: 10px 14px;
-    border: none;
-    background: transparent;
-    border-radius: 7px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    cursor: pointer;
-    color: #6b7280;
-    flex: 1;
-    white-space: nowrap;
-}
+        .botones-navegacion {
+            display: flex;
+            background: white;
+            border-radius: 12px;
+            padding: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
 
-.botones-navegacion button:hover {
-    background: #f3f4f6;
-    color: #374151;
-}
+        .botones-navegacion button {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 16px;
+            border: none;
+            background: transparent;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: #6B7280;
+            transition: all 0.2s ease;
+            position: relative;
+        }
 
-.botones-navegacion button.active {
-    background: #ffffff;
-    color: #111827;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-}
+        .botones-navegacion button:hover {
+            background: #F3F4F6;
+            color: #3D688A;
+        }
 
-/* Tarjetas mejoradas */
-.carta {
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    margin-bottom: 24px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-    position: relative;
-}
+        .botones-navegacion button.active {
+            background: #3D688A;
+            color: white;
+        }
 
-.carta:hover {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
-}
+        .botones-navegacion button i {
+            font-size: 1rem;
+        }
 
-/* Sección de información principal */
-.carta .info {
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-}
+        /* Container Styles */
+        .contenedor-tipo {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
 
-.carta .info #icono { 
-    background-color: #f8fafc;
-    padding: 10px;
-    color: #475569;
-    border-radius: 10px;
-    font-size: 1.1rem;
-    flex-shrink: 0;
-    border: 1px solid #e2e8f0;
-}
+        .tabla-header {
+            background: #3D688A;
+            color: white;
+            padding: 16px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-.carta .info #info {
-    flex: 1;
-    min-width: 0;
-}
+        .tabla-header i {
+            font-size: 1.1rem;
+        }
 
-.carta .info #info h3 {
-    margin: 0 0 4px 0;
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: #111827;
-    line-height: 1.3;
-}
+        /* Table Styles */
+        .tabla-contenido {
+            overflow-x: auto;
+        }
 
-.carta .info #info p {
-    color: #6b7280;
-    font-size: 0.8rem;
-    margin: 0;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
+        .tabla-solicitudes {
+            width: 100%;
+            border-collapse: collapse;
+        }
 
-/* Descripción del expediente */
-.carta #descripcion_expediente {
-    color: #4b5563;
-    line-height: 1.5;
-    margin: 0;
-    font-size: 0.9rem;
-    padding: 0 2px;
-}
+        .tabla-solicitudes thead th {
+            background: #F8FAFC;
+            color: #374151;
+            padding: 14px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.8rem;
+            border-bottom: 1px solid #E5E7EB;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
 
-/* Información de autor y fecha */
-.carta #autor_fecha {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin: 0;
-    padding: 12px 0 8px 0;
-    border-top: 1px solid #f3f4f6;
-}
+        .tabla-solicitudes tbody td {
+            padding: 16px;
+            border-bottom: 1px solid #F3F4F6;
+            vertical-align: top;
+        }
 
-.carta #autor_fecha p {
-    color: #6b7280;
-    font-size: 0.8rem;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-weight: 500;
-}
+        .tabla-solicitudes tbody tr:hover {
+            background: #F8FAFC;
+        }
 
-.carta #autor_fecha p i {
-    font-size: 0.75rem;
-    opacity: 0.8;
-}
+        /* Card Content */
+        .info {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
 
-/* Botones mejorados */
-.carta #botones {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
+        .info h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #1F2937;
+            line-height: 1.3;
+            margin-bottom: 2px;
+        }
 
-.carta #botones button {
-    flex: 1;
-    min-width: 90px;
-    padding: 10px 16px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    text-align: center;
-    letter-spacing: 0.3px;
-}
+        .info p {
+            color: #9CA3AF;
+            font-size: 0.7rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
 
-.carta #botones .aprobado {
-    background-color: #3D688A;
-    color: #ffffff;
-}
+        .expediente-info {
+            font-size: 0.75rem;
+            color: #6B7280;
+            margin-top: 6px;
+            padding: 6px 10px;
+            background: #F3F4F6;
+            border-radius: 6px;
+        }
 
-.carta #botones .aprobado:hover {
-    background-color: #2d5070;
-}
+        .expediente-info strong {
+            color: #3D688A;
+            font-weight: 600;
+        }
 
-.carta #botones .ver {
-    background-color: #374151;
-    color: #ffffff;
-}
+        #descripcion_expediente {
+            color: #4B5563;
+            line-height: 1.5;
+            font-size: 0.85rem;
+            max-width: 280px;
+        }
 
-.carta #botones .ver:hover {
-    background-color: #111827;
-}
+        #autor_fecha {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
 
-.carta #botones .rechazado {
-    background-color: #dc2626;
-    color: #ffffff;
-}
+        #autor_fecha p {
+            color: #374151;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
 
-.carta #botones .rechazado:hover {
-    background-color: #b91c1c;
-}
+        #autor_fecha p:nth-child(2) {
+            color: #6B7280;
+        }
 
-.oculto {
-    display: none !important;
-}
+        #autor_fecha p i {
+            font-size: 0.75rem;
+            opacity: 0.7;
+            width: 14px;
+            text-align: center;
+        }
 
-/* Tablet y Desktop */
-@media (min-width: 768px) {
-    #admin-contenido {
-        padding: 32px 24px;
-        gap: 24px;
-    }
-    
-    #titulo h1 {
-        font-size: 1.75rem;
-        margin-bottom: 8px;
-    }
-    
-    #titulo p {
-        font-size: 1rem;
-    }
-    
-    .navegacion-doc-expe {
-        justify-content: flex-start;
-        margin-bottom: 8px;
-    }
-    
-    .carta {
-        padding: 24px;
-        gap: 18px;
-        border-radius: 14px;
-    }
-    
-    .carta .info {
-        gap: 14px;
-    }
-    
-    .carta .info #icono {
-        padding: 12px;
-        font-size: 1.2rem;
-    }
-    
-    .carta .info #info h3 {
-        font-size: 1.1rem;
-    }
-    
-    .carta .info #info p {
-        font-size: 0.85rem;
-    }
-    
-    .carta #descripcion_expediente {
-        font-size: 0.95rem;
-    }
-    
-    .carta #autor_fecha {
-        gap: 16px;
-        padding: 14px 0 10px 0;
-    }
-    
-    .carta #autor_fecha p {
-        font-size: 0.85rem;
-        gap: 6px;
-    }
-    
-    .carta #botones {
-        justify-content: flex-end;
-        flex-wrap: nowrap;
-        gap: 10px;
-    }
-    
-    .carta #botones button {
-        flex: 0 0 auto;
-        min-width: 110px;
-        padding: 11px 18px;
-        font-size: 0.9rem;
-    }
-}
+        /* Action Buttons */
+        #botones {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
 
-/* Móviles pequeños */
-@media (max-width: 480px) {
-    #admin-contenido {
-        padding: 14px 12px;
-        gap: 18px;
-    }
-    
-    #titulo h1 {
-        font-size: 1.4rem;
-    }
-    
-    .carta {
-        padding: 18px;
-        gap: 14px;
-    }
-    
-    .carta .info {
-        gap: 10px;
-    }
-    
-    .carta .info #icono {
-        padding: 8px;
-        font-size: 1rem;
-    }
-    
-    .carta .info #info h3 {
-        font-size: 1rem;
-    }
-    
-    .carta #autor_fecha {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6px;
-        padding: 10px 0 6px 0;
-    }
-    
-    .carta #botones {
-        flex-direction: column;
-        gap: 6px;
-    }
-    
-    .carta #botones button {
-        min-width: auto;
-        padding: 12px 16px;
-        font-size: 0.9rem;
-    }
-}
+        #botones button {
+            padding: 10px 16px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        /* Button Colors */
+        #botones .aprobado,
+        #botones .btn-aprobar {
+            background:  #3D688A;
+            color: white;
+        }
+
+        #botones .ver {
+            background: #374151;
+            color: white;
+        }
+
+        #botones .rechazado {
+            background:   #DC2626;
+            color: white;
+        }
+
+        .oculto {
+            display: none !important;
+        }
+
+        /* Empty State */
+        .mensaje-vacio {
+            text-align: center;
+            padding: 40px 20px;
+            color: #6B7280;
+            font-size: 0.9rem;
+        }
+
+        .mensaje-vacio::before {
+            content: "📋";
+            display: block;
+            font-size: 2rem;
+            margin-bottom: 12px;
+            opacity: 0.5;
+        }
+
+        /* Tablet Styles */
+        @media (min-width: 640px) {
+            #admin-contenido {
+                padding: 24px;
+                
+            }
+
+            #titulo {
+                padding: 24px 20px;
+            }
+
+            #titulo h1 {
+                font-size: 1.75rem;
+            }
+
+            #titulo p {
+                font-size: 1rem;
+            }
+
+            .botones-navegacion button {
+                padding: 14px 20px;
+                font-size: 0.9rem;
+            }
+
+            .tabla-solicitudes thead th {
+                padding: 16px;
+                font-size: 0.85rem;
+                        text-align: center;
+
+            }
+
+            .tabla-solicitudes tbody td {
+                padding: 18px;
+            }
+
+            .info h3 {
+                font-size: 1rem;
+            }
+
+            #descripcion_expediente {
+                font-size: 0.9rem;
+                max-width: 350px;
+            }
+
+            #autor_fecha p {
+                font-size: 0.85rem;
+            }
+
+            #botones {
+                flex-direction: row;
+                justify-content: flex-end;
+                gap: 10px;
+            }
+
+            #botones button {
+                min-width: 90px;
+                padding: 12px 18px;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Desktop Styles */
+        @media (min-width: 1024px) {
+            #admin-contenido {
+                padding: 32px;
+                max-width: 1400px;
+                        margin-left: 16%;
+            }
+
+            #titulo h1 {
+                font-size: 2rem;
+            }
+
+            .botones-navegacion button {
+                padding: 16px 24px;
+                font-size: 0.95rem;
+            }
+
+            .tabla-solicitudes thead th {
+                padding: 18px 20px;
+                font-size: 0.9rem;
+            }
+
+            .tabla-solicitudes tbody td {
+                padding: 20px;
+            }
+
+            .info h3 {
+                font-size: 1.1rem;
+            }
+
+            #descripcion_expediente {
+                font-size: 0.95rem;
+                max-width: 400px;
+            }
+
+            #botones button {
+                min-width: 100px;
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Large Desktop */
+        @media (min-width: 1280px) {
+            #admin-contenido {
+                padding: 40px;
+            }
+
+            #titulo {
+                padding: 28px 24px;
+            }
+
+            #titulo h1 {
+                font-size: 2.25rem;
+            }
+
+            #titulo p {
+                font-size: 1.1rem;
+            }
+        }

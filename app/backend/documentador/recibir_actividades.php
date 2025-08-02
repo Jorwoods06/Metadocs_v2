@@ -3,7 +3,7 @@
 require_once '../../helpers/conexion_bd.php';
 require_once '../../helpers/verificacion_roles.php';
 require_once '../../helpers/info_usuario.php';
-
+date_default_timezone_set('America/Bogota');
 AutorizacionRol('documentador');
 
 // ===== CONFIGURACIÓN DE PAGINACIÓN =====

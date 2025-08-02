@@ -32,13 +32,13 @@ AutorizacionRol('auditor');
             <ul>
              <div class="menu-opciones-principales">
                 <li>
-                    <a href="auditor_inicio.php" >
+                    <a href="inicio_auditor.php" >
                         <i class="bi bi-house-door"></i>
                         Inicio
                     </a>
                 </li>
                 <li class="gestion_usuario">
-                    <a href="#" id="gestion-usuarios" class="activo">
+                    <a href="#" id="gestion-usuarios" >
                         <i class="bi bi-file-earmark-text" ></i>
                         Gestión Archivos
                     </a>
@@ -51,20 +51,20 @@ AutorizacionRol('auditor');
                 </li>
                 
                 <li>
-                    <a href="../../vistas/auditor/pista_auditoria.php">
+                    <a href="../../vistas/auditor/pista_auditoria.php" >
                         <i class="bi bi-list-check"></i>
                         Pista auditoria
                     </a>
                 </li>
                 
                 <li class="gestion-usuarios">
-                    <a href="#" id="cerrado-usuarios" >
+                    <a href="#" id="cerrado-usuarios" class="activo">
                         <i class="bi bi-person"></i>
                         Auditor
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
                         
-                        <li><a href="../log/informacion_usuario.php"><i class="bi bi-info-circle"></i> Info auditor</a></li>
+                         <li><a href="../../vistas/auditor/info_auditor.php"><i class="bi bi-info-circle"></i> Info auditor</a></li>
                         <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
                     </ul>
                 </li>

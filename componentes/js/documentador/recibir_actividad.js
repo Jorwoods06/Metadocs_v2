@@ -128,7 +128,7 @@ function llenarModalExpedienteRechazado(datos) {
             
             mensajes.forEach(mensaje => {
                 if (filtro === 'todos' || mensaje.dataset.tipo === filtro) {
-                    mensaje.style.display = 'flex';
+                    mensaje.style.display = 'table-row';
                 } else {
                     mensaje.style.display = 'none';
                 }

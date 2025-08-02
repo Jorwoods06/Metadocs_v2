@@ -1,4 +1,4 @@
-/* ===== ESTILOS ESPECÍFICOS PARA DASHBOARD DOCUMENTADOR ===== */
+/* ===== ESTILOS ESPECÍFICOS PARA DASHBOARD DOCUMENTADOR - DISEÑO FLAT ===== */
 
 * {
     margin: 0;
@@ -13,11 +13,11 @@
 
 /* Header */
 .header {
-    background-color: #2E7D32; /* Verde para documentador */
-    color: white;
+    background-color: #3D688A;
+    color: #FFF;
     padding: 20px;
     margin-bottom: 30px;
-    border-radius: 8px;
+    border-radius: 6px;
 }
 
 .header-content {
@@ -34,9 +34,9 @@
 }
 
 .user-info {
-    background-color: #1B5E20;
+    background-color: #2C5068;
     padding: 10px 15px;
-    border-radius: 6px;
+    border-radius: 4px;
     font-size: 14px;
 }
 
@@ -49,22 +49,27 @@
 }
 
 .stat-card {
-    background: white;
+    background: #FFF;
     padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    border-left: 4px solid #2E7D32;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(45, 80, 104, 0.1);
+    border-left: 4px solid #3D688A;
+    transition: box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+    box-shadow: 0 4px 8px rgba(45, 80, 104, 0.15);
 }
 
 .stat-number {
     font-size: 32px;
     font-weight: 700;
-    color: #2E7D32;
+    color: #2C5068;
     margin-bottom: 8px;
 }
 
 .stat-label {
-    color: #666;
+    color: #64748B;
     font-size: 14px;
     font-weight: 500;
 }
@@ -75,11 +80,11 @@
 }
 
 .stat-change.positive {
-    color: #28a745;
+    color: #10B981;
 }
 
 .stat-change.negative {
-    color: #dc3545;
+    color: #EF4444;
 }
 
 /* Quick Actions */
@@ -90,10 +95,10 @@
 .section-title {
     font-size: 20px;
     font-weight: 600;
-    color: #1B5E20;
+    color: #2C5068;
     margin-bottom: 20px;
     padding-bottom: 10px;
-    border-bottom: 2px solid #2E7D32;
+    border-bottom: 2px solid #3D688A;
 }
 
 .actions-grid {
@@ -103,69 +108,53 @@
 }
 
 .action-card {
-    background: white;
-    border-radius: 8px;
+    background: #FFF;
+    border-radius: 6px;
     padding: 25px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    transition: transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(45, 80, 104, 0.1);
+    transition: all 0.2s ease;
     cursor: pointer;
     text-decoration: none;
     color: inherit;
     display: block;
+    border: 1px solid #E2E8F0;
 }
 
 .action-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 8px rgba(45, 80, 104, 0.15);
+    border-color: #3D688A;
 }
 
 .action-icon {
     width: 56px;
     height: 56px;
-    border-radius: 14px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 18px;
-    color: white;
+    color: #FFF;
     font-size: 22px;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-
-.action-icon::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.1);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.action-card:hover .action-icon::before {
-    opacity: 1;
+    transition: all 0.2s ease;
 }
 
 .action-title {
     font-size: 18px;
     font-weight: 600;
-    color: #1B5E20;
+    color: #2C5068;
     margin-bottom: 8px;
 }
 
 .action-description {
-    color: #666;
+    color: #64748B;
     font-size: 14px;
     line-height: 1.5;
 }
 
 .action-badge {
-    background-color: #FF5722;
-    color: white;
+    background-color: #EF4444;
+    color: #FFF;
     padding: 4px 8px;
     border-radius: 12px;
     font-size: 12px;
@@ -174,81 +163,72 @@
     margin-top: -5px;
 }
 
-/* Iconos específicos para documentador */
+/* Iconos específicos para documentador - colores flat */
 .stat-icon {
     width: 60px;
     height: 60px;
-    border-radius: 16px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 16px;
-    position: relative;
-    overflow: hidden;
+    color: #FFF;
+    font-size: 24px;
 }
 
 .stat-icon.pending-requests {
-    background: linear-gradient(135deg, #FF9800 0%, #FFB74D 100%);
-    box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+    background-color: #F59E0B;
 }
 
 .stat-icon.uploaded-docs {
-    background: linear-gradient(135deg, #4CAF50 0%, #81C784 100%);
-    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+    background-color: #10B981;
 }
 
 .stat-icon.created-expedients {
-    background: linear-gradient(135deg, #2196F3 0%, #64B5F6 100%);
-    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+    background-color: #3B82F6;
 }
 
 .stat-icon.approved-items {
-    background: linear-gradient(135deg, #8BC34A 0%, #AED581 100%);
-    box-shadow: 0 4px 12px rgba(139, 195, 74, 0.3);
+    background-color: #8B5CF6;
 }
 
-/* Iconos de acciones rápidas - colores para documentador */
+/* Iconos de acciones rápidas - colores flat */
 .icon-upload {
-    background: linear-gradient(135deg, #4CAF50 0%, #66BB6A 100%);
-    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.25);
+    background-color: #10B981;
 }
 
 .icon-requests {
-    background: linear-gradient(135deg, #FF9800 0%, #FFB74D 100%);
-    box-shadow: 0 4px 12px rgba(255, 152, 0, 0.25);
+    background-color: #F59E0B;
 }
 
 .icon-files {
-    background: linear-gradient(135deg, #2196F3 0%, #64B5F6 100%);
-    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.25);
+    background-color: #3B82F6;
 }
 
 .icon-create-folder {
-    background: linear-gradient(135deg, #9C27B0 0%, #BA68C8 100%);
-    box-shadow: 0 4px 12px rgba(156, 39, 176, 0.25);
+    background-color: #8B5CF6;
 }
 
 .icon-history {
-    background: linear-gradient(135deg, #795548 0%, #A1887F 100%);
-    box-shadow: 0 4px 12px rgba(121, 85, 72, 0.25);
+    background-color: #6B7280;
 }
 
 .icon-user {
-    background: linear-gradient(135deg, #607D8B 0%, #90A4AE 100%);
-    box-shadow: 0 4px 12px rgba(96, 125, 139, 0.25);
+    background-color: #3D688A;
 }
 
 /* Recent Activity */
 .recent-activity {
-    background: white;
-    border-radius: 8px;
+    background: #FFF;
+    border-radius: 6px;
     padding: 25px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(45, 80, 104, 0.1);
+    border: 1px solid #E2E8F0;
 }
 
 .activity-item {
     padding: 15px 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #E2E8F0;
     display: flex;
     align-items: center;
     gap: 15px;
@@ -258,37 +238,32 @@
     border-bottom: none;
 }
 
-/* Iconos de actividad reciente - específicos para documentador */
+/* Iconos de actividad reciente - flat */
 .activity-icon {
     width: 40px;
     height: 40px;
-    border-radius: 12px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 16px;
-    color: white;
+    color: #FFF;
     flex-shrink: 0;
-    position: relative;
-    overflow: hidden;
 }
 
 .activity-icon.uploaded,
 .activity-icon.icon-uploaded {
-    background: linear-gradient(135deg, #4CAF50 0%, #66BB6A 100%);
-    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+    background-color: #10B981;
 }
 
 .activity-icon.created,
 .activity-icon.icon-created {
-    background: linear-gradient(135deg, #2196F3 0%, #42A5F5 100%);
-    box-shadow: 0 2px 8px rgba(33, 150, 243, 0.3);
+    background-color: #3B82F6;
 }
 
 .activity-icon.request,
 .activity-icon.icon-request-received {
-    background: linear-gradient(135deg, #FF9800 0%, #FFA726 100%);
-    box-shadow: 0 2px 8px rgba(255, 152, 0, 0.3);
+    background-color: #F59E0B;
 }
 
 .activity-content {
@@ -297,39 +272,47 @@
 
 .activity-text {
     font-size: 14px;
-    color: #333;
+    color: #2C5068;
     margin-bottom: 4px;
 }
 
 .activity-time {
     font-size: 12px;
-    color: #999;
+    color: #64748B;
 }
 
-/* Efectos hover mejorados */
+/* Efectos hover simplificados */
 .action-card:hover .action-icon {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    transform: scale(1.05);
 }
 
 .stat-card:hover .stat-icon {
-    transform: scale(1.05);
-    transition: transform 0.3s ease;
+    transform: scale(1.02);
 }
 
-/* Animación sutil para los iconos */
-@keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-3px); }
-}
+/* Colores adicionales complementarios */
+.success-color { color: #10B981; }
+.warning-color { color: #F59E0B; }
+.info-color { color: #3B82F6; }
+.secondary-color { color: #64748B; }
+.accent-color { color: #8B5CF6; }
 
-.stat-icon {
-    animation: float 6s ease-in-out infinite;
-}
+/* Background variants */
+.bg-light { background-color: #EDF2F7; }
+.bg-primary { background-color: #3D688A; }
+.bg-dark { background-color: #2C5068; }
+.bg-white { background-color: #FFF; }
 
-.stat-icon:nth-child(2) { animation-delay: -2s; }
-.stat-icon:nth-child(3) { animation-delay: -4s; }
-.stat-icon:nth-child(4) { animation-delay: -6s; }
+/* Border variants */
+.border-light { border-color: #E2E8F0; }
+.border-primary { border-color: #3D688A; }
+.border-dark { border-color: #2C5068; }
+
+/* Text variants */
+.text-primary { color: #3D688A; }
+.text-dark { color: #2C5068; }
+.text-secondary { color: #64748B; }
+.text-white { color: #FFF; }
 
 /* Mobile First - Base styles are for mobile */
 
@@ -373,23 +356,86 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .header {
+        margin-bottom: 20px;
+        padding: 15px;
+    }
+    
     .stat-icon {
         width: 50px;
         height: 50px;
-        border-radius: 12px;
+        border-radius: 10px;
+        font-size: 20px;
     }
     
     .action-icon {
         width: 48px;
         height: 48px;
-        border-radius: 12px;
+        border-radius: 8px;
         font-size: 20px;
     }
     
     .activity-icon {
         width: 36px;
         height: 36px;
-        border-radius: 10px;
+        border-radius: 6px;
         font-size: 14px;
     }
+    
+    .stat-card, .action-card, .recent-activity {
+        padding: 20px;
+    }
+    
+    .stats-grid, .actions-grid {
+        gap: 15px;
+    }
 }
+
+/* Estados adicionales */
+.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Utilidades para espaciado */
+.mb-10 { margin-bottom: 10px; }
+.mb-15 { margin-bottom: 15px; }
+.mb-20 { margin-bottom: 20px; }
+.mb-30 { margin-bottom: 30px; }
+
+.p-10 { padding: 10px; }
+.p-15 { padding: 15px; }
+.p-20 { padding: 20px; }
+.p-25 { padding: 25px; }
+
+/* Focus states para accesibilidad */
+.action-card:focus,
+.stat-card:focus {
+    outline: 2px solid #3D688A;
+    outline-offset: 2px;
+}
+
+/* Animaciones sutiles */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.stat-card,
+.action-card {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.stat-card:nth-child(1) { animation-delay: 0.1s; }
+.stat-card:nth-child(2) { animation-delay: 0.2s; }
+.stat-card:nth-child(3) { animation-delay: 0.3s; }
+.stat-card:nth-child(4) { animation-delay: 0.4s; }

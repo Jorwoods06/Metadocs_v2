@@ -1,20 +1,23 @@
 // Filtro de mensajes
 const filtro = document.getElementById('tipo-filtro');
-const mensajes = document.querySelectorAll('.mensaje');
+const mensajes = document.querySelectorAll('tr.mensaje'); // Más específico
 
 filtro.addEventListener('change', () => {
   const valor = filtro.value;
-
-  mensajes.forEach(mensaje => {
-    const tipo = mensaje.dataset.tipo;
+  
+  // Obtener todas las filas de la tabla (excluyendo el header)
+  const filas = document.querySelectorAll('.tabla-solicitudes tbody tr');
+  
+  filas.forEach(fila => {
+    const tipo = fila.getAttribute('data-tipo');
+    
     if (valor === 'todos' || tipo === valor) {
-      mensaje.style.display = 'flex';
+      fila.style.display = ''; // Usar valor por defecto
     } else {
-      mensaje.style.display = 'none';
+      fila.style.display = 'none';
     }
   });
 });
-
 // Modal de solicitud de documento
 const cuerpo_contenido = document.getElementById('contenido_solicitud');
 const cerrar = document.getElementById("cerrar_contenido");
@@ -30,7 +33,7 @@ if (cerrar) {
 function abrirModalSolicitud() {
   const modal = document.getElementById('modal-solicitud-documento');
   if (modal) {
-    modal.style.display = 'flex';
+    modal.style.display = 'table-row';
     // Prevenir scroll del body cuando el modal está abierto
     document.body.style.overflow = 'hidden';
   }
@@ -50,7 +53,7 @@ function cerrarModalSolicitud() {
 function abrirModal(modalId) {
   const modal = document.getElementById(`modal-${modalId}`);
   if (modal) {
-    modal.style.display = 'flex';
+    modal.style.display = 'table-row';
     // Prevenir scroll del body cuando el modal está abierto
     document.body.style.overflow = 'hidden';
   }
@@ -129,18 +132,18 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       // Cerrar modal de solicitud si está abierto
-      if (modalSolicitud && modalSolicitud.style.display === 'flex') {
+      if (modalSolicitud && modalSolicitud.style.display === 'table-row') {
         cerrarModalSolicitud();
       }
       
       // Cerrar modal de solicitud antigua si existe y está abierto
-      if (cuerpo_contenido && cuerpo_contenido.style.display === 'flex') {
+      if (cuerpo_contenido && cuerpo_contenido.style.display === 'table-row') {
         cuerpo_contenido.style.display = 'none';
       }
       
       // Cerrar cualquier modal abierto
       modalesOverlay.forEach(modalOverlay => {
-        if (modalOverlay.style.display === 'flex') {
+        if (modalOverlay.style.display === 'table-row') {
           const modalId = modalOverlay.id.replace('modal-', '');
           cerrarModal(modalId);
         }
@@ -174,11 +177,11 @@ function actualizarContadorNoVistos() {
 function filtrarPorEstado(estado) {
   mensajes.forEach(mensaje => {
     if (estado === 'todos') {
-      mensaje.style.display = 'flex';
+      mensaje.style.display = ''; 
     } else if (estado === 'no-visto' && mensaje.classList.contains('no-visto')) {
-      mensaje.style.display = 'flex';
+      mensaje.style.display = '';
     } else if (estado === 'visto' && mensaje.classList.contains('visto')) {
-      mensaje.style.display = 'flex';
+      mensaje.style.display = ''; 
     } else {
       mensaje.style.display = 'none';
     }

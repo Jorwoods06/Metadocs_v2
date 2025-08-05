@@ -10,7 +10,7 @@ AutorizacionRol('documentador');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin | Metadocs</title>
+    <title>Documentador | Metadocs</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
@@ -33,7 +33,7 @@ AutorizacionRol('documentador');
             <ul>
              <div class="menu-opciones-principales">
                 <li>
-                    <a href="documentador_inicio.php" >
+                    <a href="inicio_documentador.php" >
                         <i class="bi bi-house-door"></i>
                         Inicio
                     </a>
@@ -60,7 +60,7 @@ AutorizacionRol('documentador');
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
                       
                         <li><a href="../documentador/info_documentador.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
-                        <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
+                        <li><a href="cambiar_contraseña.php"><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
 
              
                     </ul>

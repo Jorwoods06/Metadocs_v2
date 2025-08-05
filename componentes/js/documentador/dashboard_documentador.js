@@ -87,8 +87,25 @@ function actualizarEstadisticas(estadisticas) {
         estadisticas.items_aprobados.cambio_mensual,
         'este mes'
     );
+
+    // Actualizar badge de solicitudes en la tarjeta de acción "Ver Solicitudes"
+    actualizarBadgeSolicitudes(estadisticas.ver_solicitudes.totalSolicitudes);
 }
 
+// Nueva función para actualizar el badge de solicitudes
+function actualizarBadgeSolicitudes(totalSolicitudes) {
+    const tarjetaSolicitudes = document.querySelector('a[href="solicitudes_doc.php"] .action-badge');
+    if (tarjetaSolicitudes) {
+        tarjetaSolicitudes.textContent = totalSolicitudes || '0';
+        
+        // Opcional: ocultar el badge si no hay solicitudes
+        if (totalSolicitudes === 0) {
+            tarjetaSolicitudes.style.display = 'none';
+        } else {
+            tarjetaSolicitudes.style.display = 'inline-block';
+        }
+    }
+}
 function actualizarTarjetaEstadistica(selector, total, cambio, periodo) {
     const tarjeta = document.querySelector(selector);
     if (!tarjeta) return;

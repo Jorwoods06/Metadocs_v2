@@ -29,7 +29,7 @@ require_once '../../backend/documentador/recibir_actividades.php';
             </figure>
             <ul>
              <div class="menu-opciones-principales">
-                <li><a href="documentador_inicio.php"><i class="bi bi-house-door"></i>Inicio</a></li>
+                <li><a href="inicio_documentador.php"><i class="bi bi-house-door"></i>Inicio</a></li>
                 <li><a href="ver_documentos.php"><i class="bi bi-file-earmark-text"></i>Archivos</a></li>
                 <li><a href="" class="activo"><i class="bi bi-envelope-paper"></i>Solicitudes</a></li>
                 <li class="gestion-usuarios">
@@ -39,7 +39,7 @@ require_once '../../backend/documentador/recibir_actividades.php';
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
                      
                         <li><a href="info_documentador.php"><i class="bi bi-info-circle"></i> Info documentador</a></li>
-                        <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
+                        <li><a href="cambiar_contraseña.php"><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
                     </ul>
                 </li>
                 <li class="solo_mobil">

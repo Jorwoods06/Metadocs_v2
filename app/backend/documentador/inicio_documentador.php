@@ -131,6 +131,24 @@ try {
     $result = mysqli_stmt_get_result($stmt);
     $aprobados_mes = mysqli_fetch_assoc($result);
 
+
+
+    // obtener solicitudes nuevas 
+
+    $query_solicitud_nueva = "SELECT COUNT(*) as totalSolicitudes 
+FROM actividades a
+INNER JOIN usuarios u ON a.usuario_destinatario = CONCAT(u.nombres, ' ', u.apellidos)
+WHERE a.tipo_actividad = 'solicitud_documento' 
+AND a.fecha_visualizacion IS NULL 
+AND u.id_usuario = ?
+AND DATE(a.fecha_creacion) = CURDATE()";
+
+    $stmt_solicitud = mysqli_prepare($conn, $query_solicitud_nueva);
+    mysqli_stmt_bind_param($stmt_solicitud, "i", $id_usuario);
+    mysqli_stmt_execute($stmt_solicitud);
+    $resultado_solicitud = mysqli_stmt_get_result($stmt_solicitud);
+    $ver_solicitudes = mysqli_fetch_assoc($resultado_solicitud);
+
     // 3. Obtener actividad reciente del documentador
     $query_actividad = "SELECT 
                            pa.accion,
@@ -168,10 +186,14 @@ try {
     }
 
     // 4. Construir la respuesta final
+   // 4. Construir la respuesta final
     $response['estadisticas'] = [
         'solicitudes_pendientes' => [
             'total' => (int)$solicitudes_pendientes['total'],
             'cambio_semanal' => (int)$solicitudes_semana['total']
+        ],
+        'ver_solicitudes' => [
+            'totalSolicitudes' => (int)$ver_solicitudes['totalSolicitudes']
         ],
         'documentos_subidos' => [
             'total' => (int)$docs_subidos['total'],

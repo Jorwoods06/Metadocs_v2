@@ -14,9 +14,9 @@ AutorizacionRol('auditor');
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
-    <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
+    <link rel="stylesheet" href="../../../componentes/css/cambio_contra.css">
     <script src="../../../componentes/js/admin/panel.js"></script>
-    <link rel="stylesheet" href="../../../componentes/css/admin/informacion_usuario.css">
+ 
 </head>
 <body>
     
@@ -65,7 +65,7 @@ AutorizacionRol('auditor');
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
                         
                          <li><a href="../../vistas/auditor/info_auditor.php"><i class="bi bi-info-circle"></i> Info auditor</a></li>
-                        <li><a href="cambiar_contraseña.php"><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
+                        <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
                     </ul>
                 </li>
 
@@ -84,62 +84,73 @@ AutorizacionRol('auditor');
         </nav>
         
         
-        <section class="contenido-usuario">
-            <h1 class="titulo-usaurio">Informacion del Usuario</h1>
-            <div class="info-usuario">
-                <div class="info-usuarios">
-                    <img src="../../../componentes/img/usuario.png" alt="logo de usuario" class="avatar-usuario">
-                    <div class="nombre-usuario"><?=htmlspecialchars($fila["nombres"])?></div>
-                </div>
-            
-                <div class="contenedor-datos">
-
-            <div class="datos">
-                <label>Descripción laboral</label>
-                <div class="valor">
-                    <?=htmlspecialchars($mensaje)?>
-                </div>
-            </div>
-
-            <div class="datos">
-                <label>Nombre</label>
-                <div class="valor"><?= htmlspecialchars($fila["nombres"]) ?></div>  
-            </div>
-
-            <div class="datos">
-                <label>Apellido</label>
-                <div class="valor"><?= htmlspecialchars($fila["apellidos"]) ?></div>
-            </div>
-
-            <div class="datos">
-                <label>Correo Electronico</label>
-                <div class="valor"><?= htmlspecialchars($fila["correo"]) ?></div>
-            </div>
-
-            <div class="datos">
-                <label>Numero telefónico</label>
-                <div class="valor"><?= htmlspecialchars($fila["telefono"]) ?></div>
-            </div>
-            
-            <div class="datos">
-                <label>Cedula</label>
-                <div class="valor"><?= htmlspecialchars($fila["cedula"]) ?></div>
-            </div>
-
-            <div class="datos">
-                <label>Area</label>
-                <div class="valor"><?= htmlspecialchars($fila["area"]) ?></div>
-            </div>
-
-            <div class="datos">
-                <label>Rol</label>
-                <div class="valor"><?= htmlspecialchars($fila["rol"]) ?></div>
-            </div>
-
+       <section id="admin-contenido" class="admin">
+    <div class="container">
+        <div class="header">
+            <h1>Cambiar Contraseña</h1>
+            <p>Actualiza tu contraseña para mantener tu cuenta segura</p>
         </div>
+
+        <form id="passwordForm" action="../../backend/login/cambio_contraseña_bd.php" method="post">
+            <div class="form-group">
+                <label for="currentPassword" class="form-label">Contraseña Actual</label>
+                <div style="position: relative;">
+                    <input type="password" id="currentPassword" name="currentPassword" class="form-input" required>
+                    <button type="button" class="password-toggle" data-target="currentPassword"><i class="bi bi-eye"></i></button>
+                </div>
             </div>
-        </section>
+
+            <div class="form-group">
+                <label for="newPassword" class="form-label">Nueva Contraseña</label>
+                <div style="position: relative;">
+                    <input type="password" id="newPassword" class="form-input" required>
+                    <button type="button" class="password-toggle" data-target="newPassword"><i class="bi bi-eye"></i></button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword" class="form-label">Confirmar Nueva Contraseña</label>
+                <div style="position: relative;">
+                    <input type="password" id="confirmPassword" name="confirmPassword" class="form-input" required>
+                    <button type="button" class="password-toggle " data-target="confirmPassword"><i class="bi bi-eye"></i></button>
+                </div>
+                <div class="error-message" id="confirmError">
+                    <i class="bi bi-x-circle"></i> <span>Las contraseñas no coinciden</span>
+                </div>
+                <div class="success-message" id="confirmSuccess">
+                    <i class="bi bi-check-circle"></i> <span>Las contraseñas coinciden</span>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn" disabled>
+                Cambiar Contraseña
+            </button>
+        </form>
+
+        <div class="password-requirements">
+            <h4>Requisitos de la contraseña:</h4>
+            <div class="requirement" data-requirement="length">
+                <i class="bi bi-circle icon"></i>
+                <span>Mínimo 8 caracteres</span>
+            </div>
+            <div class="requirement" data-requirement="uppercase">
+                <i class="bi bi-circle icon"></i>
+                <span>Al menos una mayúscula</span>
+            </div>
+            <div class="requirement" data-requirement="lowercase">
+                <i class="bi bi-circle icon"></i>
+                <span>Al menos una minúscula</span>
+            </div>
+            <div class="requirement" data-requirement="number">
+                <i class="bi bi-circle icon"></i>
+                <span>Al menos un número</span>
+            </div>
+        </div>
+    </div>
+    </section>
+
     </main>
+    <script src="../../../componentes/js/log/cambio_contraseña.js"></script>
     <?php include '../../vistas/log/modal_cerrar_sesion.php'; ?>
 </body>
 </html>

@@ -68,7 +68,7 @@ if (isset($_SESSION['show_modal_expediente']) && $_SESSION['show_modal_expedient
             <ul>
              <div class="menu-opciones-principales">
                 <li>
-                    <a href="documentador_inicio.php">
+                    <a href="inicio_documentador.php">
                         <i class="bi bi-house-door"></i>
                         Inicio
                     </a>
@@ -95,7 +95,7 @@ if (isset($_SESSION['show_modal_expediente']) && $_SESSION['show_modal_expedient
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
                             
                         <li><a href="info_documentador.php"><i class="bi bi-info-circle"></i> info documentador</a></li>
-                        <li><a href=""><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
+                        <li><a href="cambiar_contraseña.php"><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
                     </ul>
                 </li>
 

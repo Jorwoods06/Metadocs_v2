@@ -56,7 +56,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="../log/nueva_contraseña.php">
+                                <a href="cambiar_contraseña.php">
                                     <i class="bi bi-key-fill"></i> 
                                     Cambiar contraseña
                                 </a>

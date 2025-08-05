@@ -2,74 +2,487 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    transition: all 0.7s ease;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-body {
-    background-color:  #F5F5F5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.contenedor {
+.container {
+    border-radius: 12px;
     width: 100%;
     max-width: 400px;
-    padding: 20px;
 }
 
-.card {
-    background-color: white;
-    border-radius: 20px;
-    /* box-shadow eliminado para diseño plano */
-    padding: 20px;
+.header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.header h1 {
+    color: #2A4860;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.header p {
+    color: #666666;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.form-group {
+    margin-bottom: 24px;
+    position: relative;
+}
+
+.form-label {
+    display: block;
+    color: #2A4860;
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 16px;
+    border: 2px solid #E1E5E9;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #FFFFFF;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.form-input:focus {
+    border-color: #3D688A;
+}
+
+.form-input.error {
+    border-color: #E74C3C;
+}
+
+.form-input.success {
+    border-color: #27AE60;
+}
+
+.error-message {
+    color: #E74C3C;
+    font-size: 12px;
+    margin-top: 6px;
+    display: none;
+    align-items: center;
+}
+
+.error-message.show {
+    display: flex;
+}
+
+.success-message {
+    color: #27AE60;
+    font-size: 12px;
+    margin-top: 6px;
+    display: none;
+    align-items: center;
+}
+
+.success-message.show {
+    display: flex;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #666666;
+    cursor: pointer;
+    padding: 4px;
+    font-size: 18px;
+    user-select: none;
+}
+
+.password-toggle:hover {
+    color: #3D688A;
+}
+
+.password-requirements {
+    background: #F8F9FA;
+    border: 1px solid #E1E5E9;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 12px;
+    font-size: 12px;
+}
+
+.password-requirements h4 {
+    color: #2A4860;
+    margin-bottom: 8px;
+    font-size: 13px;
+}
+
+.requirement {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+    color: #666666;
+}
+
+.requirement.valid {
+    color: #27AE60;
+}
+
+.requirement .icon {
+    margin-right: 6px;
+    font-size: 10px;
+}
+
+.submit-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #3D688A 0%, #2A4860 100%);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.submit-btn:hover {
+    background: linear-gradient(135deg, #2A4860 0%, #1F3447 100%);
+}
+
+.submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Estilos para inputs con error - CORREGIDO */
+.form-input.error {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+.form-input.success {
+    border-color: #28a745;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+/* Mensajes de error y éxito - CORREGIDO */
+.error-message {
+    display: flex;
+    align-items: flex-start; /* Cambio para alineación correcta */
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 5px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    line-height: 1.4; /* Mejora la alineación del texto */
+}
+
+.error-message.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.error-message i {
+    margin-right: 5px;
+    font-size: 1rem;
+    margin-top: 2px; /* Ajuste para alineación vertical */
+    flex-shrink: 0; /* Evita que el icono se comprima */
+}
+
+.success-message {
+    display: flex;
+    align-items: flex-start;
+    color: #28a745;
+    font-size: 0.875rem;
+    margin-top: 5px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    line-height: 1.4;
+}
+
+.success-message.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.success-message i {
+    margin-right: 5px;
+    font-size: 1rem;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+/* Estilos para el modal - MEJORADO */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease-out;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center;     /* Centrado vertical */
+}
+
+.modal-content {
+    background-color: #fff;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 450px; /* Aumentado para modal de éxito más ancha */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    animation: slideIn 0.3s ease-out;
+    overflow: hidden;
+    position: relative;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: #f8f9fa;
+}
+
+.modal-close {
+    font-size: 24px;
+    font-weight: bold;
+    color: #999;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+.modal-close:hover {
+    color: #666;
+}
+
+.modal-body {
+    padding: 30px 25px;
     text-align: center;
 }
 
-.image-placeholder img {
-    width: 100%;
-    max-width: 220px;
-    height: auto;
-    margin: 0 auto;
-    display: block;
-}
-
-.mensage {
-    font-size: 1.1rem;
-    color: #666;
-    margin: 20px 0;
+.modal-body p {
+    margin: 15px 0 0 0;
+    font-size: 1rem;
+    color: #555;
     line-height: 1.5;
 }
 
-.ok-button {
-    display: inline-block;
+.modal-footer {
+    padding: 20px 25px;
+    background-color: #f8f9fa;
     text-align: center;
-    text-decoration: none;
-    background-color: #3D688A;
+    border-top: 1px solid #e0e0e0;
+}
+
+.modal-btn {
+    background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 12px;
-    padding: 12px 0;
-    width: 100%;
-    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 4px;
     cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+    min-width: 80px;
 }
 
-
-.ok-button:hover {
-    background-color: #3D688A;
+.modal-btn:hover {
+    background-color: #0056b3;
 }
 
-@media (min-width: 768px) {
-    .container {
-        max-width: 500px;
+/* Iconos del modal */
+.success-icon {
+    font-size: 4rem; /* Aumentado para modal más grande */
+    color: #28a745;
+    margin-bottom: 15px;
+}
+
+.error-icon {
+    font-size: 3rem;
+    color: #dc3545;
+    margin-bottom: 10px;
+}
+
+/* Modal de éxito - MEJORADA: Más ancha y con mejor proporción */
+.success-modal .modal-content {
+ 
+    max-width: 500px; /* Modal de éxito más ancha */
+    min-height: 250px; /* Altura mínima para mejor proporción */
+}
+
+.success-modal .modal-body {
+    padding: 50px 35px; /* Más padding para mejor proporción */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.success-modal .modal-body p {
+    font-size: 1.1rem; /* Texto ligeramente más grande */
+    font-weight: 500;
+    color: #333;
+    margin-top: 20px;
+    max-width: 350px; /* Limita el ancho del texto para mejor legibilidad */
+}
+
+/* Modal de error simple - NUEVA: Solo mensaje y X para errores específicos */
+.simple-error-modal .modal-content {
+  
+    max-width: 400px;
+}
+
+.simple-error-modal .modal-body {
+    padding: 40px 30px;
+    position: relative;
+}
+
+.simple-error-modal .modal-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: transparent;
+    border: none;
+    padding: 10px 15px;
+    z-index: 10;
+}
+
+.simple-error-modal .modal-close {
+    color: #dc3545;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.simple-error-modal .modal-close:hover {
+    color: #a71e2a;
+}
+
+.simple-error-modal .modal-footer {
+    display: none; /* Ocultar footer en modal simple */
+}
+
+.simple-error-modal .error-icon {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+}
+
+.simple-error-modal .modal-body p {
+    font-size: 1.05rem;
+    color: #333;
+    font-weight: 500;
+    margin-top: 15px;
+    line-height: 1.4;
+}
+
+/* Modal de error normal - Con botón Aceptar */
+.error-modal .modal-header {
+    background-color: #f8d7da;
+    border-bottom-color: #f5c6cb;
+}
+
+.error-modal .modal-footer {
+    background-color: #f8d7da;
+    border-top-color: #f5c6cb;
+}
+
+.error-modal .modal-btn {
+    background-color: #dc3545;
+}
+
+.error-modal .modal-btn:hover {
+    background-color: #c82333;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { 
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-@media (min-width: 1024px) {
+/* Responsive */
+@media (max-width: 767px) {
+    .modal {
+        padding: 20px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        max-width: none;
+    }
+    
+    .success-modal .modal-content {
+        max-width: none; /* En móvil, usar todo el ancho disponible */
+        min-height: 200px;
+    }
+    
+    .success-modal .modal-body {
+        padding: 40px 25px;
+    }
+    
+    .simple-error-modal .modal-body {
+        padding: 35px 25px;
+    }
+    
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+        padding: 15px 20px;
+    }
+    
+    .success-icon {
+        font-size: 3.5rem;
+    }
+    
+    .error-icon {
+        font-size: 2.5rem;
+    }
+    
+    .simple-error-modal .error-icon {
+        font-size: 3rem;
+    }
+}
+
+@media (min-width: 768px) {
+    #admin-contenido {
+        display: flex;
+        justify-content: center;
+    }
+    
     .container {
-        max-width: 600px;
+        max-width: 450px;
+    }
+
+    .header h1 {
+        font-size: 28px;
+    }
+
+    .form-input {
+        font-size: 15px;
     }
 }

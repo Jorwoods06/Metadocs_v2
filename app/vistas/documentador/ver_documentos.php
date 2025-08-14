@@ -42,7 +42,7 @@ if (isset($_SESSION['show_modal_expediente']) && $_SESSION['show_modal_expedient
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documentador | Metadocs</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
     <link rel="stylesheet" href="../../../componentes/css/documentador/ver_documentos.css">
@@ -56,58 +56,37 @@ if (isset($_SESSION['show_modal_expediente']) && $_SESSION['show_modal_expedient
     
 </head>
 <body>
-    <header id="cabezote">
-        <i class="bi bi-list" id="menu_opciones"></i>
+       <header id="cabezote">
+        <i class="fas fa-bars" id="menu_opciones"></i>
     </header>
-
     <main id="cuerpo">
-        <nav id="menu-lateral" class="menu-lateral">
+         <nav id="menu-lateral" class="menu-lateral">
             <figure id="img_menu">
-                    <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
+                <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
             </figure>
             <ul>
              <div class="menu-opciones-principales">
-                <li>
-                    <a href="inicio_documentador.php">
-                        <i class="bi bi-house-door"></i>
-                        Inicio
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="activo">
-                        <i class="bi bi-file-earmark-text"></i>
-                        Archivos
-                    </a>
-                </li>
-                
-                <li>
-                    <a href="solicitudes_doc.php">
-                        <i class="bi bi-envelope-paper"></i>
-                        Solicitudes
-                    </a>
-                </li>
-                
+                <li><a href="inicio_documentador.php"><i class="fas fa-home"></i>Inicio</a></li>
+                <li><a href="ver_documentos.php"  class="activo"><i class="fas fa-file-alt"></i>Archivos</a></li>
+                <li><a href="solicitudes_doc.php" ><i class="fas fa-envelope"></i>Solicitudes</a></li>
                 <li class="gestion-usuarios">
                     <a href="#" id="cerrado-usuarios">
-                        <i class="bi bi-person"></i>
-                        Documentador
+                        <i class="fas fa-user"></i>Documentador
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
-                            
-                        <li><a href="info_documentador.php"><i class="bi bi-info-circle"></i> info documentador</a></li>
-                        <li><a href="cambiar_contraseña.php"><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
+                     
+                        <li><a href="info_documentador.php" ><i class="fas fa-info-circle"></i> Info documentador</a></li>
+                        <li><a href="cambiar_contraseña.php"><i class="fas fa-key"></i> Cambiar contraseña</a></li>
                     </ul>
                 </li>
-
                 <li class="solo_mobil">
-                    <a href="#" id="solo_mobil">
-                        <i class="bi bi-arrow-left-circle"></i>
-                        Volver
-                    </a>
+                    <a href="#" id="solo_mobil"><i class="fas fa-arrow-left"></i>Volver</a>
                 </li>
-                </div>
-                <li  class="cerrar-sesion-separado"><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
+                  </div>
+                   <li  class="cerrar-sesion-separado"><a href="#" id="cerrar_sesion"><i class="fas fa-sign-out-alt"></i>Cerrar sesion</a></li>
             </ul>
+        
+           
         </nav>
         
        <section id="admin-contenido" class="admin">
@@ -116,13 +95,13 @@ if (isset($_SESSION['show_modal_expediente']) && $_SESSION['show_modal_expedient
     <?php if ($expediente_seleccionado): ?>
          <!-- navegación -->
             <div class="breadcrumb">
-                <a href="?">Inicio</a> <i class="bi bi-chevron-right"></i> 
+                <a href="?">Inicio</a> <i class="fas fa-chevron-right"></i> 
                 <a href="javascript:history.back()" class="back-button">Atrás</a> 
               <?php 
                 $carpeta_actual = obtenerInfoExpediente($conexion_metadocs, $expediente_seleccionado);
                 if ($carpeta_actual) {
                 
-                    echo '<i class="bi bi-chevron-right"></i> ' . htmlspecialchars($carpeta_actual['nombre']);
+                    echo '<i class="fas fa-chevron-right"></i> ' . htmlspecialchars($carpeta_actual['nombre']);
                 } else {
                 
                 }
@@ -132,11 +111,12 @@ if (isset($_SESSION['show_modal_expediente']) && $_SESSION['show_modal_expedient
             <div class="title-header-row">
                 <h1>Documentos</h1>
                 <div class="header-buttons">
-                    <button type="button" id="btn_documento">
-                        <i class="bi bi-upload"></i> Subir documento
-                    </button>
+                     <a href="subir_documento.php?id_expediente=<?= $padre_id ?> "id="btn_documentos">
+                      
+                        <i class="fas fa-upload"></i> Subir documento
+                    </a>
                     <button type="button" id="btn_crear">
-                        <i class="bi bi-plus-circle"></i> Crear Carpetas
+                        <i class="fas fa-plus-circle"></i> Crear Carpetas
                     </button>
                 </div>
             </div>
@@ -173,31 +153,31 @@ if (isset($_SESSION['show_modal_expediente']) && $_SESSION['show_modal_expedient
                             <tr class="documentos" data-url="?id_expediente=<?= $item['id']; ?>">
                                 <td class="documento-nombre">
                                     <a href="?id_expediente=<?= $item['id']; ?>">
-                                        <i class="bi bi-folder2"></i> <?= htmlspecialchars($item['nombre']); ?>
+                                        <i class="fas fa-folder"></i> <?= htmlspecialchars($item['nombre']); ?>
                                     </a>
                                 </td>
                                 <td class="documento-tipo">expediente</td>
                                 <td class="documento-fecha"><?= htmlspecialchars($item['fecha_creacion']); ?></td>
                                 <td class="documento-accion">
                                     <button class="btn_accion" data-id="<?= $item['id']; ?>">
-                                        <i class="bi bi-pencil-square"></i>
+                                        <i class="fas fa-edit"></i>
                                     </button>
                                 </td>
                             </tr>
                         <?php else: ?>
                             <tr class="documentos" data-document-id="<?= $item['id'] ?>">
                                 <td class="documento-nombre">
-                                    <i class="bi bi-file-earmark-text"></i> 
+                                    <i class="fas fa-file-alt"></i> 
                                     <?= htmlspecialchars($item['nombre']); ?>
                                 </td>
                                 <td class="documento-tipo"><?= htmlspecialchars($item['tipo']); ?></td>
                                 <td class="documento-fecha"><?= htmlspecialchars($item['fecha_creacion']); ?></td>
                                 <td class="documento-accion">
                                     <button class="btn_accion btn_ver_modal escritorio" onclick="verDocumento('<?= urlencode($item['nombre'] . '.' . $item['tipo']) ?>', '<?= strtolower($item['tipo']) ?>')">
-                                        <i class="bi bi-eye"></i>
+                                        <i class="fas fa-eye"></i>
                                     </button>
                                     <button class="btn_accion btn_ver_nueva_ventana movil" onclick="abrirNuevaVentana('<?= urlencode($item['titulo'] . '.' . $item['tipo']) ?>')">
-                                        <i class="bi bi-eye"></i>
+                                        <i class="fas fa-eye"></i>
                                     </button>
                                 </td>
                             </tr>
@@ -287,13 +267,13 @@ if (isset($_SESSION['show_modal_expediente']) && $_SESSION['show_modal_expedient
                 
                 <div id="cont_escanear_subir">
                     <a href="" id="scanear" class="esc_sub">
-                        <i class="bi bi-printer"></i>
+                        <i class="fas fa-print"></i>
                         <p>Escanear</p>
                         <p>Escanea un documento y súbelo al sistema</p>
                     </a>
                     
                     <a href="subir_documento.php?id_expediente=<?= $padre_id ?> " id="subir" class="esc_sub">
-                        <i class="bi bi-file-earmark-arrow-up"></i>
+                        <i class="fas fa-file-upload"></i>
                         <p>Subir documento</p>
                         <p>Selecciona un archivo desde tu dispositivo</p>
                     </a>
@@ -340,7 +320,7 @@ if (isset($_SESSION['show_modal_expediente']) && $_SESSION['show_modal_expedient
         <div class="modal-overlay-doc" id="modalOverlay">
             <div class="modal_doc_recibido">
             <span class="close" id="mrd">&times;</span>
-            <div class="icon"><i class="bi bi-check2-circle"></i></div>
+            <div class="icon"><i class="fas fa-check-circle"></i></div>
             <h2>Subida completada</h2>
             <p>Tu documento ha sido recibido y ya está en revisión por un auditor.</p>
             </div>
@@ -351,7 +331,7 @@ if (isset($_SESSION['show_modal_expediente']) && $_SESSION['show_modal_expedient
         <div class="modal-overlay-doc" id="modalOverlay">
             <div class="modal_doc_recibido">
             <span class="close" id="mrd">&times;</span>
-            <div class="icon"><i class="bi bi-check2-circle"></i></div>
+            <div class="icon"><i class="fas fa-check-circle"></i></div>
             <h2>Subida completada</h2>
             <p>Tu expediente ha sido recibido y ya está en revisión por un auditor.</p>
             </div>

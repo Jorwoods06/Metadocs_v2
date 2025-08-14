@@ -12,7 +12,7 @@ AutorizacionRol('auditor');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auditor | Metadocs</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
     <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
@@ -23,7 +23,7 @@ AutorizacionRol('auditor');
 </head>
 <body>
     <header id="cabezote">
-        <i class="bi bi-list" id="menu_opciones"></i>
+        <i class="fas fa-bars" id="menu_opciones"></i>
     </header>
 
     <main id="cuerpo">
@@ -35,58 +35,58 @@ AutorizacionRol('auditor');
                 <div class="menu-opciones-principales">
                     <li>
                         <a href="#" class="activo">
-                            <i class="bi bi-house-door"></i>
+                            <i class="fas fa-home"></i>
                             Inicio
                         </a>
                     </li>
                     <li class="gestion_usuario">
                         <a href="#" id="gestion-usuarios">
-                            <i class="bi bi-file-earmark-text"></i>
+                            <i class="fas fa-file-alt"></i>
                             Gestión Archivos
                         </a>
                         <ul class="sub_menu gestion-submenu" id="sub_menu">
-                            <li><a href="recibir_documentos.php"><i class="bi bi-envelope-paper"></i>pendientes</a></li>
-                            <li><a href="archivos_auditor.php"><i class="bi bi-eye"></i>Archivos</a></li>
-                            <li><a href="solicitar_documento.php"><i class="bi bi-file-earmark-plus"></i> Solicitar archivos</a></li>
-                            <li><a href="archivo_historico.php"><i class="bi bi-clock-history"></i> Archivo historico</a></li>
+                            <li><a href="recibir_documentos.php"><i class="fas fa-envelope"></i>pendientes</a></li>
+                            <li><a href="archivos_auditor.php"><i class="fas fa-eye"></i>Archivos</a></li>
+                            <li><a href="solicitar_documento.php"><i class="fas fa-file-plus"></i> Solicitar archivos</a></li>
+                            <li><a href="archivo_historico.php"><i class="fas fa-history"></i> Archivo historico</a></li>
                         </ul>
                     </li>
                     
                     <li>
                         <a href="../../vistas/auditor/pista_auditoria.php">
-                            <i class="bi bi-list-check"></i>
+                            <i class="fas fa-list-check"></i>
                             Pista auditoria
                         </a>
                     </li>
                     
                     <li class="gestion-usuarios">
                         <a href="#" id="cerrado-usuarios">
-                            <i class="bi bi-person"></i>
+                            <i class="fas fa-user"></i>
                             Auditor
                         </a>
                         <ul class="sub_menu usuario-submenu" id="sub_menu">
-                            <li><a href="../../vistas/auditor/info_auditor.php"><i class="bi bi-info-circle"></i> Info auditor</a></li>
-                            <li><a href="cambiar_contraseña.php"><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
+                            <li><a href="../../vistas/auditor/info_auditor.php"><i class="fas fa-info-circle"></i> Info auditor</a></li>
+                            <li><a href="cambiar_contraseña.php"><i class="fas fa-key"></i> Cambiar contraseña</a></li>
                         </ul>
                     </li>
 
                     <li class="solo_mobil">
                         <a href="#" id="solo_mobil">
-                            <i class="bi bi-arrow-left-circle"></i>
+                            <i class="fas fa-arrow-left"></i>
                             Volver
                         </a>
                     </li>
                 </div>
 
                 <li class="cerrar-sesion-separado">
-                    <a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesión</a>
+                    <a href="#" id="cerrar_sesion"><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a>
                 </li>
             </ul>
         </nav>
         
         <section id="admin-contenido" class="admin">
                 <div class="container">
-        <!-- Header -->
+
         <header class="header">
             <div class="header-content">
                 <h1 class="header-title">Inicio</h1>
@@ -97,7 +97,7 @@ AutorizacionRol('auditor');
             </div>
         </header>
 
-        <!-- Statistics -->
+   
         <section class="stats-grid">
             <div class="stat-card">
                 <div class="stat-number"></div>
@@ -123,12 +123,12 @@ AutorizacionRol('auditor');
 
         <div class="main-content">
             <div>
-                <!-- Quick Actions -->
+            
                 <section class="quick-actions">
                     <h2 class="section-title">Acciones Rápidas</h2>
                     <div class="actions-grid">
                         <a href="recibir_documentos.php" class="action-card">
-                            <div class="action-icon icon-pending"><i class="bi bi-clock"></i></div>
+                            <div class="action-icon icon-pending"><i class="fas fa-clock"></i></div>
                             <div class="action-title">
                                 Archivos Pendientes
                                 <span class="action-badge">12</span>
@@ -139,7 +139,7 @@ AutorizacionRol('auditor');
                         </a>
 
                         <a href="archivos_auditor.php" class="action-card">
-                            <div class="action-icon icon-files"><i class="bi bi-eye"></i></div>
+                            <div class="action-icon icon-files"><i class="fas fa-eye"></i></div>
                             <div class="action-title">Ver Archivos</div>
                             <div class="action-description">
                                 Consultar todos los documentos del sistema organizados por categoría
@@ -147,7 +147,7 @@ AutorizacionRol('auditor');
                         </a>
 
                         <a href="solicitar_documento.php" class="action-card">
-                            <div class="action-icon icon-request"><i class="bi bi-file-earmark-plus"></i></div>
+                            <div class="action-icon icon-request"><i class="fas fa-file-plus"></i></div>
                             <div class="action-title">
                             </div>
                             <div class="action-title">Solicitar Archivos</div>
@@ -157,7 +157,7 @@ AutorizacionRol('auditor');
                         </a>
 
                         <a href="archivo_historico.php" class="action-card">
-                            <div class="action-icon icon-archive"><i class="bi bi-clock-history"></i> </div>
+                            <div class="action-icon icon-archive"><i class="fas fa-history"></i> </div>
                             <div class="action-title">Archivo Histórico</div>
                             <div class="action-description">
                                 Acceder al historial completo de documentos archivados del sistema
@@ -165,7 +165,7 @@ AutorizacionRol('auditor');
                         </a>
 
                         <a href="pista_auditoria.php" class="action-card">
-                            <div class="action-icon icon-audit"><i class="bi bi-list-check"></i></div>
+                            <div class="action-icon icon-audit"><i class="fas fa-list-check"></i></div>
                             <div class="action-title">Pista de Auditoría</div>
                             <div class="action-description">
                                 Ver el registro detallado de todas las acciones realizadas en el sistema
@@ -173,7 +173,7 @@ AutorizacionRol('auditor');
                         </a>
 
                         <a href="info_auditor.php" class="action-card">
-                            <div class="action-icon icon-user"><i class="bi bi-info-circle"></i></div>
+                            <div class="action-icon icon-user"><i class="fas fa-info-circle"></i></div>
                             <div class="action-title">Información del Usuario</div>
                             <div class="action-description">
                                 Gestionar perfil, configuración y preferencias de la cuenta
@@ -183,13 +183,13 @@ AutorizacionRol('auditor');
                 </section>
             </div>
 
-            <!-- Recent Activity -->
+         
             <aside>
                 <section class="recent-activity">
                     <h2 class="section-title">Actividad Reciente</h2>
                     
                     <div class="activity-item">
-                        <div class="activity-icon approved icon-approved"></div>
+                        <div class="activity-icon approved icon-approved"><i class="fas fa-check-circle"></i></div>
                         <div class="activity-content"> 
                             <div class="activity-text">Documento "bucles y arreglos kotlin" aprobado</div>
                             <div class="activity-time">Hace 2 horas</div>
@@ -197,7 +197,7 @@ AutorizacionRol('auditor');
                     </div>
 
                     <div class="activity-item">
-                        <div class="activity-icon rejected icon-rejected"></div>
+                        <div class="activity-icon rejected icon-rejected"><i class="fas fa-times-circle"></i></div>
                         <div class="activity-content">
                             <div class="activity-text">Expediente "asdjkas" rechazado</div>
                             <div class="activity-time">Hace 4 horas</div>
@@ -205,7 +205,7 @@ AutorizacionRol('auditor');
                     </div>
 
                     <div class="activity-item">
-                        <div class="activity-icon approved icon-approved"></div>
+                        <div class="activity-icon approved icon-approved"><i class="fas fa-check-circle"></i></div>
                         <div class="activity-content">
                             <div class="activity-text">Documento "1114240641_Jorge_Galeano_2825817" aprobado</div>
                             <div class="activity-time">Ayer</div>
@@ -213,7 +213,7 @@ AutorizacionRol('auditor');
                     </div>
 
                     <div class="activity-item">
-                        <div class="activity-icon pending icon-clock"></div>
+                        <div class="activity-icon pending icon-clock"><i class="fas fa-clock"></i></div>
                         <div class="activity-content">
                             <div class="activity-text">Solicitud de documento realizada</div>
                             <div class="activity-time">Hace 2 días</div>
@@ -221,7 +221,7 @@ AutorizacionRol('auditor');
                     </div>
 
                     <div class="activity-item">
-                        <div class="activity-icon rejected icon-rejected"></div>
+                        <div class="activity-icon rejected icon-rejected"><i class="fas fa-times-circle"></i></div>
                         <div class="activity-content">
                             <div class="activity-text">Documento "1114240641_Jorge_Galeano_2825817.pdf" rechazado</div>
                             <div class="activity-time">Hace 2 días</div>

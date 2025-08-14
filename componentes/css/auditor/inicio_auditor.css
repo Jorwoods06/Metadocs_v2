@@ -1,16 +1,4 @@
- 
-   * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
- 
- .container {
-            max-width: 1200px;
-            margin: 0 auto;
-          
-        }
 
         /* Header */
         .header {
@@ -263,11 +251,7 @@
                 grid-template-columns: repeat(3, 1fr);
             }
 
-            .main-content {
-                display: grid;
-                grid-template-columns: 2fr 1fr;
-                gap: 30px;
-            }
+           
         }
 
         @media (min-width: 1200px) {

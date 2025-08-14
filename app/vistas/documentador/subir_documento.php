@@ -16,7 +16,7 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documentador | Metadocs</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
     <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
@@ -24,36 +24,38 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
     <script src="../../../componentes/js/admin/panel.js" defer></script>
 </head>
 <body>
-    <header id="cabezote">
-        <i class="bi bi-list" id="menu_opciones"></i>
+        <header id="cabezote">
+        <i class="fas fa-bars" id="menu_opciones"></i>
     </header>
 
     <main id="cuerpo">
-        <nav id="menu-lateral" class="menu-lateral">
+         <nav id="menu-lateral" class="menu-lateral">
             <figure id="img_menu">
-                    <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
+                <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
             </figure>
             <ul>
-                <div class="menu-opciones-principales">
-                <li><a href="inicio_documentador.php"><i class="bi bi-house-door"></i>Inicio</a></li>
-                <li><a href="ver_documentos.php" class="activo"><i class="bi bi-file-earmark-text"></i>Archivos</a></li>
-                <li><a href="solicitudes_doc.php" ><i class="bi bi-envelope-paper"></i>Solicitudes</a></li>
+             <div class="menu-opciones-principales">
+                <li><a href="inicio_documentador.php"><i class="fas fa-home"></i>Inicio</a></li>
+                <li><a href="ver_documentos.php" class="activo"><i class="fas fa-file-alt"></i>Archivos</a></li>
+                <li><a href="solicitudes_doc.php" ><i class="fas fa-envelope"></i>Solicitudes</a></li>
                 <li class="gestion-usuarios">
-                    <a href="#" id="cerrado-usuarios">
-                        <i class="bi bi-person"></i>Documentador
+                    <a href="#" id="cerrado-usuarios" >
+                        <i class="fas fa-user"></i>Documentador
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
-                            
-                        <li><a href="info_documentador.php"><i class="bi bi-info-circle"></i> Info documentador</a></li>
-                        <li><a href="cambiar_contraseña.php"><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
+                     
+                        <li><a href="info_documentador.php" ><i class="fas fa-info-circle"></i> Info documentador</a></li>
+                        <li><a href="cambiar_contraseña.php"><i class="fas fa-key"></i> Cambiar contraseña</a></li>
                     </ul>
                 </li>
                 <li class="solo_mobil">
-                    <a href="#" id="solo_mobil"><i class="bi bi-arrow-left-circle"></i>Volver</a>
+                    <a href="#" id="solo_mobil"><i class="fas fa-arrow-left"></i>Volver</a>
                 </li>
-                </div>
-                    <li  class="cerrar-sesion-separado"><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
+                  </div>
+                   <li  class="cerrar-sesion-separado"><a href="#" id="cerrar_sesion"><i class="fas fa-sign-out-alt"></i>Cerrar sesion</a></li>
             </ul>
+        
+           
         </nav>
 
         <section class="contenedor-principal">
@@ -62,18 +64,18 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
             <article id="form_contenedor">
         <form id="form_documento" action="../../backend/documentador/gestor_archivos.php" method="post" enctype="multipart/form-data">
             
-            <!-- Área de subida de archivos -->
+
             <div id="area_division">
-                <i class="bi bi-cloud-arrow-up-fill"></i>
+                <i class="fas fa-cloud-upload-alt"></i>
                 <h3>Haga click para cargar</h3>
                 <p>Formatos soportados: PDF, DOC, DOCX, XLS, XLSX</p>
                 <input type="file" id="input_documento" name = "input_documento"class="input-documento" accept=".pdf,.doc,.docx,.xls,.xlsx" multiple>
             </div>
 
-            <!-- Vista previa de archivos -->
+
             <div id="vista_previa" class="vista-previa">
                 <div class="archivo-preview">
-                    <div class="archivo-icono"><i class="bi bi-file-earmark"></i></div>
+                    <div class="archivo-icono"><i class="fas fa-file"></i></div>
                     <div class="archivo-info">
                         <div class="archivo-nombre" id="nombre_archivo"></div>
                         <div class="archivo-tamano" id="tamano_archivo"></div>
@@ -82,10 +84,10 @@ $documentos = obtenerDocumentos($conexion_metadocs, $padre_id, $area);
                 </div>
             </div>
 
-            <!-- Campos del formulario -->
+
             <div class="campos-formulario">
                 
-                <!-- Categoría -->
+           
                 <div class="grupo-campo">
                     <label class="etiqueta-campo" for="categoria">Categoría del documento *</label>
                     <select class="campo-select" id="categoria" name="categoria" required>

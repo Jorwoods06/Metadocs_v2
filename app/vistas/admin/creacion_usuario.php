@@ -21,7 +21,7 @@ unset($_SESSION['correo_existente']);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Admin | Metadocs</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon" />
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css" />
     <link rel="stylesheet" href="../../../componentes/css/admin/creacion_usuario.css" />
@@ -33,53 +33,53 @@ unset($_SESSION['correo_existente']);
     </header>
 
     <main id="cuerpo">
-<nav id="menu-lateral" class="menu-lateral">
+   <nav id="menu-lateral" class="menu-lateral">
     <figure id="img_menu">
         <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
     </figure>
     <ul>
-        <!-- Opciones principales del menú -->
+       
         <div class="menu-opciones-principales">
             <li>
                 <a href="../admin/panel_control.php" >
-                    <i class="bi bi-bar-chart-line"></i>
+                    <i class="fas fa-chart-line"></i>
                     Panel Control
                 </a>
             </li>
 
               <li>
                 <a href="../admin/pista_auditoria.php" >
-                    <i class="bi bi-journal-check"></i>
+                    <i class="fas fa-clipboard-check"></i>
                     Actividades usuarios
                 </a>
             </li>
 
             <li class="gestion_usuario">
-                <a href="#" id="gestion-usuarios" class="activo"><i class="bi bi-people" ></i> Gestión Usuarios</a>
+                <a href="#" id="gestion-usuarios" class="activo"><i class="fas fa-users"></i> Gestión Usuarios</a>
                 <ul class="sub_menu gestion-submenu" id="sub_menu">
-                    <li><a href="#"><i class="bi bi-person-plus"></i> Crear usuario</a></li>
-                    <li><a href="../admin/ver_usuarios.php" ><i class="bi bi-eye"></i> Ver usuario</a></li>
+                    <li><a href="#"><i class="fas fa-user-plus"></i> Crear usuario</a></li>
+                    <li><a href="../admin/ver_usuarios.php" ><i class="fas fa-eye"></i> Ver usuario</a></li>
                 </ul>
             </li>
             
        
             
             <li class="gestion-usuarios">
-                <a href="#" id="cerrado-usuarios"><i class="bi bi-person"></i> Admin</a>
+                <a href="#" id="cerrado-usuarios"><i class="fas fa-user"></i> Admin</a>
                 <ul class="sub_menu usuario-submenu" id="sub_menu">
-                    <li><a href="../log/informacion_usuario.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
-                    <li><a href="cambiar_contraseña.php"><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
+                    <li><a href="../log/informacion_usuario.php"><i class="fas fa-info-circle"></i> Info usuario</a></li>
+                    <li><a href="cambiar_contraseña.php"><i class="fas fa-key"></i> Cambiar contraseña</a></li>
                 </ul>
             </li>
             
             <li class="solo_mobil">
-                <a href="#" id="solo_mobil"><i class="bi bi-arrow-left"></i> Volver</a>
+                <a href="#" id="solo_mobil"><i class="fas fa-arrow-left"></i> Volver</a>
             </li>
         </div>
 
-        <!-- Botón cerrar sesión separado -->
+       
         <li class="cerrar-sesion-separado">
-            <a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesión</a>
+            <a href="#" id="cerrar_sesion"><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a>
         </li>
     </ul>
 </nav>

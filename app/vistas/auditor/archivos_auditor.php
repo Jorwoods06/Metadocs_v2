@@ -19,8 +19,6 @@ $pagina_actual = $resultado_contenido['pagina_actual'];
 $total_paginas = $resultado_contenido['total_paginas'];
 $total_registros = $resultado_contenido['total_registros'];
 
-
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -28,7 +26,7 @@ $total_registros = $resultado_contenido['total_registros'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auditor | Metadocs</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
     <link rel="stylesheet" href="../../../componentes/css/documentador/modal_expediente.css">
@@ -41,80 +39,80 @@ $total_registros = $resultado_contenido['total_registros'];
 </head>
 <body>
     <header id="cabezote">
-        <i class="bi bi-list" id="menu_opciones"></i>
+        <i class="fas fa-bars" id="menu_opciones"></i>
     </header>
 
     <main id="cuerpo">
         <nav id="menu-lateral" class="menu-lateral">
             <figure id="img_menu">
-                    <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
+                <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
             </figure>
             <ul>
-             <div class="menu-opciones-principales">
-                <li>
-                    <a href="inicio_auditor.php" >
-                        <i class="bi bi-house-door"></i>
-                        Inicio
-                    </a>
-                </li>
-                <li class="gestion_usuario">
-                    <a href="#" id="gestion-usuarios" class="activo">
-                        <i class="bi bi-file-earmark-text" ></i>
-                        Gestión Archivos
-                    </a>
-                    <ul class="sub_menu gestion-submenu" id="sub_menu">
-                        <li><a href="recibir_documentos.php"><i class="bi bi-envelope-paper"></i>pendientes</a></li>
-                        <li><a href="#"  class="submenu-activo"><i class="bi bi-eye"></i>Archivos</a></li>
-                        <li><a href="solicitar_documento.php"><i class="bi bi-file-earmark-plus"></i> Solicitar archivos</a></li>
-                        <li><a href="archivo_historico.php" > <i class="bi bi-clock-history"></i> Archivo historico</a></li>
-                    </ul>
-                </li>
-                
-                <li>
-                    <a href="../../vistas/auditor/pista_auditoria.php">
-                        <i class="bi bi-list-check"></i>
-                        Pista auditoria
-                    </a>
-                </li>
-                
-                <li class="gestion-usuarios">
-                    <a href="#" id="cerrado-usuarios" >
-                        <i class="bi bi-person"></i>
-                        Auditor
-                    </a>
-                    <ul class="sub_menu usuario-submenu" id="sub_menu">
-                        
-                         <li><a href="../../vistas/auditor/info_auditor.php"><i class="bi bi-info-circle"></i> Info auditor</a></li>
-                        <li><a href="cambiar_contraseña.php"><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
-                    </ul>
-                </li>
+                <div class="menu-opciones-principales">
+                    <li>
+                        <a href="inicio_auditor.php">
+                            <i class="fas fa-home"></i>
+                            Inicio
+                        </a>
+                    </li>
+                    <li class="gestion_usuario">
+                        <a href="#" id="gestion-usuarios"  class="activo">
+                            <i class="fas fa-file-alt"></i>
+                            Gestión Archivos
+                        </a>
+                        <ul class="sub_menu gestion-submenu" id="sub_menu">
+                            <li><a href="recibir_documentos.php"><i class="fas fa-envelope"></i>pendientes</a></li>
+                            <li><a href="#"><i class="fas fa-eye"></i>Archivos</a></li>
+                            <li><a href="solicitar_documento.php"><i class="fa-solid fa-file-arrow-down"></i> Solicitar archivos</a></li>
+                            <li><a href="archivo_historico.php"><i class="fas fa-history"></i> Archivo historico</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li>
+                        <a href="../../vistas/auditor/pista_auditoria.php">
+                            <i class="fas fa-list-check"></i>
+                            Pista auditoria
+                        </a>
+                    </li>
+                    
+                    <li class="gestion-usuarios">
+                        <a href="#" id="cerrado-usuarios">
+                            <i class="fas fa-user"></i>
+                            Auditor
+                        </a>
+                        <ul class="sub_menu usuario-submenu" id="sub_menu">
+                            <li><a href="../../vistas/auditor/info_auditor.php"><i class="fas fa-info-circle"></i> Info auditor</a></li>
+                            <li><a href="cambiar_contraseña.php"><i class="fas fa-key"></i> Cambiar contraseña</a></li>
+                        </ul>
+                    </li>
 
-                <li class="solo_mobil">
-                    <a href="#" id="solo_mobil">
-                        <i class="bi bi-arrow-left-circle"></i>
-                        Volver
-                    </a>
-                </li>
-            </div>
+                    <li class="solo_mobil">
+                        <a href="#" id="solo_mobil">
+                            <i class="fas fa-arrow-left"></i>
+                            Volver
+                        </a>
+                    </li>
+                </div>
 
-            <li class="cerrar-sesion-separado">
-            <a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesión</a>
-        </li>
+                <li class="cerrar-sesion-separado">
+                    <a href="#" id="cerrar_sesion"><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a>
+                </li>
             </ul>
         </nav>
+        
         
         
         <section id="admin-contenido" class="admin">
             <!-- Título y botones cuando hay expediente seleccionado -->
             <?php if ($expediente_seleccionado): ?>
                 <div class="breadcrumb">
-                <a href="?">Inicio</a> <i class="bi bi-chevron-right"></i> 
+                <a href="?">Inicio</a> <i class="fas fa-chevron-right"></i> 
                 <a href="javascript:history.back()" class="back-button">Atrás</a> 
               <?php 
                 $carpeta_actual = obtenerInfoExpediente($conexion_metadocs, $expediente_seleccionado);
                 if ($carpeta_actual) {
                 
-                    echo '<i class="bi bi-chevron-right"></i> ' . htmlspecialchars($carpeta_actual['nombre']);
+                    echo '<i class="fas fa-chevron-right"></i> ' . htmlspecialchars($carpeta_actual['nombre']);
                 } else {
                 
                 }
@@ -161,31 +159,31 @@ $total_registros = $resultado_contenido['total_registros'];
                             <tr class="documentos" data-url="?id_expediente=<?= $item['id']; ?>">
                                 <td class="documento-nombre">
                                     <a href="?id_expediente=<?= $item['id']; ?>">
-                                        <i class="bi bi-folder2"></i> <?= htmlspecialchars($item['nombre']); ?>
+                                        <i class="fas fa-folder"></i> <?= htmlspecialchars($item['nombre']); ?>
                                     </a>
                                 </td>
                                 <td class="documento-tipo">expediente</td>
                                 <td class="documento-fecha"><?= htmlspecialchars($item['fecha_creacion']); ?></td>
                                 <td class="documento-accion">
                                     <button class="btn_accion" data-id="<?= $item['id']; ?>">
-                                        <i class="bi bi-pencil-square"></i>
+                                        <i class="fas fa-edit"></i>
                                     </button>
                                 </td>
                             </tr>
                         <?php else: ?>
                             <tr class="documentos" data-document-id="<?= $item['id'] ?>">
                                 <td class="documento-nombre">
-                                    <i class="bi bi-file-earmark-text"></i> 
+                                    <i class="fas fa-file-alt"></i> 
                                     <?= htmlspecialchars($item['nombre']); ?>
                                 </td>
                                 <td class="documento-tipo"><?= htmlspecialchars($item['tipo']); ?></td>
                                 <td class="documento-fecha"><?= htmlspecialchars($item['fecha_creacion']); ?></td>
                                 <td class="documento-accion">
                                     <button class="btn_accion btn_ver_modal escritorio" onclick="verDocumento('<?= urlencode($item['nombre'] . '.' . $item['tipo']) ?>', '<?= strtolower($item['tipo']) ?>')">
-                                        <i class="bi bi-eye"></i>
+                                        <i class="fas fa-eye"></i>
                                     </button>
                                     <button class="btn_accion btn_ver_nueva_ventana movil" onclick="abrirNuevaVentana('<?= urlencode($item['titulo'] . '.' . $item['tipo']) ?>')">
-                                        <i class="bi bi-eye"></i>
+                                        <i class="fas fa-eye"></i>
                                     </button>
                                 </td>
                             </tr>

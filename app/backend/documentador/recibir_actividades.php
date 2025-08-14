@@ -8,10 +8,10 @@ AutorizacionRol('documentador');
 
 // ===== CONFIGURACIÓN DE PAGINACIÓN =====
 $pagina_actual = isset($_GET['pagina']) ? max(1, intval($_GET['pagina'])) : 1;
-$registros_por_pagina = 10; // Puedes ajustar este número según tus necesidades
+$registros_por_pagina = 10; 
 $offset = ($pagina_actual - 1) * $registros_por_pagina;
 
-// ===== PASO 2: FUNCIÓN PARA OBTENER NOTIFICACIONES CON PAGINACIÓN =====
+
 function obtenerNotificaciones($usuario_destinatario, $limit = 10, $offset = 0) {
     global $conexion_metadocs;
     
@@ -55,7 +55,7 @@ function contarTotalNotificaciones($usuario_destinatario) {
     return $row['total'];
 }
 
-// ===== PASO 3: FUNCIÓN PARA PROCESAR DATOS DEL MENSAJE =====
+
 function procesarMensaje($mensaje_json) {
     $datos = json_decode($mensaje_json, true);
     
@@ -80,35 +80,35 @@ function procesarMensaje($mensaje_json) {
     ];
 }
 
-// ===== PASO 4: FUNCIÓN PARA MAPEAR TIPOS A ICONOS Y ESTILOS =====
+
 function obtenerConfiguracionTipo($tipo_actividad) {
     $configuraciones = [
         'solicitud_documento' => [
-            'icono' => 'bi-file-earmark-arrow-up',
+            'icono' => 'fa-file-text',
             'texto_tipo' => 'Solicitud de documento',
             'clase_css' => 'documento',
             'modal' => 'modal-solicitud-documento'
         ],
         'documento_aprobado' => [
-            'icono' => 'bi-file-earmark-check',
+            'icono' => 'fa-check-circle',
             'texto_tipo' => 'Documento aprobado',
             'clase_css' => 'documento-aprobado',
             'modal' => 'modal-documento-aprobado'
         ],
         'documento_rechazado' => [
-            'icono' => 'bi-file-earmark-x',
+            'icono' => 'fa-times-circle',
             'texto_tipo' => 'Documento rechazado',
             'clase_css' => 'documento-rechazado',
             'modal' => 'modal-documento-rechazado'
         ],
         'expediente_aprobado' => [
-            'icono' => 'bi-folder-check',
+            'icono' => 'fa-folder-open',
             'texto_tipo' => 'Expediente aprobado',
             'clase_css' => 'expediente-aprobado',
             'modal' => 'modal-expediente-aprobado'
         ],
         'expediente_rechazado' => [
-            'icono' => 'bi-folder-x',
+            'icono' => 'fa-folder-minus',
             'texto_tipo' => 'Expediente rechazado',
             'clase_css' => 'expediente-rechazado',
             'modal' => 'modal-expediente-rechazado'
@@ -123,10 +123,10 @@ function obtenerConfiguracionTipo($tipo_actividad) {
     ];
 }
 
-// ===== PASO 5: FUNCIÓN PARA CALCULAR TIEMPO TRANSCURRIDO =====
+
 date_default_timezone_set('America/Bogota');
 
-// ===== FUNCIÓN CORREGIDA PARA CALCULAR TIEMPO TRANSCURRIDO =====
+
 function tiempoTranscurrido($fecha_creacion) {
     try {
         // Configurar zona horaria para Colombia
@@ -160,7 +160,7 @@ function tiempoTranscurrido($fecha_creacion) {
     }
 }
 
-// ===== FUNCIÓN ALTERNATIVA MÁS SIMPLE (SI LA ANTERIOR DA PROBLEMAS) =====
+
 function tiempoTranscurridoSimple($fecha_creacion) {
     // Asegurar zona horaria
     date_default_timezone_set('America/Bogota');
@@ -191,7 +191,7 @@ function tiempoTranscurridoSimple($fecha_creacion) {
     }
 }
 
-// ===== PASO 6: OBTENER DATOS PARA LA VISTA CON PAGINACIÓN =====
+
 $usuario_actual = $usuario['nombres']. " ".$usuario['apellidos'] ?? 'metadocs prueba';
 
 // Calcular datos de paginación
@@ -201,7 +201,7 @@ $total_paginas = ceil($total_registros / $registros_por_pagina);
 // Obtener notificaciones con paginación
 $notificaciones = obtenerNotificaciones($usuario_actual, $registros_por_pagina, $offset);
 
-// ===== PASO 7: PROCESAR NOTIFICACIONES PARA LA VISTA =====
+
 $notificaciones_procesadas = [];
 foreach ($notificaciones as $notificacion) {
     $datos_mensaje = procesarMensaje($notificacion['mensaje']);
@@ -222,7 +222,7 @@ foreach ($notificaciones as $notificacion) {
     ];
 }
 
-// ===== PASO 8: FUNCIÓN AUXILIAR PARA OBTENER NOMBRE DE USUARIO =====
+
 function obtenerNombreUsuario($id_usuario) {
     global $conexion_metadocs;
     
@@ -239,7 +239,7 @@ function obtenerNombreUsuario($id_usuario) {
     return 'Usuario Desconocido';
 }
 
-// ===== FUNCIÓN PARA GENERAR ENLACES DE PAGINACIÓN =====
+
 function generarPaginacion($pagina_actual, $total_paginas, $url_base = '') {
     if ($total_paginas <= 1) {
         return '';
@@ -319,7 +319,6 @@ function generarPaginacion($pagina_actual, $total_paginas, $url_base = '') {
 $inicio_registro = ($pagina_actual - 1) * $registros_por_pagina + 1;
 $fin_registro = min($pagina_actual * $registros_por_pagina, $total_registros);
 
-// ===== PASO 9: FUNCIÓN PARA MARCAR COMO VISTO =====
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['marcar_visto'])) {
     $id_actividad = $_POST['id_actividad'];
     

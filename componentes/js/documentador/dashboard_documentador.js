@@ -106,6 +106,7 @@ function actualizarBadgeSolicitudes(totalSolicitudes) {
         }
     }
 }
+
 function actualizarTarjetaEstadistica(selector, total, cambio, periodo) {
     const tarjeta = document.querySelector(selector);
     if (!tarjeta) return;
@@ -128,7 +129,7 @@ function actualizarTarjetaEstadistica(selector, total, cambio, periodo) {
 }
 
 function actualizarActividadReciente(actividades) {
-    const contenedorActividad = document.querySelector('.recent-activity');
+    const contenedorActividad = document.querySelector('.recent-activitys');
     if (!contenedorActividad) return;
 
     // Limpiar actividades existentes (excepto el título)
@@ -140,6 +141,9 @@ function actualizarActividadReciente(actividades) {
         const mensajeVacio = document.createElement('div');
         mensajeVacio.className = 'activity-item';
         mensajeVacio.innerHTML = `
+            <div class="activity-icon">
+                <i class="fas fa-info-circle"></i>
+            </div>
             <div class="activity-content">
                 <div class="activity-text">No hay actividad reciente</div>
                 <div class="activity-time">-</div>
@@ -160,11 +164,14 @@ function crearElementoActividad(actividad) {
     const div = document.createElement('div');
     div.className = 'activity-item';
 
-    const iconoClase = obtenerClaseIcono(actividad.accion, actividad.entidad);
+    const iconoHtml = obtenerIconoFontAwesome(actividad.accion, actividad.entidad);
+    const clasesIcono = obtenerClasesIcono(actividad.accion, actividad.entidad);
     const textoActividad = generarTextoActividad(actividad);
 
     div.innerHTML = `
-        <div class="activity-icon ${iconoClase}"></div>
+        <div class="activity-icon ${clasesIcono}">
+            ${iconoHtml}
+        </div>
         <div class="activity-content">
             <div class="activity-text">${textoActividad}</div>
             <div class="activity-time">${actividad.tiempo}</div>
@@ -174,21 +181,50 @@ function crearElementoActividad(actividad) {
     return div;
 }
 
-function obtenerClaseIcono(accion, entidad) {
+function obtenerIconoFontAwesome(accion, entidad) {
     const mapeoIconos = {
+        'subió_documento': '<i class="fas fa-file-upload"></i>',
+        'subió_expediente': '<i class="fas fa-folder-plus"></i>',
+        'editó_documento': '<i class="fas fa-edit"></i>',
+        'editó_expediente': '<i class="fas fa-folder-open"></i>',
+        'creó_documento': '<i class="fas fa-file-plus"></i>',
+        'creó_expediente': '<i class="fas fa-folder-plus"></i>',
+        'eliminó_documento': '<i class="fas fa-trash-alt"></i>',
+        'eliminó_expediente': '<i class="fas fa-folder-minus"></i>',
+        'aprobó_documento': '<i class="fas fa-check-circle"></i>',
+        'aprobó_expediente': '<i class="fas fa-check-double"></i>',
+        'rechazó_documento': '<i class="fas fa-times-circle"></i>',
+        'rechazó_expediente': '<i class="fas fa-ban"></i>',
+        'actualizó_documento': '<i class="fas fa-sync-alt"></i>',
+        'actualizó_expediente': '<i class="fas fa-sync"></i>',
+        'subió': entidad === 'documento' ? '<i class="fas fa-file-upload"></i>' : '<i class="fas fa-folder-plus"></i>'
+    };
+
+    const clave = `${accion}_${entidad}`;
+    return mapeoIconos[clave] || mapeoIconos[accion] || '<i class="fas fa-file-alt"></i>';
+}
+
+function obtenerClasesIcono(accion, entidad) {
+    const mapeoClases = {
         'subió_documento': 'uploaded icon-uploaded',
         'subió_expediente': 'created icon-created',
-        'editó_documento': 'uploaded icon-uploaded',
-        'editó_expediente': 'created icon-created',
-        'creó_documento': 'uploaded icon-uploaded',
+        'editó_documento': 'edited icon-edited',
+        'editó_expediente': 'edited icon-edited',
+        'creó_documento': 'created icon-created',
         'creó_expediente': 'created icon-created',
         'eliminó_documento': 'deleted icon-deleted',
         'eliminó_expediente': 'deleted icon-deleted',
+        'aprobó_documento': 'approved icon-approved',
+        'aprobó_expediente': 'approved icon-approved',
+        'rechazó_documento': 'rejected icon-rejected',
+        'rechazó_expediente': 'rejected icon-rejected',
+        'actualizó_documento': 'updated icon-updated',
+        'actualizó_expediente': 'updated icon-updated',
         'subió': entidad === 'documento' ? 'uploaded icon-uploaded' : 'created icon-created'
     };
 
     const clave = `${accion}_${entidad}`;
-    return mapeoIconos[clave] || mapeoIconos[accion] || 'uploaded icon-uploaded';
+    return mapeoClases[clave] || mapeoClases[accion] || 'uploaded icon-uploaded';
 }
 
 function generarTextoActividad(actividad) {
@@ -251,8 +287,8 @@ function mostrarError(mensaje) {
         position: fixed;
         top: 20px;
         right: 20px;
-        background: #ff4444;
-        color: white;
+        background: #3D688A;
+        color: #FFF;
         padding: 15px;
         border-radius: 5px;
         z-index: 9999;
@@ -269,10 +305,3 @@ function mostrarError(mensaje) {
     }, 5000);
 }
 
-// Función para refrescar los datos (opcional)
-function refrescarDashboard() {
-    cargarDatosDashboard();
-}
-
-// Auto-refresh cada 5 minutos (opcional)
-setInterval(cargarDatosDashboard, 300000); // 300000ms = 5 minutos

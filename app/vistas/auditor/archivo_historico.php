@@ -18,7 +18,7 @@ if (isset($documentos_archivados)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auditor | Metadocs</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
     <link rel="stylesheet" href="../../../componentes/css/auditor/archivo_historico.css">
@@ -28,65 +28,64 @@ if (isset($documentos_archivados)) {
 <body>
 
     <header id="cabezote">
-        <i class="bi bi-list" id="menu_opciones"></i>
+        <i class="fas fa-bars" id="menu_opciones"></i>
     </header>
 
     <main id="cuerpo">
-        <nav id="menu-lateral" class="menu-lateral">
+         <nav id="menu-lateral" class="menu-lateral">
             <figure id="img_menu">
-                    <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
+                <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
             </figure>
             <ul>
-             <div class="menu-opciones-principales">
-                <li>
-                    <a href="inicio_auditor.php" >
-                        <i class="bi bi-house-door"></i>
-                        Inicio
-                    </a>
-                </li>
-                <li class="gestion_usuario">
-                    <a href="#" id="gestion-usuarios" class="activo">
-                        <i class="bi bi-file-earmark-text" ></i>
-                        Gestión Archivos
-                    </a>
-                    <ul class="sub_menu gestion-submenu" id="sub_menu">
-                        <li><a href="recibir_documentos.php"><i class="bi bi-envelope-paper"></i>pendientes</a></li>
-                        <li><a href="archivos_auditor.php"><i class="bi bi-eye"></i>Archivos</a></li>
-                        <li><a href="solicitar_documento.php"><i class="bi bi-file-earmark-plus"></i> Solicitar archivos</a></li>
-                        <li><a href=""  class="submenu-activo"> <i class="bi bi-clock-history"></i> Archivo historico</a></li>
-                    </ul>
-                </li>
-                
-                <li>
-                    <a href="../../vistas/auditor/pista_auditoria.php">
-                        <i class="bi bi-list-check"></i>
-                        Pista auditoria
-                    </a>
-                </li>
-                
-                <li class="gestion-usuarios">
-                    <a href="#" id="cerrado-usuarios" >
-                        <i class="bi bi-person"></i>
-                        Auditor
-                    </a>
-                    <ul class="sub_menu usuario-submenu" id="sub_menu">
-                        
-                         <li><a href="../../vistas/auditor/info_auditor.php"><i class="bi bi-info-circle"></i> Info auditor</a></li>
-                        <li><a href="cambiar_contraseña.php"><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
-                    </ul>
-                </li>
+                <div class="menu-opciones-principales">
+                    <li>
+                        <a href="inicio_auditor.php">
+                            <i class="fas fa-home"></i>
+                            Inicio
+                        </a>
+                    </li>
+                    <li class="gestion_usuario">
+                        <a href="#" id="gestion-usuarios"  class="activo">
+                            <i class="fas fa-file-alt"></i>
+                            Gestión Archivos
+                        </a>
+                        <ul class="sub_menu gestion-submenu" id="sub_menu">
+                            <li><a href="recibir_documentos.php"><i class="fas fa-envelope"></i>pendientes</a></li>
+                            <li><a href="archivos_auditor.php"><i class="fas fa-eye"></i>Archivos</a></li>
+                            <li><a href="solicitar_documento.php"><i class="fa-solid fa-file-arrow-down"></i> Solicitar archivos</a></li>
+                            <li><a href="#"><i class="fas fa-history"></i> Archivo historico</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li>
+                        <a href="../../vistas/auditor/pista_auditoria.php">
+                            <i class="fas fa-list-check"></i>
+                            Pista auditoria
+                        </a>
+                    </li>
+                    
+                    <li class="gestion-usuarios">
+                        <a href="#" id="cerrado-usuarios">
+                            <i class="fas fa-user"></i>
+                            Auditor
+                        </a>
+                        <ul class="sub_menu usuario-submenu" id="sub_menu">
+                            <li><a href="../../vistas/auditor/info_auditor.php"><i class="fas fa-info-circle"></i> Info auditor</a></li>
+                            <li><a href="cambiar_contraseña.php"><i class="fas fa-key"></i> Cambiar contraseña</a></li>
+                        </ul>
+                    </li>
 
-                <li class="solo_mobil">
-                    <a href="#" id="solo_mobil">
-                        <i class="bi bi-arrow-left-circle"></i>
-                        Volver
-                    </a>
-                </li>
-            </div>
+                    <li class="solo_mobil">
+                        <a href="#" id="solo_mobil">
+                            <i class="fas fa-arrow-left"></i>
+                            Volver
+                        </a>
+                    </li>
+                </div>
 
-            <li class="cerrar-sesion-separado">
-            <a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesión</a>
-        </li>
+                <li class="cerrar-sesion-separado">
+                    <a href="#" id="cerrar_sesion"><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a>
+                </li>
             </ul>
         </nav>
         
@@ -138,7 +137,7 @@ if (isset($documentos_archivados)) {
                         <?php foreach ($documentos_archivados as $documento): ?>
                             <tr class="documentos" data-document-id="<?= isset($documento['id_documento']) ? $documento['id_documento'] : '' ?>">
                                 <td class="documento-nombre">
-                                    <i class="bi bi-file-earmark-text"></i> 
+                                    <i class="fas fa-file-alt"></i> 
                                     <?php echo htmlspecialchars($documento['titulo']); ?>
                                 </td>
                                 <td class="documento-categoria"><?php echo htmlspecialchars($documento['categoria']); ?></td>
@@ -158,13 +157,13 @@ if (isset($documentos_archivados)) {
                                     <!-- Botón para escritorio - Modal -->
                                     <button class="btn_accion_archivo btn_ver_modal escritorio" 
                                             onclick="verDocumento('<?= urlencode($documento['titulo'] . '.' . $documento['tipo']) ?>', '<?= strtolower($documento['tipo']) ?>')">
-                                        <i class="bi bi-eye"></i>
+                                        <i class="fas fa-eye"></i>
                                     </button>
 
                                     <!-- Botón para móvil - Nueva ventana -->
                                     <button class="btn_accion__archivo btn_ver_nueva_ventana movil" 
                                             onclick="abrirNuevaVentana('<?= urlencode($documento['titulo'] . '.' . $documento['tipo']) ?>')">
-                                        <i class="bi bi-eye"></i>
+                                        <i class="fas fa-eye"></i>
                                     </button>
                                 </td>
                             </tr>
@@ -219,7 +218,7 @@ if (isset($documentos_archivados)) {
     <script src="../../../componentes/js/auditor/auditor_ver_docs.js"></script>
     <script src="../../../componentes/js/auditor/filtro_archivado.js"></script>
     <script src="../../../componentes/js/documentador/visor.js"></script>
-    <!-- Agregar script adicional para manejo de tabla si es necesario -->
+   
     <script src="../../../componentes/js/documentador/tabla_click.js"></script>
 </body>
 </html>

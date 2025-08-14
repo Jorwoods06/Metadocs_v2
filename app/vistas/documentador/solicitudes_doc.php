@@ -9,7 +9,7 @@ require_once '../../backend/documentador/recibir_actividades.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documentador | Metadocs</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
     <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
@@ -18,38 +18,38 @@ require_once '../../backend/documentador/recibir_actividades.php';
     <script src="../../../componentes/js/admin/panel.js" defer></script>
 </head>
 <body>
-    <header id="cabezote">
-        <i class="bi bi-list" id="menu_opciones"></i>
+       <header id="cabezote">
+        <i class="fas fa-bars" id="menu_opciones"></i>
     </header>
-
     <main id="cuerpo">
-        <nav id="menu-lateral" class="menu-lateral">
+       <nav id="menu-lateral" class="menu-lateral">
             <figure id="img_menu">
                 <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
             </figure>
             <ul>
              <div class="menu-opciones-principales">
-                <li><a href="inicio_documentador.php"><i class="bi bi-house-door"></i>Inicio</a></li>
-                <li><a href="ver_documentos.php"><i class="bi bi-file-earmark-text"></i>Archivos</a></li>
-                <li><a href="" class="activo"><i class="bi bi-envelope-paper"></i>Solicitudes</a></li>
+                <li><a href="inicio_documentador.php"><i class="fas fa-home"></i>Inicio</a></li>
+                <li><a href="ver_documentos.php"><i class="fas fa-file-alt"></i>Archivos</a></li>
+                <li><a href="solicitudes_doc.php"class="activo" ><i class="fas fa-envelope"></i>Solicitudes</a></li>
                 <li class="gestion-usuarios">
-                    <a href="#" id="cerrado-usuarios">
-                        <i class="bi bi-person"></i>Documentador
+                    <a href="#" id="cerrado-usuarios" >
+                        <i class="fas fa-user"></i>Documentador
                     </a>
                     <ul class="sub_menu usuario-submenu" id="sub_menu">
                      
-                        <li><a href="info_documentador.php"><i class="bi bi-info-circle"></i> Info documentador</a></li>
-                        <li><a href="cambiar_contraseña.php"><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
+                        <li><a href="info_documentador.php" ><i class="fas fa-info-circle"></i> Info documentador</a></li>
+                        <li><a href="cambiar_contraseña.php"><i class="fas fa-key"></i> Cambiar contraseña</a></li>
                     </ul>
                 </li>
                 <li class="solo_mobil">
-                    <a href="#" id="solo_mobil"><i class="bi bi-arrow-left-circle"></i>Volver</a>
+                    <a href="#" id="solo_mobil"><i class="fas fa-arrow-left"></i>Volver</a>
                 </li>
                   </div>
-                   <li  class="cerrar-sesion-separado"><a href="#" id="cerrar_sesion"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</a></li>
+                   <li  class="cerrar-sesion-separado"><a href="#" id="cerrar_sesion"><i class="fas fa-sign-out-alt"></i>Cerrar sesion</a></li>
             </ul>
         
            
+    
         </nav>
 <section class="contenedor-principal">
     <h1>Solicitudes Recibidas</h1>
@@ -91,7 +91,7 @@ require_once '../../backend/documentador/recibir_actividades.php';
                                 onclick="abrirModal('<?php echo htmlspecialchars($notificacion['modal']); ?>', <?php echo $datos_json; ?>)">
                                 
                                 <td class="col-icono">
-                                    <i class="bi <?php echo htmlspecialchars($notificacion['icono']); ?> icono-tipo"></i>
+                                    <i class="fas <?php echo htmlspecialchars($notificacion['icono']); ?> icono-tipo"></i>
                                 </td>
                                 
                                 <td class="col-usuario">
@@ -118,7 +118,7 @@ require_once '../../backend/documentador/recibir_actividades.php';
                 </table>
             <?php else: ?>
                 <div class="mensaje-vacio">
-                    <i class="bi bi-inbox"></i>
+                    <i class="fas fa-inbox"></i>
                     <p>No tienes notificaciones en este momento</p>
                 </div>
             <?php endif; ?>
@@ -152,7 +152,7 @@ require_once '../../backend/documentador/recibir_actividades.php';
             
             <div class="modal-header">
                 <div class="icono-estado">
-                    <i class="bi bi-person"></i>
+                    <i class="fas fa-user"></i>
                 </div>
                 <div class="info-usuario">
                     <h3 id="modal-solicitud-usuario">-</h3>
@@ -203,7 +203,7 @@ require_once '../../backend/documentador/recibir_actividades.php';
             
             <div class="modal-header documento-aprobado">
                 <div class="icono-estado">
-                    <i class="bi bi-person"></i>
+                    <i class="fas fa-user"></i>
                 </div>
                 <div class="info-usuario">
                     <h3 id="modal-doc-aprobado-usuario">-</h3>
@@ -259,7 +259,7 @@ require_once '../../backend/documentador/recibir_actividades.php';
             
             <div class="modal-header documento-rechazado">
                 <div class="icono-estado">
-                    <i class="bi bi-person"></i>
+                    <i class="fas fa-user"></i>
                 </div>
                 <div class="info-usuario">
                     <h3 id="modal-doc-rechazado-usuario">-</h3>
@@ -310,7 +310,7 @@ require_once '../../backend/documentador/recibir_actividades.php';
             
             <div class="modal-header expediente-aprobado">
                 <div class="icono-estado">
-                    <i class="bi bi-person"></i>
+                    <i class="fas fa-user"></i>
                 </div>
                 <div class="info-usuario">
                     <h3 id="modal-exp-aprobado-usuario">-</h3>
@@ -356,7 +356,7 @@ require_once '../../backend/documentador/recibir_actividades.php';
             
             <div class="modal-header expediente-rechazado">
                 <div class="icono-estado">
-                <i class="bi bi-person"></i>
+                <i class="fas fa-user"></i>
                 </div>
                 <div class="info-usuario">
                     <h3 id="modal-exp-rechazado-usuario">-</h3>

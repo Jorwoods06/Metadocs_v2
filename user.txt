@@ -9,7 +9,7 @@ pass : jorge123
 rol: admin
 
 user-auditor: jorgemulato206@gmail.com
-pass : jorge123456
+pass : Jorge123456
 rol: auditor
 
 user-documentador: metadocs7@gmail.com

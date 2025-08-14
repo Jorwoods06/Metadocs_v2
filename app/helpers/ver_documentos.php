@@ -4,7 +4,7 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 use ConvertApi\ConvertApi;
 
 //  Clave de API de ConvertAPI
-$API_KEY = 'Kfilut7lXcr41xSRbOT7W37Hhq82pqqi'; // Reemplaza por tu clave real
+$API_KEY = 'u2oNU99UeFdkjtS0LYKY6C8q1Y614t1l';
 
 // Configurar la API key
 ConvertApi::setApiCredentials($API_KEY);
@@ -16,7 +16,7 @@ if (!isset($_GET['file'])) {
 
 $archivo = basename($_GET['file']); // evita rutas externas
 
-//  CORRECCIÓN: Si el archivo no tiene extensión, intentar encontrarla
+
 $extension_archivo = strtolower(pathinfo($archivo, PATHINFO_EXTENSION));
 if (empty($extension_archivo)) {
     // Buscar el archivo con cualquier extensión
@@ -35,7 +35,7 @@ $path_archivo = __DIR__ . "/../uploads/" . $archivo;
 if (!file_exists($path_archivo)) {
     // 🔍 Intentar rutas alternativas comunes
     $rutas_alternativas = [
-        __DIR__ . "/../uploads/" . $archivo,         // app/helpers/ -> app/uploads/
+        __DIR__ . "/../uploads/" . $archivo,         
         __DIR__ . "/uploads/" . $archivo,            // Por si uploads está en helpers/
         __DIR__ . "/../../uploads/" . $archivo,      // Por si uploads está en raíz
         "./uploads/" . $archivo,                     // Relativa simple
@@ -69,26 +69,10 @@ if ($extension === 'pdf') {
     exit;
 }
 
-// Si es imagen, mostrar directamente
-$imagenes = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp'];
-if (in_array($extension, $imagenes)) {
-    $mime_type = match($extension) {
-        'jpg', 'jpeg' => 'image/jpeg',
-        'png' => 'image/png',
-        'gif' => 'image/gif',
-        'bmp' => 'image/bmp',
-        'webp' => 'image/webp',
-        default => 'image/jpeg'
-    };
-    
-    header("Content-Type: $mime_type");
-    header("Content-Disposition: inline; filename=\"" . $archivo . "\"");
-    readfile($path_archivo);
-    exit;
-}
 
-// Si es Word, Excel, PowerPoint, etc., convertir a PDF
-$permitidos = ['doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'txt', 'rtf'];
+
+// Si es Word, Excel, convertir a PDF
+$permitidos = ['doc', 'docx', 'xls', 'xlsx', 'txt', 'rtf'];
 
 if (in_array($extension, $permitidos)) {
     // Crear directorio temporal si no existe

@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Función para mostrar modal
     function mostrarModal(modal) {
         if (modal) {
-            modal.style.display = 'block';
+            modal.style.display = 'flex';
         }
     }
 
@@ -259,11 +259,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnSalirRechazarDoc = modalRechazarDocumento?.querySelector(".close");
     const inputHiddenRechazarDoc = modalRechazarDocumento?.querySelector("input[name='datos_documento']");
 
-    // Event listeners para botones de rechazar EXPEDIENTES - CORREGIDO
+    // Event listeners para botones de rechazar expedientes
     const botonesRechazarExpedientes = document.querySelectorAll("#contenedor-expedientes .btn-accion.rechazado");
     botonesRechazarExpedientes.forEach(boton => {
         boton.addEventListener("click", (e) => {
-            console.log('🚫 Click en botón rechazar expediente');
+            console.log('Click en botón rechazar expediente');
             
             const carta = e.target.closest('.carta');
             const datos = extraerDatosExpediente(carta);
@@ -272,14 +272,14 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Verificar que tenemos los datos necesarios
             if (!datos.id) {
-                console.error('❌ No se pudo obtener el ID del expediente');
+                console.error(' No se pudo obtener el ID del expediente');
                 return;
             }
             
             // Asignar valores a los inputs hidden del modal de rechazo
             if (inputHiddenRechazarExp) {
                 inputHiddenRechazarExp.value = datos.id;
-                console.log('✅ ID asignado al input hidden:', datos.id);
+                console.log(' ID asignado al input hidden:', datos.id);
             }
             
             // Llenar campos adicionales para el rechazo de expedientes
@@ -288,24 +288,24 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (inputUsuarioDestinatarioRechExp) {
                 inputUsuarioDestinatarioRechExp.value = datos.autor;
-                console.log('✅ Usuario destinatario asignado:', datos.autor);
+                console.log(' Usuario destinatario asignado:', datos.autor);
             }
             
             if (inputNombreExpedienteRech) {
                 inputNombreExpedienteRech.value = datos.nombre;
-                console.log('✅ Nombre expediente asignado:', datos.nombre);
+                console.log(' Nombre expediente asignado:', datos.nombre);
             }
             
             // Limpiar el textarea
             const textarea = modalRechazarExpediente?.querySelector('textarea[name="motivo_rechazo"]');
             if (textarea) {
                 textarea.value = '';
-                console.log('✅ Textarea limpiado');
+                console.log(' Textarea limpiado');
             }
             
             // Mostrar el modal de rechazo de expedientes
             mostrarModal(modalRechazarExpediente);
-            console.log('✅ Modal de rechazo de expediente mostrado');
+            console.log('Modal de rechazo de expediente mostrado');
         });
     });
 
@@ -313,7 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const botonesRechazarDocumentos = document.querySelectorAll("#contenedor-documentos .rechazado");
     botonesRechazarDocumentos.forEach(boton => {
         boton.addEventListener("click", (e) => {
-            console.log('🚫 Click en botón rechazar documento');
+            console.log(' Click en botón rechazar documento');
             
             const carta = e.target.closest('.carta');
             const datos = extraerDatosDocumento(carta);
@@ -322,14 +322,14 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Verificar que tenemos los datos necesarios
             if (!datos.id) {
-                console.error('❌ No se pudo obtener el ID del documento');
+                console.error(' No se pudo obtener el ID del documento');
                 return;
             }
             
             // Asignar valores a los inputs hidden del modal de rechazo
             if (inputHiddenRechazarDoc) {
                 inputHiddenRechazarDoc.value = datos.id;
-                console.log('✅ ID asignado al input hidden:', datos.id);
+                console.log(' ID asignado al input hidden:', datos.id);
             }
             
             // Llenar campos adicionales para el rechazo de documentos
@@ -340,7 +340,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (inputUsuarioDestinatarioRechDoc) {
                 inputUsuarioDestinatarioRechDoc.value = datos.autor;
-                console.log('✅ Usuario destinatario asignado:', datos.autor);
+                console.log(' Usuario destinatario asignado:', datos.autor);
             }
             
             if (inputTituloRech) {
@@ -362,12 +362,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const textarea = modalRechazarDocumento?.querySelector('textarea[name="motivo_rechazo"]');
             if (textarea) {
                 textarea.value = '';
-                console.log('✅ Textarea limpiado');
+                console.log(' Textarea limpiado');
             }
             
             // Mostrar el modal de rechazo de documentos
             mostrarModal(modalRechazarDocumento);
-            console.log('✅ Modal de rechazo de documento mostrado');
+            console.log(' Modal de rechazo de documento mostrado');
         });
     });
 
@@ -408,27 +408,27 @@ document.addEventListener('DOMContentLoaded', () => {
             const textarea = formRechazarExpediente.querySelector('textarea[name="motivo_rechazo"]');
             const motivoRechazo = textarea ? textarea.value.trim() : '';
             
-            console.log('📝 Validando formulario rechazo expediente');
-            console.log('💬 Motivo ingresado:', motivoRechazo);
-            console.log('📏 Longitud del motivo:', motivoRechazo.length);
+            console.log(' Validando formulario rechazo expediente');
+            console.log(' Motivo ingresado:', motivoRechazo);
+            console.log(' Longitud del motivo:', motivoRechazo.length);
             
             if (motivoRechazo.length < 10) {
                 e.preventDefault();
                 alert('El motivo del rechazo debe tener al menos 10 caracteres.');
                 textarea.focus();
-                console.log('❌ Validación fallida: motivo muy corto');
+                console.log(' Validación fallida: motivo muy corto');
                 return false;
             }
             
             // Debug final antes del envío
             const formData = new FormData(formRechazarExpediente);
-            console.group('🚀 ENVÍO FORMULARIO RECHAZO EXPEDIENTE');
+            console.group(' ENVÍO FORMULARIO RECHAZO EXPEDIENTE');
             for (let [key, value] of formData.entries()) {
                 console.log(`${key}:`, value);
             }
             console.groupEnd();
             
-            console.log('✅ Validación exitosa, enviando formulario');
+            console.log(' Validación exitosa, enviando formulario');
         });
     }
 
@@ -439,15 +439,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const textarea = formRechazarDocumento.querySelector('textarea[name="motivo_rechazo"]');
             const motivoRechazo = textarea ? textarea.value.trim() : '';
             
-            console.log('📝 Validando formulario rechazo documento');
-            console.log('💬 Motivo ingresado:', motivoRechazo);
-            console.log('📏 Longitud del motivo:', motivoRechazo.length);
+            console.log(' Validando formulario rechazo documento');
+            console.log(' Motivo ingresado:', motivoRechazo);
+            console.log(' Longitud del motivo:', motivoRechazo.length);
             
             if (motivoRechazo.length < 10) {
                 e.preventDefault();
                 alert('El motivo del rechazo debe tener al menos 10 caracteres.');
                 textarea.focus();
-                console.log('❌ Validación fallida: motivo muy corto');
+                console.log(' Validación fallida: motivo muy corto');
                 return false;
             }
             

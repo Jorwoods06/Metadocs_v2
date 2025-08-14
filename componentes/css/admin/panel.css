@@ -1,4 +1,4 @@
-/* Reset básico */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -83,6 +83,14 @@ body {
   flex: 1; /* Ocupa todo el espacio disponible */
 }
 
+ a#gestion-usuarios{
+ 
+    display: flex;
+    gap: 10px;
+    font-size: 1rem;
+
+}
+
 /* Separador visual para el botón cerrar sesión */
 .cerrar-sesion-separado {
   border-top: 1px solid rgba(255, 255, 255, 0.2);
@@ -101,8 +109,9 @@ body {
   align-items: center;
   color: #E4E4E4;
   text-decoration: none;
-  font-size: clamp(1rem, 2.5vw, 1.1rem);
+  font-size: 1.5rem;
   padding: 14px 20px;
+  gap: 15px;
   width: 100%;
   letter-spacing: 0.025em;
   cursor: pointer;

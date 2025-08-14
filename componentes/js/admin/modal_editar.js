@@ -2,7 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const modal = document.getElementById('modal-editar');
   const close = document.querySelector('.close');
 
-  document.querySelectorAll('.bi-pencil').forEach(button => {
+
+  document.querySelectorAll('.fa-edit').forEach(button => {
     button.addEventListener('click', () => {
       modal.style.display = 'block';
     });
@@ -20,7 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
   
 let correoOriginal = '';
 
-document.querySelectorAll('.bi-pencil').forEach(icono => {
+// ACTUALIZADO: Cambié .bi-pencil por .fa-edit
+document.querySelectorAll('.fa-edit').forEach(icono => {
     icono.addEventListener('click', function(e) {
         const fila = e.target.closest('tr');
         const celdas = fila.getElementsByTagName('td');
@@ -58,11 +60,16 @@ document.querySelector('.btn_editar').addEventListener('click', function(e) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert('Usuario editado correctamente');
+            const modaledicion = document.getElementById('modal-exito-editar');
+            if(modaledicion.style.display == 'flex'){
+                modaledicion.style.display = 'none'
+            }else{
+                modaledicion.style.display = 'flex'
+            }
             
             document.getElementById('modal-editar').style.display = 'none';
            
-            location.reload();
+           
         } else {
             alert('Error: ' + data.error);
         }

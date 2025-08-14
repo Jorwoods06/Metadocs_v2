@@ -3,12 +3,7 @@
 
 // dashboard_data.php - Backend para obtener datos del dashboard del auditor
 
-use Dom\Mysql;
 
-header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET');
-header('Access-Control-Allow-Headers: Content-Type');
 
 date_default_timezone_set('America/Bogota');
 

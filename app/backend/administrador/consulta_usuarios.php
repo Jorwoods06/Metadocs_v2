@@ -26,5 +26,3 @@ $total_paginas = ceil($total_filas / $cantidad_tabla);
 
 
 $conexion_metadocs->close();
-
-?>

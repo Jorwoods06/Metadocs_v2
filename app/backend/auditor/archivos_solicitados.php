@@ -22,7 +22,3 @@ $sentencia_documento = "SELECT
     expedientes.nombre AS expediente FROM documentos JOIN usuarios ON documentos.autor = usuarios.id_usuario  JOIN retencion ON documentos.id_retencion = retencion.categoria JOIN expedientes ON expedientes.id_expediente = documentos.id_expediente  WHERE documentos.estado = 'revision' AND documentos.id_area = '$area_usuarios';";
 
 $resultado_documento = $conexion_metadocs->query($sentencia_documento);
-
-
-
-?>

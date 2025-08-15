@@ -77,13 +77,13 @@ try {
     } else {
         $resultado = mysqli_query($conexion_metadocs, $sql);
     }
-    
+
     $actividades = [];
     if ($resultado) {
         while ($fila = mysqli_fetch_assoc($resultado)) {
             $actividades[] = $fila;
         }
-        
+
         // Ejecutar consulta de conteo
         if (!empty($params)) {
             $stmt_count = $conexion_metadocs->prepare($sql_count);
@@ -93,15 +93,15 @@ try {
         } else {
             $resultado_count = mysqli_query($conexion_metadocs, $sql_count);
         }
-        
+
         if ($resultado_count) {
             $total_registros = mysqli_fetch_assoc($resultado_count)['total'];
             $total_paginas = ceil($total_registros / $registros_por_pagina);
-            
+
             // Generar números de página para mostrar
             $paginas_mostrar = [];
             $rango = 2; // Mostrar 2 páginas antes y después de la actual
-            
+
             // Siempre mostrar página 1
             if ($pagina > $rango + 2) {
                 $paginas_mostrar[] = 1;
@@ -109,12 +109,12 @@ try {
                     $paginas_mostrar[] = '...';
                 }
             }
-            
+
             // Páginas alrededor de la actual
             for ($i = max(1, $pagina - $rango); $i <= min($total_paginas, $pagina + $rango); $i++) {
                 $paginas_mostrar[] = $i;
             }
-            
+
             // Mostrar última página si es necesario
             if ($pagina < $total_paginas - $rango - 1) {
                 if ($pagina < $total_paginas - $rango - 2) {
@@ -122,7 +122,7 @@ try {
                 }
                 $paginas_mostrar[] = $total_paginas;
             }
-            
+
             // Devolver respuesta JSON
             header('Content-Type: application/json');
             echo json_encode([
@@ -144,7 +144,6 @@ try {
     } else {
         throw new Exception('Error al obtener actividades: ' . mysqli_error($conexion_metadocs));
     }
-    
 } catch (Exception $e) {
     header('Content-Type: application/json');
     echo json_encode([
@@ -155,4 +154,3 @@ try {
 
 // Cerrar conexión
 mysqli_close($conexion_metadocs);
-?>

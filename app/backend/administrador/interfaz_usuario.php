@@ -18,18 +18,14 @@ if ($resultado && $resultado->num_rows > 0) {
     echo "No se encontró el usuario.";
 }
 
-$mensaje = ''; 
+$mensaje = '';
 if ($rol_usuario == 'administrador') {
     $mensaje = 'Tu rol dentro del sistema es fundamental y abarca varias responsabilidades clave. Principalmente, serás el encargado de la creación y gestión de usuarios, asegurando que solo el personal autorizado tenga acceso. Además, tendrás la capacidad de visualizar y analizar las estadísticas de los documentos del sistema, lo que te permitirá comprender patrones de uso y rendimiento. Finalmente, tu función incluirá la recepción y procesamiento de reportes, crucial para el seguimiento y la toma de decisiones informadas. En resumen, tu posición es vital para mantener la integridad, el rendimiento y la transparencia operativa del sistema';
-
-} else if($rol_usuario == 'documentador'){
+} else if ($rol_usuario == 'documentador') {
     $mensaje = "Como parte de tus responsabilidades, te encargarás de subir archivos y expedientes específicos que el auditor te solicite, asegurando su correcta incorporación al sistema. También tendrás la capacidad de consultar y verificar estos documentos una vez cargados. Además, será tu función preparar y presentar reportes detallados al administrador sobre la información manejada";
-}else if ($rol_usuario == 'auditor'){
+} else if ($rol_usuario == 'auditor') {
 
     $mensaje = 'Como parte de tus responsabilidades en el sistema, te encargarás de solicitar y autorizar documentos y expedientes. Podrás consultar la pista de auditoría para el seguimiento de cambios y acciones, así como acceder al archivo histórico para referencia y consulta. Asimismo, tu función incluirá la elaboración de reportes dirigidos al administrador';
 }
 
 $conexion_metadocs->close();
-
-?>
-

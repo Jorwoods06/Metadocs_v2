@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require_once '../../helpers/verificacion_roles.php';
 require_once '../../backend/auditor/lista_documentadores.php';
@@ -7,6 +7,7 @@ AutorizacionRol('auditor');
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,6 +18,7 @@ AutorizacionRol('auditor');
     <link rel="stylesheet" href="../../../componentes/css/auditor/solicitar.css">
     <script src="../../../componentes/js/admin/panel.js"></script>
 </head>
+
 <body>
     <header id="cabezote">
         <i class="bi bi-list" id="menu_opciones"></i>
@@ -36,7 +38,7 @@ AutorizacionRol('auditor');
                         </a>
                     </li>
                     <li class="gestion_usuario">
-                        <a href="#" id="gestion-usuarios"  class="activo">
+                        <a href="#" id="gestion-usuarios" class="activo">
                             <i class="fas fa-file-alt"></i>
                             Gestión Archivos
                         </a>
@@ -47,14 +49,14 @@ AutorizacionRol('auditor');
                             <li><a href="archivo_historico.php"><i class="fas fa-history"></i> Archivo historico</a></li>
                         </ul>
                     </li>
-                    
+
                     <li>
                         <a href="../../vistas/auditor/pista_auditoria.php">
                             <i class="fas fa-list-check"></i>
                             Pista auditoria
                         </a>
                     </li>
-                    
+
                     <li class="gestion-usuarios">
                         <a href="#" id="cerrado-usuarios">
                             <i class="fas fa-user"></i>
@@ -79,76 +81,77 @@ AutorizacionRol('auditor');
                 </li>
             </ul>
         </nav>
-        
+
         <section id="admin-contenido" class="admin">
 
-    <h1>Solicitar documentos</h1>
+            <h1>Solicitar documentos</h1>
 
-        <div class="formulario-solicitud">
-            <form action="../../backend/auditor/enviar_solicitud.php" method="post">
-                <div class="campo">
-                    <label for="tipo">Categoria</label>
-                    <select id="tipo" name="tipo">
-                        <option value="">Seleccione...</option>
-                        <option value="Estratégicos">Estratégicos</option>
-                        <option value="Operativos">Operativos</option>
-                        <option value="Soporte">Soporte</option>
-                        <option value="Legales">Legales</option>
-                        <option value="Financieros">Financieros</option>
-                        <option value="Correspondencia">Correspondencia</option>
-                    </select>
-                </div>
-
-                <div class="campo">
-                    <label for="responsable">Responsable:</label>
-                    <div class="usuario-selector">
-                        <input type="text" 
-                                id="responsable" 
-                                name="responsable_display" 
-                                class="usuario-input" 
-                                placeholder="Buscar documentador..." 
-                                autocomplete="off">
-                        <input type="hidden" name="responsable" id="responsable_id">
-                        <div class="usuario-dropdown" id="usuario-dropdown"></div>
+            <div class="formulario-solicitud">
+                <form action="../../backend/auditor/enviar_solicitud.php" method="post">
+                    <div class="campo">
+                        <label for="tipo">Categoria</label>
+                        <select id="tipo" name="tipo">
+                            <option value="">Seleccione...</option>
+                            <option value="Estratégicos">Estratégicos</option>
+                            <option value="Operativos">Operativos</option>
+                            <option value="Soporte">Soporte</option>
+                            <option value="Legales">Legales</option>
+                            <option value="Financieros">Financieros</option>
+                            <option value="Correspondencia">Correspondencia</option>
+                        </select>
                     </div>
-                </div>
 
-                <div class="campo">
-                    <label for="expediente">Expediente destinado:</label>
-                    <div class="usuario-selector">
-                        <input type="text" 
-                                id="expediente" 
-                                name="expediente_display" 
-                                class="usuario-input" 
-                                placeholder="Buscar expediente..." 
+                    <div class="campo">
+                        <label for="responsable">Responsable:</label>
+                        <div class="usuario-selector">
+                            <input type="text"
+                                id="responsable"
+                                name="responsable_display"
+                                class="usuario-input"
+                                placeholder="Buscar documentador..."
                                 autocomplete="off">
-                        <input type="hidden" name="expediente" id="expediente_id">
-                        <div class="usuario-dropdown" id="expediente-dropdown"></div>
+                            <input type="hidden" name="responsable" id="responsable_id">
+                            <div class="usuario-dropdown" id="usuario-dropdown"></div>
+                        </div>
                     </div>
-                </div>
 
-                <div class="campo">
-                    <label for="descripcion">Descripción:</label>
-                    <textarea id="descripcion" name="descripcion" placeholder="Describe qué documento necesitas y para qué."></textarea>
-                </div>
-                
-                <button type="submit" class="btn-solicitar">Solicitar documento</button>
-            </form>
-        </div>
-</section>
+                    <div class="campo">
+                        <label for="expediente">Expediente destinado:</label>
+                        <div class="usuario-selector">
+                            <input type="text"
+                                id="expediente"
+                                name="expediente_display"
+                                class="usuario-input"
+                                placeholder="Buscar expediente..."
+                                autocomplete="off">
+                            <input type="hidden" name="expediente" id="expediente_id">
+                            <div class="usuario-dropdown" id="expediente-dropdown"></div>
+                        </div>
+                    </div>
 
-</main>
+                    <div class="campo">
+                        <label for="descripcion">Descripción:</label>
+                        <textarea id="descripcion" name="descripcion" placeholder="Describe qué documento necesitas y para qué."></textarea>
+                    </div>
 
-<script>
-    // Datos desde PHP
-    const datosCompletos = <?php echo json_encode($datos_documentadores['datos_completos']); ?>;
-    
-    // Hacer los datos globales para el JavaScript
-    window.documentadores = datosCompletos.documentadores;
-    window.expedientes = datosCompletos.expedientes;
-</script>
+                    <button type="submit" class="btn-solicitar">Solicitar documento</button>
+                </form>
+            </div>
+        </section>
 
-<script src="../../../componentes/js/auditor/usuarios_input.js"></script>
+    </main>
+
+    <script>
+        // Datos desde PHP
+        const datosCompletos = <?php echo json_encode($datos_documentadores['datos_completos']); ?>;
+
+        // Hacer los datos globales para el JavaScript
+        window.documentadores = datosCompletos.documentadores;
+        window.expedientes = datosCompletos.expedientes;
+    </script>
+
+    <script src="../../../componentes/js/auditor/usuarios_input.js"></script>
     <?php include '../../vistas/log/modal_cerrar_sesion.php'; ?>
 </body>
+
 </html>

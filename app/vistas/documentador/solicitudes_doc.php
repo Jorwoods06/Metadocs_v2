@@ -1,15 +1,16 @@
-<?php 
+<?php
 require_once '../../helpers/verificacion_roles.php';
 AutorizacionRol('documentador');
 require_once '../../backend/documentador/recibir_actividades.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documentador | Metadocs</title>
-       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
     <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
@@ -17,139 +18,142 @@ require_once '../../backend/documentador/recibir_actividades.php';
     <link rel="stylesheet" href="../../../componentes/css/documentador/modales_doc_exp.css">
     <script src="../../../componentes/js/admin/panel.js" defer></script>
 </head>
+
 <body>
-       <header id="cabezote">
+    <header id="cabezote">
         <i class="fas fa-bars" id="menu_opciones"></i>
     </header>
     <main id="cuerpo">
-       <nav id="menu-lateral" class="menu-lateral">
+        <nav id="menu-lateral" class="menu-lateral">
             <figure id="img_menu">
                 <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
             </figure>
             <ul>
-             <div class="menu-opciones-principales">
-                <li><a href="inicio_documentador.php"><i class="fas fa-home"></i>Inicio</a></li>
-                <li><a href="ver_documentos.php"><i class="fas fa-file-alt"></i>Archivos</a></li>
-                <li><a href="solicitudes_doc.php"class="activo" ><i class="fas fa-envelope"></i>Solicitudes</a></li>
-                <li class="gestion-usuarios">
-                    <a href="#" id="cerrado-usuarios" >
-                        <i class="fas fa-user"></i>Documentador
-                    </a>
-                    <ul class="sub_menu usuario-submenu" id="sub_menu">
-                     
-                        <li><a href="info_documentador.php" ><i class="fas fa-info-circle"></i> Info documentador</a></li>
-                        <li><a href="cambiar_contraseña.php"><i class="fas fa-key"></i> Cambiar contraseña</a></li>
-                    </ul>
-                </li>
-                <li class="solo_mobil">
-                    <a href="#" id="solo_mobil"><i class="fas fa-arrow-left"></i>Volver</a>
-                </li>
-                  </div>
-                   <li  class="cerrar-sesion-separado"><a href="#" id="cerrar_sesion"><i class="fas fa-sign-out-alt"></i>Cerrar sesion</a></li>
-            </ul>
-        
-           
-    
-        </nav>
-<section class="contenedor-principal">
-    <h1>Solicitudes Recibidas</h1>
+                <div class="menu-opciones-principales">
+                    <li><a href="inicio_documentador.php"><i class="fas fa-home"></i>Inicio</a></li>
+                    <li><a href="ver_documentos.php"><i class="fas fa-file-alt"></i>Archivos</a></li>
+                    <li><a href="solicitudes_doc.php" class="activo"><i class="fas fa-envelope"></i>Solicitudes</a></li>
+                    <li class="gestion-usuarios">
+                        <a href="#" id="cerrado-usuarios">
+                            <i class="fas fa-user"></i>Documentador
+                        </a>
+                        <ul class="sub_menu usuario-submenu" id="sub_menu">
 
-    <div class="filtro-mensajes">
-        <label for="tipo-filtro">Filtrar por tipo:</label>
-        <select id="tipo-filtro">
-            <option value="todos">Todos</option>
-            <option value="solicitud_documento">Solicitud de documento</option>
-            <option value="documento_aprobado">Documento aprobado</option>
-            <option value="documento_rechazado">Documento rechazado</option>
-            <option value="expediente_aprobado">Expediente aprobado</option>
-            <option value="expediente_rechazado">Expediente rechazado</option>
-        </select>
-    </div>
-
-    <div class="contenedor-mensajes">
-        <div class="lista-mensajes" id="lista-notificaciones">
-            <?php if (!empty($notificaciones_procesadas)): ?>
-                <table class="tabla-solicitudes">
-                    <thead>
-                        <tr>
-                            <th class="col-icono">Tipo</th>
-                            <th class="col-usuario">Usuario</th>
-                            <th class="col-fecha">Fecha</th>
-                            <th class="col-estado">Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($notificaciones_procesadas as $notificacion): ?>
-                            <?php 
-                            // Escapar los datos para JavaScript de forma segura
-                            $datos_json = htmlspecialchars(json_encode($notificacion), ENT_QUOTES, 'UTF-8');
-                            ?>
-                            <tr class="mensaje <?php echo $notificacion['es_visto'] ? 'visto' : 'no-visto'; ?> clickeable" 
-                                data-tipo="<?php echo htmlspecialchars($notificacion['tipo_actividad']); ?>"
-                                data-id="<?php echo $notificacion['id']; ?>"
-                                data-modal="<?php echo htmlspecialchars($notificacion['modal']); ?>"
-                                onclick="abrirModal('<?php echo htmlspecialchars($notificacion['modal']); ?>', <?php echo $datos_json; ?>)">
-                                
-                                <td class="col-icono">
-                                    <i class="fas <?php echo htmlspecialchars($notificacion['icono']); ?> icono-tipo"></i>
-                                </td>
-                                
-                                <td class="col-usuario">
-                                    <div class="nombre-usuario"><?php echo htmlspecialchars($notificacion['usuario_nombre']); ?></div>
-                                    <div class="tipo-solicitud"><?php echo htmlspecialchars($notificacion['texto_tipo']); ?></div>
-                                </td>
-                                
-                                <td class="col-fecha">
-                                    <?php echo htmlspecialchars($notificacion['tiempo_transcurrido']); ?>
-                                </td>
-                                
-                                <td class="col-estado">
-                                    <span class="estado-badge <?php echo $notificacion['es_visto'] ? 'estado-visto' : 'estado-nuevo'; ?>">
-                                        <?php echo $notificacion['es_visto'] ? 'Visto' : 'Nuevo'; ?>
-                                    </span>
-                                </td>
-                            </tr>
-                            
-                            <?php // Opcional: Mostrar debug para cada notificación durante desarrollo ?>
-                            <?php // debug_notificacion($notificacion); ?>
-                            
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            <?php else: ?>
-                <div class="mensaje-vacio">
-                    <i class="fas fa-inbox"></i>
-                    <p>No tienes notificaciones en este momento</p>
+                            <li><a href="info_documentador.php"><i class="fas fa-info-circle"></i> Info documentador</a></li>
+                            <li><a href="cambiar_contraseña.php"><i class="fas fa-key"></i> Cambiar contraseña</a></li>
+                        </ul>
+                    </li>
+                    <li class="solo_mobil">
+                        <a href="#" id="solo_mobil"><i class="fas fa-arrow-left"></i>Volver</a>
+                    </li>
                 </div>
-            <?php endif; ?>
-        </div>
-    </div>
+                <li class="cerrar-sesion-separado"><a href="#" id="cerrar_sesion"><i class="fas fa-sign-out-alt"></i>Cerrar sesion</a></li>
+            </ul>
 
-    <div class="paginacion" style="text-align:center; margin-top:20px;">
-        <?php if ($pagina_actual > 1): ?>
-            <a href="?pagina=<?php echo $pagina_actual - 1; ?>" class="btn-paginacion">Anterior</a>
-        <?php endif; ?>
 
-        <?php for ($i = 1; $i <= $total_paginas; $i++): ?>
-            <a href="?pagina=<?php echo $i; ?>" class="btn-paginacion <?php echo ($i == $pagina_actual) ? 'activa' : ''; ?>">
-                <?php echo $i; ?>
-            </a>
-        <?php endfor; ?>
 
-        <?php if ($pagina_actual < $total_paginas): ?>
-            <a href="?pagina=<?php echo $pagina + 1; ?>" class="btn-paginacion">Siguiente</a>
-        <?php endif; ?>
-    </div>
-</section>
+        </nav>
+        <section class="contenedor-principal">
+            <h1>Solicitudes Recibidas</h1>
+
+            <div class="filtro-mensajes">
+                <label for="tipo-filtro">Filtrar por tipo:</label>
+                <select id="tipo-filtro">
+                    <option value="todos">Todos</option>
+                    <option value="solicitud_documento">Solicitud de documento</option>
+                    <option value="documento_aprobado">Documento aprobado</option>
+                    <option value="documento_rechazado">Documento rechazado</option>
+                    <option value="expediente_aprobado">Expediente aprobado</option>
+                    <option value="expediente_rechazado">Expediente rechazado</option>
+                </select>
+            </div>
+
+            <div class="contenedor-mensajes">
+                <div class="lista-mensajes" id="lista-notificaciones">
+                    <?php if (!empty($notificaciones_procesadas)): ?>
+                        <table class="tabla-solicitudes">
+                            <thead>
+                                <tr>
+                                    <th class="col-icono">Tipo</th>
+                                    <th class="col-usuario">Usuario</th>
+                                    <th class="col-fecha">Fecha</th>
+                                    <th class="col-estado">Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($notificaciones_procesadas as $notificacion): ?>
+                                    <?php
+                                    // Escapar los datos para JavaScript de forma segura
+                                    $datos_json = htmlspecialchars(json_encode($notificacion), ENT_QUOTES, 'UTF-8');
+                                    ?>
+                                    <tr class="mensaje <?php echo $notificacion['es_visto'] ? 'visto' : 'no-visto'; ?> clickeable"
+                                        data-tipo="<?php echo htmlspecialchars($notificacion['tipo_actividad']); ?>"
+                                        data-id="<?php echo $notificacion['id']; ?>"
+                                        data-modal="<?php echo htmlspecialchars($notificacion['modal']); ?>"
+                                        onclick="abrirModal('<?php echo htmlspecialchars($notificacion['modal']); ?>', <?php echo $datos_json; ?>)">
+
+                                        <td class="col-icono">
+                                            <i class="fas <?php echo htmlspecialchars($notificacion['icono']); ?> icono-tipo"></i>
+                                        </td>
+
+                                        <td class="col-usuario">
+                                            <div class="nombre-usuario"><?php echo htmlspecialchars($notificacion['usuario_nombre']); ?></div>
+                                            <div class="tipo-solicitud"><?php echo htmlspecialchars($notificacion['texto_tipo']); ?></div>
+                                        </td>
+
+                                        <td class="col-fecha">
+                                            <?php echo htmlspecialchars($notificacion['tiempo_transcurrido']); ?>
+                                        </td>
+
+                                        <td class="col-estado">
+                                            <span class="estado-badge <?php echo $notificacion['es_visto'] ? 'estado-visto' : 'estado-nuevo'; ?>">
+                                                <?php echo $notificacion['es_visto'] ? 'Visto' : 'Nuevo'; ?>
+                                            </span>
+                                        </td>
+                                    </tr>
+
+                                    <?php // Opcional: Mostrar debug para cada notificación durante desarrollo 
+                                    ?>
+                                    <?php // debug_notificacion($notificacion); 
+                                    ?>
+
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    <?php else: ?>
+                        <div class="mensaje-vacio">
+                            <i class="fas fa-inbox"></i>
+                            <p>No tienes notificaciones en este momento</p>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+
+            <div class="paginacion" style="text-align:center; margin-top:20px;">
+                <?php if ($pagina_actual > 1): ?>
+                    <a href="?pagina=<?php echo $pagina_actual - 1; ?>" class="btn-paginacion">Anterior</a>
+                <?php endif; ?>
+
+                <?php for ($i = 1; $i <= $total_paginas; $i++): ?>
+                    <a href="?pagina=<?php echo $i; ?>" class="btn-paginacion <?php echo ($i == $pagina_actual) ? 'activa' : ''; ?>">
+                        <?php echo $i; ?>
+                    </a>
+                <?php endfor; ?>
+
+                <?php if ($pagina_actual < $total_paginas): ?>
+                    <a href="?pagina=<?php echo $pagina + 1; ?>" class="btn-paginacion">Siguiente</a>
+                <?php endif; ?>
+            </div>
+        </section>
     </main>
 
     <!-- PASO 11: MODALES DINÁMICOS -->
-    
+
     <!-- Modal solicitud documento -->
     <div id="modal-solicitud-documento" class="modal-overlay">
         <div class="modal-container">
             <button class="cerrar-modal" onclick="cerrarModal('solicitud-documento')">&times;</button>
-            
+
             <div class="modal-header">
                 <div class="icono-estado">
                     <i class="fas fa-user"></i>
@@ -200,7 +204,7 @@ require_once '../../backend/documentador/recibir_actividades.php';
     <div id="modal-documento-aprobado" class="modal-overlay">
         <div class="modal-container">
             <button class="cerrar-modal" onclick="cerrarModal('documento-aprobado')">&times;</button>
-            
+
             <div class="modal-header documento-aprobado">
                 <div class="icono-estado">
                     <i class="fas fa-user"></i>
@@ -222,7 +226,7 @@ require_once '../../backend/documentador/recibir_actividades.php';
                         <span class="detalle-label">Nombre del documento:</span>
                         <span class="detalle-valor" id="modal-doc-aprobado-titulo">-</span>
                     </div>
-                    
+
                     <div class="detalle-item">
                         <span class="detalle-label">Categoría:</span>
                         <span class="detalle-valor" id="modal-doc-aprobado-categoria">-</span>
@@ -232,7 +236,7 @@ require_once '../../backend/documentador/recibir_actividades.php';
                         <span class="detalle-label">Expediente:</span>
                         <span class="detalle-valor" id="modal-doc-aprobado-expediente">-</span>
                     </div>
-                    
+
                     <div class="detalle-item">
                         <span class="detalle-label">Fecha de aprobación:</span>
                         <span class="detalle-valor" id="modal-doc-aprobado-fecha">-</span>
@@ -245,7 +249,7 @@ require_once '../../backend/documentador/recibir_actividades.php';
 
                     <div class="acciones-modal">
                         <button class="btn-accion btn-secundario" onclick="cerrarModal('documento-aprobado')">Cerrar</button>
-                        <button class="btn-accion btn-success">Ver documento</button>
+
                     </div>
                 </div>
             </div>
@@ -256,7 +260,7 @@ require_once '../../backend/documentador/recibir_actividades.php';
     <div id="modal-documento-rechazado" class="modal-overlay">
         <div class="modal-container">
             <button class="cerrar-modal" onclick="cerrarModal('documento-rechazado')">&times;</button>
-            
+
             <div class="modal-header documento-rechazado">
                 <div class="icono-estado">
                     <i class="fas fa-user"></i>
@@ -278,12 +282,12 @@ require_once '../../backend/documentador/recibir_actividades.php';
                         <span class="detalle-label">Nombre del documento:</span>
                         <span class="detalle-valor" id="modal-doc-rechazado-titulo">-</span>
                     </div>
-                    
+
                     <div class="detalle-item">
                         <span class="detalle-label">Categoría:</span>
                         <span class="detalle-valor" id="modal-doc-rechazado-categoria">-</span>
                     </div>
-                    
+
                     <div class="detalle-item">
                         <span class="detalle-label">Fecha de rechazo:</span>
                         <span class="detalle-valor" id="modal-doc-rechazado-fecha">-</span>
@@ -299,6 +303,7 @@ require_once '../../backend/documentador/recibir_actividades.php';
                     <strong>Motivos del rechazo:</strong>
                     <p id="modal-doc-rechazado-motivo">-</p>
                 </div>
+
             </div>
         </div>
     </div>
@@ -307,7 +312,7 @@ require_once '../../backend/documentador/recibir_actividades.php';
     <div id="modal-expediente-aprobado" class="modal-overlay">
         <div class="modal-container">
             <button class="cerrar-modal" onclick="cerrarModal('expediente-aprobado')">&times;</button>
-            
+
             <div class="modal-header expediente-aprobado">
                 <div class="icono-estado">
                     <i class="fas fa-user"></i>
@@ -329,12 +334,12 @@ require_once '../../backend/documentador/recibir_actividades.php';
                         <span class="detalle-label">Nombre expediente:</span>
                         <span class="detalle-valor" id="modal-exp-aprobado-titulo">-</span>
                     </div>
-                    
+
                     <div class="detalle-item">
                         <span class="detalle-label">Fecha de aprobación:</span>
                         <span class="detalle-valor" id="modal-exp-aprobado-fecha">-</span>
                     </div>
-                    
+
                     <div class="detalle-item">
                         <span class="detalle-label">Aprobado por:</span>
                         <span class="detalle-valor" id="modal-exp-aprobado-por">-</span>
@@ -343,7 +348,7 @@ require_once '../../backend/documentador/recibir_actividades.php';
 
                 <div class="acciones-modal">
                     <button class="btn-accion btn-secundario" onclick="cerrarModal('expediente-aprobado')">Cerrar</button>
-                    <button class="btn-accion btn-success">Ver Expediente</button>
+
                 </div>
             </div>
         </div>
@@ -353,10 +358,10 @@ require_once '../../backend/documentador/recibir_actividades.php';
     <div id="modal-expediente-rechazado" class="modal-overlay">
         <div class="modal-container">
             <button class="cerrar-modal" onclick="cerrarModal('expediente-rechazado')">&times;</button>
-            
+
             <div class="modal-header expediente-rechazado">
                 <div class="icono-estado">
-                <i class="fas fa-user"></i>
+                    <i class="fas fa-user"></i>
                 </div>
                 <div class="info-usuario">
                     <h3 id="modal-exp-rechazado-usuario">-</h3>
@@ -375,12 +380,12 @@ require_once '../../backend/documentador/recibir_actividades.php';
                         <span class="detalle-label">Nombre expediente:</span>
                         <span class="detalle-valor" id="modal-exp-rechazado-titulo">-</span>
                     </div>
-                    
+
                     <div class="detalle-item">
                         <span class="detalle-label">Fecha de rechazo:</span>
                         <span class="detalle-valor" id="modal-exp-rechazado-fecha">-</span>
                     </div>
-                    
+
                     <div class="detalle-item">
                         <span class="detalle-label">Rechazado por:</span>
                         <span class="detalle-valor" id="modal-exp-rechazado-por">-</span>
@@ -400,4 +405,5 @@ require_once '../../backend/documentador/recibir_actividades.php';
     <script src="../../../componentes/js/documentador/recibir_actividad.js"></script>
     <script src="../../../componentes/js/documentador/notificacion.js"></script>
 </body>
+
 </html>

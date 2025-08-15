@@ -1,6 +1,6 @@
 <?php 
 
-require_once "..\..\backend/administrador/interfaz_usuario.php";
+require_once "../../backend/administrador/interfaz_usuario.php";
 require_once '../../helpers/verificacion_roles.php';
 
 AutorizacionRol('documentador');

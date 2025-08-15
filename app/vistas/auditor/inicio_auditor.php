@@ -1,9 +1,11 @@
 <?php
-
+require_once '../../../app/backend/auditor/inicio_auditor.php';
 require_once '../../helpers/verificacion_roles.php';
 require_once '../../helpers/conexion_bd.php';
 
 AutorizacionRol('auditor');
+
+
 
 ?>
 <!DOCTYPE html>
@@ -19,7 +21,6 @@ AutorizacionRol('auditor');
     <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
     <script src="../../../componentes/js/documentador/ver_documentos.js"></script>
     <script src="../../../componentes/js/admin/panel.js"></script>
-    <script src="../../../componentes/js/auditor/inicio_auditor.js"></script>
     <link rel="stylesheet" href="../../../componentes/css/auditor/inicio_auditor.css">
 </head>
 
@@ -93,33 +94,31 @@ AutorizacionRol('auditor');
                     <div class="header-content">
                         <h1 class="header-title">Inicio</h1>
                         <div class="user-info">
-                            <div> Bienvenido Jorge Galeano</div>
-
+                            <div>Bienvenido <?php echo htmlspecialchars($nombre_completo); ?></div>
                         </div>
                     </div>
                 </header>
 
-
                 <section class="stats-grid">
                     <div class="stat-card">
-                        <div class="stat-number"></div>
+                        <div class="stat-number"><?php echo $documentos_pendientes_total; ?></div>
                         <div class="stat-label">Archivos Pendientes</div>
-                        <div class="stat-change positive">+3 esta semana</div>
+                        <div class="stat-change positive">+<?php echo $documentos_pendientes_cambio; ?> esta semana</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number"></div>
+                        <div class="stat-number"><?php echo $total_documentos; ?></div>
                         <div class="stat-label">Total Documentos</div>
-                        <div class="stat-change positive">+15 este mes</div>
+                        <div class="stat-change positive">+<?php echo $total_documentos_cambio; ?> este mes</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number"></div>
+                        <div class="stat-number"><?php echo $expedientes_activos_total; ?></div>
                         <div class="stat-label">Expedientes Activos</div>
-                        <div class="stat-change">que</div>
+                        <div class="stat-change positive">+<?php echo $expedientes_activos_cambio; ?> este mes</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number"></div>
+                        <div class="stat-number"><?php echo $acciones_realizadas_total; ?></div>
                         <div class="stat-label">Acciones Realizadas En el mes</div>
-                        <div class="stat-change positive">+5 hoy</div>
+                        <div class="stat-change positive">+<?php echo $acciones_realizadas_cambio; ?> hoy</div>
                     </div>
                 </section>
 
@@ -133,10 +132,14 @@ AutorizacionRol('auditor');
                                     <div class="action-icon icon-pending"><i class="fas fa-clock"></i></div>
                                     <div class="action-title">
                                         Archivos Pendientes
-                                        <span class="action-badge">12</span>
+                                        <span class="action-badge"><?php echo $documentos_pendientes_total; ?></span>
                                     </div>
                                     <div class="action-description">
-                                        Revisar archivos que requieren aprobación o rechazo
+                                        <?php 
+                                        echo $documentos_pendientes_total === 1 ? 
+                                            'Revisar archivo que requiere aprobación o rechazo' :
+                                            'Revisar archivos que requieren aprobación o rechazo';
+                                        ?>
                                     </div>
                                 </a>
 
@@ -150,8 +153,6 @@ AutorizacionRol('auditor');
 
                                 <a href="solicitar_documento.php" class="action-card">
                                     <div class="action-icon icon-request"><i class="fas fa-file-plus"></i></div>
-                                    <div class="action-title">
-                                    </div>
                                     <div class="action-title">Solicitar Archivos</div>
                                     <div class="action-description">
                                         Realizar solicitudes de documentos específicos a los documentadores
@@ -185,50 +186,34 @@ AutorizacionRol('auditor');
                         </section>
                     </div>
 
-
                     <aside>
                         <section class="recent-activity">
                             <h2 class="section-title">Actividad Reciente</h2>
 
+                            <?php foreach ($actividades_recientes as $actividad): ?>
                             <div class="activity-item">
-                                <div class="activity-icon approved icon-approved"><i class="fas fa-check-circle"></i></div>
+                                <div class="activity-icon <?php echo $actividad['tipo_accion'] . ' ' . obtenerClaseIcono($actividad['tipo_accion']); ?>">
+                                    <i class="<?php echo obtenerIconoFontAwesome($actividad['tipo_accion']); ?>"></i>
+                                </div>
                                 <div class="activity-content">
-                                    <div class="activity-text">Documento "bucles y arreglos kotlin" aprobado</div>
-                                    <div class="activity-time">Hace 2 horas</div>
+                                    <div class="activity-text"><?php echo htmlspecialchars(generarTextoActividad($actividad)); ?></div>
+                                    <div class="activity-time"><?php echo htmlspecialchars($actividad['tiempo']); ?></div>
                                 </div>
                             </div>
+                            <?php endforeach; ?>
 
+                            <?php if (empty($actividades_recientes)): ?>
                             <div class="activity-item">
-                                <div class="activity-icon rejected icon-rejected"><i class="fas fa-times-circle"></i></div>
+                                <div class="activity-icon pending icon-clock">
+                                    <i class="fas fa-info-circle"></i>
+                                </div>
                                 <div class="activity-content">
-                                    <div class="activity-text">Expediente "asdjkas" rechazado</div>
-                                    <div class="activity-time">Hace 4 horas</div>
+                                    <div class="activity-text">No hay actividad reciente</div>
+                                    <div class="activity-time">-</div>
                                 </div>
                             </div>
+                            <?php endif; ?>
 
-                            <div class="activity-item">
-                                <div class="activity-icon approved icon-approved"><i class="fas fa-check-circle"></i></div>
-                                <div class="activity-content">
-                                    <div class="activity-text">Documento "1114240641_Jorge_Galeano_2825817" aprobado</div>
-                                    <div class="activity-time">Ayer</div>
-                                </div>
-                            </div>
-
-                            <div class="activity-item">
-                                <div class="activity-icon pending icon-clock"><i class="fas fa-clock"></i></div>
-                                <div class="activity-content">
-                                    <div class="activity-text">Solicitud de documento realizada</div>
-                                    <div class="activity-time">Hace 2 días</div>
-                                </div>
-                            </div>
-
-                            <div class="activity-item">
-                                <div class="activity-icon rejected icon-rejected"><i class="fas fa-times-circle"></i></div>
-                                <div class="activity-content">
-                                    <div class="activity-text">Documento "1114240641_Jorge_Galeano_2825817.pdf" rechazado</div>
-                                    <div class="activity-time">Hace 2 días</div>
-                                </div>
-                            </div>
                         </section>
                     </aside>
                 </div>

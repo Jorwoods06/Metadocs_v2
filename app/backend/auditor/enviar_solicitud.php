@@ -34,10 +34,10 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     }
 
 
-    $categoria = $_POST['tipo'];
-    $responsable = $_POST['responsable_display'];
-    $expediente = $_POST['expediente_display'];
-    $descripcion = $_POST['descripcion'];
+    $categoria = filter_input(INPUT_POST, 'tipo', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $responsable  = filter_input(INPUT_POST, 'responsable_display', FILTER_SANITIZE_FULL_SPECIAL_CHARS); 
+    $expediente   = filter_input(INPUT_POST, 'expediente_display', FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
+    $descripcion  = filter_input(INPUT_POST, 'descripcion', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
     $id_usuario = $usuario['id_usuario'];
 

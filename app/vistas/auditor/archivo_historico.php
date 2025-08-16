@@ -5,11 +5,11 @@ require_once '../../backend/auditor/lista_doc_archivados.php';
 
 AutorizacionRol('auditor');
 
-// DEBUG: Verifica si la variable existe
+
 if (isset($documentos_archivados)) {
-    echo "<!-- DEBUG: Documentos encontrados: " . count($documentos_archivados) . " -->";
+  
 } else {
-    echo "<!-- DEBUG: Variable documentos_archivados no existe -->";
+  
 }
 ?>
 <!DOCTYPE html>

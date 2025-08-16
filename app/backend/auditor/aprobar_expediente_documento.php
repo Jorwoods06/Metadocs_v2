@@ -5,9 +5,9 @@ require_once '../../helpers/info_usuario.php';
 $id_usuario = $usuario['id_usuario'];
 $id_area = $usuario['id_area'];
 
-$id_expediente = $_POST['datos_expediente'] ?? null;
-$id_documento = $_POST['datos_documento'] ?? null;
-$motivo_rechazo = $_POST['motivo_rechazo'] ?? null;
+$id_expediente = filter_input(INPUT_POST, 'datos_expediente', FILTER_SANITIZE_NUMBER_INT);
+$id_documento  = filter_input(INPUT_POST, 'datos_documento', FILTER_SANITIZE_NUMBER_INT);
+$motivo_rechazo = filter_input(INPUT_POST, 'motivo_rechazo', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
 $nombre_usuario = $usuario['nombres'] . ' ' . $usuario['apellido'];
 
@@ -43,10 +43,10 @@ function aprobarExpediente($conexion, $id_expediente, $usuario_destinatario, $no
         if ($sentencia->execute()) {
             $sentencia->close();
 
-            //registrar auditoria 
+            
             registrarAuditoria($conexion, $id_area, 'aprobó', 'expediente', $id_expediente, $id_usuario, "auditor");
 
-            // Estructura del mensaje para expediente aprobado
+          
             $mensaje_data = [
                 'texto' => "Tu expediente '" . $nombre_expediente . "' fue aprobado con éxito",
                 'titulo_expediente' => $nombre_expediente
@@ -95,7 +95,7 @@ function aprobarDocumento($conexion, $id_documento, $usuario_destinatario, $titu
 
             registrarAuditoria($conexion, $id_area, 'aprobó', 'documento', $id_documento, $id_usuario, "auditor");
 
-            // Estructura del mensaje para documento aprobado
+            
             $mensaje_data = [
                 'texto' => "Tu documento '" . $titulo . "' fue aprobado con éxito",
                 'titulo_documento' => $titulo,
@@ -146,7 +146,7 @@ function rechazarExpediente($conexion, $id_expediente, $usuario_destinatario, $n
 
             registrarAuditoria($conexion, $id_area, 'rechazó', 'expediente', $id_expediente, $id_usuario, "auditor");
 
-            // Estructura del mensaje para expediente rechazado
+           
             $mensaje_data = [
                 'texto' => "Tu expediente '" . $nombre_expediente . "' fue rechazado",
                 'motivo' => $motivo_rechazo,
@@ -186,11 +186,11 @@ function rechazarExpediente($conexion, $id_expediente, $usuario_destinatario, $n
 
 function rechazarDocumento($conexion, $id_documento, $usuario_destinatario, $titulo, $categoria, $expediente, $motivo_rechazo, $id_usuario, $id_area)
 {
-    // Iniciar transacción
+
     $conexion->begin_transaction();
 
     try {
-        // Primero obtener la ruta del archivo antes de actualizar
+   
         $sql_obtener_path = "SELECT path FROM documentos WHERE id_documento = ?";
         $stmt_path = $conexion->prepare($sql_obtener_path);
 
@@ -210,7 +210,7 @@ function rechazarDocumento($conexion, $id_documento, $usuario_destinatario, $tit
         $ruta_archivo = $documento['path'];
         $stmt_path->close();
 
-        // Actualizar el estado del documento a rechazado
+        
         $sql_rechazar = 'UPDATE documentos SET estado = "rechazado" WHERE id_documento = ?';
         $sentencia = $conexion->prepare($sql_rechazar);
 
@@ -226,7 +226,7 @@ function rechazarDocumento($conexion, $id_documento, $usuario_destinatario, $tit
 
         $sentencia->close();
 
-        // Estructura del mensaje para documento rechazado
+        
         $mensaje_data = [
             'texto' => "Tu documento '" . $titulo . "' fue rechazado",
             'motivo' => $motivo_rechazo,
@@ -254,10 +254,10 @@ function rechazarDocumento($conexion, $id_documento, $usuario_destinatario, $tit
 
         $stmt_actividad->close();
 
-        // Eliminar el archivo físico si existe
+    
         if (!empty($ruta_archivo) && file_exists($ruta_archivo)) {
             if (!unlink($ruta_archivo)) {
-                // Log del error pero no fallar la transacción
+              
                 error_log("Advertencia: No se pudo eliminar el archivo físico: " . $ruta_archivo);
             }
         }
@@ -266,11 +266,11 @@ function rechazarDocumento($conexion, $id_documento, $usuario_destinatario, $tit
             throw new Exception("Error al registrar auditoría");
         }
 
-        // Confirmar la transacción
+      
         $conexion->commit();
         return true;
     } catch (Exception $e) {
-        // Revertir la transacción en caso de error
+        
         $conexion->rollback();
         error_log("Error en rechazarDocumento: " . $e->getMessage());
         return false;

@@ -1,12 +1,12 @@
 <?php
-// datos_panel.php
+
 // Archivo PHP separado para manejar todas las consultas y datos del panel de control
 
 require_once '../../helpers/conexion_bd.php';
 
-/**
- * Obtiene datos para gráfico de documentos por mes
- */
+
+// Obtiene datos para gráfico de documentos por mes
+
 function obtenerDocumentosPorMes($conexion)
 {
     $query = "
@@ -29,9 +29,9 @@ function obtenerDocumentosPorMes($conexion)
     return ['labels' => $meses, 'data' => $cantidades, 'tipo' => 'line'];
 }
 
-/**
- * Obtiene datos para gráfico de documentos por área
- */
+
+// Obtiene datos para gráfico de documentos por área
+
 function obtenerDocumentosPorArea($conexion)
 {
     $query = "
@@ -53,9 +53,9 @@ function obtenerDocumentosPorArea($conexion)
     return ['labels' => $areasDoc, 'data' => $cantidadesArea, 'tipo' => 'bar'];
 }
 
-/**
- * Obtiene datos para gráfico de documentos por estado
- */
+
+// Obtiene datos para gráfico de documentos por estado
+
 function obtenerDocumentosPorEstado($conexion)
 {
     $query = "
@@ -77,9 +77,9 @@ function obtenerDocumentosPorEstado($conexion)
     return ['labels' => $estadosDoc, 'data' => $cantidadesEstado, 'tipo' => 'doughnut'];
 }
 
-/**
- * Obtiene datos para gráfico de documentos por tipo
- */
+
+// Obtiene datos para gráfico de documentos por tipo
+
 function obtenerDocumentosPorTipo($conexion)
 {
     $query = "
@@ -102,9 +102,9 @@ function obtenerDocumentosPorTipo($conexion)
     return ['labels' => $tiposDoc, 'data' => $cantidadesTipo, 'tipo' => 'pie'];
 }
 
-/**
- * Obtiene datos para gráfico de usuarios por rol
- */
+
+// Obtiene datos para gráfico de usuarios por rol
+
 function obtenerUsuariosPorRol($conexion)
 {
     $query = "SELECT rol, COUNT(*) AS cantidad 
@@ -124,9 +124,9 @@ function obtenerUsuariosPorRol($conexion)
     return ['labels' => $roles, 'data' => $cantidad_rol];
 }
 
-/**
- * Obtiene datos para gráfico de usuarios por área
- */
+
+// Obtiene datos para gráfico de usuarios por área
+
 function obtenerUsuariosPorArea($conexion)
 {
     $query = "SELECT usuarios.id_area, area_acceso.nombre, COUNT(*) AS cantidad 
@@ -148,9 +148,9 @@ function obtenerUsuariosPorArea($conexion)
     return ['labels' => $areas, 'data' => $cantidad_area];
 }
 
-/**
- * Obtiene datos para gráfico de usuarios por estado
- */
+
+//  Obtiene datos para gráfico de usuarios por estado
+
 function obtenerUsuariosPorEstado($conexion)
 {
     $query = "SELECT usuarios.estado, COUNT(*) AS cantidad 
@@ -170,9 +170,9 @@ function obtenerUsuariosPorEstado($conexion)
     return ['labels' => $estados, 'data' => $cantidad_estado];
 }
 
-/**
- * Obtiene todos los datos de documentos para las gráficas
- */
+
+// Obtiene todos los datos de documentos para las gráficas
+
 function obtenerDatosDocumentos($conexion)
 {
     return [
@@ -183,9 +183,9 @@ function obtenerDatosDocumentos($conexion)
     ];
 }
 
-/**
- * Obtiene todos los datos de usuarios para las gráficas
- */
+
+//  Obtiene todos los datos de usuarios para las gráficas
+
 function obtenerDatosUsuarios($conexion)
 {
     return [
@@ -195,10 +195,10 @@ function obtenerDatosUsuarios($conexion)
     ];
 }
 
-/**
- * Función para obtener todos los datos necesarios para el panel
- * Esta función puede ser llamada desde el archivo principal
- */
+
+// Función para obtener todos los datos necesarios para el panel
+
+
 function obtenerDatosPanelControl($conexion)
 {
     return [
@@ -207,7 +207,7 @@ function obtenerDatosPanelControl($conexion)
     ];
 }
 
-// Si se llama directamente este archivo, devolver datos en JSON (útil para AJAX)
+
 if (basename($_SERVER['PHP_SELF']) == 'datos_panel.php') {
     header('Content-Type: application/json');
     $datos = obtenerDatosPanelControl($conexion_metadocs);

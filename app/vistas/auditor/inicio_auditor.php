@@ -50,7 +50,7 @@ AutorizacionRol('auditor');
                         <ul class="sub_menu gestion-submenu" id="sub_menu">
                             <li><a href="recibir_documentos.php"><i class="fas fa-envelope"></i>pendientes</a></li>
                             <li><a href="archivos_auditor.php"><i class="fas fa-eye"></i>Archivos</a></li>
-                            <li><a href="solicitar_documento.php"><i class="fas fa-file-plus"></i> Solicitar archivos</a></li>
+                            <li><a href="solicitar_documento.php"><i class="fa-solid fa-file-arrow-down"></i> Solicitar archivos</a></li>
                             <li><a href="archivo_historico.php"><i class="fas fa-history"></i> Archivo historico</a></li>
                         </ul>
                     </li>
@@ -152,7 +152,7 @@ AutorizacionRol('auditor');
                                 </a>
 
                                 <a href="solicitar_documento.php" class="action-card">
-                                    <div class="action-icon icon-request"><i class="fas fa-file-plus"></i></div>
+                                    <div class="action-icon icon-request"><i class="fa-solid fa-file-arrow-down"></i></div>
                                     <div class="action-title">Solicitar Archivos</div>
                                     <div class="action-description">
                                         Realizar solicitudes de documentos específicos a los documentadores

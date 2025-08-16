@@ -435,7 +435,7 @@ function descargarDocumento($conexion, $documento_id)
     $mimeType = finfo_file($finfo, $documento['path']);
     finfo_close($finfo);
 
-    // Preparar el nombre del archivo para la descarga
+    
     $nombreArchivo = $documento['titulo'];
 
     // Configurar las cabeceras para la descarga

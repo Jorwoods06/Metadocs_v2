@@ -3,7 +3,7 @@ session_start();
 require_once '../../helpers/conexion_bd.php';
 
 if($_SERVER['REQUEST_METHOD'] != 'POST'){
-    echo "Tu petición ha sido rechazada.";
+    header("Location: ../../vistas/log/acceso_noAutorizado.html");
     exit;
 }else{
 

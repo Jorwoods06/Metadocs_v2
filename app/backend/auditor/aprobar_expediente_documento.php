@@ -278,7 +278,7 @@ function rechazarDocumento($conexion, $id_documento, $usuario_destinatario, $tit
 }
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    echo "tu peticion ha sido rechazada ";
+    header("Location: ../../vistas/log/acceso_noAutorizado.html");
 } else {
     switch ($_POST['accion']) {
         case 'aprobar_expediente':

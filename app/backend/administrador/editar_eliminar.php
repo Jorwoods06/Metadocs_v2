@@ -1,11 +1,12 @@
 <?php
 require_once '../../helpers/conexion_bd.php';
 
+
 header('Content-Type: application/json');
 
 // Verificar método
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    echo json_encode(['success' => false, 'error' => 'Método no permitido']);
+    header("Location: ../../vistas/log/acceso_noAutorizado.html");
     exit;
 }
 

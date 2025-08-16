@@ -8,7 +8,7 @@ $id_area = $usuario['id_area'];
 
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 
-    echo 'no tienes acceso a esta vista';
+    header("Location: ../../vistas/log/acceso_noAutorizado.html");
 } else {
 
     function registrarAuditoria($conexion, $id_area, $accion, $entidad, $entidad_id, $id_usuario, $rol)

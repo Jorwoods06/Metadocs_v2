@@ -9,19 +9,16 @@ require_once '../../helpers/info_usuario.php';
 
 $id_usuario = $usuario['id_usuario'];
 $id_area = $usuario['id_area'];
+$usuario_nombre = $usuario['nombres'];
+$usuario_apellido = $usuario['apellidos'];
 
 try {
-    // Obtener información del usuario
-    $query_usuario = "SELECT nombres, apellidos FROM usuarios WHERE id_usuario = ?";
-    $stmt = mysqli_prepare($conexion_metadocs, $query_usuario);
-    mysqli_stmt_bind_param($stmt, "i", $id_usuario);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-    $usuario_data = mysqli_fetch_assoc($result);
 
-    $nombre_completo = $usuario_data['nombres'] . ' ' . $usuario_data['apellidos'];
 
-    // Archivos pendientes (en revisión) del área del auditor
+
+    $nombre_completo = $usuario_nombre . ' ' . $usuario_apellido;
+
+
     $query_pendientes = "SELECT 
         (SELECT COUNT(*) 
         FROM documentos d
@@ -153,7 +150,7 @@ try {
 
     $actividades_recientes = [];
     while ($row = mysqli_fetch_assoc($result)) {
-        // Calcular tiempo transcurrido
+        
         $fecha_actividad = new DateTime($row['fecha_accion']);
         $ahora = new DateTime();
         $diff = $ahora->diff($fecha_actividad);
@@ -193,7 +190,7 @@ try {
     error_log('Error en dashboard_data_include.php: ' . $e->getMessage());
 }
 
-// Función para obtener clase de icono según tipo de acción
+
 function obtenerClaseIcono($tipo_accion)
 {
     $clases = [
@@ -205,7 +202,7 @@ function obtenerClaseIcono($tipo_accion)
     return $clases[$tipo_accion] ?? 'icon-clock';
 }
 
-// Función para obtener icono FontAwesome según tipo de acción
+
 function obtenerIconoFontAwesome($tipo_accion)
 {
     $iconos = [
@@ -217,7 +214,7 @@ function obtenerIconoFontAwesome($tipo_accion)
     return $iconos[$tipo_accion] ?? 'fas fa-clock';
 }
 
-// Función para generar texto de actividad
+
 function generarTextoActividad($actividad)
 {
     $entidad_tipo = $actividad['entidad'] === 'documento' ? 'Documento' : 'Expediente';

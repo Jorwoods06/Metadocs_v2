@@ -466,9 +466,10 @@ function editarExpediente($conexion, $id_expediente, $nuevo_titulo, $nueva_descr
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     switch ($_POST['accion']) {
         case 'subir_expediente':
-            $nombre = $_POST['titulo_carpeta'];
-            $descripcion = $_POST['desc_carpeta'];
-            $padreId = $_POST['expediente_padre'] ?? 0;
+            $nombre = filter_var($_POST['titulo_carpeta'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $descripcion = filter_var($_POST['desc_carpeta'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $padreId = isset($_POST['expediente_padre']) ? (int)$_POST['expediente_padre'] : 0;
+
 
             if (subirExpediente($conexion_metadocs, $nombre, $descripcion, $padreId, $area, $id_usuario)) {
                 header("Location: ../../vistas/auditor/archivos_auditor.php?success=true&id_expediente=" . $padreId);
@@ -480,9 +481,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             break;
 
         case 'subir_documento':
-            $id_expediente = $_POST['expediente_id'];
+            $id_expediente = isset($_POST['expediente_id']) ? (int)$_POST['expediente_id'] : 0;
             $archivo = $_FILES['file-input'];
-            $categoria = $_POST['categoria'];
+            $categoria = filter_var($_POST['categoria'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
 
             if (subirDocumento($conexion_metadocs, $archivo, $id_expediente, $area, $id_usuario, $categoria)) {
                 $_SESSION['doc_exito'] = 'Documento subido con éxito';
@@ -500,9 +502,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         case 'editar_expediente':
             if (isset($_POST['id_expediente']) && isset($_POST['nuevo_titulo']) && isset($_POST['nueva_descripcion'])) {
-                $id_expediente = $_POST['id_expediente'];
-                $nuevo_titulo = $_POST['nuevo_titulo'];
-                $nueva_descripcion = $_POST['nueva_descripcion'];
+                $id_expediente = isset($_POST['id_expediente']) ? (int)$_POST['id_expediente'] : 0;
+                $nuevo_titulo = filter_var($_POST['nuevo_titulo'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $nueva_descripcion = filter_var($_POST['nueva_descripcion'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
 
                 $resultado = editarExpediente($conexion_metadocs, $id_expediente, $nuevo_titulo, $nueva_descripcion, $area, $id_usuario);
 
@@ -519,4 +522,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             break;
     }
+} else {
+    
 }

@@ -1,13 +1,13 @@
 <?php
-// ===== PASO 1: CONFIGURACIÓN DE BASE DE DATOS =====
+
 require_once '../../helpers/conexion_bd.php';
 require_once '../../helpers/verificacion_roles.php';
 require_once '../../helpers/info_usuario.php';
 date_default_timezone_set('America/Bogota');
-AutorizacionRol('documentador');
 
-// ===== CONFIGURACIÓN DE PAGINACIÓN =====
-$pagina_actual = isset($_GET['pagina']) ? max(1, intval($_GET['pagina'])) : 1;
+$pagina_actual = filter_input(INPUT_GET, 'pagina', FILTER_VALIDATE_INT, [
+    'options' => ['default' => 1, 'min_range' => 1]
+]);
 $registros_por_pagina = 10; 
 $offset = ($pagina_actual - 1) * $registros_por_pagina;
 
@@ -41,7 +41,7 @@ function obtenerNotificaciones($usuario_destinatario, $limit = 10, $offset = 0) 
     return $notificaciones;
 }
 
-// ===== FUNCIÓN PARA CONTAR TOTAL DE NOTIFICACIONES =====
+
 function contarTotalNotificaciones($usuario_destinatario) {
     global $conexion_metadocs;
     
@@ -129,17 +129,15 @@ date_default_timezone_set('America/Bogota');
 
 function tiempoTranscurrido($fecha_creacion) {
     try {
-        // Configurar zona horaria para Colombia
+        
         $timezone = new DateTimeZone('America/Bogota');
         
-        // Crear fechas con la zona horaria correcta
         $fecha_actual = new DateTime('now', $timezone);
         $fecha_mensaje = new DateTime($fecha_creacion, $timezone);
         
-        // Calcular diferencia
+      
         $diferencia = $fecha_actual->diff($fecha_mensaje);
         
-        // Calcular tiempo transcurrido en orden de prioridad
         if ($diferencia->days > 30) {
             $meses = floor($diferencia->days / 30);
             return "hace " . $meses . " mes" . ($meses > 1 ? "es" : "");
@@ -154,7 +152,7 @@ function tiempoTranscurrido($fecha_creacion) {
         }
         
     } catch (Exception $e) {
-        // En caso de error, devolver un valor por defecto
+      
         error_log("Error calculando tiempo transcurrido: " . $e->getMessage());
         return "hace un momento";
     }
@@ -162,14 +160,14 @@ function tiempoTranscurrido($fecha_creacion) {
 
 
 function tiempoTranscurridoSimple($fecha_creacion) {
-    // Asegurar zona horaria
+
     date_default_timezone_set('America/Bogota');
     
-    // Convertir a timestamp
+
     $timestamp_mensaje = strtotime($fecha_creacion);
     $timestamp_actual = time();
     
-    // Calcular diferencia en segundos
+    
     $diferencia_segundos = $timestamp_actual - $timestamp_mensaje;
     
     // Convertir a unidades más grandes
@@ -194,11 +192,11 @@ function tiempoTranscurridoSimple($fecha_creacion) {
 
 $usuario_actual = $usuario['nombres']. " ".$usuario['apellidos'] ?? 'metadocs prueba';
 
-// Calcular datos de paginación
+
 $total_registros = contarTotalNotificaciones($usuario_actual);
 $total_paginas = ceil($total_registros / $registros_por_pagina);
 
-// Obtener notificaciones con paginación
+
 $notificaciones = obtenerNotificaciones($usuario_actual, $registros_por_pagina, $offset);
 
 
@@ -315,12 +313,12 @@ function generarPaginacion($pagina_actual, $total_paginas, $url_base = '') {
     return $html;
 }
 
-// ===== INFORMACIÓN DE PAGINACIÓN =====
+
 $inicio_registro = ($pagina_actual - 1) * $registros_por_pagina + 1;
 $fin_registro = min($pagina_actual * $registros_por_pagina, $total_registros);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['marcar_visto'])) {
-    $id_actividad = $_POST['id_actividad'];
+    $id_actividad = filter_input(INPUT_POST, 'id_actividad', FILTER_VALIDATE_INT);
     
     $sql = "UPDATE actividades SET fecha_visualizacion = NOW() WHERE id_actividad = ?";
     $stmt = $conexion_metadocs->prepare($sql);

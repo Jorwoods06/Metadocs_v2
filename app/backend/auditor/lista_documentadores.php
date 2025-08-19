@@ -49,7 +49,10 @@ $datos_completos = [
     'expedientes' => $datos_expediente
 ];
 
-if (isset($_GET['ajax']) && $_GET['ajax'] == '1') {
+// Sanitizar entrada desde el frontend
+$ajax = filter_input(INPUT_GET, 'ajax', FILTER_SANITIZE_NUMBER_INT);
+
+if ($ajax === '1') {
     header('Content-Type: application/json');
     echo json_encode([
         'success' => true,
@@ -58,6 +61,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] == '1') {
     ]);
     exit;
 }
+
 
 // Para uso en el HTML principal
 $datos_documentadores = [

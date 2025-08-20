@@ -23,7 +23,6 @@
   outline: none;
 }
 
-/* Tabla */
 .tabla-contenedor {
   width: 100%;
   overflow-x: auto;
@@ -71,7 +70,6 @@
   color: red;
 }
 
-/* Menú lateral oculto (solo móvil visible) */
 .solo_mobil {
   display: block;
 }
@@ -107,22 +105,18 @@
   background-color: #e9ecef;
   color: #495057;
   border: none;
-
 }
 
 .btn-paginacion.activa {
   background-color: #3D688A;
   color: white;
   border-radius: 5px;
-
 }
 
 .btn-paginacion.activa:hover {
   background-color: #2A4860;
-
   transform: none;
 }
-
 
 .modal-notificacion {
   display: none;
@@ -135,18 +129,16 @@
   background-color: rgba(0, 0, 0, 0.5);
   justify-content: center;
   align-items: center;
- 
 }
 
 .modal-notificacion-content {
   background-color: white;
   padding: 30px;
-  border-radius: 0;
   text-align: center;
   max-width: 400px;
   width: 90%;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 10px
+  border-radius: 10px;
 }
 
 .modal-notificacion-content i {
@@ -186,10 +178,6 @@
   background-color: #555;
 }
 
-
-
-
-/* ----- TABLET (min-width: 768px) ----- */
 @media (min-width: 768px) {
   .cont_nombre {
     flex-direction: row;
@@ -216,12 +204,10 @@
   }
 }
 
-/* ----- DESKTOP (min-width: 1024px) ----- */
 @media (min-width: 1024px) {
   #admin-contenido {
     margin-left: 18%;
     padding: 20px;
-
   }
 
   #cabezote {
@@ -246,15 +232,9 @@
   }
 }
 
-
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes slideIn {
@@ -262,7 +242,6 @@
     transform: translateY(-20px);
     opacity: 0;
   }
-
   to {
     transform: translateY(0);
     opacity: 1;

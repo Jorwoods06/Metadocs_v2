@@ -1,195 +1,189 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 :root {
-    --primary-color: #3D688A;
-    --secondary-color: #2A4860;
-    --background-color: #F5F5F5;
-    --white: #FFFFFF;
-    --light-gray: #E8EAED;
-    --text-primary: #2C3E50;
-    --text-secondary: #5A6C7D;
-    --border-color: #DDE1E6;
-    --success-color: #4CAF50;
-    --accent-color: #5B9BD5;
+  --primary-color: #3D688A;
+  --secondary-color: #2A4860;
+  --background-color: #F5F5F5;
+  --white: #FFFFFF;
+  --light-gray: #E8EAED;
+  --text-primary: #2C3E50;
+  --text-secondary: #5A6C7D;
+  --border-color: #DDE1E6;
+  --success-color: #4CAF50;
+  --accent-color: #5B9BD5;
 }
 
-/* Mobile First - Base styles */
 .contenido-usuario {
-    margin-left: 0;
-    padding: 16px;
-    background-color: var(--background-color);
+  margin-left: 0;
+  padding: 16px;
+  background-color: var(--background-color);
 }
 
 .titulo-usaurio {
-    font-size: 22px;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 24px;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 24px;
 }
 
 .contenedor-general {
-    max-width: 1000px;
+  max-width: 1000px;
 }
 
-/* User info card */
 .info-usuarios {
-    background-color: var(--primary-color);
-    padding: 16px;
-    border-radius: 8px;
-    margin-bottom: 24px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 16px;
+  background-color: var(--primary-color);
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
 }
 
 .avatar-usuario {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid var(--white);
-    flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--white);
+  flex-shrink: 0;
 }
 
 .nombre-usuario {
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--white);
-    margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--white);
+  margin: 0;
 }
 
-/* Data container */
 .contenedor-datos {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
 }
 
 .datos {
-    background-color: var(--white);
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    overflow: hidden;
+  background-color: var(--white);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
 }
 
 .datos:first-child {
-    grid-column: 1 / -1;
+  grid-column: 1 / -1;
 }
 
 .datos label {
-    display: block;
-    background-color: var(--light-gray);
-    padding: 8px 12px;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    border-bottom: 1px solid var(--border-color);
+  display: block;
+  background-color: var(--light-gray);
+  padding: 8px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .valor {
-    padding: 12px;
-    color: var(--text-primary);
-    font-size: 13px;
-    line-height: 1.5;
-    background-color: var(--white);
+  padding: 12px;
+  color: var(--text-primary);
+  font-size: 13px;
+  line-height: 1.5;
+  background-color: var(--white);
 }
 
 .solo_mobil {
-    display: block;
+  display: block;
 }
 
-/* Tablet styles */
 @media (min-width: 768px) {
-    .contenido-usuario {
-        padding: 24px 16px;
-    }
+  .contenido-usuario {
+    padding: 24px 16px;
+  }
 
-    .info-usuarios {
-        padding: 20px;
-    }
+  .info-usuarios {
+    padding: 20px;
+  }
 
-    .avatar-usuario {
-        width: 60px;
-        height: 60px;
-    }
+  .avatar-usuario {
+    width: 60px;
+    height: 60px;
+  }
 
-    .nombre-usuario {
-        font-size: 20px;
-    }
+  .nombre-usuario {
+    font-size: 20px;
+  }
 
-    .titulo-usaurio {
-        font-size: 24px;
-        margin-bottom: 24px;
-    }
+  .titulo-usaurio {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
 
-    .datos label {
-        padding: 10px 16px;
-        font-size: 11px;
-    }
+  .datos label {
+    padding: 10px 16px;
+    font-size: 11px;
+  }
 
-    .valor {
-        padding: 14px 16px;
-        font-size: 13px;
-    }
+  .valor {
+    padding: 14px 16px;
+    font-size: 13px;
+  }
 
-    .contenedor-datos {
-        gap: 16px;
-    }
+  .contenedor-datos {
+    gap: 16px;
+  }
 }
 
-/* Desktop styles */
 @media (min-width: 992px) {
-    .contenido-usuario {
-        margin-left: 16%;
-        padding: 32px;
-    }
+  .contenido-usuario {
+    margin-left: 16%;
+    padding: 32px;
+  }
 
-    .titulo-usaurio {
-        font-size: 28px;
-        margin-bottom: 32px;
-    }
+  .titulo-usaurio {
+    font-size: 28px;
+    margin-bottom: 32px;
+  }
 
-    .info-usuarios {
-        padding: 32px;
-        flex-direction: row;
-        text-align: left;
-        gap: 24px;
-    }
+  .info-usuarios {
+    padding: 32px;
+    flex-direction: row;
+    text-align: left;
+    gap: 24px;
+  }
 
-    .avatar-usuario {
-        width: 80px;
-        height: 80px;
-    }
+  .avatar-usuario {
+    width: 80px;
+    height: 80px;
+  }
 
-    .nombre-usuario {
-        font-size: 24px;
-    }
+  .nombre-usuario {
+    font-size: 24px;
+  }
 
-    .contenedor-datos {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 16px;
-    }
+  .contenedor-datos {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+  }
 
-    .datos label {
-        padding: 12px 20px;
-        font-size: 12px;
-    }
+  .datos label {
+    padding: 12px 20px;
+    font-size: 12px;
+  }
 
-    .valor {
-        padding: 16px 20px;
-        font-size: 14px;
-    }
+  .valor {
+    padding: 16px 20px;
+    font-size: 14px;
+  }
 
-    .solo_mobil {
-        display: none;
-    }
+  .solo_mobil {
+    display: none;
+  }
 }

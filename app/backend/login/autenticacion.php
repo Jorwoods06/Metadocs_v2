@@ -7,14 +7,14 @@ require_once '../../helpers/conexion_bd.php';
 
 if ($_SERVER['REQUEST_METHOD'] != 'POST'){
 
-    echo "tu peticion ha sido rechazada";
+    header("Location: ../../vistas/log/acceso_noAutorizado.html");
 
     exit;
 
 }else{
 
     if(!isset($_POST['gmail']) && !isset($_POST['contrasena'])){
-       
+        
         echo "no se puede ejecutar la operación púes faltan datos";
     
     }else{
@@ -31,11 +31,11 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST'){
         $autenticacion = $resultado -> fetch_object();
 
         if (!$autenticacion) {
-           
+            
             $_SESSION['denegado'] = 'Acceso denegado, no existes en el sistema';
-           
+            
             header('Location: ../../../login.php'); 
-           
+            
             exit();
         }else{
             
@@ -63,17 +63,17 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST'){
                 switch ($rol) {
                     
                     case 'administrador':
-                       
+                        
                         header("Location: ../../vistas/admin/panel_control.php");
                         break;
                     case 'visualizador':
                         header("Location: visualizador.php");
                         break;
                     case 'documentador':
-                        header("Location: ../../vistas/documentador/documentador_inicio.php");
+                        header("Location: ../../vistas/documentador/inicio_documentador.php");
                         break;
                     case 'auditor':
-                        header("Location: ../../vistas/auditor/auditor_inicio.php");
+                        header("Location: ../../vistas/auditor/inicio_auditor.php");
                         break;
                     default:
                         header("Location:../../../login.php");

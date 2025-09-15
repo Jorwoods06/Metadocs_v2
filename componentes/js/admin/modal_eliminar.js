@@ -2,14 +2,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalEliminar = document.getElementById('modal-eliminar');
     const closeEliminar = modalEliminar.querySelector('.close');
     const cancelarBtn = modalEliminar.querySelector('.btn-cancelar');
-    const botonesEliminar = document.querySelectorAll('.bi-trash');
-
-
-      window.addEventListener('click', e => {
-    if (e.target === modalEliminar) {
-      modalEliminar.style.display = 'none';
-    }
-  });
+    const botonesEliminar = document.querySelectorAll('.fa-trash');
+    window.addEventListener('click', e => {
+        if (e.target === modalEliminar) {
+            modalEliminar.style.display = 'none';
+        }
+    });
 
     function abrirModalEliminar() {
         modalEliminar.style.display = 'flex';
@@ -22,54 +20,60 @@ document.addEventListener('DOMContentLoaded', () => {
     botonesEliminar.forEach(button => {
         button.addEventListener('click', abrirModalEliminar);
     });
-
     closeEliminar.addEventListener('click', cerrarModalEliminar);
     cancelarBtn.addEventListener('click', cerrarModalEliminar);
 
+    let correoAEliminar = '';
+    let filaAEliminar = null;
 
-   //==== capturar correo y enviarlo a php, con el fin de borrar el usuario ====//
-
-   let correoAEliminar = '';
-    
-    // Capturar correo
-    document.querySelectorAll('.bi-trash').forEach(icono => {
+    document.querySelectorAll('.fa-trash').forEach(icono => {
         icono.addEventListener('click', function(e) {
-            const fila = e.target.closest('tr');
-            correoAEliminar = fila.getElementsByTagName('td')[1].textContent.trim();
+            filaAEliminar = e.target.closest('tr');
+            correoAEliminar = filaAEliminar.getElementsByTagName('td')[1].textContent.trim();
         });
     });
-    
 
-  
+    document.querySelector('.btn-eliminar').addEventListener('click', function() {
+        const formData = new FormData();
+        formData.append('accion', 'eliminar_usuario');
+        formData.append('correo', correoAEliminar);
 
-    //enviar a php 
-
-
-   document.querySelector('.btn-eliminar').addEventListener('click', function() {
-    console.log('Correo a eliminar:', correoAEliminar);
-
-    const formData = new FormData();
-    formData.append('accion', 'eliminar_usuario');
-    formData.append('correo', correoAEliminar);
-
-    fetch('../../../app/backend/administrador/editar_eliminar.php', {
-        method: 'POST',
-        body: formData
-    })
+        fetch('../../../app/backend/administrador/editar_eliminar.php', {
+            method: 'POST',
+            body: formData
+        })
         .then(response => {
-        if (!response.ok) {
-            throw new Error('Error en la respuesta del servidor');
-        }
-        return response.text();
-    })
-    .then(() => {
-         alert('Usuario eliminado correctamente.');
+            if (!response.ok) {
+                throw new Error('Error en la respuesta del servidor');
+            }
+            return response.text();
+        })
+        .then(() => {
+            // Ocultar modal de eliminación
+            document.getElementById('modal-eliminar').style.display = 'none';
+            // Mostrar modal de éxito
+            const modaleliminacion = document.getElementById('modal-exito-eliminar');
+            modaleliminacion.style.display = 'flex';
+            // Eliminar la fila de la tabla
+            if (filaAEliminar) {
+                filaAEliminar.remove();
+            }
+        })
+        .catch(() => {
+            alert('Error al intentar eliminar el usuario.');
+        });
+    });
 
-    })
-    .catch(() => {
-        alert('Error al intentar eliminar el usuario.');
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('btn-modal-ok')) {
+            const modalId = e.target.closest('.modal-notificacion').id;
+            document.getElementById(modalId).style.display = 'none';
+        }
+    });
+
+    window.addEventListener('click', (e) => {
+        if (e.target.classList.contains('modal-notificacion')) {
+            e.target.style.display = 'none';
+        }
     });
 });
-
-});
-

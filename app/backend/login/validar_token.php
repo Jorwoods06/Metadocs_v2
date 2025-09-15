@@ -5,7 +5,7 @@ require_once '../../helpers/conexion_bd.php';
 $token = $_GET['token'] ?? '';
 
 if(!$token){
-   
+    
     echo "Falta el token en la URL.";
 
 }else{
@@ -19,7 +19,7 @@ if(!$token){
     if ($resultado->num_rows > 0) {
         $resetRequest = $resultado->fetch_assoc();
         $usuarioId = $resetRequest['id_usuario'];
-      
+        
         $sentencia_dos = $conexion_metadocs->prepare("SELECT correo FROM usuarios WHERE id_usuario = ?");
 
         $sentencia_dos->bind_param("i", $usuarioId);
@@ -34,7 +34,7 @@ if(!$token){
         $mostrar_form  = true;
 
     }else{
-         $mostrar_form  = false;
+        $mostrar_form  = false;
     }
 }
 

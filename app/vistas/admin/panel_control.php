@@ -1,145 +1,287 @@
-<?php 
-
+<?php
+require_once '../../helpers/conexion_bd.php';
 require_once '../../helpers/verificacion_roles.php';
+require_once '../../backend/administrador/consulta_para_grafica.php';
+require_once '../../backend/administrador/datos_panel.php';
 AutorizacionRol('administrador');
+
+// Obtener todos los datos para las gráficas
+$datosPanelControl = obtenerDatosPanelControl($conexion_metadocs);
 
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin | Metadocs</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="../../../componentes/img/logopng.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../componentes/css/admin/panel.css">
     <link rel="stylesheet" href="../../../componentes/css/admin/control.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link rel="stylesheet" href="../../../componentes/css/admin/panel_control_graficas.css">
     <script src="../../../componentes/js/admin/panel.js"></script>
     <script src="../../../componentes/js/admin/grafica_documentos.js"></script>
 </head>
+
 <body>
     <header id="cabezote">
-        <i class="bi bi-list" id="menu_opciones"></i>
-        
+        <i class="fas fa-bars" id="menu_opciones"></i>
+
     </header>
 
     <main id="cuerpo">
         <nav id="menu-lateral" class="menu-lateral">
             <figure id="img_menu">
-                <img src="../../../componentes/img/Imagen de WhatsApp 2025-05-01 a las 11.52.47_deffc20c.jpg" alt="imagen del menu lateral">
+                <img src="../../../componentes/img/image.png" alt="imagen del menu lateral">
             </figure>
             <ul>
-                <li>
-                    <a href="../admin/panel_control.php" class="activo">
-                        <i class="bi bi-bar-chart-line"></i>
-                        Panel Control
-                    </a>
-                </li>
-                <li class="gestion_usuario">
-                    <a href="#" id="gestion-usuarios">
-                        <i class="bi bi-people"></i>
-                        Gestión Usuarios
-                    </a>
-                    <ul class="sub_menu gestion-submenu" id="sub_menu">
-                        <li>
-                            <a href="../../vistas/admin/creacion_usuario.php">
-                                <i class="bi bi-person-plus"></i>
-                                Crear usuario
-                            </a>
-                        </li>
-                        <li>
-                            <a href="../admin/ver_usuarios.php">
-                                <i class="bi bi-eye"></i>
-                                Ver usuario
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="../admin/admin_reporte.php">
-                        <i class="bi bi-file-earmark-text"></i>
-                        Reportes
-                    </a>
-                </li>
 
-                <li class="gestion-usuarios">
-                    <a href="#" id="cerrado-usuarios">
-                        <i class="bi bi-person"></i>
-                        Usuario
-                    </a>
-                       <ul class="sub_menu usuario-submenu" id="sub_menu">
-                        <li><form action="../../backend/login/cerrar_sesion.php" method="post"><button type="submit"><i class="bi bi-box-arrow-left"></i>Cerrar sesion</button></form></li>
-                        <li><a href="../log/informacion_usuario.php"><i class="bi bi-info-circle"></i> Info usuario</a></li>
-                        <li><a href="../log/nueva_contraseña.php"><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
-                    </ul>
-                </li>
+                <div class="menu-opciones-principales">
+                    <li>
+                        <a href="#" class="activo">
+                            <i class="fas fa-chart-line"></i>
+                            Panel Control
+                        </a>
+                    </li>
 
-                <li class="solo_mobil">
-                    <a href="#" id="solo_mobil">
-                        <i class="bi bi-arrow-left"></i>
-                        Volver
-                    </a>
+                    <li>
+                        <a href="../admin/pista_auditoria.php">
+                            <i class="fas fa-clipboard-check"></i>
+                            Actividades usuarios
+                        </a>
+                    </li>
+
+                    <li class="gestion_usuario">
+                        <a href="#" id="gestion-usuarios"><i class="fas fa-users"></i> Gestión Usuarios</a>
+                        <ul class="sub_menu gestion-submenu" id="sub_menu">
+                            <li><a href="../../vistas/admin/creacion_usuario.php"><i class="fas fa-user-plus"></i> Crear usuario</a></li>
+                            <li><a href="../admin/ver_usuarios.php"><i class="fas fa-eye"></i> Ver usuario</a></li>
+                        </ul>
+                    </li>
+
+
+
+                    <li class="gestion-usuarios">
+                        <a href="#" id="cerrado-usuarios"><i class="fas fa-user"></i> Admin</a>
+                        <ul class="sub_menu usuario-submenu" id="sub_menu">
+                            <li><a href="../log/informacion_usuario.php"><i class="fas fa-info-circle"></i> Info usuario</a></li>
+                            <li><a href="cambiar_contraseña.php"><i class="fas fa-key"></i> Cambiar contraseña</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="solo_mobil">
+                        <a href="#" id="solo_mobil"><i class="fas fa-arrow-left"></i> Volver</a>
+                    </li>
+                </div>
+
+
+                <li class="cerrar-sesion-separado">
+                    <a href="#" id="cerrar_sesion"><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a>
                 </li>
             </ul>
         </nav>
-       
+
         <section id="admin-contenido" class="admin">
-            <h1>Panel control</h1>
 
-            <div class="dashboard">
-                <div class="card-mediana">
-                    <div class="iconos">
-                        <i class="bi bi-collection"></i>
+
+
+
+            <div class="container">
+                <div class="header">
+                    <h1>Dashboard de Documentos</h1>
+                    <p>Análisis estadístico de archivos</p>
+                </div>
+
+                <!-- Estadísticas generales -->
+                <p class="section-header resumen"><i class="fas fa-tachometer-alt"></i> Resumen General</p>
+                <div class="stats-grid">
+
+
+
+                    <div class="stat-card">
+                        <div class="stat-number"><?php echo $totalDocs; ?></div>
+                        <div class="stat-label">Total Documentos</div>
                     </div>
-                    <div class="contenido-texto">
-                        <h3>Total de documentos</h3>
-                        <h2>100</h2>
+                    <div class="stat-card">
+                        <div class="stat-number"><?php echo $totalAreas; ?></div>
+                        <div class="stat-label">Áreas Diferentes</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number"><?php echo $docsActivos; ?></div>
+                        <div class="stat-label">Documentos Activos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number"><?php echo $docsRechazados; ?></div>
+                        <div class="stat-label">Documentos Rechazados</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number"><?php echo $totalArchivado; ?></div>
+                        <div class="stat-label">Documentos Archivados</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number"><?php echo $totalCarpetas; ?></div>
+                        <div class="stat-label">Total Carpetas</div>
+                    </div>
+
+
+                </div>
+                <p class="section-header resumen"><i class="fas fa-info-circle"></i> Informacion del sistema</p>
+
+                <div class="system-info">
+
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="info-details">
+                                <h4>Base de Datos</h4>
+                                <span>MySQL - Conectado</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-server"></i>
+                            </div>
+                            <div class="info-details">
+                                <h4>Servidor</h4>
+                                <span><?php echo $host; ?></span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-calendar"></i>
+                            </div>
+                            <div class="info-details">
+                                <h4>Última Actualización</h4>
+                                <span><?php date_default_timezone_set('America/Bogota');
+                                        echo date('d/m/Y H:i'); ?></span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-user-cog"></i>
+                            </div>
+                            <div class="info-details">
+                                <h4>Usuario Administrador</h4>
+                                <span><?php echo htmlspecialchars($usuario['nombres']); ?></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="card-mediana">
-                    <div class="iconos">
-                        <i class="bi bi-archive"></i>
-                    </div>
-                    <div class="contenido-texto">
-                        <h3>Archivo historico</h3>
-                        <h2>100</h2>
-                    </div>
-                </div>
-
-                <div class="card-mediana">
-                    <div class="iconos">
-                        <i class="bi bi-search"></i>
-                    </div>
-                    <div class="contenido-texto">
-                        <h3>En revisión</h3>
-                        <h2>100</h2>
-                    </div>
-                </div>
-
-                 <div class="card-mediana">
-                    <div class="iconos">
-                        <i class="bi bi-people-fill"></i>
-                    </div>
-                    <div class="contenido-texto">
-                        <h3>usuarios Activos</h3>
-                        <h2>100</h2>
+                <!-- Gráficos de Documentos - SECCIÓN MEJORADA -->
+                <p class="section-header analisis"><i class="fas fa-chart-bar"></i> Análisis y Estadísticas</p>
+                <div class="main-panel">
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h3 class="chart-title">Análisis de Documentos</h3>
+                            <div class="chart-controls">
+                                <button class="chart-btn active" onclick="cambiarGraficoDocumentos('mes')">Por Mes</button>
+                                <button class="chart-btn" onclick="cambiarGraficoDocumentos('area')">Por Área</button>
+                                <button class="chart-btn" onclick="cambiarGraficoDocumentos('estado')">Por Estado</button>
+                                <button class="chart-btn" onclick="cambiarGraficoDocumentos('tipo')">Por Tipo</button>
+                            </div>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="documentosChart"></canvas>
+                        </div>
                     </div>
                 </div>
-
-                <div class="card-ancha">
-                    <div style="width: 100%;">
-                        <h3>Documentos subidos por mes</h3>
-                        <canvas id="graficaDocumentos"></canvas>
-                    </div>
-                </div>
-
             </div>
+
+            <!-- Inclusión del archivo JavaScript separado con datos PHP -->
+            <script src="../../../componentes/js/admin/panel_control_charts.js"></script>
+            <script>
+                // Inicializar los datos desde PHP
+                initializeDatosDocumentos(<?php echo json_encode($datosPanelControl['documentos']); ?>);
+            </script>
+
+            <p class="section-header usuarios"><i class="fas fa-users"></i> Usuarios del sistema</p>
+
+            <div class="container">
+
+
+                <div class="main-panel">
+                    <div class="stats-container">
+
+
+                        <div class="stats-list">
+                            <div class="stat-row total">
+                                <div class="stat-row-icon"><i class="fas fa-users"></i></div>
+                                <div class="stat-info">
+                                    <div class="stat-label">Total de Usuarios</div>
+                                    <div class="stat-main-value"><?php echo $total_usuarios; ?></div>
+                                    <div class="stat-detail">Usuarios registrados en el sistema</div>
+                                </div>
+                            </div>
+
+                            <div class="stat-row active">
+                                <div class="stat-row-icon"><i class="fas fa-user-check"></i></div>
+                                <div class="stat-info">
+                                    <div class="stat-label">Usuarios Activos</div>
+                                    <div class="stat-main-value"><?php echo $usuarios_activos; ?></div>
+                                    <div class="stat-detail"><?php echo round(($usuarios_activos / $total_usuarios) * 100, 1); ?>% del total de usuarios</div>
+                                </div>
+                            </div>
+
+                            <div class="stat-row inactive">
+                                <div class="stat-row-icon"><i class="fas fa-user-times"></i></div>
+                                <div class="stat-info">
+                                    <div class="stat-label">Usuarios Inactivos</div>
+                                    <div class="stat-main-value"><?php echo $usuarios_inactivos; ?></div>
+                                    <div class="stat-detail"><?php echo round(($usuarios_inactivos / $total_usuarios) * 100, 1); ?>% del total de usuarios</div>
+                                </div>
+                            </div>
+
+                            <div class="stat-row areas">
+                                <div class="stat-row-icon"><i class="fas fa-building"></i></div>
+                                <div class="stat-info">
+                                    <div class="stat-label">Áreas Activas</div>
+                                    <div class="stat-main-value"><?php echo $areas_unicas; ?></div>
+                                    <div class="stat-detail">Departamentos con usuarios asignados</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h3 class="chart-title">Distribución de Usuarios</h3>
+                            <div class="chart-controls">
+                                <button class="chart-btn active" onclick="cambiarGrafico('roles')">Por Roles</button>
+                                <button class="chart-btn" onclick="cambiarGrafico('areas')">Por Áreas</button>
+                                <button class="chart-btn" onclick="cambiarGrafico('estado')">Por Estado</button>
+                            </div>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="mainChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                // Inicializar datos de usuarios desde PHP
+                initializeDatosUsuarios(<?php echo json_encode($datosPanelControl['usuarios']); ?>);
+            </script>
+
+
+            <?php
+            // Cerrar la conexión al final
+            mysqli_close($conexion_metadocs);
+            ?>
+
         </section>
 
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script></script>
     </main>
-    
+
+
+    <?php include '../../vistas/log/modal_cerrar_sesion.php'; ?>
 </body>
 
 </html>

@@ -10,60 +10,267 @@ if ($conexion_metadocs->connect_error) {
     die("Connection failed: " . $conexion_metadocs->connect_error);
 }
 
+
+function registrarAuditoria($conexion, $id_area, $accion, $entidad, $entidad_id, $id_usuario, $rol)
+{
+    $sql_auditoria = "INSERT INTO pista_auditoria (id_area, accion, fecha_accion, entidad, entidad_id, id_usuario, rol) 
+                      VALUES (?, ?, NOW(), ?, ?, ?, ?)";
+
+    if ($stmt_auditoria = $conexion->prepare($sql_auditoria)) {
+        $stmt_auditoria->bind_param('issiis', $id_area, $accion, $entidad, $entidad_id, $id_usuario, $rol);
+
+        if ($stmt_auditoria->execute()) {
+            $stmt_auditoria->close();
+            return true;
+        } else {
+            error_log("Error al insertar auditoría: " . $stmt_auditoria->error);
+            $stmt_auditoria->close();
+            return false;
+        }
+    } else {
+        error_log("Error al preparar consulta de auditoría: " . $conexion->error);
+        return false;
+    }
+}
+
+
 // Función subir expediente
-function subirExpediente($conexion, $nombre, $descripcion, $padreId, $area, $id_usuario) {
+function subirExpediente($conexion, $nombre, $descripcion, $padreId, $area, $id_usuario)
+{
     $estado = 'aprobado';
     $sql_expediente = $conexion->prepare("INSERT INTO expedientes (nombre, descripcion, expediente_padre, id_area, estado, autor) VALUES (?,?,?,?,?,?)");
 
     if ($sql_expediente) {
-        $sql_expediente->bind_param("ssiisi", $nombre, $descripcion, $padreId, $area, $estado, $id_usuario); 
+        $sql_expediente->bind_param("ssiisi", $nombre, $descripcion, $padreId, $area, $estado, $id_usuario);
         return $sql_expediente->execute();
     } else {
         die("Error al preparar la consulta: " . $conexion->error);
     }
 }
+function obtenerDocumentos($conexion, $padre_id, $area)
+{
+    $cantidad_tabla = 5;
+    // Cambiar aquí: usar pagina_doc en lugar de pagina
+    $pagina = isset($_GET['pagina_doc']) ? (int)$_GET['pagina_doc'] : 1;
+    $inicio = ($pagina - 1) * $cantidad_tabla;
 
-// Función para obtener los expedientes y así enviarlos al front 
-function obtenerExpedientes($conexion, $padreId, $area) {
-    if ($padreId === 0) {
-        $sql_obtenerExpediente = "SELECT id_expediente, nombre, descripcion, fecha_creacion FROM `expedientes` WHERE (expediente_padre IS NULL OR expediente_padre = 0) AND id_area = ? AND estado ='aprobado'  ORDER BY nombre";
-        $sentencia_expedientes = $conexion->prepare($sql_obtenerExpediente);
-        $sentencia_expedientes->bind_param('i', $area);
-        $sentencia_expedientes->execute();
-        $resultado_expedientes = $sentencia_expedientes->get_result();
-    } else {
-        $sql_obtenerExpediente = "SELECT id_expediente, nombre, descripcion, fecha_creacion FROM `expedientes` WHERE expediente_padre = ? AND id_area = ? AND estado ='aprobado' ORDER BY nombre";
-        $sentencia_expedientes = $conexion->prepare($sql_obtenerExpediente);
-        $sentencia_expedientes->bind_param('ii', $padreId, $area);
-        $sentencia_expedientes->execute();
-        $resultado_expedientes = $sentencia_expedientes->get_result();
-    }
-    return $resultado_expedientes ? $resultado_expedientes->fetch_all(MYSQLI_ASSOC) : [];
-}
-
-// Función para obtener documentos de un expediente específico
-function obtenerDocumentos($conexion, $padre_id, $area) {
+    // Consulta con paginación
     $sql = "SELECT id_documento, titulo, path, fecha_creacion, tipo 
             FROM documentos 
             WHERE id_expediente = ? 
             AND id_area = ?
             AND estado = 'aprobado' 
             AND estado_retencion = 'activo'
-            ORDER BY fecha_creacion DESC";
-    
+            ORDER BY fecha_creacion DESC
+            LIMIT ?, ?";
+
     $stmt = $conexion->prepare($sql);
-    $stmt->bind_param("ii", $padre_id, $area);
+    $stmt->bind_param("iiii", $padre_id, $area, $inicio, $cantidad_tabla);
     $stmt->execute();
     $resultado = $stmt->get_result();
-    return $resultado ? $resultado->fetch_all(MYSQLI_ASSOC) : [];
+    $documentos = $resultado->fetch_all(MYSQLI_ASSOC);
+
+    // Obtener total de registros para calcular páginas
+    $sql_total = "SELECT COUNT(*) as total 
+                 FROM documentos 
+                 WHERE id_expediente = ? 
+                 AND id_area = ? 
+                 AND estado = 'aprobado' 
+                 AND estado_retencion = 'activo'";
+
+    $stmt_total = $conexion->prepare($sql_total);
+    $stmt_total->bind_param("ii", $padre_id, $area);
+    $stmt_total->execute();
+    $result_total = $stmt_total->get_result();
+    $total_filas = $result_total->fetch_assoc()['total'];
+    $total_paginas = ceil($total_filas / $cantidad_tabla);
+
+    return [
+        'documentos' => $documentos,
+        'pagina_actual' => $pagina,
+        'total_paginas' => $total_paginas,
+        'total_registros' => $total_filas
+    ];
+}
+function obtenerContenidoUnificado($conexion, $padre_id, $area)
+{
+    $cantidad_tabla = 10;
+    $pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+    $inicio = ($pagina - 1) * $cantidad_tabla;
+
+    if ($padre_id === 0) {
+        // Solo expedientes en la raíz
+        $sql = "SELECT id_expediente as id, nombre, descripcion, fecha_creacion, 'expediente' as tipo_contenido
+                FROM expedientes 
+                WHERE (expediente_padre IS NULL OR expediente_padre = 0) 
+                AND id_area = ? 
+                AND estado = 'aprobado' 
+                ORDER BY nombre 
+                LIMIT ?, ?";
+
+        $stmt = $conexion->prepare($sql);
+        $stmt->bind_param('iii', $area, $inicio, $cantidad_tabla);
+
+        // Contar total
+        $sql_total = "SELECT COUNT(*) as total 
+                     FROM expedientes 
+                     WHERE (expediente_padre IS NULL OR expediente_padre = 0) 
+                     AND id_area = ? 
+                     AND estado = 'aprobado'";
+
+        $stmt_total = $conexion->prepare($sql_total);
+        $stmt_total->bind_param('i', $area);
+    } else {
+        // Expedientes + documentos unificados
+        $sql = "(SELECT id_expediente as id, nombre , descripcion, fecha_creacion, 'expediente' as tipo_contenido, '' as tipo
+                FROM expedientes 
+                WHERE expediente_padre = ? 
+                AND id_area = ? 
+                AND estado = 'aprobado')
+                UNION ALL
+                (SELECT id_documento as id, titulo, '' as descripcion, fecha_creacion, 'documento' as tipo_contenido, tipo
+                FROM documentos 
+                WHERE id_expediente = ? 
+                AND id_area = ?
+                AND estado = 'aprobado' 
+                AND estado_retencion = 'activo')
+                ORDER BY tipo_contenido DESC, fecha_creacion DESC
+                LIMIT ?, ?";
+
+        $stmt = $conexion->prepare($sql);
+        $stmt->bind_param('iiiiii', $padre_id, $area, $padre_id, $area, $inicio, $cantidad_tabla);
+
+        // Contar total unificado
+        $sql_total = "(SELECT COUNT(*) as count FROM expedientes 
+                      WHERE expediente_padre = ? AND id_area = ? AND estado = 'aprobado')
+                      UNION ALL
+                      (SELECT COUNT(*) as count FROM documentos 
+                      WHERE id_expediente = ? AND id_area = ? AND estado = 'aprobado' 
+                      AND estado_retencion = 'activo')";
+
+        $stmt_total = $conexion->prepare($sql_total);
+        $stmt_total->bind_param('iiii', $padre_id, $area, $padre_id, $area);
+    }
+
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+    $contenido = $resultado->fetch_all(MYSQLI_ASSOC);
+
+    // Calcular total
+    $stmt_total->execute();
+    $result_total = $stmt_total->get_result();
+
+    if ($padre_id === 0) {
+        $total_filas = $result_total->fetch_assoc()['total'];
+    } else {
+        // Sumar los conteos de expedientes y documentos
+        $total_filas = 0;
+        while ($row = $result_total->fetch_assoc()) {
+            $total_filas += $row['count'];
+        }
+    }
+
+    $total_paginas = ceil($total_filas / $cantidad_tabla);
+
+    return [
+        'contenido' => $contenido,
+        'pagina_actual' => $pagina,
+        'total_paginas' => $total_paginas,
+        'total_registros' => $total_filas
+    ];
+}
+
+
+// Función mejorada para obtener expedientes (manteniendo la estructura anterior)
+function obtenerExpedientes($conexion, $padreId, $area)
+{
+    $cantidad_tabla = 10;
+    // Cambiar aquí: usar pagina_exp en lugar de pagina
+    $pagina = isset($_GET['pagina_exp']) ? (int)$_GET['pagina_exp'] : 1;
+    $inicio = ($pagina - 1) * $cantidad_tabla;
+
+    if ($padreId === 0) {
+        // Consulta para obtener expedientes con paginación
+        $sql_paginacion = "SELECT id_expediente, nombre, descripcion, fecha_creacion 
+                          FROM `expedientes` 
+                          WHERE (expediente_padre IS NULL OR expediente_padre = 0) 
+                          AND id_area = ? 
+                          AND estado = 'aprobado' 
+                          ORDER BY nombre 
+                          LIMIT ?, ?";
+
+        $stmt = $conexion->prepare($sql_paginacion);
+        $stmt->bind_param('iii', $area, $inicio, $cantidad_tabla);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+        $expedientes = $resultado->fetch_all(MYSQLI_ASSOC);
+
+        // Obtener total de registros para calcular páginas
+        $sql_total = "SELECT COUNT(*) as total 
+                     FROM expedientes 
+                     WHERE (expediente_padre IS NULL OR expediente_padre = 0) 
+                     AND id_area = ? 
+                     AND estado = 'aprobado'";
+
+        $stmt_total = $conexion->prepare($sql_total);
+        $stmt_total->bind_param('i', $area);
+        $stmt_total->execute();
+        $result_total = $stmt_total->get_result();
+        $total_filas = $result_total->fetch_assoc()['total'];
+        $total_paginas = ceil($total_filas / $cantidad_tabla);
+
+        return [
+            'expedientes' => $expedientes,
+            'pagina_actual' => $pagina,
+            'total_paginas' => $total_paginas,
+            'total_registros' => $total_filas
+        ];
+    } else {
+        // Para subcarpetas, también con paginación
+        $sql_paginacion = "SELECT id_expediente, nombre, descripcion, fecha_creacion 
+                          FROM `expedientes` 
+                          WHERE expediente_padre = ? 
+                          AND id_area = ? 
+                          AND estado = 'aprobado'  
+                          ORDER BY nombre
+                          LIMIT ?, ?";
+
+        $stmt = $conexion->prepare($sql_paginacion);
+        $stmt->bind_param('iiii', $padreId, $area, $inicio, $cantidad_tabla);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+        $expedientes = $resultado->fetch_all(MYSQLI_ASSOC);
+
+        // Obtener total de subcarpetas
+        $sql_total = "SELECT COUNT(*) as total 
+                     FROM expedientes 
+                     WHERE expediente_padre = ? 
+                     AND id_area = ? 
+                     AND estado = 'aprobado'";
+
+        $stmt_total = $conexion->prepare($sql_total);
+        $stmt_total->bind_param('ii', $padreId, $area);
+        $stmt_total->execute();
+        $result_total = $stmt_total->get_result();
+        $total_filas = $result_total->fetch_assoc()['total'];
+        $total_paginas = ceil($total_filas / $cantidad_tabla);
+
+        return [
+            'expedientes' => $expedientes,
+            'pagina_actual' => $pagina,
+            'total_paginas' => $total_paginas,
+            'total_registros' => $total_filas
+        ];
+    }
 }
 
 // Función para obtener información de un expediente específico
-function obtenerInfoExpediente($conexion, $id_expediente) {
+function obtenerInfoExpediente($conexion, $id_expediente)
+{
     $sql = "SELECT id_expediente, nombre, descripcion, fecha_creacion 
             FROM expedientes 
             WHERE id_expediente = ?";
-    
+
     $stmt = $conexion->prepare($sql);
     $stmt->bind_param("i", $id_expediente);
     $stmt->execute();
@@ -72,7 +279,8 @@ function obtenerInfoExpediente($conexion, $id_expediente) {
 }
 
 // Función para subir documento
-function subirDocumento($conexion, $archivo, $id_expediente, $area, $id_usuario, $categoria) {
+function subirDocumento($conexion, $archivo, $id_expediente, $area, $id_usuario, $categoria)
+{
     if (!isset($archivo) || $archivo['error'] !== UPLOAD_ERR_OK) {
         return false;
     }
@@ -133,7 +341,7 @@ function subirDocumento($conexion, $archivo, $id_expediente, $area, $id_usuario,
             $sql = $conexion->prepare("INSERT INTO documentos (titulo, path, id_expediente, id_area, tipo, autor, estado, estado_retencion, id_retencion, fin_retencion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             $titulo = $nombre_base;
             $tipo = $extension;
-            
+
             $sql->bind_param("ssiisissss", $titulo, $rutaArchivo, $id_expediente, $area, $tipo, $id_usuario, $estado, $estado_retencion, $id_retencion, $fin_retencion);
             $documento_insertado = $sql->execute();
 
@@ -145,10 +353,9 @@ function subirDocumento($conexion, $archivo, $id_expediente, $area, $id_usuario,
                 return false;
             }
         }
-        
+
         $conexion->rollback();
         return false;
-
     } catch (Exception $e) {
         $conexion->rollback();
         return false;
@@ -156,12 +363,13 @@ function subirDocumento($conexion, $archivo, $id_expediente, $area, $id_usuario,
 }
 
 // Función para descargar documento
-function descargarDocumento($conexion, $documento_id) {
+function descargarDocumento($conexion, $documento_id)
+{
     $sql = "SELECT d.titulo, d.path, d.tipo, e.nombre as nombre_expediente 
             FROM documentos d 
             LEFT JOIN expedientes e ON d.id_expediente = e.id_expediente 
             WHERE d.id_documento = ?";
-    
+
     $stmt = $conexion->prepare($sql);
     $stmt->bind_param("i", $documento_id);
     $stmt->execute();
@@ -184,7 +392,7 @@ function descargarDocumento($conexion, $documento_id) {
 
     // Preparar el nombre del archivo para la descarga
     $nombreArchivo = $documento['titulo'];
-    
+
     // Configurar las cabeceras para la descarga
     header('Content-Type: ' . $mimeType);
     header('Content-Disposition: attachment; filename="' . $nombreArchivo . '"');
@@ -204,7 +412,8 @@ function descargarDocumento($conexion, $documento_id) {
 }
 
 // Función para editar expediente
-function editarExpediente($conexion, $id_expediente, $nuevo_titulo, $nueva_descripcion) {
+function editarExpediente($conexion, $id_expediente, $nuevo_titulo, $nueva_descripcion, $area, $id_usuario)
+{
     try {
         // Obtener el expediente_padre antes de editar
         $sql_parent = "SELECT expediente_padre FROM expedientes WHERE id_expediente = ?";
@@ -220,20 +429,23 @@ function editarExpediente($conexion, $id_expediente, $nuevo_titulo, $nueva_descr
                 SET nombre = ?, 
                     descripcion = ?
                 WHERE id_expediente = ?";
-        
+
         $stmt = $conexion->prepare($sql);
-        
+
         if (!$stmt) {
             throw new Exception("Error preparando la consulta: " . $conexion->error);
         }
-        
+
         $stmt->bind_param("ssi", $nuevo_titulo, $nueva_descripcion, $id_expediente);
-        
+
         if (!$stmt->execute()) {
             throw new Exception("Error ejecutando la consulta: " . $stmt->error);
         }
-        
+
         if ($stmt->affected_rows >= 0) {
+
+            registrarAuditoria($conexion, $area, 'editó', 'expediente', $id_expediente, $id_usuario, "auditor");
+
             return [
                 'success' => true,
                 'expediente_padre' => $expediente_padre
@@ -254,10 +466,11 @@ function editarExpediente($conexion, $id_expediente, $nuevo_titulo, $nueva_descr
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     switch ($_POST['accion']) {
         case 'subir_expediente':
-            $nombre = $_POST['titulo_carpeta']; 
-            $descripcion = $_POST['desc_carpeta']; 
-            $padreId = $_POST['expediente_padre'] ?? 0;
-            
+            $nombre = filter_var($_POST['titulo_carpeta'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $descripcion = filter_var($_POST['desc_carpeta'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $padreId = isset($_POST['expediente_padre']) ? (int)$_POST['expediente_padre'] : 0;
+
+
             if (subirExpediente($conexion_metadocs, $nombre, $descripcion, $padreId, $area, $id_usuario)) {
                 header("Location: ../../vistas/auditor/archivos_auditor.php?success=true&id_expediente=" . $padreId);
                 exit();
@@ -268,10 +481,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             break;
 
         case 'subir_documento':
-            $id_expediente = $_POST['expediente_id'];
+            $id_expediente = isset($_POST['expediente_id']) ? (int)$_POST['expediente_id'] : 0;
             $archivo = $_FILES['file-input'];
-            $categoria = $_POST['categoria'];
-           
+            $categoria = filter_var($_POST['categoria'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+
             if (subirDocumento($conexion_metadocs, $archivo, $id_expediente, $area, $id_usuario, $categoria)) {
                 $_SESSION['doc_exito'] = 'Documento subido con éxito';
                 header("Location: ../../vistas/auditor/archivos_auditor.php?success=true&id_expediente=" . $id_expediente);
@@ -288,12 +502,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         case 'editar_expediente':
             if (isset($_POST['id_expediente']) && isset($_POST['nuevo_titulo']) && isset($_POST['nueva_descripcion'])) {
-                $id_expediente = $_POST['id_expediente'];
-                $nuevo_titulo = $_POST['nuevo_titulo'];
-                $nueva_descripcion = $_POST['nueva_descripcion'];
-                
-                $resultado = editarExpediente($conexion_metadocs, $id_expediente, $nuevo_titulo, $nueva_descripcion);
-                
+                $id_expediente = isset($_POST['id_expediente']) ? (int)$_POST['id_expediente'] : 0;
+                $nuevo_titulo = filter_var($_POST['nuevo_titulo'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $nueva_descripcion = filter_var($_POST['nueva_descripcion'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+
+                $resultado = editarExpediente($conexion_metadocs, $id_expediente, $nuevo_titulo, $nueva_descripcion, $area, $id_usuario);
+
                 if ($resultado['success']) {
                     if ($resultado['expediente_padre']) {
                         header("Location: ../../vistas/auditor/archivos_auditor.php?id_expediente=" . $resultado['expediente_padre']);
@@ -307,5 +522,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             break;
     }
+} else {
+    
 }
-?>

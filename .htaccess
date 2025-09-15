@@ -1,0 +1,3 @@
+Options -Indexes
+ErrorDocument 404 /metadocs_V2/app/vistas/log/vista_404.html
+

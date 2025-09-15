@@ -13,17 +13,17 @@ require_once "../../backend/login/nueva_contraseña.php";
 </head>
 <body>
   <main id="cuerpo">
-    <form id="formulario" action="../../backend/login/nueva_contraseña.php" method="POST" novalidate>
+    <form id="formulario" action="../../backend/login/nueva_contraseña.php" method="POST">
       <h1>Cambiar contraseña</h1>
       <p>Ingrese una contraseña nueva</p>
 
       <label for="contraseña">Ingrese su contraseña actual</label>
-      <input type="password" name="contraseña" id="contraseña" maxlength="16" minlength="8"
+      <input type="password" name="contraseña_actual" id="contraseña" maxlength="16" minlength="8"
         pattern="[a-zA-Z0-9]{8,16}" required
         title="Solo letras y números. De 8 a 16 caracteres.">
 
       <label for="nueva_contrasena">Nueva contraseña</label>
-      <input type="password" name="nueva_contraseña" id="nueva_contraseña" maxlength="16" minlength="8"
+      <input type="password" name="contrasena" id="contrasena" maxlength="16" minlength="8"
         pattern="[a-zA-Z0-9]{8,16}" required
         title="Solo letras y números. De 8 a 16 caracteres.">
       
